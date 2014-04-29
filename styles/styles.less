@@ -1,3 +1,52 @@
-.red {
-    color: red;
+/*
+
+Grid parameters: 12 modules @ 66px, 18px gap
+
+*/
+
+@grid_gutter: 18px;
+@grid_module: 66px;
+@grid_12: 12 * @grid_module + 11 * @grid_gutter;
+@grid_4: 4 * @grid_module + 3 * @grid_gutter;
+
+
+body {
+    margin: 0;
+}
+
+#header {
+    background: #efefef;
+}
+
+#header_contents {
+    margin: 0 auto;
+    width: @grid_12;
+}
+
+#top_navigation {
+    float: right;
+}
+
+#content {
+    margin: 0 auto;
+    width: @grid_12;
+}
+
+.column {
+    .DEBUG_outline;
+    float: left;
+    width: @grid_4;
+    margin-right: @grid_gutter;
+}
+
+// *** Generic styles ***
+
+.clear {
+    clear: both;
+}
+
+// *** Debugging styles ***
+
+.DEBUG_outline {
+    border: 1px solid red;
 }
