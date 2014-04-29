@@ -37,7 +37,11 @@ body {
     .DEBUG_outline;
     float: left;
     width: @grid_4;
-    margin-right: @grid_gutter;
+    margin-left: @grid_gutter;
+    
+    &:first-child {
+        margin-left: 0;
+    }
 }
 
 // *** Content styles ***
