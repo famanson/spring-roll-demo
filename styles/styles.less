@@ -9,6 +9,7 @@ Grid parameters: 12 modules @ 66px, 18px gap
 @grid_12: 12 * @grid_module + 11 * @grid_gutter;
 @grid_4: 4 * @grid_module + 3 * @grid_gutter;
 
+@red: #c33f3f;
 
 body {
     margin: 0;
@@ -39,6 +40,24 @@ body {
     margin-right: @grid_gutter;
 }
 
+// *** Content styles ***
+
+.post {
+    .price {
+        color: @red;
+        font-size: 2em;
+    }
+    
+    .time {
+        float: right;
+    }
+    
+    .description {
+        font-family: Arial;
+        text-align: justify;
+    }
+}
+
 // *** Generic styles ***
 
 .clear {
@@ -48,5 +67,19 @@ body {
 // *** Debugging styles ***
 
 .DEBUG_outline {
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
     border: 1px solid red;
+}
+
+.DEBUG_baseline_grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeat-y 50% 0 url("../images/baseline_grid.png");
+    opacity: 0.5;
+    z-index: -100;
 }
