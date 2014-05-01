@@ -69,6 +69,44 @@ body {
     }
 }
 
+#user_profile_nav {
+    position: relative;
+    display: block;
+    float: right;
+    margin: 0.6em 0 0;
+    
+    img {
+        float: left;
+    }
+    
+    .triangle {
+        margin-top: 22px;
+        margin-left: 5px;
+        float: right;
+        border: 7px solid transparent;
+        border-top-color: #5c5c5c;
+    }
+    
+    .badge {
+        .gradient(#f04d53; 0%; #ed1c24; 100%);
+        position: absolute;
+        bottom: -0.5em;
+        left: -0.5em;
+        text-align: center;
+        border-radius: 20px;
+        font-size: 75%;
+        color: white;
+        border: 2px solid white;
+        min-width: 12px;
+        padding: 1px 2px;
+        height: 14px;
+    }
+}
+
+.avatar {
+    border-radius: 100px;
+}
+
 #content {
     margin: 0 auto;
     width: @grid_12;
@@ -99,6 +137,9 @@ body {
     
     .time {
         float: right;
+        font-size: 75%;
+        color: #aaa;
+        margin-top: 12pt;
     }
     
     .description {
