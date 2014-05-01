@@ -32,6 +32,8 @@ var app = angular.module('SpringRollDemo', ['ngSanitize']);
 
 app.controller("ListingsCtrl", function($scope) {
     'use strict';
+    // Add control for toggling the visibility of the grid lines.
+    $scope.showGridLines = false;
     
     // Split posts into three columns.
     $scope.columns = [];

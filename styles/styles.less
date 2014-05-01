@@ -20,6 +20,7 @@ Grid parameters: 12 modules @ 66px, 18px gap
 
 body {
     margin: 0;
+    font-family: "Arial";
 }
 
 #header {
@@ -127,6 +128,16 @@ body {
 
 // *** Debugging styles ***
 
+#debug_panel {
+    padding: 0.6em 3em;
+    position: fixed;
+    bottom: 0;
+    background: #ddd;
+    width: 100%;
+    font-size: 75%;
+    opacity: 0.7;
+}
+
 .DEBUG_outline {
     box-sizing:border-box;
     -moz-box-sizing:border-box;
@@ -144,4 +155,8 @@ body {
     opacity: 0.5;
     z-index: 999;
     pointer-events:none;
+    
+    &.enabled-false {
+        display: none;
+    }
 }

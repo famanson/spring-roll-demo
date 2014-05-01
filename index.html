@@ -8,8 +8,8 @@
         
         <script src="./js/model.js"></script>
     </head>
-    <body>
-        <div class="DEBUG_baseline_grid"></div>
+    <body ng-controller="ListingsCtrl">
+        <div class="DEBUG_baseline_grid enabled-{{ showGridLines }}" ></div>
         <div id="header">
             <div id="header_contents">
                 <div id="logo">
@@ -24,7 +24,7 @@
             </div>
         </div>
         
-        <div id="content" ng-controller="ListingsCtrl">
+        <div id="content">
             <div class="column" ng-repeat="column in columns">
                 <div class="post" ng-repeat="post in column">
                     <span class="price">£{{ post.price }}</span>
@@ -32,6 +32,10 @@
                     <div class="description" ng-bind-html="post.description"></div>
                 </div>
             </div>
+        </div>
+                
+        <div id="debug_panel">
+            <input type=checkbox id="show_grid_lines" ng-model="showGridLines" /><label for="show_grid_lines">Show grid lines</label>
         </div>
     </body>
 </html>
