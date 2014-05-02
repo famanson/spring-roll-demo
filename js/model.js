@@ -38,7 +38,7 @@ var posts = [
     }, {
         price: '500pcm',
         ago: "2 days ago",
-        description: "<b>Double room for rent</b> in Hackney E2. Suitable for couples. Very close to large supermarkets (Tesco, Asda), Vietnamese shops and restaurants. Buses: 149, 67, 242. Nearby stations: Hoxton, Shoreditch High Street",
+        description: "<b>Double room for rent</b> in Hackney E2. Suitable for couples. Very close to large supermarkets (Tesco, Asda), Vietnamese shops and restaurants. Buses: <b>149, 67, 242</b>. Nearby stations: <b>Hoxton, Shoreditch High Street</b>",
         type: "rent"
     }, {
         price: '450pcm',
