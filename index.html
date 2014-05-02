@@ -17,9 +17,7 @@
                 </div>
                 
                 <div id="top_navigation">
-                    <a>Buy</a>
-                    <a>Sell</a>
-                    <a>Rent</a>
+                    <a ng-repeat="nav in topNavs" ng-click="populateByType(nav.type)">{{ nav.name }}</a>
                 </div>
                 
                 <a id="user_profile_nav" href="">
