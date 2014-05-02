@@ -17,7 +17,7 @@
                 </div>
                 
                 <div id="top_navigation">
-                    <a ng-repeat="nav in topNavs" ng-click="populateByType(nav.type)">{{ nav.name }}</a>
+                    <a ng-repeat="nav in topNavs" ng-class="{active : isTopNavSelected(nav)}" ng-click="populateByType(nav.type);setTopNavMaster(nav)">{{ nav.name }}</a>
                 </div>
                 
                 <a id="user_profile_nav" href="">

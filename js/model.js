@@ -67,16 +67,11 @@ app.controller("ListingsCtrl", function($scope) {
         var filteredPosts = posts.filter(filterByType);
         var perColumn = filteredPosts.length / 3;
         var remainder = filteredPosts.length % 3;
-        console.log(filteredPosts);
         for (var i = 0; i < 3; i++) {
             $scope.columns[i] = filteredPosts.splice(0, perColumn + (i < remainder ? 1 : 0));
         }
     };
     $scope.populateByType('buy');
-//    for (var i = 0; i < 3; i++) {
-//        $scope.columns[i] = posts.splice(0, perColumn + (i < remainder ? 1 : 0));
-//        console.log($scope.columns[i]);
-//    }
     
     $scope.switchPostType = function ( newType ) {
         $scope.currentPostType = {type:newType};
@@ -87,6 +82,7 @@ app.controller("ListingsCtrl", function($scope) {
     $scope.setTopNavMaster = function(nav) {
         $scope.selected = nav;
     };
+    $scope.setTopNavMaster(topNavs[0]);
 
     $scope.isTopNavSelected = function(nav) {
         return $scope.selected === nav;
