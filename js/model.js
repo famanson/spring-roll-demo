@@ -48,12 +48,12 @@ var posts = [
     }, {
         price: '500pcm',
         ago: "2 days ago",
-        description: "<b>Large studio room</b> in a Vietnamese family's large house, <b>all bills included!!</b> Post code: E3. Conveniently located near large shopping mall and public transport. Students and professionals both welcome.",
+        description: "<b>Large studio room</b> in a Vietnamese family's large house, <b>all bills included!!</b> Post code: E3. Conveniently located near large shopping mall and public transport. <b>Students and professionals both welcome</b>.",
         type: "rent"
     }, {
         price: '2000pcm',
         ago: "2 days ago",
-        description: "<b>1-bedroom apartment</b>, Canada Water. Central area with all large shops, London's financial offices and major public transport links within walking distance. Best suited for a single professional.",
+        description: "<b>1-bedroom apartment</b>, Canada Water. Central area with all large shops, London's financial offices and major public transport links within walking distance. <b>Best suited for a single professional</b>.",
         type: "rent"
     }, {
         price: '1500pcm',
