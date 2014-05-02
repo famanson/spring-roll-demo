@@ -30,6 +30,36 @@ var posts = [
         ago: "6 days ago",
         description: "<b>Brand new female bike</b>. Selling due to lack of use, collect in person only.",
         type: "sell"
+    }, {
+        price: 750,
+        ago: "5 days ago",
+        description: "<b>Macbook Pro 2013 Like New!</b> Will post to anywhere in the UK. Including free Apple Magic Mouse and spare charger to sweeten the deal, plus <b>6 months left on Apple Care!</b>",
+        type: "sell"
+    }, {
+        price: '500pcm',
+        ago: "2 days ago",
+        description: "<b>Double room for rent</b> in Hackney E2. Suitable for couples. Very close to large supermarkets (Tesco, Asda), Vietnamese shops and restaurants. Buses: 149, 67, 242. Nearby stations: Hoxton, Shoreditch High Street",
+        type: "rent"
+    }, {
+        price: '450pcm',
+        ago: "2 days ago",
+        description: "<b>Double room</b>. Can be shared for up to 2 people in <b>Finsbury Park, North London</b>. 5 mins walk to Sainsbury and 15 mins away from Finsbury Park Station. <b>Female students only</b>",
+        type: "rent"
+    }, {
+        price: '500pcm',
+        ago: "2 days ago",
+        description: "<b>Large studio room</b> in a Vietnamese family's large house, <b>all bills included!!</b> Post code: E3. Conveniently located near large shopping mall and public transport. Students and professionals both welcome.",
+        type: "rent"
+    }, {
+        price: '2000pcm',
+        ago: "2 days ago",
+        description: "<b>1-bedroom apartment</b>, Canada Water. Central area with all large shops, London's financial offices and major public transport links within walking distance. Best suited for a single professional.",
+        type: "rent"
+    }, {
+        price: '1500pcm',
+        ago: "1 day ago",
+        description: "<b>4-bedroom house</b> Greenwich SE10. Very near to Greenwich uni. Close to Greenwich station, Tesco and Chinese shop. Viewing arrangements welcomed.",
+        type: "rent"
     }
 ];
 
