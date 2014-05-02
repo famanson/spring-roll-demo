@@ -103,10 +103,6 @@ app.controller("ListingsCtrl", function($scope) {
     };
     $scope.populateByType('buy');
     
-    $scope.switchPostType = function ( newType ) {
-        $scope.currentPostType = {type:newType};
-    };
-    
     $scope.topNavs = topNavs;
     
     $scope.setTopNavMaster = function(nav) {
