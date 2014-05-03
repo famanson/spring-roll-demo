@@ -42,7 +42,7 @@
         <div id="content">
             <div class="column" ng-repeat="column in columns">
                 <div class="post repeated-item" ng-repeat="post in column">
-                    <span class="price">£{{ post.price }}</span>
+                    <span class="price">{{ post.price }}</span>
                     <span class="time">{{ post.ago }}</span>
                     <div class="description" ng-bind-html="post.description"></div>
                 </div>
