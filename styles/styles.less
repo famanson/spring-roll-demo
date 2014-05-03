@@ -208,3 +208,23 @@ body {
         display: none;
     }
 }
+.repeated-item.ng-enter,
+.repeated-item.ng-leave{
+  -webkit-transition: 250;
+}
+
+.repeated-item.ng-enter {
+  opacity: 0;
+}
+
+.repeated-item.ng-leave {
+  opacity: 1;
+}
+
+.repeated-item.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+
+.repeated-item.ng-leave.ng-leave-active {
+  opacity: 0;
+}

@@ -79,29 +79,43 @@ var topNavs = [
 ];
 
 // Define controller.
+var app = angular.module('SpringRollDemo', ['ngSanitize','ngAnimate']);
 
-var app = angular.module('SpringRollDemo', ['ngSanitize']);
-
-app.controller("ListingsCtrl", function($scope) {
+app.controller("ListingsCtrl", function($scope, $timeout) {
     'use strict';
     // Add control for toggling the visibility of the grid lines.
     $scope.showGridLines = false;
     
     // Split posts into three columns.
     $scope.columns = [];
-    
-    $scope.populateByType = function ( popType ) {
-        var filterByType = function ( element ) {
-            return element.type === popType;
-        };
-        var filteredPosts = posts.filter(filterByType);
-        var perColumn = filteredPosts.length / 3;
-        var remainder = filteredPosts.length % 3;
+    for (var i = 0; i < 3; i++) {
+        $scope.columns[i] = [];
+    }
+    $scope.emptyColumns = function () {
         for (var i = 0; i < 3; i++) {
-            $scope.columns[i] = filteredPosts.splice(0, perColumn + (i < remainder ? 1 : 0));
+            var len = $scope.columns[i].length;
+            for (var j = 0; j < len; j++) {
+                $scope.columns[i].pop();
+            }
         }
     };
-    $scope.populateByType('buy');
+    $scope.populateByType = function ( popType, delay ) {
+        $timeout(function(){
+            var filterByType = function ( element ) {
+                return element.type === popType;
+            };
+            var filteredPosts = posts.filter(filterByType);
+            var perColumn = filteredPosts.length / 3;
+            var remainder = filteredPosts.length % 3;
+            for (var i = 0; i < 3; i++) {
+                var columnPosts = filteredPosts.splice(0, perColumn + (i < remainder ? 1 : 0));
+                for (var k = 0; k < columnPosts.length; k++) {
+                    $scope.columns[i].push(columnPosts[k]);
+                }
+            }
+        }, delay);
+    };
+    $scope.populateByType('buy', 100);
     
     $scope.topNavs = topNavs;
     
