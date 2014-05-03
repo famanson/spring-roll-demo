@@ -66,6 +66,10 @@ body {
         line-height: 18pt;
         width: @grid_module;
         margin-right: @grid_gutter;
+        cursor: pointer;
+    }
+    .active {
+        border-bottom: 5px solid #999;
     }
 }
 
@@ -125,7 +129,7 @@ body {
 // *** Content styles ***
 
 .post {
-    margin-top: 0.7em;
+    margin-top: 1.0em;
     
     .price {
         font-family: "Open Sans", Arial;
@@ -149,6 +153,7 @@ body {
         text-align: justify;
         font-size: 10.5pt;
         line-height: 1.3em;
+        margin-top: 0.3em;
     }
 }
 
@@ -202,4 +207,24 @@ body {
     &.enabled-false {
         display: none;
     }
+}
+.repeated-item.ng-enter,
+.repeated-item.ng-leave{
+  -webkit-transition: 250;
+}
+
+.repeated-item.ng-enter {
+  opacity: 0;
+}
+
+.repeated-item.ng-leave {
+  opacity: 1;
+}
+
+.repeated-item.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+
+.repeated-item.ng-leave.ng-leave-active {
+  opacity: 0;
 }
