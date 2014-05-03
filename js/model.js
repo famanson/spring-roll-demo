@@ -91,6 +91,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     for (var i = 0; i < 3; i++) {
         $scope.columns[i] = [];
     }
+    
     $scope.emptyColumns = function () {
         for (var i = 0; i < 3; i++) {
             var len = $scope.columns[i].length;
@@ -99,9 +100,10 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
             }
         }
     };
-    $scope.populateByType = function ( popType, delay ) {
-        $timeout(function(){
-            var filterByType = function ( element ) {
+    
+    $scope.populateByType = function(popType, delay) {
+        $timeout(function() {
+            var filterByType = function(element) {
                 return element.type === popType;
             };
             var filteredPosts = posts.filter(filterByType);
@@ -115,7 +117,8 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
             }
         }, delay);
     };
-    $scope.populateByType('buy', 100);
+
+    $scope.populateByType('buy', 0);
     
     $scope.topNavs = topNavs;
     
