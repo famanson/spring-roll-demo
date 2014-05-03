@@ -81,27 +81,27 @@ var topNavs = [
 var notifications = [
     {
         content: "<b>Kevin Nguyen</b> and 5 others messaged you about your <b>\"Brand new iPhone 5\"</b> post.",
-        ago: 'Sale | 1 hour ago',
+        ago: '1 hour ago in Sale',
         type: 'message',
         avatar: 'avatar04.jpg'
     }, {
         content: "<b>Van Tran</b> and 2 others messaged you about your <b>\"Old heater\"</b> post.",
-        ago: 'Sale | 1 hour ago',
+        ago: '1 hour ago in Sale',
         type: 'message',
         avatar: 'avatar02.jpg'
     }, {
         content: "<b>Linh Nguyen</b> and 10 others messaged you about your <b>\"Waiters needed, Viet Restaurant\"</b> post.",
-        ago: 'Wanted | 3 hours ago',
+        ago: '3 hours ago in Wanted',
         type: 'message',
         avatar: 'avatar03.jpg'
     }, {
         content: "<b>Hoang Pham</b> replied about his <b>\"Airport taxi service\"</b> post.",
-        ago: 'Wanted | 4 hours ago',
+        ago: '4 hours ago in Wanted',
         type: 'message',
         avatar: 'avatar05.jpg'
     }, {
         content: "<b>Ha Bui</b> replied about her <b>\"Large Studio Room\"</b> post.",
-        ago: 'Rent | 4 hours ago',
+        ago: '4 hours ago in Rent',
         type: 'message',
         avatar: 'avatar06.jpg'
     }
