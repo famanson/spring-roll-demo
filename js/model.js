@@ -168,12 +168,23 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         return $scope.nboxSelected;
     };
 
+    $scope.toggleClicked = false;
     $scope.toggleNBox = function() {
+        //alert("Toggle");
+        $scope.toggleClicked = true;
         if ($scope.nboxSelected) {
             $scope.nboxSelected = false;
         } else {
             $scope.nboxSelected = true;
         }
+    };
+    
+    $scope.dismissNBox = function() {
+        //alert("Dismiss");
+        if (!$scope.toggleClicked) {
+            $scope.nboxSelected = false;
+        }
+        $scope.toggleClicked = false;
     };
     
     $scope.notifications = notifications;
