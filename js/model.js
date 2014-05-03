@@ -82,14 +82,15 @@ var topNavs = [
     {
         name: 'Sale',
         type: 'sale'
-    },
-    {
+    }, {
         name: 'Wanted',
         type: 'wanted'
-    },
-    {
+    }, {
         name: 'Rent',
         type: 'rent'
+    }, {
+        name: 'Longdan',
+        type: 'longdan'
     }
 ];
 

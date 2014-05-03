@@ -18,7 +18,14 @@
                 </div>
                 
                 <div id="top_navigation">
-                    <a ng-repeat="nav in topNavs" ng-class="{active : isTopNavSelected(nav)}" ng-click="emptyColumns();populateByType(nav.type, 350);setTopNavMaster(nav)">{{ nav.name }}</a>
+                    <a ng-repeat="nav in topNavs" ng-class="{active : isTopNavSelected(nav)}" class="{{ nav.type }}" ng-click="emptyColumns();populateByType(nav.type, 350);setTopNavMaster(nav)">
+                        <span ng-if="nav.type == 'longdan'">
+                            <img src="images/longdan.png"/>
+                        </span>
+                        <span ng-if="nav.type != 'longdan'">
+                            {{ nav.name }}
+                        </span>
+                    </a>
                 </div>
                 
                 <a id="user_profile_nav" href="">
