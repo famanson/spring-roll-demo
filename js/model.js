@@ -14,27 +14,27 @@ var posts = [
         price: 100,
         ago: "2 days ago",
         description: "<b>Old heater</b>, good for winter holidays. Heats well even in coldest weather for a bedroom-sided room. Will send anywhere within UK, <b>delivery</b> included.",
-        type: "buy"
+        type: "sale"
     }, {
         price: 150,
         ago: "4 days ago",
         description: "Old <b>50-inch TV</b>, brand Panasonic, black, small bezel. Purchased in 2009, in good condition (see photos). Has an in-built DVD player, 2 USB, 3 HDMI, Component and 2 AVI. <b>LED</b> display, may not good against direct sunlight. Delivery costs not included, please pick up from Clapham, London.",
-        type: "buy"
+        type: "sale"
     }, {
         price: 400,
         ago: "2 days ago",
         description: "<b>Phone 5S gold colour</b>. Barely used. Deliver anywhere within UK (delivery not included, up to £5 extra). Will throw in a free cover of your choice (see photos).",
-        type: "buy"
+        type: "sale"
     }, {
         price: 150,
         ago: "6 days ago",
         description: "<b>Brand new female bike</b>. Selling due to lack of use, collect in person only.",
-        type: "sell"
+        type: "sale"
     }, {
         price: 750,
         ago: "5 days ago",
         description: "<b>Macbook Pro 2013 Like New!</b> Will post to anywhere in the UK. Including free Apple Magic Mouse and spare charger to sweeten the deal, plus <b>6 months left on Apple Care!</b>",
-        type: "sell"
+        type: "sale"
     }, {
         price: '500pcm',
         ago: "2 days ago",
@@ -65,16 +65,45 @@ var posts = [
 
 var topNavs = [
     {
-        name: 'Buy',
-        type: 'buy'
+        name: 'Sale',
+        type: 'sale'
     },
     {
-        name: 'Sell',
-        type: 'sell'
+        name: 'Wanted',
+        type: 'wanted'
     },
     {
         name: 'Rent',
         type: 'rent'
+    }
+];
+
+var notifications = [
+    {
+        content: "<b>Kevin Nguyen</b> and 5 others messaged you about your <b>\"Brand new iPhone 5\"</b> post.",
+        ago: 'Sale | 1 hour ago',
+        type: 'message',
+        avatar: 'avatar04.jpg'
+    }, {
+        content: "<b>Van Tran</b> and 2 others messaged you about your <b>\"Old heater\"</b> post.",
+        ago: 'Sale | 1 hour ago',
+        type: 'message',
+        avatar: 'avatar02.jpg'
+    }, {
+        content: "<b>Linh Nguyen</b> and 10 others messaged you about your <b>\"Waiters needed, Viet Restaurant\"</b> post.",
+        ago: 'Wanted | 3 hours ago',
+        type: 'message',
+        avatar: 'avatar03.jpg'
+    }, {
+        content: "<b>Hoang Pham</b> replied about his <b>\"Airport taxi service\"</b> post.",
+        ago: 'Wanted | 4 hours ago',
+        type: 'message',
+        avatar: 'avatar05.jpg'
+    }, {
+        content: "<b>Ha Bui</b> replied about her <b>\"Large Studio Room\"</b> post.",
+        ago: 'Rent | 4 hours ago',
+        type: 'message',
+        avatar: 'avatar06.jpg'
     }
 ];
 
@@ -101,6 +130,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         }
     };
     
+    /* Top Nav Control */
     $scope.populateByType = function(popType, delay) {
         $timeout(function() {
             var filterByType = function(element) {
@@ -118,7 +148,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         }, delay);
     };
 
-    $scope.populateByType('buy', 0);
+    $scope.populateByType('sale', 0);
     
     $scope.topNavs = topNavs;
     
@@ -130,4 +160,22 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     $scope.isTopNavSelected = function(nav) {
         return $scope.selected === nav;
     };
+    
+    /* Notifications Box Control */
+    $scope.nboxSelected = false;
+    
+    $scope.isNBoxSelected = function() {
+        return $scope.nboxSelected;
+    };
+
+    $scope.toggleNBox = function() {
+        if ($scope.nboxSelected) {
+            $scope.nboxSelected = false;
+        } else {
+            $scope.nboxSelected = true;
+        }
+    };
+    
+    $scope.notifications = notifications;
+    
 });

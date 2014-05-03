@@ -22,9 +22,17 @@
                 </div>
                 
                 <a id="user_profile_nav" href="">
-                    <img src="images/avatar01.jpg" class="avatar" />
-                    <span class="badge">4</span>
-                    <div class="triangle"></div>
+                    <img src="images/avatar01.jpg" class="avatar" ng-click="toggleNBox()"/>
+                    <span class="badge" ng-click="toggleNBox()">5</span>
+<!--                    <div class="triangle"></div>-->
+                    <div ng-class="{active : isNBoxSelected()}" class="triangle-up"></div>
+                    <div id="notification-box" ng-class="{active : isNBoxSelected()}">
+                        <div class="notification" ng-repeat="notification in notifications" ng-click="toggleNBox()">
+                            <img src="images/{{ notification.avatar }}" class="avatar"/>
+                            <div class="content" ng-bind-html="notification.content"></div>
+                            <div class="time">{{ notification.ago }}</div>
+                        </div>
+                    </div>
                 </a>
                 
                 <div class="clear"></div>
