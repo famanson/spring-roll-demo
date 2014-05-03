@@ -57,14 +57,17 @@
                         <img ng-src="{{ post.image_url }}" class="image"/>
                         <div class="description" ng-bind-html="post.desc1"></div>
                         <div class="description" ng-bind-html="post.desc2"></div>
-                        <div class="packaging">Packaging: {{ post.packaging }}</div>
+                        <div class="packaging" ng-bind-html="post.packaging"></div>
                         <div class="cart">
-                            <a class="cart-button add" ng-click="addBasket(post.id)">
-                                {{ showQuantity(post.id) }} | + Add
-                            </a>
-                            <a class="cart-button remove" ng-click="removeBasket(post.id)">
-                                - Remove
-                            </a>
+                            <div class="cart-buttons">
+                                <a class="cart-button add" ng-click="addBasket(post.id)">
+                                    {{ showQuantity(post.id) }} | + Add
+                                </a>
+                                <a class="cart-button remove" ng-click="removeBasket(post.id)">
+                                    - Remove
+                                </a>
+                            </div>
+                            <div class="divider"></div>
                         </div>
                     </div>
                 </div>
