@@ -270,6 +270,62 @@ body {
     }
 }
 
+// *** Longdan posts ***
+.longdan-post {
+    height: 180px;
+    position: relative;
+    .price {
+        font-size: 24px;
+        color: #E49300;
+    }
+
+    .image {
+        height: 150px;
+        float: left;
+    }
+
+    .description {
+        font-size: 14px;
+        text-align: left;
+    }
+
+    .packaging {
+        font-size: 14px;
+        color: #bbb;
+    }
+    
+    .cart {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+
+        a {
+            font-size: 14px;
+            color: #fff;
+            padding: 5px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .add {
+            background-color: #FFA400;
+        }
+        .add:hover {
+            background-color: #E79500;
+        }
+        
+        .remove {
+            margin-left: 5px;
+            background-color: #F75454;
+        }
+        .remove:hover {
+            background-color: #D64444;
+        }
+    }
+}
+
+
 // *** Animation stuff ***
 .repeated-item.ng-enter,
 .repeated-item.ng-leave{
