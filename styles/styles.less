@@ -59,7 +59,7 @@ body {
     color: #1c1b1b;
     
     a {
-        padding: 27pt 0 9pt;
+        padding: 27pt 0 6pt;
         text-align: center;
         float: left;
         display: block;
@@ -67,9 +67,10 @@ body {
         width: @grid_module;
         margin-right: @grid_gutter;
         cursor: pointer;
-    }
-    .active {
-        border-bottom: 5px solid #999;
+        
+        &.active {
+            border-bottom: 3pt solid #999;
+        }
     }
 }
 
