@@ -28,7 +28,7 @@
                     <div ng-class="{active : isNBoxSelected()}" class="triangle-up"></div>
                     <div id="notification-box" ng-class="{active : isNBoxSelected()}">
                         <div class="notification" ng-repeat="notification in notifications" ng-click="toggleNBox()">
-                            <img src="images/{{ notification.avatar }}" class="avatar"/>
+                            <img ng-src="images/{{ notification.avatar }}" class="avatar"/>
                             <div class="content" ng-bind-html="notification.content"></div>
                             <div class="time">{{ notification.ago }}</div>
                         </div>

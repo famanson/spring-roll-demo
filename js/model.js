@@ -185,13 +185,8 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
 
     $scope.toggleClicked = false;
     $scope.toggleNBox = function() {
-        //alert("Toggle");
         $scope.toggleClicked = true;
-        if ($scope.nboxSelected) {
-            $scope.nboxSelected = false;
-        } else {
-            $scope.nboxSelected = true;
-        }
+        $scope.nboxSelected = !$scope.nboxSelected;
     };
     
     $scope.dismissNBox = function() {
