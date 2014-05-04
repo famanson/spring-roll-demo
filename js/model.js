@@ -84,12 +84,30 @@ var posts = [
     /* Longdan posts */
     {
         id: 1,
-        price: "£20.00",
-        rrp: "£22.00",
+        price: "£2.00",
+        rrp: "£2.20",
         desc1: "Imperial Rice Vermicelli 1.6mm",
         desc2: "Bún Hoàng Gia 1.6mm",
         image_url: "http://www.longdan.co.uk/uploads/sanpham/prod_260213094726.jpg",
-        packaging: "400g x 30 bags",
+        packaging: "400g bag",
+        type: "longdan"
+    }, {
+        id: 2,
+        price: "£3.00",
+        rrp: "£4.00",
+        desc1: "Sriracha Hot Chilli Sauce",
+        desc2: "Tương Ớt Con Phụng",
+        image_url: "http://www.longdan.co.uk/uploads/sanpham/prod_170413044131.jpg",
+        packaging: "793g bottle",
+        type: "longdan"
+    }, {
+        id: 3,
+        price: "£1.50",
+        rrp: "£2.00",
+        desc1: "Vifon Soup Powder",
+        desc2: "Bột Canh Vifon",
+        image_url: "http://www.longdan.co.uk/uploads/sanpham/prod_061208040049.jpg",
+        packaging: "250g bag",
         type: "longdan"
     }
 ];
