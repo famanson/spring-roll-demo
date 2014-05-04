@@ -56,11 +56,14 @@
                 <div class="price" ng-class="{ active : !isDeliveryFree() }">{{ deliveryFee() }}</div>
             </div>
         </div>
-<!--
         <div id="mkt-header" ng-if="selected.type == 'longdan'">
-            <div class="mkt-line">Special discounts on authentic Vietnamese products by Longdan&reg;</div>
+            <div class="mkt-header-img"></div>
+            <div class="mkt-line">
+                <span id="authentic">Authentic Vietnamese products by Longdan&reg;</span>
+                <span id="discount">Exclusive discounts on SVUK Marketplace</span>
+                <span id="delivery">Free delivery on orders over £100</span>
+            </div>
         </div>
--->
         <div id="content" ng-class="selected.type">
             <div class="column" ng-repeat="column in columns">
                 <div class="post repeated-item" ng-repeat="post in column">
