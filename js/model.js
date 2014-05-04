@@ -190,6 +190,42 @@ var posts = [
         image_url: "http://www.longdan.co.uk/uploads/sanpham/prod_081208040737.jpg",
         packaging: "500ml bottle",
         type: "longdan"
+    }, {
+        id: 13,
+        price: "£7.50",
+        rrp: "£9.00",
+        desc1: "Korean Clay Pot Small (18cm)",
+        desc2: "Nồi Đất Hàn Quốc Cỡ Nhỏ",
+        image_url: "http://www.longdan.co.uk/uploads/sanpham/prod_250213084648.jpg",
+        packaging: "",
+        type: "longdan"
+    }, {
+        id: 14,
+        price: "£5.50",
+        rrp: "£6.00",
+        desc1: "Trung Nguyen G7 Coffee 3 in 1",
+        desc2: "Cà Phê Trung Nguyên G7 3 Trong 1",
+        image_url: "http://www.longdan.co.uk/uploads/sanpham/prod_220313084920.jpg",
+        packaging: "320g box",
+        type: "longdan"
+    }, {
+        id: 15,
+        price: "£3.90",
+        rrp: "£4.50",
+        desc1: "Vinacafe Buon Ma Thuot Coffee ",
+        desc2: "Cà Phê Buôn Ma Thuột Vinacafe",
+        image_url: "http://www.longdan.co.uk/uploads/sanpham/prod_040309111705.jpg",
+        packaging: "250g bag",
+        type: "longdan"
+    }, {
+        id: 16,
+        price: "£7.50",
+        rrp: "£9.00",
+        desc1: "Sai Gon Wood Mortar",
+        desc2: "Bộ Chày Cối Sài Gòn",
+        image_url: "http://www.longdan.co.uk/uploads/sanpham/prod_081208115108.jpg",
+        packaging: "",
+        type: "longdan"
     }
 ];
 
