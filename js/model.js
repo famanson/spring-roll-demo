@@ -109,6 +109,87 @@ var posts = [
         image_url: "http://www.longdan.co.uk/uploads/sanpham/prod_061208040049.jpg",
         packaging: "250g bag",
         type: "longdan"
+    }, {
+        id: 4,
+        price: "£12.50",
+        rrp: "£14.00",
+        desc1: "Kim Son Marble Goby",
+        desc2: "Cá Bống Tượng Kim Sơn",
+        image_url: "http://www.longdan.co.uk/uploads/sanpham/prod_291108030604.jpg",
+        packaging: "1kg",
+        type: "longdan"
+    }, {
+        id: 5,
+        price: "£2.50",
+        rrp: "£3.00",
+        desc1: "Longdan Dried Lotus Seed",
+        desc2: "Hạt Sen Khô Longdan",
+        image_url: "http://www.longdan.co.uk/uploads/sanpham/prod_081208045833.jpg",
+        packaging: "200g box",
+        type: "longdan"
+    }, {
+        id: 6,
+        price: "£3.50",
+        rrp: "£4.00",
+        desc1: "Longdan Arrowroot Bean Thread",
+        desc2: "Miến Dong Trắng Longdan",
+        image_url: "http://www.longdan.co.uk/uploads/sanpham/prod_101108082505.jpg",
+        packaging: "500g bag",
+        type: "longdan"
+    }, {
+        id: 7,
+        price: "£1.50",
+        rrp: "£2.00",
+        desc1: "Red Guava",
+        desc2: "Ổi Xá Lị",
+        image_url: "http://www.longdan.co.uk/uploads/sanpham/prod_241008111326.jpg",
+        packaging: "3-fruit tray",
+        type: "longdan"
+    }, {
+        id: 8,
+        price: "£2.00",
+        rrp: "£2.50",
+        desc1: "Pak Choi",
+        desc2: "Cải  Xanh",
+        image_url: "http://www.longdan.co.uk/uploads/sanpham/prod_191008045430.jpg",
+        packaging: "400g bag",
+        type: "longdan"
+    }, {
+        id: 9,
+        price: "£1.00",
+        rrp: "£1.50",
+        desc1: "Vietnamese Coriander ",
+        desc2: "Ngò Rí",
+        image_url: "http://www.longdan.co.uk/uploads/sanpham/prod_191008050413.jpg",
+        packaging: "100g bag",
+        type: "longdan"
+    }, {
+        id: 10,
+        price: "£2.40",
+        rrp: "£2.80",
+        desc1: "Longdan Water Melon Seed Candy",
+        desc2: "Kẹo Hạt Dưa Longdan",
+        image_url: "http://www.longdan.co.uk/uploads/sanpham/prod_081108153148.jpg",
+        packaging: "100g box",
+        type: "longdan"
+    }, {
+        id: 11,
+        price: "£13.50",
+        rrp: "£15.00",
+        desc1: "Longdan Vietnam Fragrant Rice",
+        desc2: "Gạo Xuân Lộc Longdan",
+        image_url: "http://www.longdan.co.uk/uploads/sanpham/prod_061208030757.jpg",
+        packaging: "10kg bag",
+        type: "longdan"
+    }, {
+        id: 12,
+        price: "£2.50",
+        rrp: "£3.00",
+        desc1: "Nam Duong Soy Sauce",
+        desc2: "Nước Tương Hoa Sen Nam Dương",
+        image_url: "http://www.longdan.co.uk/uploads/sanpham/prod_081208040737.jpg",
+        packaging: "500ml bottle",
+        type: "longdan"
     }
 ];
 
