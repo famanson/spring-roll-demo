@@ -361,7 +361,8 @@ body {
 }
 
 #ld-header {
-    padding: 10px 0 10px 0;
+    //
+    padding: 5px 0 5px 0;
     text-align: center;
     cursor: pointer;
     background-color: #efefef;
@@ -370,12 +371,18 @@ body {
     z-index: 10000;
     .basket {
         display: inline-block;
-        #checkout-basket {
+        padding: 0 10px 0 10px;
+        min-width: 60px;
+        img {
             height:30px;
         }
-        #checkout-total {
+        .price {
             font-size: 14px;
             color: #70B368;
+        }
+
+        .active { // active means non-free. Somehow ng-class doesn't work with anything else...
+            color: #ef363d;
         }
     }
 }

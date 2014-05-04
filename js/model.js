@@ -352,6 +352,8 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         longdanPrices[longdanPosts[j].id] = numericPrice;
     }
 
+    var deliveryFee = 15;
+
     $scope.basketTotal = function() {
         var total = 0;
         for (var key in $scope.basket) {
@@ -359,6 +361,23 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
             var price = longdanPrices[key];
             total += price * $scope.basket[key];
         }
-        return total.toFixed(2);
+        if (total >= 100) {
+            deliveryFee = 0;
+        } else {
+            deliveryFee = 15;
+        }
+        return total;
+    };
+    
+    $scope.showTruck = function() {
+        return $scope.isDeliveryFree() ? 'free-truck.png' : 'truck.png';
+    };
+    
+    $scope.deliveryFee = function() {
+        return $scope.isDeliveryFree() ? 'FREE!' : "£" + deliveryFee.toFixed(2);
+    };
+    
+    $scope.isDeliveryFree = function() {
+        return deliveryFee === 0;
     };
 });
