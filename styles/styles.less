@@ -59,7 +59,7 @@ body {
     color: #1c1b1b;
     
     a {
-        padding: 27pt 0 9pt;
+        padding: 27pt 0 6pt;
         text-align: center;
         float: left;
         display: block;
@@ -67,15 +67,15 @@ body {
         width: @grid_module;
         margin-right: @grid_gutter;
         cursor: pointer;
-    }
-    
-    a.longdan {
-        width: 116px;
-        padding: 16pt 0 0 0;
-    }
-    
-    .active {
-        border-bottom: 5px solid #999;
+
+        &.longdan {
+            width: 116px;
+            padding: 16pt 0 0 0;
+        }
+
+        &.active {
+            border-bottom: 5px solid #999;
+        }
     }
 }
 
@@ -138,20 +138,19 @@ body {
             .avatar {
                 margin-right: 15px
             }
-        }
         
-        .notification:last-child {
-            padding-bottom: 10px;
-        }
+            &:last-child {
+                padding-bottom: 10px;
+            }
         
-        .notification:not(:last-child) {
-            border-bottom: 1px solid #bbb;
-        }
+            &:not(:last-child) {
+                border-bottom: 1px solid #bbb;
+            }
         
-        .notification:hover {
-            background-color:#eee;
+            &:hover {
+                background-color:#eee;
+            }
         }
-        
     }
     .triangle-up {
         float: right;
@@ -327,17 +326,17 @@ body {
 
         .add {
             background-color: #7bc173;
-        }
-        .add:hover {
-            background-color: #649e5d;
+            &:hover {
+                background-color: #649e5d;
+            }
         }
         
         .remove {
             margin-left: 5px;
             background-color: #F75454;
-        }
-        .remove:hover {
-            background-color: #D64444;
+            &:hover {
+                background-color: #D64444;
+            }
         }
         
         .divider {
@@ -354,9 +353,6 @@ body {
     margin: 20px 0 50px 0;
     text-align: center;
     cursor: pointer;
-}
-
-#ld-more {
     color: #bbb;
 }
 
@@ -394,20 +390,20 @@ body {
             a {
                 padding: 10px;
                 border-right: 1px solid #bbb;
+                &:hover {
+                    color: #7bc173;
+                }
             }
-            a:hover {
-                color: #7bc173;
+
+            &:last-child a {
+                border-right: none;
             }
-        }
-        .category:last-child a {
-            border-right: none;
         }
     }
-}
-
-#ld-header.fixed {
-    position: fixed;
-    top: 0;
+    &.fixed {
+        position: fixed;
+        top: 0;
+    }
 }
 
 #mkt-header {
@@ -421,15 +417,16 @@ body {
             width: 33.333%;
             background-color: red;
             color: #fff;
-        }
-        #authentic {
-            background-color: #70B368;
-        }
-        #discount {
-            background-color: #F75454;   
-        }
-        #delivery {
-            background-color: #f68b2b;
+
+            &#authentic {
+                background-color: #70B368;
+            }
+            &#discount {
+                background-color: #F75454;   
+            }
+            &#delivery {
+                background-color: #f68b2b;
+            }
         }
     }
     .mkt-header-img {
