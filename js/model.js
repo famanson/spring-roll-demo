@@ -85,6 +85,7 @@ var posts = [
     {
         id: 1,
         price: "£20.00",
+        rrp: "£22.00",
         desc1: "Imperial Rice Vermicelli 1.6mm",
         desc2: "Bún Hoàng Gia 1.6mm",
         image_url: "http://www.longdan.co.uk/uploads/sanpham/prod_260213094726.jpg",

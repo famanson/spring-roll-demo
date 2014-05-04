@@ -53,8 +53,11 @@
                         <div class="description" ng-bind-html="post.description"></div>
                     </div>
                     <div ng-if="post.type == 'longdan'" class="longdan-post">
-                        <span class="price">{{ post.price }}</span>
                         <img ng-src="{{ post.image_url }}" class="image"/>
+                        <div class="price-info">
+                            <span class="rrp">{{ post.rrp }}</span>
+                            <span class="price"><b>{{ post.price }}</b></span>
+                        </div>
                         <div class="description" ng-bind-html="post.desc1"></div>
                         <div class="description" ng-bind-html="post.desc2"></div>
                         <div class="packaging" ng-bind-html="post.packaging"></div>
