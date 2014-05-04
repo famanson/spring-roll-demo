@@ -238,6 +238,15 @@ var notifications = [
     }
 ];
 
+var ldCategories = [
+    { name: "Fresh & Chilled" },
+    { name: "Rice & Noodles"},
+    { name: "Seasoning & Spices"},
+    { name: "Confectionery"},
+    { name: "Drinks"},
+    { name: "Non-food"}
+ ];
+
 // Define controller.
 var app = angular.module('SpringRollDemo', ['ngSanitize','ngAnimate']);
 
@@ -380,4 +389,6 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     $scope.isDeliveryFree = function() {
         return deliveryFee === 0;
     };
+    
+    $scope.ldCategories = ldCategories;
 });

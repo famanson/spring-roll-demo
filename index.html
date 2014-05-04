@@ -45,6 +45,9 @@
         </div>
         <div id="ld-header" ng-if="selected.type == 'longdan'">
             <div class="basket">
+                <div ng-repeat="category in ldCategories" class="category"><a>{{ category.name }}</a></div>
+            </div>
+            <div class="basket">
                 <img id="checkout-basket" src="images/basket.png"/>
                 <div class="price">£{{ basketTotal().toFixed(2) }}</div>
             </div>
@@ -53,6 +56,11 @@
                 <div class="price" ng-class="{ active : !isDeliveryFree() }">{{ deliveryFee() }}</div>
             </div>
         </div>
+<!--
+        <div id="mkt-header" ng-if="selected.type == 'longdan'">
+            <div class="mkt-line">Special discounts on authentic Vietnamese products by Longdan&reg;</div>
+        </div>
+-->
         <div id="content" ng-class="selected.type">
             <div class="column" ng-repeat="column in columns">
                 <div class="post repeated-item" ng-repeat="post in column">
