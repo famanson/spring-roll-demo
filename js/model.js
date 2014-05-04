@@ -246,14 +246,14 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     // Add control for toggling the visibility of the grid lines.
     $scope.showGridLines = false;
     
-    // Split posts into three columns.
+    // Split posts into three columns (and four if Longdan)
     $scope.columns = [];
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < 4; i++) { // use 4 to make way for Longdan posts
         $scope.columns[i] = [];
     }
     
     $scope.emptyColumns = function () {
-        for (var i = 0; i < 3; i++) {
+        for (var i = 0; i < 4; i++) { // use 4 to make way for Longdan posts
             var len = $scope.columns[i].length;
             for (var j = 0; j < len; j++) {
                 $scope.columns[i].pop();
@@ -263,14 +263,15 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     
     /* Top Nav Control */
     $scope.populateByType = function(popType, delay) {
+        var rowLength = (popType == 'longdan') ? 4 : 3;
         $timeout(function() {
             var filterByType = function(element) {
                 return element.type === popType;
             };
             var filteredPosts = posts.filter(filterByType);
-            var perColumn = filteredPosts.length / 3;
-            var remainder = filteredPosts.length % 3;
-            for (var i = 0; i < 3; i++) {
+            var perColumn = filteredPosts.length / rowLength;
+            var remainder = filteredPosts.length % rowLength;
+            for (var i = 0; i < rowLength; i++) {
                 var columnPosts = filteredPosts.splice(0, perColumn + (i < remainder ? 1 : 0));
                 for (var k = 0; k < columnPosts.length; k++) {
                     $scope.columns[i].push(columnPosts[k]);
@@ -339,5 +340,25 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         } else {
             return 0;
         }
+    };
+   
+    // First work out Longdan's prices
+    var longdanPosts = posts.filter(function(post) {return post.type == 'longdan';});
+    var longdanPrices = {};
+    for (var j = 0; j < longdanPosts.length; j++) {
+        // Convert prices to numeric values here - this was not done in the definition because it'd
+        // mess up the formatting
+        var numericPrice = parseFloat(longdanPosts[j].price.replace('£',''));
+        longdanPrices[longdanPosts[j].id] = numericPrice;
+    }
+
+    $scope.basketTotal = function() {
+        var total = 0;
+        for (var key in $scope.basket) {
+            // $scope.basket[key] would be the quantity
+            var price = longdanPrices[key];
+            total += price * $scope.basket[key];
+        }
+        return total.toFixed(2);
     };
 });

@@ -186,6 +186,9 @@ body {
         margin-left: 0;
     }
 }
+.longdan .column {
+    width: @grid_3;
+}
 
 // *** Content styles ***
 
@@ -271,6 +274,9 @@ body {
 }
 
 // *** Longdan posts ***
+#content.longdan {
+    margin-top: 70px
+}
 .longdan-post {
     height: 300px;
     position: relative;
@@ -337,10 +343,47 @@ body {
         .divider {
             height:1px;
             border-bottom:1px solid #bbb;
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
         }
     }
 }
 
+#ld-more {
+    margin: 20px 0 50px 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+#ld-more {
+    color: #bbb;
+}
+
+#ld-header {
+    padding: 10px 0 10px 0;
+    text-align: center;
+    cursor: pointer;
+    background-color: #efefef;
+    height: 50px;
+    width: 100%;
+    z-index: 10000;
+    .basket {
+        display: inline-block;
+        #checkout-basket {
+            height:30px;
+        }
+        #checkout-total {
+            font-size: 14px;
+            color: #70B368;
+        }
+    }
+}
+
+#ld-header.fixed {
+    position: fixed;
+    top: 0;
+}
 
 // *** Animation stuff ***
 .repeated-item.ng-enter,

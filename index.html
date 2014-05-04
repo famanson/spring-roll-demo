@@ -9,7 +9,7 @@
         
         <script src="./js/model.js"></script>
     </head>
-    <body ng-controller="ListingsCtrl" ng-click="dismissNBox()">
+    <body id="body" ng-controller="ListingsCtrl" ng-click="dismissNBox()">
         <div class="DEBUG_baseline_grid enabled-{{ showGridLines }}" ></div>
         <div id="header">
             <div id="header_contents">
@@ -43,8 +43,13 @@
                 <div class="clear"></div>
             </div>
         </div>
-        
-        <div id="content">
+        <div id="ld-header" ng-if="selected.type == 'longdan'">
+            <div class="basket">
+                <img id="checkout-basket" src="images/basket.png"/>
+                <div id="checkout-total">£{{ basketTotal() }}</div>
+            </div>
+        </div>
+        <div id="content" ng-class="selected.type">
             <div class="column" ng-repeat="column in columns">
                 <div class="post repeated-item" ng-repeat="post in column">
                     <div ng-if="post.type != 'longdan'">
@@ -75,10 +80,13 @@
                     </div>
                 </div>
             </div>
+            <div style="clear:both;"></div>
         </div>
+        <div id="ld-more" ng-if="selected.type == 'longdan'">More Products >></div>
                 
         <div id="debug_panel">
             <input type=checkbox id="show_grid_lines" ng-model="showGridLines" /><label for="show_grid_lines">Show grid lines</label>
         </div>
+        <script src="./js/misc.js"></script>
     </body>
 </html>
