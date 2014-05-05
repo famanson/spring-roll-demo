@@ -401,8 +401,77 @@ body {
             &:last-child a {
                 border-right: none;
             }
+        }        
+    }
+    .checkout-overlay {
+        position: fixed;
+        background-color: #fff;
+        //height: 400px;
+        width: 60%;
+        z-index: 11000;
+        margin-top: 50px;
+        left: 20%;
+        border: 5px solid #eee;
+        box-shadow: 5px 5px 5px #bbb;
+        cursor: default;
+        padding: 15px;
+        display: none;
+        h2 {
+            padding-left: 0 10px 10px 10px;
+            margin: 5px;
+            color: #7bc173;
+            border-bottom: 1px solid;
+        }
+        .checkout-item {
+            position: relative;
+            padding: 10px;
+            height: 80px;
+            float: left;
+            img {
+                height: inherit;
+                float: left;
+            }
+            div {
+                &.badge {
+                    // Stealing some of Hai's code here to avoid breaking it elsewhere
+                    .gradient(#7bc173; 0%; #649e5d; 100%);
+                    text-align: center;
+                    border-radius: 20px;
+                    font-size: 75%;
+                    color: white;
+                    border: 2px solid #fff;
+                    min-width: 12px;
+                    padding: 2px 2px;
+                    height: 14px;
+                    position: absolute;
+                    bottom: 0;
+                    &.right {
+                        right: 0;
+                    }
+                }
+            }
+        }
+        &.active {
+            display: block;
+        }
+        
+        .checkout-button {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #F75454;
+            color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 80px;
+            margin: 20px auto 0 auto;
+            display: none;
+
+            &.active {
+                display: block;
+            }
         }
     }
+
     &.fixed {
         position: fixed;
         top: 0;

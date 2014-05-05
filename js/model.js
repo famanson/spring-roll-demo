@@ -340,23 +340,19 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     
     /* Notifications Box Control */
     $scope.nboxSelected = false;
-    
-    $scope.isNBoxSelected = function() {
-        return $scope.nboxSelected;
-    };
 
-    $scope.toggleClicked = false;
+    $scope.toggleNBoxClicked = false;
     $scope.toggleNBox = function() {
-        $scope.toggleClicked = true;
+        $scope.toggleNBoxClicked = true;
         $scope.nboxSelected = !$scope.nboxSelected;
     };
     
     $scope.dismissNBox = function() {
         //alert("Dismiss");
-        if (!$scope.toggleClicked) {
+        if (!$scope.toggleNBoxClicked) {
             $scope.nboxSelected = false;
         }
-        $scope.toggleClicked = false;
+        $scope.toggleNBoxClicked = false;
     };
     
     $scope.notifications = notifications;
@@ -397,7 +393,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         longdanPrices[longdanPosts[j].id] = numericPrice;
     }
 
-    var deliveryFee = 15;
+    $scope.deliveryFee = 15;
 
     $scope.basketTotal = function() {
         var total = 0;
@@ -407,9 +403,9 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
             total += price * $scope.basket[key];
         }
         if (total >= 100) {
-            deliveryFee = 0;
+            $scope.deliveryFee = 0;
         } else {
-            deliveryFee = 15;
+            $scope.deliveryFee = 15;
         }
         return total;
     };
@@ -418,12 +414,57 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         return $scope.isDeliveryFree() ? 'free-truck.png' : 'truck.png';
     };
     
-    $scope.deliveryFee = function() {
-        return $scope.isDeliveryFree() ? 'FREE!' : "£" + deliveryFee.toFixed(2);
+    $scope.deliveryFeeDisplay = function() {
+        return $scope.isDeliveryFree() ? 'FREE!' : "£" + $scope.deliveryFee.toFixed(2);
     };
     
     $scope.isDeliveryFree = function() {
-        return deliveryFee === 0;
+        return $scope.deliveryFee === 0;
+    };
+    
+    // Longdan images for use in the checkout overlay
+    var longdanImages = {};
+    for (var k = 0; k < longdanPosts.length; k++) {
+        longdanImages[longdanPosts[k].id] = {
+            imageUrl: longdanPosts[k].image_url,
+            description: longdanPosts[k].desc1
+        };
+    }
+    $scope.longdanImages = longdanImages;
+
+    $scope.checkedOutItems = [];
+    $scope.showCheckoutOverlay = false;
+    $scope.prepareCheckout = function () {
+        var checkedOutItems = [];
+        for (var key in $scope.basket) {
+            // $scope.basket[key] would be the quantity
+            var quantity = $scope.basket[key];
+            var price = longdanPrices[key] * quantity;
+            var imageUrl = longdanImages[key].imageUrl;
+            var description = longdanImages[key].description;
+            if (quantity > 0) {
+                checkedOutItems.push({
+                    quantity: quantity,
+                    price: price,
+                    imageUrl: imageUrl,
+                    description: description,
+                });
+            }
+        }
+        $scope.checkedOutItems = checkedOutItems;
+    };
+   
+    $scope.toggleCheckoutClicked = false;
+    $scope.toggleCheckout = function() {
+        $scope.toggleCheckoutClicked = true;
+        $scope.checkoutSelected = !$scope.checkoutSelected;
+    };
+    
+    $scope.dismissCheckout = function() {
+        if (!$scope.toggleCheckoutClicked) {
+            $scope.checkoutSelected = false;
+        }
+        $scope.toggleCheckoutClicked = false;
     };
     
     $scope.ldCategories = ldCategories;

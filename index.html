@@ -9,7 +9,7 @@
         
         <script src="./js/model.js"></script>
     </head>
-    <body id="body" ng-controller="ListingsCtrl" ng-click="dismissNBox()">
+    <body id="body" ng-controller="ListingsCtrl" ng-click="dismissNBox();dismissCheckout()">
         <div class="DEBUG_baseline_grid enabled-{{ showGridLines }}" ></div>
         <div id="header">
             <div id="header_contents">
@@ -30,8 +30,8 @@
                     <img src="images/avatar01.jpg" class="avatar" ng-click="toggleNBox()"/>
                     <span class="badge" ng-click="toggleNBox()">5</span>
                         <!--<div class="triangle"></div>-->
-                    <div ng-class="{active : isNBoxSelected()}" class="triangle-up"></div>
-                    <div id="notification-box" ng-class="{active : isNBoxSelected()}">
+                    <div ng-class="{active : nboxSelected}" class="triangle-up"></div>
+                    <div id="notification-box" ng-class="{active : nboxSelected}">
                         <div class="notification" ng-repeat="notification in notifications" ng-click="toggleNBox()">
                             <img ng-src="images/{{ notification.avatar }}" class="avatar"/>
                             <div class="content" ng-bind-html="notification.content"></div>
@@ -47,13 +47,26 @@
             <div class="basket">
                 <div ng-repeat="category in ldCategories" class="category"><a>{{ category.name }}</a></div>
             </div>
-            <div class="basket">
+            <div class="basket" ng-click="prepareCheckout();toggleCheckout();" >
                 <img id="checkout-basket" src="images/basket.png"/>
                 <div class="price">£{{ basketTotal().toFixed(2) }}</div>
             </div>
             <div class="basket">
                 <img id="checkout-truck" ng-src="images/{{ showTruck() }}"/>
-                <div class="price" ng-class="{ active : !isDeliveryFree() }">{{ deliveryFee() }}</div>
+                <div class="price" ng-class="{ active : !isDeliveryFree() }">{{ deliveryFeeDisplay() }}</div>
+            </div>
+            <div class="checkout-overlay" ng-class="{active : checkoutSelected}">
+                <h2 ng-if="basketTotal() == 0">Your basket is empty!</h2>
+                <h2 ng-if="basketTotal() > 0 && isDeliveryFree()">Your Basket: £{{ basketTotal().toFixed(2) }} with FREE DELIVERY</h2>
+                <h2 ng-if="basketTotal() > 0 && !isDeliveryFree()">Your Basket: £{{ basketTotal().toFixed(2) }} + {{ deliveryFeeDisplay() }} (delivery) = £{{ (basketTotal() + deliveryFee).toFixed(2) }}</h2>
+                <div class="checkout-items">
+                    <div class="checkout-item" ng-repeat="item in checkedOutItems">
+                        <img ng-src="{{ item.imageUrl }}"/>
+                        <div class="badge right">x{{ item.quantity }} = £{{ item.price.toFixed(2) }}</div>
+                    </div>
+                    <div style='clear: both'></div>
+                </div>
+                <a class="checkout-button" ng-class="{active : basketTotal() > 0}">Checkout</a>
             </div>
         </div>
         <div id="mkt-header" ng-if="selected.type == 'longdan'">
