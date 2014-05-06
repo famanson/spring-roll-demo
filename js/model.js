@@ -469,7 +469,13 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     
     $scope.forceCheckoutOn = function () {
         $scope.toggleCheckoutClicked = true;
-    }
+    };
+    
+    $scope.checkoutProgress = function() {
+        var fraction = $scope.basketTotal()/50;
+        return fraction*100 + "%";
+    };
+    
     
     $scope.ldCategories = ldCategories;
 });

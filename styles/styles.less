@@ -427,9 +427,13 @@ body {
             color: #7bc173;
             border-bottom: 1px solid;
         }
+        h4 {
+            margin: 15px 0 5px 0;
+            color: #f75454;
+        }
         .checkout-items { // the wrapping div of the checked out items
-            padding-bottom: 20px;
             &.active {
+                padding-bottom: 20px;
                 border-bottom: 1px solid #7bc173;
             }
             .checkout-item {
@@ -465,7 +469,7 @@ body {
         .checkout-button {
             padding: 10px;
             cursor: pointer;
-            background-color: #F75454;
+            background-color: #f75454;
             color: #fff;
             padding: 10px;
             border-radius: 10px;
@@ -475,6 +479,30 @@ body {
 
             &.active {
                 display: block;
+            }
+        }
+        .checkout-progress {
+            width: 20%;
+            background-color: #bbb;
+            border-radius: 13px;
+            padding: 3px;
+            margin: 0 auto 0 auto;
+            display: none;
+            &.active {
+                display: block;
+            }
+            div {
+                background-color: #f75454;
+                width: 40%; /* Adjust with JavaScript */
+                height: 20px;
+                border-radius: 10px;
+            }
+            span {
+                position: absolute;
+                z-index: 11000;
+                color: #fff;
+                width: 100%;
+                left: 0;
             }
         }
     }

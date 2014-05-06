@@ -66,7 +66,12 @@
                     </div>
                     <div style='clear: both'></div>
                 </div>
-                <a class="checkout-button" ng-class="{active : basketTotal() > 0}">Checkout</a>
+                <a class="checkout-button" ng-class="{active : basketTotal() > 50}">Checkout</a>
+                <h4 ng-if="basketTotal() < 50 && basketTotal() > 0">Minimum order to check out: £50</h4>
+                <div class="checkout-progress" ng-class="{active : basketTotal() > 0 && basketTotal() < 50}">
+                    <span>{{ checkoutProgress() }}</span>
+                    <div ng-style="{'width':checkoutProgress()}"></div>
+                </div>
             </div>
             <div class="checkout-background" ng-class="{active : checkoutSelected}"></div>
         </div>
