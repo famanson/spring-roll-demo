@@ -468,7 +468,19 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     };
     
     $scope.forceCheckoutOn = function () {
-        $scope.toggleCheckoutClicked = true;
+        if (!$scope.checkoutClosed) {
+            $scope.toggleCheckoutClicked = true;
+            console.log("force on");
+        }
+        // Reset the Close button
+        $scope.checkoutClosed = false;
+    };
+    
+    $scope.checkoutClosed = false; // Override the rest of checkout controls
+    $scope.forceCheckoutOff = function () {
+        $scope.toggleCheckoutClicked = false;
+        $scope.checkoutClosed = true;
+        console.log("force off");
     };
     
     $scope.checkoutProgress = function() {
