@@ -9,7 +9,7 @@
         
         <script src="./js/model.js"></script>
     </head>
-    <body id="body" ng-controller="ListingsCtrl" ng-click="dismissNBox();dismissCheckout()">
+    <body id="body" ng-controller="ListingsCtrl" ng-click="dismissNBox();dismissCheckout()" ng-class="{'no-scroll' : checkoutSelected}">
         <div class="DEBUG_baseline_grid enabled-{{ showGridLines }}" ></div>
         <div id="header">
             <div id="header_contents">
@@ -55,11 +55,11 @@
                 <img id="checkout-truck" ng-src="images/{{ showTruck() }}"/>
                 <div class="price" ng-class="{ active : !isDeliveryFree() }">{{ deliveryFeeDisplay() }}</div>
             </div>
-            <div class="checkout-overlay" ng-class="{active : checkoutSelected}">
+            <div class="checkout-overlay" ng-class="{active : checkoutSelected}" ng-click="forceCheckoutOn();">
                 <h2 ng-if="basketTotal() == 0">Your basket is empty!</h2>
                 <h2 ng-if="basketTotal() > 0 && isDeliveryFree()">Your Basket: £{{ basketTotal().toFixed(2) }} with FREE DELIVERY</h2>
                 <h2 ng-if="basketTotal() > 0 && !isDeliveryFree()">Your Basket: £{{ basketTotal().toFixed(2) }} + {{ deliveryFeeDisplay() }} (delivery) = £{{ (basketTotal() + deliveryFee).toFixed(2) }}</h2>
-                <div class="checkout-items">
+                <div class="checkout-items" ng-class="{active : basketTotal() > 0}">
                     <div class="checkout-item" ng-repeat="item in checkedOutItems">
                         <img ng-src="{{ item.imageUrl }}"/>
                         <div class="badge right">x{{ item.quantity }} = £{{ item.price.toFixed(2) }}</div>
@@ -68,6 +68,7 @@
                 </div>
                 <a class="checkout-button" ng-class="{active : basketTotal() > 0}">Checkout</a>
             </div>
+            <div class="checkout-background" ng-class="{active : checkoutSelected}"></div>
         </div>
         <div id="mkt-header" ng-if="selected.type == 'longdan'">
             <div class="mkt-header-img"></div>

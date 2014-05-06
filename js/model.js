@@ -467,5 +467,9 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         $scope.toggleCheckoutClicked = false;
     };
     
+    $scope.forceCheckoutOn = function () {
+        $scope.toggleCheckoutClicked = true;
+    }
+    
     $scope.ldCategories = ldCategories;
 });
