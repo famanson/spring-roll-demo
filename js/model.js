@@ -470,7 +470,6 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     $scope.forceCheckoutOn = function () {
         if (!$scope.checkoutClosed) {
             $scope.toggleCheckoutClicked = true;
-            console.log("force on");
         }
         // Reset the Close button
         $scope.checkoutClosed = false;
@@ -480,12 +479,11 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     $scope.forceCheckoutOff = function () {
         $scope.toggleCheckoutClicked = false;
         $scope.checkoutClosed = true;
-        console.log("force off");
     };
     
     $scope.checkoutProgress = function() {
         var fraction = $scope.basketTotal()/50;
-        return fraction*100 + "%";
+        return Math.round(fraction*100) + "%";
     };
     
     
