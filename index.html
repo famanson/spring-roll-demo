@@ -19,6 +19,7 @@
                 
                 <div id="top_navigation">
                     <a ng-repeat="nav in topNavs" ng-class="{active : isTopNavSelected(nav)}" class="{{ nav.type }}" ng-click="emptyColumns();populateByType(nav.type, 350);setTopNavMaster(nav)">
+                        <div class="triangle-up" ng-class="{active : isTopNavSelected(nav)}"></div>
                         <span ng-if="nav.type == 'longdan'">
                             <img src="images/longdan.png"/>
                         </span>
@@ -47,11 +48,11 @@
             <div class="basket">
                 <div ng-repeat="category in ldCategories" class="category"><a>{{ category.name }}</a></div>
             </div>
-            <div class="basket" ng-click="prepareCheckout();toggleCheckout();" >
+            <div class="basket" ng-click="prepareCheckout();toggleCheckout();">
                 <img id="checkout-basket" src="images/basket.png"/>
                 <div class="price">£{{ basketTotal().toFixed(2) }}</div>
             </div>
-            <div class="basket">
+            <div class="basket" ng-click="prepareCheckout();toggleCheckout();">
                 <img id="checkout-truck" ng-src="images/{{ showTruck() }}"/>
                 <div class="price" ng-class="{ active : !isDeliveryFree() }">{{ deliveryFeeDisplay() }}</div>
             </div>

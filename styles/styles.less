@@ -71,14 +71,17 @@ body {
         width: @grid_module;
         margin-right: @grid_gutter;
         cursor: pointer;
+        position: relative;
 
         &.longdan {
-            width: 116px;
             padding: 16pt 0 0 0;
-        }
-
-        &.active {
-            border-bottom: 5px solid #999;
+            img {
+                height: 45px;
+            }
+            .triangle-up {
+                left: 40px;
+                bottom: -10;
+            }
         }
     }
 }
@@ -163,13 +166,25 @@ body {
         border-bottom-color: #bbb;
         margin-top: 40px;
         margin-left: -11px;
-        position: absolute;
-        z-index: 2000;
         display: none;
+        bottom: auto;
+        left: auto;
     }
-    .triangle-up.active, #notification-box.active {
-        display: block;
-    }
+    
+}
+
+.triangle-up {
+    float: right;
+    border: 12px solid transparent;
+    border-bottom-color: #fff;
+    position: absolute;
+    z-index: 12000;
+    bottom: -8;
+    left: 21px;
+    display: none;
+}
+.triangle-up.active, #notification-box.active {
+    display: block;
 }
 
 .avatar {
@@ -405,7 +420,7 @@ body {
             &:last-child a {
                 border-right: none;
             }
-        }        
+        }
     }
     .checkout-overlay {
         position: fixed;
