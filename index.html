@@ -49,6 +49,7 @@
                 <div ng-repeat="category in ldCategories" class="category"><a>{{ category.name }}</a></div>
             </div>
             <div class="basket" ng-click="prepareCheckout();toggleCheckout();">
+                <span class="badge" ng-click="toggleNBox()">view</span>
                 <img id="checkout-basket" src="images/basket.png"/>
                 <div class="price">£{{ basketTotal().toFixed(2) }}</div>
             </div>
