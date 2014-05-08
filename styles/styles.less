@@ -166,11 +166,12 @@ body {
         border-bottom-color: #bbb;
         margin-top: 40px;
         margin-left: -11px;
-        display: none;
         bottom: auto;
         left: auto;
     }
-    
+    #notification-box.active {
+        display: block;
+    }
 }
 
 .triangle-up {
@@ -183,7 +184,7 @@ body {
     left: 21px;
     display: none;
 }
-.triangle-up.active, #notification-box.active {
+.triangle-up.active {
     display: block;
 }
 
