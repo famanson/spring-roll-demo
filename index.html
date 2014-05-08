@@ -48,14 +48,14 @@
             <div class="basket">
                 <div ng-repeat="category in ldCategories" class="category"><a>{{ category.name }}</a></div>
             </div>
-            <div class="basket" ng-click="prepareCheckout();toggleCheckout();">
-                <span class="badge" ng-click="toggleNBox()">view</span>
+            <div id="basket-price" class="basket" ng-click="prepareCheckout();toggleCheckout();">
                 <img id="checkout-basket" src="images/basket.png"/>
-                <div class="price">£{{ basketTotal().toFixed(2) }}</div>
+                <div class="badge">£{{ basketTotal().toFixed(2) }}</div>
             </div>
-            <div class="basket" ng-click="prepareCheckout();toggleCheckout();">
+            <div id="delivery-price" class="basket" ng-click="prepareCheckout();toggleCheckout();">
                 <img id="checkout-truck" ng-src="images/{{ showTruck() }}"/>
-                <div class="price" ng-class="{ active : !isDeliveryFree() }">{{ deliveryFeeDisplay() }}</div>
+<!--                <div class="price" >{{ deliveryFeeDisplay() }}</div>-->
+                <div class="badge price" ng-class="{ active : !isDeliveryFree() }">{{ deliveryFeeDisplay() }}</div>
             </div>
             <div class="checkout-overlay" ng-class="{active : checkoutSelected}" ng-click="forceCheckoutOn();">
                 <a class="checkout-close" title="Close" ng-click="forceCheckoutOff();">X</a>

@@ -393,18 +393,28 @@ body {
         display: inline-block;
         padding: 0 5px 0 5px;
         min-width: 60px;
+        position: relative;
+        height: inherit;
         img {
             height:30px;
         }
-        .price {
-            font-size: 14px;
-            color: #70B368;
-        }
-
-        .active { // active means non-free. Somehow ng-class doesn't work with anything else...
-            color: #ef363d;
+        
+        .badge {
+            position: relative;
+            bottom: 0;
+            left: auto;
+            .gradient(#7bc173; 0%; #649e5d; 100%);
         }
         
+        .price {
+            &.badge {
+                background-color: #ef363d;
+                &.active { // active means non-free. Somehow ng-class doesn't work with anything else...
+                    .gradient(#f04d53; 0%; #ed1c24; 100%);
+                }
+            }
+        }
+
         .category {
             display: inline-block;
             vertical-align: middle;
