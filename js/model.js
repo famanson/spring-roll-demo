@@ -6,12 +6,14 @@
 /*global notifications */
 /*global topNavs */
 /*global app */
+/*global longdanEnabled */
 
 app.controller("ListingsCtrl", function($scope, $timeout) {
     'use strict';
     // Add control for toggling the visibility of the grid lines.
     $scope.showGridLines = false;
-    
+    $scope.longdanEnabled = longdanEnabled;
+
     // Split posts into three columns (and four if Longdan)
     $scope.columns = [];
     for (var i = 0; i < 4; i++) { // use 4 to make way for Longdan posts
@@ -47,9 +49,11 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     };
 
     $scope.populateByType('sale', 0);
-    
+    if (!longdanEnabled) {
+        topNavs.pop();
+    }
     $scope.topNavs = topNavs;
-    
+
     $scope.setTopNavMaster = function(nav) {
         $scope.selected = nav;
     };

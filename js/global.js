@@ -270,5 +270,7 @@ var notifications = [
     }
 ];
 
+var longdanEnabled = false;
+
 // Define controller.
 var app = angular.module('SpringRollDemo', ['ngSanitize','ngAnimate']);

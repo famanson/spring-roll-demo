@@ -1,4 +1,3 @@
-// angular is defined in angular.js
 /*global angular */
 
 var ldCategories = [
@@ -12,8 +11,6 @@ var ldCategories = [
 
 /* Longdan */
 app.controller("CheckoutCtrl", function($scope) {
-
-    $scope.longdanEnabled = true;
     if (!$scope.longdanEnabled) {
         $scope.topNavs.pop();
     } else {
