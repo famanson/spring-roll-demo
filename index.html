@@ -44,6 +44,7 @@
                 <div class="clear"></div>
             </div>
         </div>
+        <div ng-controller="CheckoutCtrl">
         <div id="ld-header" ng-if="selected.type == 'longdan'">
             <div class="basket">
                 <div ng-repeat="category in ldCategories" class="category"><a>{{ category.name }}</a></div>
@@ -120,7 +121,7 @@
             <div style="clear:both;"></div>
         </div>
         <div id="ld-more" ng-if="selected.type == 'longdan'">More Products >></div>
-                
+        </div>
         <div id="debug_panel">
             <input type=checkbox id="show_grid_lines" ng-model="showGridLines" /><label for="show_grid_lines">Show grid lines</label>
         </div>

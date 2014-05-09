@@ -356,10 +356,11 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     };
     
     $scope.notifications = notifications;
-    
-    
-    /* Longdan */
-    $scope.longdanEnabled = false;
+});
+
+/* Longdan */
+app.controller("CheckoutCtrl", function($scope) {
+    $scope.longdanEnabled = true;
     if (!$scope.longdanEnabled) {
         $scope.topNavs.pop();
     } else {
