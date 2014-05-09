@@ -1,4 +1,5 @@
-/*global angular */
+/*global app */
+/*global posts */
 
 var ldCategories = [
     { name: "Fresh & Chilled" },
