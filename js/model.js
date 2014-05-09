@@ -107,6 +107,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         $scope.checkoutClosed = true;
     };
 
+    // Small hack to persist the basket because bloody ng-include creates a new scope
     $scope.previousBasket = {};
     $scope.persistBasket = function(basket) {
         $scope.previousBasket = basket;
