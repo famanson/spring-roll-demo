@@ -1,3 +1,5 @@
+/*global angular */
+
 var ldCategories = [
     { name: "Fresh & Chilled" },
     { name: "Rice & Noodles"},
@@ -9,11 +11,12 @@ var ldCategories = [
 
 /* Longdan */
 app.controller("CheckoutCtrl", function($scope) {
+
     $scope.longdanEnabled = true;
     if (!$scope.longdanEnabled) {
         $scope.topNavs.pop();
     } else {
-        $scope.basket = {};
+        $scope.basket = $scope.previousBasket;
 
         $scope.addBasket = function(id) {
             if (id in $scope.basket) {
@@ -40,6 +43,7 @@ app.controller("CheckoutCtrl", function($scope) {
         // First work out Longdan's prices
         var longdanPosts = posts.filter(function(post) {return post.type == 'longdan';});
         var longdanPrices = {};
+        
         for (var j = 0; j < longdanPosts.length; j++) {
             // Convert prices to numeric values here - this was not done in the definition because it'd
             // mess up the formatting
@@ -106,33 +110,6 @@ app.controller("CheckoutCtrl", function($scope) {
                 }
             }
             $scope.checkedOutItems = checkedOutItems;
-        };
-        // Checkout basket clicked
-        $scope.toggleCheckoutClicked = false;
-        $scope.toggleCheckout = function() {
-            $scope.toggleCheckoutClicked = true;
-            $scope.checkoutSelected = !$scope.checkoutSelected;
-        };
-        // Dismiss checkout overlay when clicking elsewhere
-        $scope.dismissCheckout = function() {
-            if (!$scope.toggleCheckoutClicked) {
-                $scope.checkoutSelected = false;
-            }
-            $scope.toggleCheckoutClicked = false;
-        };
-        // Clicks on the overlay itself will override dismiss and won't make it go away
-        $scope.forceCheckoutOn = function () {
-            if (!$scope.checkoutClosed) {
-                $scope.toggleCheckoutClicked = true;
-            }
-            // Reset the Close button
-            $scope.checkoutClosed = false;
-        };
-        // Clicks on the Close button will override the overlay click!
-        $scope.checkoutClosed = false;
-        $scope.forceCheckoutOff = function () {
-            $scope.toggleCheckoutClicked = false;
-            $scope.checkoutClosed = true;
         };
 
         $scope.checkoutProgress = function() {

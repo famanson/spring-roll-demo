@@ -347,4 +347,38 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     };
     
     $scope.notifications = notifications;
+    
+    /* Checkout box control */
+    // Checkout basket clicked
+    $scope.toggleCheckoutClicked = false;
+    $scope.toggleCheckout = function() {
+        $scope.toggleCheckoutClicked = true;
+        $scope.checkoutSelected = !$scope.checkoutSelected;
+    };
+    // Dismiss checkout overlay when clicking elsewhere
+    $scope.dismissCheckout = function() {
+        if (!$scope.toggleCheckoutClicked) {
+            $scope.checkoutSelected = false;
+        }
+        $scope.toggleCheckoutClicked = false;
+    };
+    // Clicks on the overlay itself will override dismiss and won't make it go away
+    $scope.forceCheckoutOn = function () {
+        if (!$scope.checkoutClosed) {
+            $scope.toggleCheckoutClicked = true;
+        }
+        // Reset the Close button
+        $scope.checkoutClosed = false;
+    };
+    // Clicks on the Close button will override the overlay click!
+    $scope.checkoutClosed = false;
+    $scope.forceCheckoutOff = function () {
+        $scope.toggleCheckoutClicked = false;
+        $scope.checkoutClosed = true;
+    };
+
+    $scope.previousBasket = {};
+    $scope.persistBasket = function(basket) {
+        $scope.previousBasket = basket;
+    };
 });
