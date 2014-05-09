@@ -125,8 +125,10 @@ body {
         position: absolute;
         background-color: #fff;
         width: 400px;
-        border: 4px solid #bbb;
-        box-shadow: 2px 2px 5px #b8b8b8;
+        border: 4px solid #ccc;
+        -moz-box-shadow: 0 0 12px #ccc;
+        -webkit-box-shadow: 0 0 12px #ccc;
+        box-shadow: 0 0 12px #ccc;
         border-radius: 3px;
         top: 70px;
         right: 0px;
@@ -163,7 +165,7 @@ body {
     .triangle-up {
         float: right;
         border: 16px solid transparent;
-        border-bottom-color: #bbb;
+        border-bottom-color: #ccc;
         margin-top: 40px;
         margin-left: -11px;
         bottom: auto;
@@ -176,12 +178,12 @@ body {
 
 .triangle-up {
     float: right;
-    border: 12px solid transparent;
+    border: 15px solid transparent;
     border-bottom-color: #fff;
     position: absolute;
     z-index: 12000;
     bottom: -8;
-    left: 21px;
+    left: 18px;
     display: none;
 }
 .triangle-up.active {
@@ -440,10 +442,10 @@ body {
     .checkout-overlay {
         position: fixed;
         background-color: #fff;
-        width: 60%;
+        width: 50%;
         z-index: 20000;
         margin-top: 50px;
-        left: 20%;
+        left: 25%;
         border: 5px solid #eee;
         cursor: default;
         padding: 15px;
