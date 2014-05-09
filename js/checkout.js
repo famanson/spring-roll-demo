@@ -1,3 +1,4 @@
+// angular is defined in angular.js
 /*global angular */
 
 var ldCategories = [
