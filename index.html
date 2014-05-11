@@ -12,8 +12,9 @@
         <script src="./js/model.js"></script>
         <script src="./js/checkout.js"></script>
     </head>
-    <body id="body" ng-controller="ListingsCtrl" ng-click="dismissNBox();dismissCheckout()" ng-class="{'no-scroll' : checkoutSelected}">
+    <body id="body" ng-controller="ListingsCtrl" ng-click="dismissNBox();dismissCheckout()" ng-class="{'no-scroll' : checkoutSelected || apiPopupEnabled}">
         <div class="DEBUG_baseline_grid enabled-{{ showGridLines }}" ></div>
+        <div ng-include src="'api-popup.html'"></div>
         <div id="header">
             <div id="header_contents">
                 <div id="logo">
@@ -21,7 +22,7 @@
                 </div>
                 
                 <div id="top-navigation">
-                    <a ng-repeat="nav in topNavs" ng-class="{active : isTopNavSelected(nav)}" class="{{ nav.type }}" ng-click="emptyColumns();populateByType(nav.type, 350);setTopNavMaster(nav)">
+                    <a ng-repeat="nav in topNavs" ng-class="{active : isTopNavSelected(nav)}" class="{{ nav.type }}" ng-click="emptyColumns();populateByType(nav.type, 350);setTopNavMaster(nav);enableApiPopup('longdan'===nav.type);">
                         <div class="triangle-up" ng-class="{active : isTopNavSelected(nav)}"></div>
                         <span ng-if="nav.type == 'longdan'">
                             <img src="images/longdan.png"/>

@@ -1,0 +1,11 @@
+<div id="api-popup" ng-class="{active : apiPopupEnabled}">
+    <h1>W-wait, what's this Longdan tab?</h1>
+    <div class="slide" ng-repeat="slide in slides" ng-class="{active : isActiveSlide(slide)}">
+        <img ng-src="./images/api-popup/{{ slide.image }}"/>
+        <p><b>{{ slide.desc }}</b></p>
+    </div>
+    <a class="nav prev" ng-click="prevActiveSlide()"><img src="./images/api-popup/prev.png"/></a>
+    <a class="nav skip" ng-click="enableApiPopup(false)"><i>awesome, let me see it</i></a>
+    <a class="nav next" ng-click="nextActiveSlide()"><img src="./images/api-popup/next.png"/></a>
+</div>
+<div class="theatre-background" ng-class="{active : apiPopupEnabled}"></div>

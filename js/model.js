@@ -5,6 +5,7 @@
 /*global posts */
 /*global notifications */
 /*global topNavs */
+/*global slides */
 /*global app */
 /*global longdanEnabled */
 
@@ -118,5 +119,34 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     $scope.previousBasket = {};
     $scope.persistBasket = function(basket) {
         $scope.previousBasket = basket;
+    };
+    
+    /* API popup */
+    $scope.apiPopupEnabled = false;
+    $scope.enableApiPopup = function(enabled) {
+        $scope.apiPopupEnabled = enabled;
+    };
+    $scope.slides = slides;
+    $scope.activeSlideIndex = 0;
+    $scope.activeSlide = $scope.slides[$scope.activeSlideIndex];
+    $scope.setActiveSlide = function(slide) {
+        $scope.activeSlide = slide;
+    };
+    $scope.nextActiveSlide = function() {
+        if ($scope.activeSlideIndex < $scope.slides.length - 1) {
+            $scope.activeSlideIndex += 1;
+            $scope.setActiveSlide($scope.slides[$scope.activeSlideIndex]);
+        } else {
+            $scope.apiPopupEnabled = false;
+        }
+    };
+    $scope.prevActiveSlide = function() {
+        if ($scope.activeSlideIndex > 0) {
+            $scope.activeSlideIndex -= 1;
+            $scope.setActiveSlide($scope.slides[$scope.activeSlideIndex]);
+        }
+    };
+    $scope.isActiveSlide = function(slide) {
+        return $scope.activeSlide === slide;
     };
 });

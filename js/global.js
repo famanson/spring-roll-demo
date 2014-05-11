@@ -270,5 +270,27 @@ var notifications = [
     }
 ];
 
+var slides = [
+    {
+        desc: 'Project Spring Roll offers a way for businesses to integrate with our site!',
+        image: 'gears.jpg'
+    }, {
+        desc: 'We will create an API through which a business can send their shop data...',
+        image: 'cloud.jpg'
+    }, {
+        desc: '... and a customised shop front so our users can shop your products.',
+        image: 'basket.jpg'
+    }, {
+        desc: 'When users check out, basket data is sent to your end of the API',
+        image: 'check.jpg'
+    }, {
+        desc: 'Your system then handle the customer communication, sale & delivery.',
+        image: 'ice-cream-truck.jpg'
+    },{
+        desc: 'This is an experimental shop front for Longdan made on their request :-)',
+        image: 'lab.jpg'
+    }
+];
+
 // Define controller.
 var app = angular.module('SpringRollDemo', ['ngSanitize','ngAnimate']);

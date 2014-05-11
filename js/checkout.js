@@ -113,7 +113,7 @@ app.controller("CheckoutCtrl", function($scope) {
 
         $scope.checkoutProgress = function() {
             var fraction = $scope.basketTotal()/50;
-            return Math.round(fraction*100) + "%";
+            return Math.floor(fraction*100) + "%";
         };
 
 
