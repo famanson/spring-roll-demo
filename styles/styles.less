@@ -21,9 +21,8 @@ Grid parameters: 12 modules @ 66px, 18px gap
 body {
     margin: 0;
     font-family: "Arial";
-    
+    overflow-y: scroll;
     &.no-scroll {
-        overflow-y: scroll;
         position: fixed;
         width: 100%;
         height: 100%;
@@ -89,7 +88,9 @@ body {
 
         .ld-help {
             position: absolute;
-            right: -50px;
+            right: -55px;
+            top: 10px;
+            height: 25px !important;
         }
     }
 }

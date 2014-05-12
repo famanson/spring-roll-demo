@@ -25,7 +25,8 @@
                     <a ng-repeat="nav in topNavs" ng-class="{active : isTopNavSelected(nav)}" class="{{ nav.type }}" ng-click="switchColumn(nav.type, 350);setTopNavMaster(nav);enableApiPopup('longdan'===nav.type && !apiPopupViewed);">
                         <div class="triangle-up" ng-class="{active : isTopNavSelected(nav)}"></div>
                         <span ng-if="nav.type == 'longdan'">
-                            <div class="ld-help" ng-if="apiPopupViewed" ng-click="setViewedApiPopUp(false);">?</div>
+<!--                            <span class="ld-help" >?</span>-->
+                            <img class="ld-help" src="images/api-popup/bubble.png" title="What is this Longdan tab again?" ng-if="apiPopupViewed" ng-click="setViewedApiPopUp(false);"/>
                             <img src="images/longdan.png"/>
                         </span>
                         {{ nav.type != 'longdan' && nav.name || "" }}
