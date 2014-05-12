@@ -34,32 +34,30 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     };
     
     /* Top Nav Control */
-    $scope.populateByType = function(popType, delay) {
+    $scope.populateByType = function(popType) {
         var rowLength = (popType == 'longdan') ? 4 : 3;
-        $timeout(function() {
-            var filterByType = function(element) {
-                return element.type === popType;
-            };
-            var filteredPosts = posts.filter(filterByType);
-            var perColumn = filteredPosts.length / rowLength;
-            var remainder = filteredPosts.length % rowLength;
-            for (var i = 0; i < rowLength; i++) {
-                var columnPosts = filteredPosts.splice(0, perColumn + (i < remainder ? 1 : 0));
-                for (var k = 0; k < columnPosts.length; k++) {
-                    $scope.columns[i].push(columnPosts[k]);
-                }
+        var filterByType = function(element) {
+            return element.type === popType;
+        };
+        var filteredPosts = posts.filter(filterByType);
+        var perColumn = filteredPosts.length / rowLength;
+        var remainder = filteredPosts.length % rowLength;
+        for (var i = 0; i < rowLength; i++) {
+            var columnPosts = filteredPosts.splice(0, perColumn + (i < remainder ? 1 : 0));
+            for (var k = 0; k < columnPosts.length; k++) {
+                $scope.columns[i].push(columnPosts[k]);
             }
-        }, delay);
-    };
-
-    $scope.switchColumn = function(popType,delay) {
-        if (popType !== $scope.selected.type) {
-            $scope.emptyColumns();
-            $scope.populateByType(popType, delay);
         }
     };
 
-    $scope.populateByType('sale', 0);
+    $scope.switchColumn = function(popType) {
+        if (popType !== $scope.selected.type) {
+            $scope.emptyColumns();
+            $scope.populateByType(popType);
+        }
+    };
+
+    $scope.populateByType('sale');
     if (!$scope.longdanEnabled) {
         topNavs.pop();
     }
