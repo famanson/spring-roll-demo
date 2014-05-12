@@ -204,6 +204,7 @@ body {
 }
 
 #content {
+    position: relative;
     margin: 0 auto;
     width: @grid_12;
 }
@@ -606,13 +607,13 @@ body {
 
 #api-popup {
     border: 5px solid #eee;
-    position: fixed;
+    position: absolute;
     text-align: center;
     margin: 0 auto 0 auto;
-    width: 50%;
+    width: 650px;
     z-index: 30000;
-    left: 25%;
-    top: 100px;
+    left: 170px; // (990-650)/2
+    top: -300px; // height of the header image
     background-color: #fff;
     padding-bottom: 10px;
     display: none;

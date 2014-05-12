@@ -15,7 +15,6 @@
     </head>
     <body id="body" ng-controller="ListingsCtrl" ng-click="dismissNBox();dismissCheckout()" ng-class="{'no-scroll' : checkoutSelected || apiPopupEnabled}">
         <div class="DEBUG_baseline_grid enabled-{{ showGridLines }}" ></div>
-        <div ng-include src="'api-popup.html'"></div>
         <div id="header">
             <div id="header_contents">
                 <div id="logo">
@@ -51,7 +50,8 @@
                 <div class="clear"></div>
             </div>
         </div>
-        <div ng-include src="'ld-content.html'"></div>
+        <div ng-include src="'ld-content.html'">
+        </div>
         <div id="content" ng-class="selected.type" ng-if="selected.type != 'longdan'">
             <div class="column" ng-repeat="column in columns">
                 <div class="post repeated-item" ng-repeat="post in column">
