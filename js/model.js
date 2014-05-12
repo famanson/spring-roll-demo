@@ -1,3 +1,5 @@
+/*jshint browser:true */
+
 // angular is defined in angular.js
 /*global angular */
 
@@ -6,20 +8,22 @@
 
 app.controller("ListingsCtrl", function($scope, $timeout) {
     'use strict';
+    
     // Add control for toggling the visibility of the grid lines.
     $scope.showGridLines = false;
-    try {
-        $scope.longdanEnabled = longdanEnabled;
-    } catch (e) {
-        $scope.longdanEnabled = false;
-    }
+
+    // Whether longdan features are enabled.
+    $scope.longdanEnabled = window.longdanEnabled || false;
+
     // Split posts into three columns (and four if Longdan)
     $scope.columns = [];
     for (var i = 0; i < 4; i++) { // use 4 to make way for Longdan posts
         $scope.columns[i] = [];
     }
     
+    // Clear all columns. 
     $scope.emptyColumns = function () {
+        // Cycling through each column to perform pop is necessary for animations.
         for (var i = 0; i < 4; i++) { // use 4 to make way for Longdan posts
             var len = $scope.columns[i].length;
             for (var j = 0; j < len; j++) {
@@ -37,6 +41,8 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         var filteredPosts = posts.filter(filterByType);
         var perColumn = filteredPosts.length / rowLength;
         var remainder = filteredPosts.length % rowLength;
+        // Again, cycling through each column and post is needed to get animations
+        // working.
         for (var i = 0; i < rowLength; i++) {
             var columnPosts = filteredPosts.splice(0, perColumn + (i < remainder ? 1 : 0));
             for (var k = 0; k < columnPosts.length; k++) {
