@@ -52,6 +52,13 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         }, delay);
     };
 
+    $scope.switchColumn = function(popType,delay) {
+        if (popType !== $scope.selected.type) {
+            $scope.emptyColumns();
+            $scope.populateByType(popType, delay);
+        }
+    };
+
     $scope.populateByType('sale', 0);
     if (!$scope.longdanEnabled) {
         topNavs.pop();
@@ -122,6 +129,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     };
     
     /* API popup */
+    $scope.apiPopupViewed = false;
     $scope.apiPopupEnabled = false;
     $scope.enableApiPopup = function(enabled) {
         $scope.apiPopupEnabled = enabled;
@@ -138,6 +146,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
             $scope.setActiveSlide($scope.slides[$scope.activeSlideIndex]);
         } else {
             $scope.apiPopupEnabled = false;
+            $scope.apiPopupViewed = true;
         }
     };
     $scope.prevActiveSlide = function() {
@@ -148,5 +157,9 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     };
     $scope.isActiveSlide = function(slide) {
         return $scope.activeSlide === slide;
+    };
+
+    $scope.setViewedApiPopUp = function(viewed) {
+        $scope.apiPopupViewed = viewed;
     };
 });
