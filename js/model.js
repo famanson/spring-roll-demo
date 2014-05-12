@@ -134,17 +134,23 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     $scope.enableApiPopup = function(enabled) {
         $scope.apiPopupEnabled = enabled;
     };
-    $scope.slides = slides;
-    $scope.activeSlideIndex = 0;
-    $scope.activeSlide = $scope.slides[$scope.activeSlideIndex];
+    $scope.resetSlide = function() {
+        $scope.activeSlideIndex = 0;
+        $scope.slides = [slides[$scope.activeSlideIndex]];
+        $scope.activeSlide = $scope.slides[$scope.activeSlideIndex];
+    };
+    $scope.resetSlide(); // Call immediately at the beginning
     $scope.setActiveSlide = function(slide) {
         $scope.activeSlide = slide;
+        $scope.slides.pop();
+        $scope.slides.push(slide);
     };
     $scope.nextActiveSlide = function() {
-        if ($scope.activeSlideIndex < $scope.slides.length - 1) {
+        if ($scope.activeSlideIndex < slides.length - 1) {
             $scope.activeSlideIndex += 1;
-            $scope.setActiveSlide($scope.slides[$scope.activeSlideIndex]);
+            $scope.setActiveSlide(slides[$scope.activeSlideIndex]);
         } else {
+            $scope.resetSlide();
             $scope.apiPopupEnabled = false;
             $scope.apiPopupViewed = true;
         }
@@ -152,7 +158,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     $scope.prevActiveSlide = function() {
         if ($scope.activeSlideIndex > 0) {
             $scope.activeSlideIndex -= 1;
-            $scope.setActiveSlide($scope.slides[$scope.activeSlideIndex]);
+            $scope.setActiveSlide(slides[$scope.activeSlideIndex]);
         }
     };
     $scope.isActiveSlide = function(slide) {

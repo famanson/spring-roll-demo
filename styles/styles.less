@@ -599,8 +599,8 @@ body {
         background-image: url('../images/pho.jpg');
         background-position: center;
         background-size: cover;
-        width:100%;
-        height:300px;
+        width: 100%;
+        height: 300px;
     }
 }
 
@@ -661,21 +661,22 @@ body {
 // *** Animation stuff ***
 .repeated-item.ng-enter,
 .repeated-item.ng-leave{
-  -webkit-transition: 250;
+    -webkit-transition: 250;
 }
 
 .repeated-item.ng-enter {
-  opacity: 0;
+    opacity: 0;
 }
 
 .repeated-item.ng-leave {
-  opacity: 1;
+    opacity: 0;
+    position: absolute;
 }
 
 .repeated-item.ng-enter.ng-enter-active {
-  opacity: 1;
+    opacity: 1;
 }
 
 .repeated-item.ng-leave.ng-leave-active {
-  opacity: 0;
+    opacity: 0;
 }

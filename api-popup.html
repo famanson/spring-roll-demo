@@ -1,6 +1,6 @@
 <div id="api-popup" ng-class="{active : apiPopupEnabled}">
     <h1>W-wait, what's this Longdan tab?</h1>
-    <div class="slide" ng-repeat="slide in slides" ng-class="{active : isActiveSlide(slide)}">
+    <div class="repeated-item slide" ng-repeat="slide in slides" ng-class="{active : isActiveSlide(slide)}">
         <img ng-src="./images/api-popup/{{ slide.image }}"/>
         <p><b>{{ slide.desc }}</b></p>
     </div>
