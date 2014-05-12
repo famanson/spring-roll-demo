@@ -64,8 +64,17 @@
                             <b>+ Post new ad</b>
                         </div>
                         <div class="composeBox" ng-class="{active : composeBoxEnabled}">
-                            Compose a new ad
+                            <h3>New advertisement</h3>
+                            <div>
+                                <div class="picker">
+                                    <div>Sale</div>
+                                    <div>Wanted</div>
+                                    <div>Rent</div>
+                                </div>
+                            </div>
+                            <textarea ></textarea>
                         </div>
+                        <div class="theatre-background active"></div>
                     </div>
                     <div ng-if="post.type != 'longdan' && post.type != 'compose'">
                         <span class="price">{{ post.price }}</span>
