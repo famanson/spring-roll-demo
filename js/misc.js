@@ -1,16 +1,13 @@
 /*jshint browser:true */
 
-/* Non-Angular javascript things */
+/* Fixes the category bar in Longdan tab */
 
-document.addEventListener('scroll',function(){
-    var headerHeight = this.getElementById('header').clientHeight,
-        bodyTop = this.getElementById('body').scrollTop,
-        currentClass = document.getElementById('ld-header').className;
+$(document).on('scroll', function() {
+    var headerHeight = $('#header').height();
+    var bodyTop = $('body').scrollTop();
     if (headerHeight < bodyTop) {
-        if (currentClass.indexOf("fixed") == -1) {
-            this.getElementById('ld-header').className = currentClass + " fixed";
-        }
+        $('#ld-header').addClass("fixed");
     } else {
-        this.getElementById('ld-header').className = currentClass.replace("fixed", "");
+        $('#ld-header').removeClass("fixed");
     }
 });
