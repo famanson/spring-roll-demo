@@ -1,5 +1,4 @@
-/*global app */
-/*global posts */
+/*global app, posts */
 
 var ldCategories = [
     { name: "Fresh & Chilled" },

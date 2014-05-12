@@ -2,12 +2,7 @@
 /*global angular */
 
 // these are in global.js
-/*global posts */
-/*global notifications */
-/*global topNavs */
-/*global slides */
-/*global app */
-/*global longdanEnabled */
+/*global posts, notifications, topNavs, slides, app, longdanEnabled */
 
 app.controller("ListingsCtrl", function($scope, $timeout) {
     'use strict';

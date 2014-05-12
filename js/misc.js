@@ -1,3 +1,5 @@
+/*jshint browser:true */
+
 /* Non-Angular javascript things */
 
 document.addEventListener('scroll',function(){
