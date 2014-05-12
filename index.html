@@ -13,6 +13,7 @@
         <script src="./js/global.js"></script>
         <script src="./js/model.js"></script>
         <script src="./js/checkout.js"></script>
+        <script src="./js/compose.js"></script>
         <script src="./js/misc.js"></script>
     </head>
     <body ng-controller="ListingsCtrl" ng-click="dismissNBox();" ng-class="{'no-scroll' : apiPopupEnabled}">
@@ -57,8 +58,14 @@
         <div id="content" ng-class="selected.type" ng-if="selected.type != 'longdan'">
             <div class="column" ng-repeat="column in columns">
                 <div class="post repeated-item" ng-repeat="post in column">
-                    <div class="compose" ng-if="post.type === 'compose'">
-                        <b>+ Post new ad</b>
+                    <div ng-controller="ComposeCtrl" ng-if="post.type === 'compose'"
+                         ng-click="setComposeBoxEnabled(true);">
+                        <div  class="compose">
+                            <b>+ Post new ad</b>
+                        </div>
+                        <div class="composeBox" ng-class="{active : composeBoxEnabled}">
+                            Compose a new ad
+                        </div>
                     </div>
                     <div ng-if="post.type != 'longdan' && post.type != 'compose'">
                         <span class="price">{{ post.price }}</span>
