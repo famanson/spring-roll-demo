@@ -21,6 +21,12 @@ Grid parameters: 12 modules @ 66px, 18px gap
 body {
     margin: 0;
     font-family: "Arial";
+    overflow-y: scroll;
+    &.no-scroll {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+    }
 }
 
 #header {
@@ -35,7 +41,7 @@ body {
 #logo {
     float: left;
     width: @grid_3;
-    margin-right: @grid_gutter;
+    //margin-right: @grid_gutter;
     
     h1 {
         font-family: "Montserrat";
@@ -51,7 +57,7 @@ body {
     }
 }
 
-#top_navigation {
+#top-navigation {
     float: left;
     font-size: 10.5pt;
     font-family: Arial; 
@@ -67,11 +73,41 @@ body {
         width: @grid_module;
         margin-right: @grid_gutter;
         cursor: pointer;
-        
-        &.active {
-            border-bottom: 3pt solid #999;
+        position: relative;
+
+        &.longdan {
+            padding: 16pt 0 0 0;
+            img {
+                height: 45px;
+            }
+            .triangle-up {
+                left: 40px;
+                bottom: -10;
+            }
+        }
+
+        .ld-help {
+            position: absolute;
+            right: -55px;
+            top: 10px;
+            height: 25px !important;
         }
     }
+}
+
+.badge {
+    .gradient(#f04d53; 0%; #ed1c24; 100%);
+    position: absolute;
+    bottom: -0.5em;
+    left: -0.5em;
+    text-align: center;
+    border-radius: 20px;
+    font-size: 75%;
+    color: white;
+    border: 2px solid white;
+    min-width: 12px;
+    padding: 1px 2px;
+    height: 14px;
 }
 
 #user_profile_nav {
@@ -92,30 +128,18 @@ body {
         border-top-color: #5c5c5c;
     }
 
-    .badge {
-        .gradient(#f04d53; 0%; #ed1c24; 100%);
-        position: absolute;
-        bottom: -0.5em;
-        left: -0.5em;
-        text-align: center;
-        border-radius: 20px;
-        font-size: 75%;
-        color: white;
-        border: 2px solid white;
-        min-width: 12px;
-        padding: 1px 2px;
-        height: 14px;
-    }
-    
     // *** Notification box ***
     #notification-box {
         z-index: 1000;
         position: absolute;
         background-color: #fff;
         width: 400px;
-        border: 3px solid #bbb;
+        border: 4px solid #ccc;
+        -moz-box-shadow: 0 0 12px #ccc;
+        -webkit-box-shadow: 0 0 12px #ccc;
+        box-shadow: 0 0 12px #ccc;
         border-radius: 3px;
-        top: 60px;
+        top: 70px;
         right: 0px;
         display: none;
         text-decoration: none;
@@ -133,34 +157,46 @@ body {
             .avatar {
                 margin-right: 15px
             }
-        }
         
-        .notification:last-child {
-            padding-bottom: 10px;
-        }
+            &:last-child {
+                padding-bottom: 10px;
+            }
         
-        .notification:not(:last-child) {
-            border-bottom: 1px solid #bbb;
-        }
+            &:not(:last-child) {
+                border-bottom: 1px solid #bbb;
+            }
         
-        .notification:hover {
-            background-color:#eee;
+            &:hover {
+                background-color:#eee;
+            }
         }
-        
     }
     .triangle-up {
         float: right;
-        border: 7px solid transparent;
-        border-bottom-color: #bbb;
-        margin-top: 47px;
-        margin-left: -3px;
-        position: absolute;
-        z-index: 2000;
-        display: none;
+        border: 16px solid transparent;
+        border-bottom-color: #ccc;
+        margin-top: 40px;
+        margin-left: -11px;
+        bottom: auto;
+        left: auto;
     }
-    .triangle-up.active, #notification-box.active {
+    #notification-box.active {
         display: block;
     }
+}
+
+.triangle-up {
+    float: right;
+    border: 15px solid transparent;
+    border-bottom-color: #fff;
+    position: absolute;
+    z-index: 12000;
+    bottom: -8;
+    left: 18px;
+    display: none;
+}
+.triangle-up.active {
+    display: block;
 }
 
 .avatar {
@@ -180,6 +216,9 @@ body {
     &:first-child {
         margin-left: 0;
     }
+}
+.longdan .column {
+    width: @grid_3;
 }
 
 // *** Content styles ***
@@ -265,24 +304,379 @@ body {
     }
 }
 
+// *** Longdan posts ***
+#content.longdan {
+    margin-top: 70px
+}
+.longdan-post {
+    height: 300px;
+    position: relative;
+    text-align: center;
+    .price {
+        font-size: 24px;
+        color: #7bc173;
+    }
+    
+    .rrp {
+        font-size: 14px;
+        text-decoration: line-through;
+        color: #F75454;
+        
+    }
+
+    .image {
+        height: 150px;
+        margin-bottom: 5px;
+    }
+
+    .description {
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .packaging {
+        font-size: 14px;
+        color: #bbb;
+        margin-top: 0.3em;
+    }
+    
+    .cart {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        
+        .cart-buttons {
+            padding: 10px 0 20px 0;
+        }
+        
+        a {
+            font-size: 14px;
+            color: #fff;
+            padding: 5px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .add {
+            background-color: #7bc173;
+            &:hover {
+                background-color: #649e5d;
+            }
+        }
+        
+        .remove {
+            margin-left: 5px;
+            background-color: #F75454;
+            &:hover {
+                background-color: #D64444;
+            }
+        }
+        
+        .divider {
+            height:1px;
+            border-bottom:1px solid #bbb;
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+        }
+    }
+}
+
+#ld-more {
+    margin: 20px 0 50px 0;
+    text-align: center;
+    cursor: pointer;
+    color: #bbb;
+}
+
+#ld-header {
+    //
+    padding: 10px 0 5px 0;
+    text-align: center;
+    cursor: pointer;
+    background-color: #fff;
+    height: 50px;
+    width: 100%;
+    z-index: 10000;
+    box-shadow: 2px 2px 5px #aaa;
+    .basket {
+        display: inline-block;
+        padding: 0 5px 0 5px;
+        min-width: 60px;
+        position: relative;
+        height: inherit;
+        img {
+            height:30px;
+        }
+        
+        .badge {
+            position: relative;
+            bottom: 0;
+            left: auto;
+            .gradient(#7bc173; 0%; #649e5d; 100%);
+            
+            &:hover {
+                .gradient(#649e5d; 0%; #7bc173; 100%);
+            }
+        }
+        
+        .price {
+            &.badge {
+                background-color: #ef363d;
+                &.active { // active means non-free. Somehow ng-class doesn't work with anything else...
+                    .gradient(#f04d53; 0%; #ed1c24; 100%);
+                }
+            }
+        }
+
+        .category {
+            display: inline-block;
+            vertical-align: middle;
+            height: 100%;
+            
+            a {
+                padding: 10px;
+                border-right: 1px solid #bbb;
+                &:hover {
+                    color: #7bc173;
+                }
+            }
+
+            &:last-child a {
+                border-right: none;
+            }
+        }
+    }
+    .checkout-overlay {
+        position: fixed;
+        background-color: #fff;
+        width: 50%;
+        z-index: 20000;
+        margin-top: 50px;
+        left: 25%;
+        border: 5px solid #eee;
+        cursor: default;
+        padding: 15px;
+        display: none;
+        &.active {
+            display: block;
+        }
+        h2 {
+            padding: 0 10px 10px 10px;
+            margin-top: 5px;
+            color: #7bc173;
+            border-bottom: 1px solid;
+        }
+        h4 {
+            margin: 15px 0 5px 0;
+            color: #f75454;
+        }
+        .checkout-items { // the wrapping div of the checked out items
+            &.active {
+                padding-bottom: 20px;
+                border-bottom: 1px solid #7bc173;
+            }
+            .checkout-item {
+                position: relative;
+                padding: 10px;
+                height: 80px;
+                float: left;
+                img {
+                    height: inherit;
+                    float: left;
+                }
+                div {
+                    &.badge {
+                        .gradient(#7bc173; 0%; #649e5d; 100%);
+                        padding: 2px 2px;
+                        bottom: 0;
+                        &.right {
+                            right: 0;
+                            left: auto;
+                        }
+                    }
+                }
+            }
+        }
+        .checkout-button {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #f75454;
+            color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 80px;
+            margin: 20px auto 0 auto;
+            display: none;
+
+            &.active {
+                display: block;
+            }
+        }
+        .checkout-progress {
+            width: 20%;
+            background-color: #bbb;
+            border-radius: 13px;
+            padding: 3px;
+            margin: 0 auto 0 auto;
+            display: none;
+            &.active {
+                display: block;
+            }
+            div {
+                background-color: #f75454;
+                width: 40%; /* Adjust with JavaScript */
+                height: 20px;
+                border-radius: 10px;
+            }
+            span {
+                position: absolute;
+                z-index: 11000;
+                color: #fff;
+                width: 100%;
+                left: 0;
+            }
+        }
+        
+        .checkout-close {
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 5px;
+            font-size: 12px;
+            border-radius: 20px;
+            color: #888;
+            cursor: pointer;
+        }
+    }
+
+    &.fixed {
+        position: fixed;
+        top: 0;
+    }
+}
+
+.theatre-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(5,5,5,0.7);
+    height: 100%;
+    z-index: 15000;
+    cursor: default;
+    display: none;
+
+    &.active {
+        display: block;
+    }
+}
+
+#mkt-header {
+    .mkt-line {
+        text-align: center;
+        background-color: #efefef;
+        span {
+            padding: 20px 0 20px 0;
+            margin: 0 auto;
+            float: left;
+            width: 33.333%;
+            color: #fff;
+
+            &#authentic {
+                background-color: #70B368;
+            }
+            &#discount {
+                background-color: #F75454;   
+            }
+            &#delivery {
+                background-color: #f68b2b;
+            }
+        }
+    }
+    .mkt-header-img {
+        background-image: url('../images/pho.jpg');
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+        height: 300px;
+    }
+}
+
+#api-popup {
+    border: 5px solid #eee;
+    position: fixed;
+    text-align: center;
+    margin: 0 auto 0 auto;
+    width: 50%;
+    z-index: 30000;
+    left: 25%;
+    top: 100px;
+    background-color: #fff;
+    padding-bottom: 10px;
+    display: none;
+    &.active {
+        display: block;
+    }
+    div {
+        margin: 0 auto 0 auto;
+        display: none;
+        &.active {
+            display: block;
+        }
+        p {
+            margin: 0;
+            padding: 20px 30px 20px 30px;
+        }
+    }
+    img {
+        margin: 0 auto 0 auto;
+        height: 250px;
+        padding: 10px;
+    }
+    .nav {
+        cursor: pointer;
+        &.next,&.prev {
+            height: 30px;
+            position: absolute;
+            img {
+                height: 30px;
+            }
+        }
+        &.next {
+            top: 50%;
+            right: 10px;
+        }
+        &.prev {
+            top: 50%;
+            left: 10px;
+        }
+        &.skip {
+            text-decoration: underline;
+        }
+    }
+}
+
 // *** Animation stuff ***
 .repeated-item.ng-enter,
 .repeated-item.ng-leave{
-  -webkit-transition: 250;
+    -webkit-transition: 250;
 }
 
 .repeated-item.ng-enter {
-  opacity: 0;
+    opacity: 0;
 }
 
 .repeated-item.ng-leave {
-  opacity: 1;
+    opacity: 0;
+    position: absolute;
 }
 
 .repeated-item.ng-enter.ng-enter-active {
-  opacity: 1;
+    opacity: 1;
 }
 
 .repeated-item.ng-leave.ng-leave-active {
-  opacity: 0;
+    opacity: 0;
 }

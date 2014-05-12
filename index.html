@@ -6,27 +6,39 @@
         <script type="text/javascript" src="./lib/angular-1.3.0-beta.7.js"></script>
         <script type="text/javascript" src="./lib/angular-animate-1.3.0-beta.7.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular-sanitize.js"></script>
-        
+
+        <script src="./js/special.js"></script>
+        <script src="./js/global.js"></script>
         <script src="./js/model.js"></script>
+        <script src="./js/checkout.js"></script>
     </head>
-    <body ng-controller="ListingsCtrl" ng-click="dismissNBox()">
+    <body id="body" ng-controller="ListingsCtrl" ng-click="dismissNBox();dismissCheckout()" ng-class="{'no-scroll' : checkoutSelected || apiPopupEnabled}">
         <div class="DEBUG_baseline_grid enabled-{{ showGridLines }}" ></div>
+        <div ng-include src="'api-popup.html'"></div>
         <div id="header">
             <div id="header_contents">
                 <div id="logo">
                     <h1><img src="images/logo.png" /></h1>
                 </div>
                 
-                <div id="top_navigation">
-                    <a ng-repeat="nav in topNavs" ng-class="{active : isTopNavSelected(nav)}" ng-click="emptyColumns();populateByType(nav.type, 350);setTopNavMaster(nav)">{{ nav.name }}</a>
+                <div id="top-navigation">
+                    <a ng-repeat="nav in topNavs" ng-class="{active : isTopNavSelected(nav)}" class="{{ nav.type }}" ng-click="switchColumn(nav.type, 350);setTopNavMaster(nav);enableApiPopup('longdan'===nav.type && !apiPopupViewed);">
+                        <div class="triangle-up" ng-class="{active : isTopNavSelected(nav)}"></div>
+                        <span ng-if="nav.type == 'longdan'">
+<!--                            <span class="ld-help" >?</span>-->
+                            <img class="ld-help" src="images/api-popup/bubble.png" title="What is this Longdan tab again?" ng-if="apiPopupViewed" ng-click="setViewedApiPopUp(false);"/>
+                            <img src="images/longdan.png"/>
+                        </span>
+                        {{ nav.type != 'longdan' && nav.name || "" }}
+                    </a>
                 </div>
                 
                 <a id="user_profile_nav" href="">
                     <img src="images/avatar01.jpg" class="avatar" ng-click="toggleNBox()"/>
                     <span class="badge" ng-click="toggleNBox()">5</span>
-<!--                    <div class="triangle"></div>-->
-                    <div ng-class="{active : isNBoxSelected()}" class="triangle-up"></div>
-                    <div id="notification-box" ng-class="{active : isNBoxSelected()}">
+                        <!--<div class="triangle"></div>-->
+                    <div ng-class="{active : nboxSelected}" class="triangle-up"></div>
+                    <div id="notification-box" ng-class="{active : nboxSelected}">
                         <div class="notification" ng-repeat="notification in notifications" ng-click="toggleNBox()">
                             <img ng-src="images/{{ notification.avatar }}" class="avatar"/>
                             <div class="content" ng-bind-html="notification.content"></div>
@@ -38,19 +50,24 @@
                 <div class="clear"></div>
             </div>
         </div>
-        
-        <div id="content">
+        <div ng-include src="'ld-content.html'"></div>
+        <div id="content" ng-class="selected.type" ng-if="selected.type != 'longdan'">
             <div class="column" ng-repeat="column in columns">
                 <div class="post repeated-item" ng-repeat="post in column">
-                    <span class="price">{{ post.price }}</span>
-                    <span class="time">{{ post.ago }}</span>
-                    <div class="description" ng-bind-html="post.description"></div>
+                    <div ng-if="post.type != 'longdan'">
+                        <span class="price">{{ post.price }}</span>
+                        <span class="time">{{ post.ago }}</span>
+                        <div class="description" ng-bind-html="post.description"></div>
+                    </div>
                 </div>
             </div>
+            <div style="clear:both;"></div>
         </div>
-                
+        <div id="ld-more" ng-if="selected.type == 'longdan'">More Products >></div>
+
         <div id="debug_panel">
             <input type=checkbox id="show_grid_lines" ng-model="showGridLines" /><label for="show_grid_lines">Show grid lines</label>
         </div>
+        <script src="./js/misc.js"></script>
     </body>
 </html>

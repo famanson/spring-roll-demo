@@ -1,0 +1,71 @@
+<div ng-app="SpringRollDemo" ng-controller="CheckoutCtrl" ng-if="selected.type == 'longdan'">
+    <div id="ld-header">
+        <div class="basket">
+            <div ng-repeat="category in ldCategories" class="category"><a>{{ category.name }}</a></div>
+        </div>
+        <div id="basket-price" class="basket" ng-click="prepareCheckout();toggleCheckout();">
+            <img id="checkout-basket" src="images/basket.png"/>
+            <div class="badge">£{{ basketTotal().toFixed(2) }}</div>
+        </div>
+        <div id="delivery-price" class="basket" ng-click="prepareCheckout();toggleCheckout();">
+            <img id="checkout-truck" ng-src="images/{{ showTruck() }}"/>
+            <div class="badge price" ng-class="{ active : !isDeliveryFree() }">{{ deliveryFeeDisplay() }}</div>
+        </div>
+        <div class="checkout-overlay" ng-class="{active : checkoutSelected}" ng-click="forceCheckoutOn();">
+            <a class="checkout-close" title="Close" ng-click="forceCheckoutOff();">X</a>
+            <h2 ng-if="basketTotal() == 0">Your basket is empty!</h2>
+            <h2 ng-if="basketTotal() > 0 && isDeliveryFree()">Your Basket: £{{ basketTotal().toFixed(2) }} with FREE DELIVERY</h2>
+            <h2 ng-if="basketTotal() > 0 && !isDeliveryFree()">Your Basket: £{{ basketTotal().toFixed(2) }} + {{ deliveryFeeDisplay() }} (delivery) = £{{ (basketTotal() + deliveryFee).toFixed(2) }}</h2>
+            <div class="checkout-items" ng-class="{active : basketTotal() > 0}">
+                <div class="checkout-item" ng-repeat="item in checkedOutItems">
+                    <img ng-src="{{ item.imageUrl }}"/>
+                    <div class="badge right">x{{ item.quantity }} = £{{ item.price.toFixed(2) }}</div>
+                </div>
+                <div style='clear: both'></div>
+            </div>
+            <a class="checkout-button" ng-class="{active : basketTotal() > 50}">Checkout</a>
+            <h4 ng-if="basketTotal() < 50 && basketTotal() > 0">Minimum order to check out: £50</h4>
+            <div class="checkout-progress" ng-class="{active : basketTotal() > 0 && basketTotal() < 50}">
+                <span>{{ checkoutProgress() }}</span>
+                <div ng-style="{'width':checkoutProgress()}"></div>
+            </div>
+        </div>
+        <div class="theatre-background" ng-class="{active : checkoutSelected}"></div>
+    </div>
+    <div id="mkt-header">
+        <div class="mkt-header-img"></div>
+        <div class="mkt-line">
+            <span id="authentic"><b>Authentic Vietnamese products by Longdan&reg;</b></span>
+            <span id="discount"><b>Exclusive discounts on SVUK Marketplace</b></span>
+            <span id="delivery"><b>Free delivery on orders over £100</b></span>
+        </div>
+    </div>
+    <div id="content" ng-class="selected.type">
+        <div class="column" ng-repeat="column in columns">
+            <div class="post repeated-item" ng-repeat="post in column">
+                <div ng-if="post.type == 'longdan'" class="longdan-post">
+                    <img ng-src="{{ post.image_url }}" class="image"/>
+                    <div class="price-info">
+                        <span class="rrp">{{ post.rrp }}</span>
+                        <span class="price"><b>{{ post.price }}</b></span>
+                    </div>
+                    <div class="description" ng-bind-html="post.desc1"></div>
+                    <div class="description" ng-bind-html="post.desc2"></div>
+                    <div class="packaging" ng-bind-html="post.packaging"></div>
+                    <div class="cart">
+                        <div class="cart-buttons" ng-click="persistBasket(basket)">
+                            <a class="cart-button add" ng-click="addBasket(post.id)">
+                                {{ showQuantity(post.id) }} | + Add
+                            </a>
+                            <a class="cart-button remove" ng-click="removeBasket(post.id)">
+                                - Remove
+                            </a>
+                        </div>
+                        <div class="divider"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+</div>
