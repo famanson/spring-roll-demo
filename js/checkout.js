@@ -14,6 +14,13 @@ app.controller("CheckoutCtrl", function($scope) {
     if (!$scope.longdanEnabled) {
         $scope.topNavs.pop();
     } else {
+        /* Checkout box control */
+        // Checkout basket clicked
+        $scope.checkoutSelected = false;
+        $scope.setCheckoutSelected = function(selected) {
+            $scope.checkoutSelected = selected;
+        };
+
         $scope.basket = $scope.previousBasket;
 
         $scope.addBasket = function(id) {

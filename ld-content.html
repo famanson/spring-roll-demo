@@ -3,16 +3,16 @@
         <div class="basket">
             <div ng-repeat="category in ldCategories" class="category"><a>{{ category.name }}</a></div>
         </div>
-        <div id="basket-price" class="basket" ng-click="prepareCheckout();toggleCheckout();">
+        <div id="basket-price" class="basket" ng-click="prepareCheckout();setCheckoutSelected(true);">
             <img id="checkout-basket" src="images/basket.png"/>
             <div class="badge">£{{ basketTotal().toFixed(2) }}</div>
         </div>
-        <div id="delivery-price" class="basket" ng-click="prepareCheckout();toggleCheckout();">
+        <div id="delivery-price" class="basket" ng-click="prepareCheckout();setCheckoutSelected(true);">
             <img id="checkout-truck" ng-src="images/{{ showTruck() }}"/>
             <div class="badge price" ng-class="{ active : !isDeliveryFree() }">{{ deliveryFeeDisplay() }}</div>
         </div>
-        <div class="checkout-overlay" ng-class="{active : checkoutSelected}" ng-click="forceCheckoutOn();">
-            <a class="checkout-close" title="Close" ng-click="forceCheckoutOff();">X</a>
+        <div class="checkout-overlay" ng-class="{active : checkoutSelected}">
+            <a class="checkout-close" title="Close" ng-click="setCheckoutSelected(false);">X</a>
             <h2 ng-if="basketTotal() == 0">Your basket is empty!</h2>
             <h2 ng-if="basketTotal() > 0 && isDeliveryFree()">Your Basket: £{{ basketTotal().toFixed(2) }} with FREE DELIVERY</h2>
             <h2 ng-if="basketTotal() > 0 && !isDeliveryFree()">Your Basket: £{{ basketTotal().toFixed(2) }} + {{ deliveryFeeDisplay() }} (delivery) = £{{ (basketTotal() + deliveryFee).toFixed(2) }}</h2>
