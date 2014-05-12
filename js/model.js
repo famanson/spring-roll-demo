@@ -35,10 +35,10 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     
     /* Top Nav Control */
     $scope.populateByType = function(popType, delay) {
-        var rowLength = (popType == 'longdan') ? 4 : 3;
+        var rowLength = (popType === 'longdan') ? 4 : 3;
         $timeout(function() {
             var filterByType = function(element) {
-                return element.type === popType;
+                return element.type === popType || (element.type === 'compose' && popType != 'longdan');
             };
             var filteredPosts = posts.filter(filterByType);
             var perColumn = filteredPosts.length / rowLength;

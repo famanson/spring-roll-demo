@@ -6,6 +6,10 @@
  */
 
 var posts = [
+    /* A bit of evil here: compose button disguised as a post */
+    {
+        type: "compose"
+    },
     /* Sale posts */
     {
         price: "£100",
