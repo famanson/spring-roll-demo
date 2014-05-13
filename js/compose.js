@@ -11,6 +11,11 @@ app.controller("ComposeCtrl", function($scope) {
     $scope.setPickedCategory = function(category) {
         $scope.pickedCategory = category;
     };
+    $scope.clearSubmit = function() {
+        $scope.submittedPrice = "";
+        $scope.submittedDesc = "";
+        $scope.pickedCategory = "";
+    };
     $scope.submitPost = function() {
         var popType = $scope.pickedCategory.toLowerCase();
         var post = {
@@ -28,9 +33,6 @@ app.controller("ComposeCtrl", function($scope) {
 
         $scope.emptyColumns();
         $scope.populateByType(popType);
-        $scope.submittedPrice = "";
-        $scope.submittedDesc = "";
-        $scope.pickedCategory = "";
         $scope.composeBoxEnabled = false;
     };
 });

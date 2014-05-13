@@ -77,7 +77,7 @@
                             <textarea ng-model="submittedDesc" placeholder="Short description of your advertisement..."></textarea>
                             <div class="buttons">
                                 <div class="submit" ng-click="submitPost();">Submit</div>
-                                <div class="discard" ng-click="setComposeBoxEnabled(false);">Discard</div>
+                                <div class="discard" ng-click="clearSubmit();setComposeBoxEnabled(false);">Discard</div>
                             </div>
                         </div>
                         <div class="theatre-background" ng-class="{active : composeBoxEnabled}"></div>
