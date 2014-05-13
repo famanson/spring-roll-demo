@@ -49,7 +49,7 @@
                         </div>
                     </div>
                 </a>
-                
+
                 <div class="clear"></div>
             </div>
         </div>
@@ -58,9 +58,8 @@
         <div id="content" ng-class="selected.type" ng-if="selected.type != 'longdan'">
             <div class="column" ng-repeat="column in columns">
                 <div class="post repeated-item" ng-repeat="post in column">
-                    <div ng-controller="ComposeCtrl" ng-if="post.type === 'compose'"
-                         ng-click="setComposeBoxEnabled(true);">
-                        <div  class="compose">
+                    <div ng-controller="ComposeCtrl" ng-if="post.type === 'compose'">
+                        <div  class="compose" ng-click="setComposeBoxEnabled(true);">
                             <b>+ Post new ad</b>
                         </div>
                         <div class="composeBox" ng-class="{active : composeBoxEnabled}">
@@ -72,9 +71,14 @@
                                     <div>Rent</div>
                                 </div>
                             </div>
-                            <textarea ></textarea>
+                            <input placeholder='A price value, e.g. "£100", "£7/h+tips"'></input>
+                            <textarea placeholder="Short description of your advertisement..."></textarea>
+                            <div class="buttons">
+                                <div class="submit">Submit</div>
+                                <div class="discard" ng-click="setComposeBoxEnabled(false);">Discard</div>
+                            </div>
                         </div>
-                        <div class="theatre-background active"></div>
+                        <div class="theatre-background" ng-class="{active : composeBoxEnabled}"></div>
                     </div>
                     <div ng-if="post.type != 'longdan' && post.type != 'compose'">
                         <span class="price">{{ post.price }}</span>
