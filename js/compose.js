@@ -16,6 +16,10 @@ app.controller("ComposeCtrl", function($scope) {
         $scope.submittedDesc = "";
         $scope.pickedCategory = "";
     };
+    var monthNames = [ "January", "February", "March", "April", "May", "June",
+                       "July", "August", "September", "October", "November", "December" ];
+    var expireDate = new Date(+new Date + 12096e5);
+    $scope.fortnightAway = expireDate.getDay() + " " + monthNames[expireDate.getMonth()] + " " + expireDate.getFullYear();
     $scope.submitPost = function() {
         var popType = $scope.pickedCategory.toLowerCase();
         var post = {
