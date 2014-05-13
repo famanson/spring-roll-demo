@@ -78,6 +78,20 @@
                             <div class="expiration">Ad expires on <b>{{ fortnightAway }}</b></div>
                             <textarea ng-model="submittedDesc" ng-class="{ 'valid' : isDescValid() }"
                                       placeholder="Short description of your advertisement..."></textarea>
+                            <div class="checklist">
+                                <div ng-class="{ 'valid' : isCategoryPicked() }">
+                                    Category is picked.
+                                    <img ng-src="./images/check-{{ tickOrCross(isCategoryPicked()) }}.png"/>
+                                </div>
+                                <div ng-class="{ 'valid' : isPriceValid() }">
+                                    Price is between 2 and 10 chars.
+                                    <img ng-src="./images/check-{{ tickOrCross(isPriceValid()) }}.png"/>
+                                </div>
+                                <div ng-class="{ 'valid' : isDescValid() }">
+                                    Description is between 20 and 250 chars.
+                                    <img ng-src="./images/check-{{ tickOrCross(isDescValid()) }}.png"/>
+                                </div>
+                            </div>
                             <div class="buttons">
                                 <div class="submit" ng-click="submitPost();" ng-class="{ active : isOkayToSubmit() }">Submit</div>
                                 <div class="discard" ng-click="clearSubmit();setComposeBoxEnabled(false);">Discard</div>

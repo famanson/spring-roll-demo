@@ -25,6 +25,12 @@ app.controller("ComposeCtrl", function($scope) {
     $scope.fortnightAway = expireDate.getDay() + " " + monthNames[expireDate.getMonth()] + " " + expireDate.getFullYear();
 
     // Validations
+    $scope.tickOrCross = function(showTick) {
+        return showTick ? 'tick' : 'cross';
+    };
+    $scope.isCategoryPicked = function() {
+        return $scope.pickedCategory.toLowerCase().length > 0;
+    };
     $scope.isPriceValid = function() {
         return $scope.submittedPrice.length > 2 && $scope.submittedPrice.length < 10;
     };
@@ -32,7 +38,7 @@ app.controller("ComposeCtrl", function($scope) {
         return $scope.submittedDesc.length > 30 && $scope.submittedDesc.length < 250;
     };
     $scope.isOkayToSubmit = function() {
-        return $scope.pickedCategory.toLowerCase().length > 0 && $scope.isPriceValid() && $scope.isDescValid();
+        return $scope.isCategoryPicked() && $scope.isPriceValid() && $scope.isDescValid();
     };
     $scope.submitPost = function() {
         if ($scope.isOkayToSubmit()) {

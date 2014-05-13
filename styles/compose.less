@@ -86,8 +86,31 @@
                 border: 2px solid #7bc173;
             }
         }
+        .checklist {
+            padding: 5px 0;
+            margin-top: 10px;
+            border-top: 1px solid #bbb;
+            font-size: 14px;
+            text-align: left;
+            div {
+                padding: 5px;
+                color: #fff;
+                background-color: #d64444;
+                border-radius: 5px;
+                margin-bottom: 5px;
+                img {
+                    height: 20px;
+                    float: right;
+                    margin-top: -2px;
+                }
+                &.valid {
+                    background-color: #7bc173;
+                }
+            }
+        }
         .buttons {
             padding-top: 10px;
+            border-top: 1px solid #bbb;
             div {
                 cursor: pointer;
                 display: inline-block;
@@ -107,7 +130,7 @@
                 &.discard {
                     background-color: #f75454;
                     &:hover {
-                        background-color: #D64444;
+                        background-color: #d64444;
                     }
                 }
             }
