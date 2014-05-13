@@ -12,7 +12,7 @@
             <div class="badge price" ng-class="{ active : !isDeliveryFree() }">{{ deliveryFeeDisplay() }}</div>
         </div>
         <div class="checkout-overlay" ng-class="{active : checkoutSelected}">
-            <a class="checkout-close" title="Close" ng-click="setCheckoutSelected(false);">X</a>
+            <a class="checkout-close" title="Close" ng-click="setCheckoutSelected(false);"><img src="./images/close.png"/></a>
             <h2 ng-if="basketTotal() == 0">Your basket is empty!</h2>
             <h2 ng-if="basketTotal() > 0 && isDeliveryFree()">Your Basket: £{{ basketTotal().toFixed(2) }} with FREE DELIVERY</h2>
             <h2 ng-if="basketTotal() > 0 && !isDeliveryFree()">Your Basket: £{{ basketTotal().toFixed(2) }} + {{ deliveryFeeDisplay() }} (delivery) = £{{ (basketTotal() + deliveryFee).toFixed(2) }}</h2>
