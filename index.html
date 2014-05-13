@@ -80,15 +80,15 @@
                                       placeholder="Short description of your advertisement..."></textarea>
                             <div class="checklist">
                                 <div ng-class="{ 'valid' : isCategoryPicked() }">
-                                    Category is picked.
+                                    Category is picked ({{ isCategoryPicked() ? pickedCategory : 'None' }})
                                     <img ng-src="./images/check-{{ tickOrCross(isCategoryPicked()) }}.png"/>
                                 </div>
                                 <div ng-class="{ 'valid' : isPriceValid() }">
-                                    Price is between 2 and 10 chars.
+                                    Price is between 2 and 10 chars  ({{ submittedPrice.length }})
                                     <img ng-src="./images/check-{{ tickOrCross(isPriceValid()) }}.png"/>
                                 </div>
                                 <div ng-class="{ 'valid' : isDescValid() }">
-                                    Description is between 20 and 250 chars.
+                                    Description is between 20 and 250 chars ({{ submittedDesc.length }})
                                     <img ng-src="./images/check-{{ tickOrCross(isDescValid()) }}.png"/>
                                 </div>
                             </div>
