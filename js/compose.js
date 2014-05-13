@@ -32,10 +32,10 @@ app.controller("ComposeCtrl", function($scope) {
         return $scope.pickedCategory.toLowerCase().length > 0;
     };
     $scope.isPriceValid = function() {
-        return $scope.submittedPrice.length > 2 && $scope.submittedPrice.length < 10;
+        return $scope.submittedPrice.length >= 2 && $scope.submittedPrice.length <= 10;
     };
     $scope.isDescValid = function() {
-        return $scope.submittedDesc.length > 30 && $scope.submittedDesc.length < 250;
+        return $scope.submittedDesc.length >= 20 && $scope.submittedDesc.length <= 250;
     };
     $scope.isOkayToSubmit = function() {
         return $scope.isCategoryPicked() && $scope.isPriceValid() && $scope.isDescValid();

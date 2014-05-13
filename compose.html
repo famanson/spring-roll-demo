@@ -1,0 +1,39 @@
+<div ng-controller="ComposeCtrl">
+    <div  class="compose" ng-click="setComposeBoxEnabled(true);">
+        <b>+ Post new ad</b>
+    </div>
+    <div class="composeBox" ng-class="{active : composeBoxEnabled}">
+        <h3>New advertisement</h3>
+        <div>
+            <div class="picker">
+                <div ng-repeat="category in composeCategories"
+                     ng-class="{ 'picked' : pickedCategory === category }"
+                     ng-click="setPickedCategory(category);">{{ category }}</div>
+            </div>
+        </div>
+        <input type="text" ng-model="submittedPrice" ng-class="{ 'valid' : isPriceValid() }"
+               placeholder='Price, e.g. "£100", "£7/h+tips"'></input>
+        <div class="expiration">Ad expires on <b>{{ fortnightAway }}</b></div>
+        <textarea ng-model="submittedDesc" ng-class="{ 'valid' : isDescValid() }"
+                  placeholder="Short description of your advertisement..."></textarea>
+        <div class="checklist">
+            <div ng-class="{ 'valid' : isCategoryPicked() }">
+                Category is picked ({{ isCategoryPicked() ? pickedCategory : 'None' }})
+                <img ng-src="./images/check-{{ tickOrCross(isCategoryPicked()) }}.png"/>
+            </div>
+            <div ng-class="{ 'valid' : isPriceValid() }">
+                Price is between 2 and 10 chars  ({{ submittedPrice.length }})
+                <img ng-src="./images/check-{{ tickOrCross(isPriceValid()) }}.png"/>
+            </div>
+            <div ng-class="{ 'valid' : isDescValid() }">
+                Description is between 20 and 250 chars ({{ submittedDesc.length }})
+                <img ng-src="./images/check-{{ tickOrCross(isDescValid()) }}.png"/>
+            </div>
+        </div>
+        <div class="buttons">
+            <div class="submit" ng-click="submitPost();" ng-class="{ active : isOkayToSubmit() }">Submit</div>
+            <div class="discard" ng-click="clearSubmit();setComposeBoxEnabled(false);">Discard</div>
+        </div>
+    </div>
+    <div class="theatre-background" ng-class="{active : composeBoxEnabled}"></div>
+</div>
