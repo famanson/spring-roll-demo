@@ -77,7 +77,7 @@
                             <div class="expiration">Ad expires on <b>{{ fortnightAway }}</b></div>
                             <textarea ng-model="submittedDesc" placeholder="Short description of your advertisement..."></textarea>
                             <div class="buttons">
-                                <div class="submit" ng-click="submitPost();">Submit</div>
+                                <div class="submit" ng-click="submitPost();" ng-class="{ active : isOkayToSubmit() }">Submit</div>
                                 <div class="discard" ng-click="clearSubmit();setComposeBoxEnabled(false);">Discard</div>
                             </div>
                         </div>
