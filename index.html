@@ -71,13 +71,11 @@
                                          ng-click="setPickedCategory(category);">{{ category }}</div>
                                 </div>
                             </div>
-                            <form id="post-form" ng-submit="submitPost()">
-                                <input type="text" ng-model="submittedPrice" placeholder='Price, e.g. "£100", "£7/h+tips"'></input>
-                                <div class="expiration">Ad expires on 01/01/2015.</div>
-                                <textarea ng-model="submittedDesc" placeholder="Short description of your advertisement..."></textarea>
-                            </form>
+                            <input type="text" ng-model="submittedPrice" placeholder='Price, e.g. "£100", "£7/h+tips"'></input>
+                            <div class="expiration">Ad expires on 01/01/2015.</div>
+                            <textarea ng-model="submittedDesc" placeholder="Short description of your advertisement..."></textarea>
                             <div class="buttons">
-                                <div class="submit" onclick="$('#post-form').submit();">Submit</div>
+                                <div class="submit" ng-click="submitPost();">Submit</div>
                                 <div class="discard" ng-click="setComposeBoxEnabled(false);">Discard</div>
                             </div>
                         </div>

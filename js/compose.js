@@ -12,6 +12,19 @@ app.controller("ComposeCtrl", function($scope) {
         $scope.pickedCategory = category;
     };
     $scope.submitPost = function() {
-        alert(this.submittedPrice + ", " + this.submittedDesc + ", " + $scope.pickedCategory);
+        var popType = $scope.pickedCategory.toLowerCase();
+        var post = {
+            price: $scope.submittedPrice,
+            ago: "a moment ago",
+            description: $scope.submittedDesc,
+            type: popType
+        };
+        posts.push(post);
+        $scope.emptyColumns();
+        $scope.populateByType(popType);
+        $scope.submittedPrice = "";
+        $scope.submittedDesc = "";
+        $scope.pickedCategory = "";
+        $scope.composeBoxEnabled = false;
     };
 });

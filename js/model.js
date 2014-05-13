@@ -33,24 +33,22 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     };
     
     /* Top Nav Control */
-    $scope.populateByType = function(popType, delay) {
+    $scope.populateByType = function(popType) {
         var rowLength = (popType === 'longdan') ? 4 : 3;
-        $timeout(function() {
-            var filterByType = function(element) {
-                return element.type === popType || (element.type === 'compose' && popType != 'longdan');
-            };
-            var filteredPosts = posts.filter(filterByType);
-            var perColumn = filteredPosts.length / rowLength;
-            var remainder = filteredPosts.length % rowLength;
-            // Again, cycling through each column and post is needed to get animations
-            // working.
-            for (var i = 0; i < rowLength; i++) {
-                var columnPosts = filteredPosts.splice(0, perColumn + (i < remainder ? 1 : 0));
-                for (var k = 0; k < columnPosts.length; k++) {
-                    $scope.columns[i].push(columnPosts[k]);
-                }
+        var filterByType = function(element) {
+            return element.type === popType || (element.type === 'compose' && popType != 'longdan');
+        };
+        var filteredPosts = posts.filter(filterByType);
+        var perColumn = filteredPosts.length / rowLength;
+        var remainder = filteredPosts.length % rowLength;
+        // Again, cycling through each column and post is needed to get animations
+        // working.
+        for (var i = 0; i < rowLength; i++) {
+            var columnPosts = filteredPosts.splice(0, perColumn + (i < remainder ? 1 : 0));
+            for (var k = 0; k < columnPosts.length; k++) {
+                $scope.columns[i].push(columnPosts[k]);
             }
-        });
+        }
     };
 
     $scope.switchColumn = function(popType) {
