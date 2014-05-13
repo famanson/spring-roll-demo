@@ -73,9 +73,11 @@
                                          ng-click="setPickedCategory(category);">{{ category }}</div>
                                 </div>
                             </div>
-                            <input type="text" ng-model="submittedPrice" placeholder='Price, e.g. "£100", "£7/h+tips"'></input>
+                            <input type="text" ng-model="submittedPrice" ng-class="{ 'valid' : isPriceValid() }"
+                                   placeholder='Price, e.g. "£100", "£7/h+tips"'></input>
                             <div class="expiration">Ad expires on <b>{{ fortnightAway }}</b></div>
-                            <textarea ng-model="submittedDesc" placeholder="Short description of your advertisement..."></textarea>
+                            <textarea ng-model="submittedDesc" ng-class="{ 'valid' : isDescValid() }"
+                                      placeholder="Short description of your advertisement..."></textarea>
                             <div class="buttons">
                                 <div class="submit" ng-click="submitPost();" ng-class="{ active : isOkayToSubmit() }">Submit</div>
                                 <div class="discard" ng-click="clearSubmit();setComposeBoxEnabled(false);">Discard</div>

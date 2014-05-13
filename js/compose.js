@@ -24,8 +24,15 @@ app.controller("ComposeCtrl", function($scope) {
     var expireDate = new Date(+new Date + 12096e5);
     $scope.fortnightAway = expireDate.getDay() + " " + monthNames[expireDate.getMonth()] + " " + expireDate.getFullYear();
 
+    // Validations
+    $scope.isPriceValid = function() {
+        return $scope.submittedPrice.length > 2 && $scope.submittedPrice.length < 10;
+    };
+    $scope.isDescValid = function() {
+        return $scope.submittedDesc.length > 30 && $scope.submittedDesc.length < 250;
+    };
     $scope.isOkayToSubmit = function() {
-        return $scope.pickedCategory.toLowerCase().length > 0 && $scope.submittedPrice.length > 0 && $scope.submittedDesc.length > 0;
+        return $scope.pickedCategory.toLowerCase().length > 0 && $scope.isPriceValid() && $scope.isDescValid();
     };
     $scope.submitPost = function() {
         if ($scope.isOkayToSubmit()) {
