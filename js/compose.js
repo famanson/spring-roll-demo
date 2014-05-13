@@ -1,4 +1,4 @@
-/*global app */
+/*global app, posts */
 
 app.controller("ComposeCtrl", function($scope) {
     $scope.composeCategories = ['Sale','Wanted','Rent'];
@@ -19,7 +19,13 @@ app.controller("ComposeCtrl", function($scope) {
             description: $scope.submittedDesc,
             type: popType
         };
-        posts.push(post);
+        // Hack!
+        var composePost = posts[0];
+        posts.splice(0,1);
+        posts.unshift(post);
+        posts.unshift(composePost);
+        // End hack
+
         $scope.emptyColumns();
         $scope.populateByType(popType);
         $scope.submittedPrice = "";
