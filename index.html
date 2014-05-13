@@ -66,15 +66,18 @@
                             <h3>New advertisement</h3>
                             <div>
                                 <div class="picker">
-                                    <div>Sale</div>
-                                    <div>Wanted</div>
-                                    <div>Rent</div>
+                                    <div ng-repeat="category in composeCategories"
+                                         ng-class="{ 'picked' : pickedCategory === category }"
+                                         ng-click="setPickedCategory(category);">{{ category }}</div>
                                 </div>
                             </div>
-                            <input placeholder='A price value, e.g. "£100", "£7/h+tips"'></input>
-                            <textarea placeholder="Short description of your advertisement..."></textarea>
+                            <form id="post-form" ng-submit="submitPost()">
+                                <input type="text" ng-model="submittedPrice" placeholder='Price, e.g. "£100", "£7/h+tips"'></input>
+                                <div class="expiration">Ad expires on 01/01/2015.</div>
+                                <textarea ng-model="submittedDesc" placeholder="Short description of your advertisement..."></textarea>
+                            </form>
                             <div class="buttons">
-                                <div class="submit">Submit</div>
+                                <div class="submit" onclick="$('#post-form').submit();">Submit</div>
                                 <div class="discard" ng-click="setComposeBoxEnabled(false);">Discard</div>
                             </div>
                         </div>
