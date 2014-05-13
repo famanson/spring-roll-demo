@@ -14,6 +14,10 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
 
     // Whether longdan features are enabled.
     $scope.longdanEnabled = window.longdanEnabled || false;
+    
+    // Currently selected post, will be displayed to user in detail.
+    $scope.selected_post = null;
+    
 
     // Split posts into three columns (and four if Longdan)
     $scope.columns = [];
@@ -56,6 +60,10 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
             $scope.emptyColumns();
             $scope.populateByType(popType);
         }
+    };
+    
+    $scope.selectPost = function(post) {
+        $scope.selected_post = post;
     };
 
     $scope.populateByType('sale');

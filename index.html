@@ -24,6 +24,7 @@
                     <h1><img src="images/logo.png" /></h1>
                 </div>
                 
+                <!-- Top-level navigation -->
                 <div id="top-navigation">
                     <a ng-repeat="nav in topNavs" ng-class="{active : isTopNavSelected(nav)}" class="{{ nav.type }}" ng-click="switchColumn(nav.type);setTopNavMaster(nav);enableApiPopup('longdan'===nav.type && !apiPopupViewed);">
                         <div class="triangle-up" ng-class="{active : isTopNavSelected(nav)}"></div>
@@ -36,11 +37,13 @@
                     </a>
                 </div>
                 
+                <!-- Searchbox -->
                 <div id="search-container">
                     <img src="images/search.png" />
                     <input type="text" />
                 </div>
                 
+                <!-- User avatar -->
                 <a id="user_profile_nav" href="">
                     <img src="images/avatar01.jpg" class="avatar" ng-click="toggleNBox()"/>
                     <span class="badge" ng-click="toggleNBox()">5</span>
@@ -60,9 +63,11 @@
         </div>
         <div ng-include src="'ld-content.html'">
         </div>
+        
+        <!-- Main posts area -->
         <div id="content" ng-class="selected.type" ng-if="selected.type != 'longdan'">
             <div class="column" ng-repeat="column in columns">
-                <a class="post repeated-item" ng-repeat="post in column" href="javascript:void">
+                <a class="post repeated-item" ng-repeat="post in column" ng-click="selectPost(post)" href="javascript:void(0)">
                     <div ng-if="post.type != 'longdan'">
                         <span class="price">{{ post.price }}</span>
                         <span class="time">{{ post.ago }}</span>
@@ -72,6 +77,17 @@
             </div>
             <div style="clear:both;"></div>
         </div>
+        
+        <!-- Modal post display -->
+        <div class="overlay" ng-class="{ active : selected_post != null }" ng-click="selectPost(null)">
+            <div class="overlay_content" ng-click="$event.stopPropagation()">
+                <div class="post" ng-model="selected_post">
+                    <span class="price">{{ selected_post.price }}</span>
+                    <div class="description" ng-bind-html="selected_post.description"></div>
+                </div>
+            </div>
+        </div>
+        
         <div id="ld-more" ng-if="selected.type == 'longdan'">More Products >></div>
 
         <div id="debug_panel">
