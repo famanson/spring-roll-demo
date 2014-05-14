@@ -54,6 +54,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
                     $scope.columns[i].push(columnPosts[k]);
                 }
             }
+            console.log($scope.columns);
         });
     };
 

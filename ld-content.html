@@ -41,7 +41,7 @@
         </div>
     </div>
     <div id="content" ng-class="selected.type">
-        <div class="column" ng-repeat="column in columns">
+        <div class="longdan column" ng-repeat="column in columns">
             <div class="post repeated-item" ng-repeat="post in column">
                 <div ng-if="post.type == 'longdan'" class="longdan-post">
                     <img ng-src="{{ post.image_url }}" class="image"/>
