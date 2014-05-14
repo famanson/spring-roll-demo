@@ -35,7 +35,7 @@ app.controller("ComposeCtrl", function($scope) {
         return $scope.submittedPrice.length >= 2 && $scope.submittedPrice.length <= 10;
     };
     var priceRegExp = new RegExp(/(^\£\d+(.\d{1,2})?(\/h|pcm)?$|^Wanted\!$)/);
-    $scope.priceSensible = function() {
+    $scope.isPriceSensible = function() {
         return priceRegExp.test($scope.submittedPrice);
     };
     $scope.priceSensibleText = function() {
@@ -45,7 +45,7 @@ app.controller("ComposeCtrl", function($scope) {
         if ($scope.submittedPrice.length > 10) {
             return "Price value is too long (" + $scope.submittedPrice.length + " characters)";
         }
-        if (!$scope.priceSensible()) {
+        if (!$scope.isPriceSensible()) {
             if ($scope.pickedCategory.toLowerCase() === "wanted") {
                 return "Price format accepted: £1, £10pcm, £7.5/h, \"Wanted!\"";
             } else {
@@ -59,7 +59,7 @@ app.controller("ComposeCtrl", function($scope) {
         return $scope.submittedDesc.length >= 20 && $scope.submittedDesc.length <= 250;
     };
     $scope.isOkayToSubmit = function() {
-        return $scope.isCategoryPicked() && $scope.isPriceValid() && $scope.isDescValid();
+        return $scope.isCategoryPicked() && $scope.isPriceSensible() && $scope.isDescValid();
     };
     $scope.submitPost = function() {
         if ($scope.isOkayToSubmit()) {
@@ -81,6 +81,17 @@ app.controller("ComposeCtrl", function($scope) {
             $scope.populateByType(popType);
             $scope.setTopNavMaster(popType);
             $scope.composeBoxEnabled = false;
+        }
+    };
+    $scope.requirementsText = function() {
+        var i = 0;
+        i += ($scope.isCategoryPicked() ? 1 : 0);
+        i += ($scope.isPriceSensible() ? 1 : 0);
+        i += ($scope.isDescValid() ? 1 : 0);
+        if (i < 3) {
+            return i + "/3 requirements satisfied. Cannot submit!"
+        } else {
+            return "Ready for submission!"
         }
     };
 });

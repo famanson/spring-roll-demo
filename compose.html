@@ -30,13 +30,14 @@
             </div>
         </div>
         <div class="checklist">
+            <p class="requirements-text" ng-class="{ 'valid' : isOkayToSubmit() }"><b>{{ requirementsText() }}</b></p>
             <div ng-class="{ 'valid' : isCategoryPicked() }">
                 {{ isCategoryPicked() ? 'Category is ' + pickedCategory : 'Category is not picked.'  }}
                 <img ng-src="./images/check-{{ tickOrCross(isCategoryPicked()) }}.png"/>
             </div>
-            <div ng-class="{ 'valid' : priceSensible() }">
+            <div ng-class="{ 'valid' : isPriceSensible() }">
                 {{ priceSensibleText() }}
-                <img ng-src="./images/check-{{ tickOrCross(priceSensible()) }}.png"/>
+                <img ng-src="./images/check-{{ tickOrCross(isPriceSensible()) }}.png"/>
             </div>
             <div ng-class="{ 'valid' : isDescValid() }">
                 Description has between 20 and 250 characters ({{ submittedDesc.length }})
