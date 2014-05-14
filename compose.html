@@ -15,7 +15,7 @@
             <input type="text" ng-model="submittedPrice" ng-class="{ 'valid' : isPriceValid() }"
                    placeholder='"£10", "£7/h+tips", "£300pcm"'></input>
             <div class="help">
-                <div class="help-text">Price {{ pickedCategory.toLowerCase() === "wanted" ? 'or "Wanted!" magic word' : '' }}</div>
+                <div class="help-text">Price {{ pickedCategory.toLowerCase() === "wanted" ? 'or "Wanted!"' : '' }}</div>
                 <div class="triangle-up"></div>
             </div>
             <div class="expiration">Expires: <b>{{ fortnightAway }}</b></div>
