@@ -34,6 +34,27 @@ app.controller("ComposeCtrl", function($scope) {
     $scope.isPriceValid = function() {
         return $scope.submittedPrice.length >= 2 && $scope.submittedPrice.length <= 10;
     };
+    var priceRegExp = new RegExp(/(^\£\d+(.\d{1,2})?(\/h|pcm)?$|^Wanted\!$)/);
+    $scope.priceSensible = function() {
+        return priceRegExp.test($scope.submittedPrice);
+    };
+    $scope.priceSensibleText = function() {
+        if ($scope.submittedPrice.length < 2) {
+            return "Price value is too short (" + $scope.submittedPrice.length + " characters)";
+        }
+        if ($scope.submittedPrice.length > 10) {
+            return "Price value is too long (" + $scope.submittedPrice.length + " characters)";
+        }
+        if (!$scope.priceSensible()) {
+            if ($scope.pickedCategory.toLowerCase() === "wanted") {
+                return "Price format accepted: £1, £10pcm, £7.5/h, \"Wanted!\"";
+            } else {
+                return "Price format accepted: £1, £10pcm, £7.5/h";
+            }
+        }
+        return "Price is in a sensible format.";
+        
+    };
     $scope.isDescValid = function() {
         return $scope.submittedDesc.length >= 20 && $scope.submittedDesc.length <= 250;
     };
