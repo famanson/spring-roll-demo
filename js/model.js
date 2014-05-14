@@ -58,7 +58,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     };
 
     $scope.switchColumn = function(popType) {
-        if (popType !== $scope.selected.type) {
+        if (popType !== $scope.selectedNav) {
             $scope.emptyColumns();
             $scope.populateByType(popType);
         }
@@ -75,13 +75,13 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     }
     $scope.topNavs = topNavs;
 
-    $scope.setTopNavMaster = function(nav) {
-        $scope.selected = nav;
+    $scope.setTopNavMaster = function(navType) {
+        $scope.selectedNav = navType;
     };
-    $scope.setTopNavMaster(topNavs[0]);
+    $scope.setTopNavMaster(topNavs[0].type);
 
-    $scope.isTopNavSelected = function(nav) {
-        return $scope.selected === nav;
+    $scope.isTopNavSelected = function(navType) {
+        return $scope.selectedNav === navType;
     };
     
     /* Notifications Box Control */

@@ -58,6 +58,7 @@ app.controller("ComposeCtrl", function($scope) {
 
             $scope.emptyColumns();
             $scope.populateByType(popType);
+            $scope.setTopNavMaster(popType);
             $scope.composeBoxEnabled = false;
         }
     };
