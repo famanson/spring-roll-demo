@@ -338,7 +338,11 @@ body {
 // *** Animation stuff ***
 .repeated-item.ng-enter,
 .repeated-item.ng-leave{
-    -webkit-transition: 250;
+    -webkit-transition:0.25s linear all;
+    -moz-transition:0.25s linear all;
+    -o-transition:0.25s linear all;
+    transition:0.25s linear all;
+    opacity:0;
 }
 
 .repeated-item.ng-enter {
