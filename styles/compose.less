@@ -7,7 +7,6 @@
         text-align: center;
         padding: 30px 0;
         border: 3px dashed;
-        cursor: pointer;
         &:hover {
             color: #787878;
         }
@@ -26,6 +25,7 @@
         padding: 10px;
         color: #aaa;
         font-size: 14px;
+        cursor: default;
         &.active {
             display: block;
         }
@@ -157,14 +157,14 @@
         .buttons {
             padding-top: 10px;
             div {
-                cursor: pointer;
                 display: inline-block;
                 padding: 5px 15px;
                 margin: 0 5px;
                 border-radius: 7px;
                 color: #fff;
                 &.submit {
-                    background-color: #888;
+                    cursor: pointer;
+                    background-color: #ccc;
                     &.active {
                         background-color: #7bc173;
                         &:hover {
@@ -173,6 +173,7 @@
                     }
                 }
                 &.discard {
+                    cursor: pointer;
                     background-color: #f75454;
                     &:hover {
                         background-color: #d64444;
