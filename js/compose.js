@@ -89,7 +89,7 @@ app.controller("ComposeCtrl", function($scope) {
         i += ($scope.isPriceSensible() ? 1 : 0);
         i += ($scope.isDescValid() ? 1 : 0);
         if (i < 3) {
-            return i + "/3 requirements satisfied. Cannot submit!"
+            return i + "/3 requirements checked. Cannot submit!"
         } else {
             return "Ready for submission!"
         }
