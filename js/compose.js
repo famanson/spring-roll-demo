@@ -31,32 +31,40 @@ app.controller("ComposeCtrl", function($scope) {
     $scope.isCategoryPicked = function() {
         return $scope.pickedCategory.toLowerCase().length > 0;
     };
-    $scope.isPriceValid = function() {
-        return $scope.submittedPrice.length >= 2 && $scope.submittedPrice.length <= 10;
-    };
     var priceRegExp = new RegExp(/(^\£\d+(.\d{1,2})?(k|m)?(\/h|pcm)?$|^Wanted\!$)/);
     $scope.isPriceSensible = function() {
         return priceRegExp.test($scope.submittedPrice);
     };
     $scope.priceSensibleText = function() {
-        if ($scope.submittedPrice.length < 2) {
-            return "Price value is too short (" + $scope.submittedPrice.length + " characters)";
+        var length = $scope.submittedPrice.length;
+        if (length < 2) {
+            return "Too short (" + length + " characters)";
         }
-        if ($scope.submittedPrice.length > 10) {
-            return "Price value is too long (" + $scope.submittedPrice.length + " characters)";
+        if (length > 10) {
+            return "Too long (" + length + " characters)";
         }
         if (!$scope.isPriceSensible()) {
             if ($scope.pickedCategory.toLowerCase() === "wanted") {
-                return "Price format accepted: £1, £10pcm, £7.5/h, \"Wanted!\"";
+                return "Format: £1, £10pcm, £7.5/h, \"Wanted!\"";
             } else {
-                return "Price format accepted: £1, £10pcm, £7.5/h";
+                return "Format: £1, £10pcm, £7.5/h";
             }
         }
-        return "Price is in a sensible format.";
+        return "Looking good!";
         
     };
     $scope.descActualLength = function() {
         return $scope.submittedDesc.replace(/#([^ ]+)/g, '$1').length;
+    };
+    $scope.descLengthText = function() {
+        var length = $scope.descActualLength();
+        if (length < 20) {
+            return "Too short (" + length + "/20 characters required)";
+        } else if (length > 250) {
+            return "Too long (" + length + "/250 characters)";
+        } else {
+            return "Looking good!";
+        }
     };
     $scope.isDescValid = function() {
         var desc = $scope.submittedDesc.replace(/#([^ ]+)/g, '$1');
