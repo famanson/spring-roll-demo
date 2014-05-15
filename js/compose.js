@@ -34,7 +34,7 @@ app.controller("ComposeCtrl", function($scope) {
     $scope.isPriceValid = function() {
         return $scope.submittedPrice.length >= 2 && $scope.submittedPrice.length <= 10;
     };
-    var priceRegExp = new RegExp(/(^\£\d+(.\d{1,2})?(\/h|pcm)?$|^Wanted\!$)/);
+    var priceRegExp = new RegExp(/(^\£\d+(.\d{1,2})?(k|m)?(\/h|pcm)?$|^Wanted\!$)/);
     $scope.isPriceSensible = function() {
         return priceRegExp.test($scope.submittedPrice);
     };
