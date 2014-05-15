@@ -42,7 +42,7 @@
                 <!-- Searchbox -->
                 <div id="search-container">
                     <img src="images/search.png" />
-                    <input type="text" />
+                    <input type="text" ng-model="searchText" ng-change="emptyColumns();repopulate();"/>
                 </div>
                 
                 <!-- User avatar -->
