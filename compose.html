@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="compose-form" ng-class="{ active : isCategoryPicked() }">
-                <label class="price-label">Price:</label>
+                <label class="price-label"><b>Price:</b></label>
                 <div class="price-input">
                     <input ng-model="submittedPrice" ng-class="{ 'valid' : isPriceSensible() }"
                            placeholder='"£10", "£7/h+tips", "£300pcm"'></input>
@@ -24,8 +24,8 @@
                     </div>
                     <div id="clear" style="clear:both;"></div>
                 </div>
-                <label class="desc-label">Description:</label>
-                <label class="tip-label">Tip: "#bold" becomes <b>bold</b></label>
+                <label class="desc-label"><b>Description:</b></label>
+                <label class="tip-label"><i>Tip: "#bold" becomes <b>bold</b></i></label>
                 <div class="desc-input">
                     <textarea ng-model="submittedDesc" ng-class="{ 'valid' : isDescValid() }"
                           placeholder='"Brand new iPhone", "Refurbished flat near Canada Water"'></textarea>
@@ -34,7 +34,7 @@
                         <div class="triangle-up"></div>
                     </div>
                 </div>
-                <label class="media-label">Media Attachment:</label>
+                <label class="media-label"><b>Media Attachment:</b></label>
                 <div class="media-input">
                     Feature Not Yet Available
                 </div>
