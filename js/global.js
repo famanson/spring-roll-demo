@@ -6,6 +6,10 @@
  */
 
 var posts = [
+    /* A bit of evil here: compose button disguised as a post */
+    {
+        type: "compose"
+    },
     /* Sale posts */
     {
         price: "£100",
@@ -20,7 +24,7 @@ var posts = [
     }, {
         price: "£400",
         ago: "2 days ago",
-        description: "<b>Phone 5S gold colour</b>. Barely used. Deliver anywhere within UK (delivery not included, up to £5 extra). Will throw in a free cover of your choice (see photos).",
+        description: "<b>iPhone 5S gold colour</b>. Barely used. Deliver anywhere within UK (delivery not included, up to £5 extra). Will throw in a free cover of your choice (see photos).",
         type: "sale"
     }, {
         price: "£150",

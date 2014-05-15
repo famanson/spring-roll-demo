@@ -1,0 +1,54 @@
+<div ng-controller="ComposeCtrl">
+    <div  class="compose" ng-click="setComposeBoxEnabled(true);">
+        <b>+ Post new ad</b>
+    </div>
+    <div class="overlay" ng-class="{active : composeBoxEnabled}">
+        <div class="composeBox overlay_content" ng-class="{active : composeBoxEnabled}">
+            <h3>New advertisement</h3>
+            <div>
+                <div class="picker">
+                    <div ng-repeat="category in composeCategories"
+                         ng-class="{ 'picked' : pickedCategory === category }"
+                         ng-click="setPickedCategory(category);">{{ category }}</div>
+                </div>
+            </div>
+            <div class="price-input">
+                <input type="text" ng-model="submittedPrice" ng-class="{ 'valid' : isPriceValid() }"
+                       placeholder='"£10", "£7/h+tips", "£300pcm"'></input>
+                <div class="help">
+                    <div class="help-text">Price {{ pickedCategory.toLowerCase() === "wanted" ? 'or "Wanted!"' : '' }}</div>
+                    <div class="triangle-up"></div>
+                </div>
+                <div class="expiration">Expires: <b>{{ fortnightAway }}</b></div>
+                <div id="clear" style="clear:both;"></div>
+            </div>
+            <div class="desc-input">
+                <textarea ng-model="submittedDesc" ng-class="{ 'valid' : isDescValid() }"
+                      placeholder='"Brand new iPhone", "Refurbished flat near Canada Water"'></textarea>
+                <div class="help">
+                    <div class="help-text">Description. Tip: "#bold" becomes <b>bold</b></div>
+                    <div class="triangle-up"></div>
+                </div>
+            </div>
+            <div class="checklist">
+                <p class="requirements-text" ng-class="{ 'valid' : isOkayToSubmit() }"><b>{{ requirementsText() }}</b></p>
+                <div ng-class="{ 'valid' : isCategoryPicked() }">
+                    {{ isCategoryPicked() ? 'Category is ' + pickedCategory : 'Category is not picked.'  }}
+                    <img ng-src="./images/check-{{ tickOrCross(isCategoryPicked()) }}.png"/>
+                </div>
+                <div ng-class="{ 'valid' : isPriceSensible() }">
+                    {{ priceSensibleText() }}
+                    <img ng-src="./images/check-{{ tickOrCross(isPriceSensible()) }}.png"/>
+                </div>
+                <div ng-class="{ 'valid' : isDescValid() }">
+                    Description has between 20 and 250 characters ({{ descActualLength() }})
+                    <img ng-src="./images/check-{{ tickOrCross(isDescValid()) }}.png"/>
+                </div>
+            </div>
+            <div class="buttons">
+                <div class="submit" ng-click="submitPost();" ng-class="{ active : isOkayToSubmit() }">Submit</div>
+                <div class="discard" ng-click="clearSubmit();setComposeBoxEnabled(false);">Discard</div>
+            </div>
+        </div>
+    </div>
+</div>

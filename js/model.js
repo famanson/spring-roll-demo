@@ -37,32 +37,35 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     };
     
     /* Top Nav Control */
-    $scope.populateByType = function(popType) {
-        var rowLength = (popType == 'longdan') ? 4 : 3;
-        var filterByType = function(element) {
-            return element.type === popType;
-        };
-        var filteredPosts = posts.filter(filterByType);
-        var perColumn = filteredPosts.length / rowLength;
-        var remainder = filteredPosts.length % rowLength;
-        // Again, cycling through each column and post is needed to get animations
-        // working.
-        for (var i = 0; i < rowLength; i++) {
-            var columnPosts = filteredPosts.splice(0, perColumn + (i < remainder ? 1 : 0));
-            for (var k = 0; k < columnPosts.length; k++) {
-                $scope.columns[i].push(columnPosts[k]);
+    $scope.populateByType = function(popType, delay) {
+        var rowLength = (popType === 'longdan') ? 4 : 3;
+        $timeout(function() {
+            var filterByType = function(element) {
+                return element.type === popType || (element.type === 'compose' && popType != 'longdan');
+            };
+            var filteredPosts = posts.filter(filterByType);
+            var perColumn = filteredPosts.length / rowLength;
+            var remainder = filteredPosts.length % rowLength;
+            // Again, cycling through each column and post is needed to get animations
+            // working.
+            for (var i = 0; i < rowLength; i++) {
+                var columnPosts = filteredPosts.splice(0, perColumn + (i < remainder ? 1 : 0));
+                for (var k = 0; k < columnPosts.length; k++) {
+                    $scope.columns[i].push(columnPosts[k]);
+                }
             }
-        }
+        });
     };
 
     $scope.switchColumn = function(popType) {
-        if (popType !== $scope.selected.type) {
+        if (popType !== $scope.selectedNav) {
             $scope.emptyColumns();
             $scope.populateByType(popType);
         }
     };
     
     $scope.selectPost = function(post) {
+        post = post != null && post.type === 'compose' ? null : post;
         $scope.selected_post = post;
     };
 
@@ -72,13 +75,13 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     }
     $scope.topNavs = topNavs;
 
-    $scope.setTopNavMaster = function(nav) {
-        $scope.selected = nav;
+    $scope.setTopNavMaster = function(navType) {
+        $scope.selectedNav = navType;
     };
-    $scope.setTopNavMaster(topNavs[0]);
+    $scope.setTopNavMaster(topNavs[0].type);
 
-    $scope.isTopNavSelected = function(nav) {
-        return $scope.selected === nav;
+    $scope.isTopNavSelected = function(navType) {
+        return $scope.selectedNav === navType;
     };
     
     /* Notifications Box Control */

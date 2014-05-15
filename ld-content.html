@@ -1,4 +1,4 @@
-<div ng-app="SpringRollDemo" ng-controller="CheckoutCtrl" ng-if="selected.type == 'longdan'">
+<div ng-app="SpringRollDemo" ng-controller="CheckoutCtrl" ng-if="selectedNav == 'longdan'">
     <div id="ld-header">
         <div class="basket">
             <div ng-repeat="category in ldCategories" class="category"><a>{{ category.name }}</a></div>
@@ -41,7 +41,7 @@
         </div>
     </div>
     <div id="content" ng-class="selected.type">
-        <div class="column" ng-repeat="column in columns">
+        <div class="longdan column" ng-repeat="column in columns">
             <div class="post repeated-item" ng-repeat="post in column">
                 <div ng-if="post.type == 'longdan'" class="longdan-post">
                     <img ng-src="{{ post.image_url }}" class="image"/>
