@@ -31,9 +31,12 @@ app.controller("ComposeCtrl", function($scope) {
     $scope.isCategoryPicked = function() {
         return $scope.pickedCategory.toLowerCase().length > 0;
     };
-    var priceRegExp = new RegExp(/(^\£\d+(.\d{1,2})?(k|m)?(\/h|pcm)?$|^Wanted\!$)/);
+    $scope.isCategoryWanted = function() {
+        return $scope.pickedCategory.toLowerCase() === 'wanted';
+    };
+    var priceRegExp = new RegExp(/(^\£\d+(.\d{1,2})?(k|m)?(\/h|pcm)?$)/);
     $scope.isPriceSensible = function() {
-        return priceRegExp.test($scope.submittedPrice);
+        return priceRegExp.test($scope.submittedPrice) || ($scope.isCategoryWanted() && $scope.submittedPrice === "Wanted!");
     };
     $scope.priceSensibleText = function() {
         var length = $scope.submittedPrice.length;
@@ -44,11 +47,7 @@ app.controller("ComposeCtrl", function($scope) {
             return "Too long (" + length + " characters)";
         }
         if (!$scope.isPriceSensible()) {
-            if ($scope.pickedCategory.toLowerCase() === "wanted") {
-                return "Format: £1, £10pcm, £7.5/h, \"Wanted!\"";
-            } else {
-                return "Format: £1, £10pcm, £7.5/h";
-            }
+            return "Format: £1, £10pcm, £7.5/h";
         }
         return "Looking good!";
         

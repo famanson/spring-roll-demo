@@ -14,7 +14,9 @@
                 </div>
             </div>
             <div class="compose-form" ng-class="{ active : isCategoryPicked() }">
-                <label class="price-label"><b>Price:</b></label>
+                <label class="price-label">
+                    <b>Price</b><i>{{ isCategoryWanted() ? ' (or type "Wanted!" if unsure)' : '' }}</i>:
+                </label>
                 <div class="price-input">
                     <input ng-model="submittedPrice" ng-class="{ 'valid' : isPriceSensible() }"
                            placeholder='"£10", "£7/h+tips", "£300pcm"'></input>
