@@ -25,7 +25,7 @@
             <textarea ng-model="submittedDesc" ng-class="{ 'valid' : isDescValid() }"
                   placeholder='"Brand new iPhone", "Refurbished flat near Canada Water"'></textarea>
             <div class="help">
-                <div class="help-text">Short description</div>
+                <div class="help-text">Short description. "#bold" will become <b>bold</b></div>
                 <div class="triangle-up"></div>
             </div>
         </div>
@@ -40,7 +40,7 @@
                 <img ng-src="./images/check-{{ tickOrCross(isPriceSensible()) }}.png"/>
             </div>
             <div ng-class="{ 'valid' : isDescValid() }">
-                Description has between 20 and 250 characters ({{ submittedDesc.length }})
+                Description has between 20 and 250 characters ({{ descActualLength() }})
                 <img ng-src="./images/check-{{ tickOrCross(isDescValid()) }}.png"/>
             </div>
         </div>

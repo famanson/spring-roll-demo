@@ -55,19 +55,24 @@ app.controller("ComposeCtrl", function($scope) {
         return "Price is in a sensible format.";
         
     };
+    $scope.descActualLength = function() {
+        return $scope.submittedDesc.replace(/#([^ ]+)/g, '$1').length;
+    };
     $scope.isDescValid = function() {
-        return $scope.submittedDesc.length >= 20 && $scope.submittedDesc.length <= 250;
+        var desc = $scope.submittedDesc.replace(/#([^ ]+)/g, '$1');
+        return desc.length >= 20 && desc.length <= 250;
     };
     $scope.isOkayToSubmit = function() {
         return $scope.isCategoryPicked() && $scope.isPriceSensible() && $scope.isDescValid();
     };
     $scope.submitPost = function() {
         if ($scope.isOkayToSubmit()) {
-            var popType = $scope.pickedCategory.toLowerCase();
+            var popType = $scope.pickedCategory.toLowerCase(),
+                desc = $scope.submittedDesc.replace(/#([^ ]+)/g, '<b>$1</b>');
             var post = {
                 price: $scope.submittedPrice,
                 ago: "a moment ago",
-                description: $scope.submittedDesc,
+                description: desc,
                 type: popType
             };
             // Hack!
@@ -89,9 +94,9 @@ app.controller("ComposeCtrl", function($scope) {
         i += ($scope.isPriceSensible() ? 1 : 0);
         i += ($scope.isDescValid() ? 1 : 0);
         if (i < 3) {
-            return i + "/3 requirements checked. Cannot submit!"
+            return "Requirements (" + i + "/3):"
         } else {
-            return "Ready for submission!"
+            return "Ready to submit!"
         }
     };
 });
