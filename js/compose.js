@@ -68,9 +68,9 @@ app.controller("ComposeCtrl", function($scope) {
     $scope.submitPost = function() {
         if ($scope.isOkayToSubmit()) {
             var popType = $scope.pickedCategory.toLowerCase(),
-                desc = $scope.submittedDesc.replace(/#([^ ]+)/g, '<b>$1</b>');
+                desc = $scope.escapeHTML($scope.submittedDesc).replace(/#([^ ]+)/g, '<b>$1</b>');
             var post = {
-                price: $scope.submittedPrice,
+                price: $scope.escapeHTML($scope.submittedPrice),
                 ago: "a moment ago",
                 description: desc,
                 type: popType
@@ -99,4 +99,10 @@ app.controller("ComposeCtrl", function($scope) {
             return "Ready to submit!"
         }
     };
+    $scope.escapeHTML = function(s) { 
+        return s.replace(/&/g, '&amp;')
+                .replace(/"/g, '&quot;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+    }
 });
