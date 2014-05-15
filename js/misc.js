@@ -1,4 +1,4 @@
-/*jshint browser:true */
+/*jshint browser:true, jquery:true */
 
 /* Fixes the category bar in Longdan tab */
 
