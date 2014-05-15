@@ -11,21 +11,13 @@
             color: #787878;
         }
     }
+
     .composeBox {
-        display: none;
-        z-index: 30000;
-        background-color: #fff;
-        position: absolute;
-        top: 20%;
         width: 420px;
-        left: 285px;
+        top: 15%;
         text-align: center;
-        border: 3px solid #aaa;
-        border-radius: 5px;
-        padding: 10px;
         color: #aaa;
-        font-size: 14px;
-        cursor: default;
+
         &.active {
             display: block;
         }
@@ -61,6 +53,7 @@
             padding: 5px;
             border-radius: 5px;
             z-index: 20000;
+            // TODO(macduy): Create functions for box-shadow
             -moz-box-shadow: 0 0 12px #ccc;
             -webkit-box-shadow: 0 0 12px #ccc;
             box-shadow: 0 0 12px #ccc;

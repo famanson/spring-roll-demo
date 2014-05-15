@@ -2,7 +2,8 @@
     <div  class="compose" ng-click="setComposeBoxEnabled(true);">
         <b>+ Post new ad</b>
     </div>
-    <div class="composeBox" ng-class="{active : composeBoxEnabled}">
+    <div class="overlay" ng-class="{active : composeBoxEnabled}">
+        <div class="composeBox overlay_content" ng-class="{active : composeBoxEnabled}">
         <h3>New advertisement</h3>
         <div>
             <div class="picker">
@@ -49,5 +50,5 @@
             <div class="discard" ng-click="clearSubmit();setComposeBoxEnabled(false);">Discard</div>
         </div>
     </div>
-    <div class="theatre-background" ng-class="{active : composeBoxEnabled}"></div>
+    </div>
 </div>
