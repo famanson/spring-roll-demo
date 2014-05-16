@@ -18,6 +18,12 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     // Currently selected post, will be displayed to user in detail.
     $scope.selected_post = null;
     
+    // Quick and dirty way to get a persistent description (_description) on each post
+    // meaning post.description will be displayed on the site and if we want transformation
+    // on it, we do that on post._description and replace post.description with it
+    for (var j = 0; j < posts.length; j++) {
+        posts[j]._description = posts[j].description;
+    }
 
     // Split posts into three columns (and four if Longdan)
     $scope.columns = [];
@@ -29,7 +35,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     $scope.currentType = "sale";
     $scope.searchedText = "";
     
-    // Don't know what this is for yet
+    // Method for dynamically populate page, mainly used for search
     $scope.repopulate = function() {
         var rowLength = ($scope.currentType == 'longdan') ? 4 : 3;
         // Returns true if "text" contains "searchedText".
@@ -38,15 +44,29 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
             var sanitized = $("<div>" + text + "</div>").text();
             return sanitized.toLowerCase().search(searchedText.toLowerCase()) != -1;
         };
+        var processMatch = function(match, p1, offset, string) {
+            return "<span class=\"searchHighlight\">" + match + "</span>";
+        };
+        var highlight = function(post) {
+            if ($scope.searchedText !== "") {
+                post.description = post._description.replace(new RegExp($scope.searchedText, 'gi'),
+//                                           '<span class="highlightedText">' + $scope.searchedText + '</span>');
+                                                             processMatch);
+            } else {
+                post.description = post._description;
+            }
+            return post;
+        };
         var filterByType = function(post) {
             if (post.type === 'compose') {
                 // Special case - the "compose" sentinel.
                 return ($scope.currentType !== 'longdan' && $scope.searchedText === "");
             } else {
-                return post.type === $scope.currentType && searchText(post.description, $scope.searchedText);
+                return post.type === $scope.currentType && searchText(post._description, $scope.searchedText);
             }
         };
         var filteredPosts = posts.filter(filterByType);
+        filteredPosts = $.map(filteredPosts, highlight);
         var perColumn = filteredPosts.length / rowLength;
         var remainder = filteredPosts.length % rowLength;
         // Again, cycling through each column and post is needed to get animations
