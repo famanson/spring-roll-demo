@@ -304,7 +304,7 @@ var helpTypes = {
     },
     priceLong: {
         text: "placeholder",
-        textFormat: "Too long: {0}/10 characters",
+        textFormat: "Too long: {0}/15 characters",
         severity: "severity-low"
     },
     descShort: {

@@ -47,7 +47,7 @@ app.controller("ComposeCtrl", function($scope) {
         if (length < 2) {
             $scope.priceHelp = helpTypes.priceShort;
             $scope.priceHelp.text = $scope.priceHelp.textFormat.format(length);
-        } else if (length > 10) {
+        } else if (length > 15) {
             $scope.priceHelp = helpTypes.priceLong;
             $scope.priceHelp.text = $scope.priceHelp.textFormat.format(length);
         } else if (!$scope.isPriceSensible()) {
@@ -107,6 +107,7 @@ app.controller("ComposeCtrl", function($scope) {
             $scope.populateByType(popType);
             $scope.setTopNavMaster(popType);
             $scope.composeBoxEnabled = false;
+            $scope.clearSubmit();
         } else if ($scope.isCategoryPicked()) {
             // Only do this when the full form has shown
             $scope.setActiveWarnings(true);
