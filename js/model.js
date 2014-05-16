@@ -32,12 +32,17 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     // Don't know what this is for yet
     $scope.repopulate = function() {
         var rowLength = ($scope.currentType == 'longdan') ? 4 : 3;
+        // Returns true if "text" contains "searchedText".
         var searchText = function(text, searchedText) {
-            //.True if searchedText is found 
             return text.search(searchedText) != -1;
         };
-        var filterByType = function(element) {
-            return element.type === $scope.currentType && searchText(element.description, $scope.searchText);
+        var filterByType = function(post) {
+            if (post.type === 'compose') {
+                // Special case - the "compose" sentinel.
+                return ($scope.currentType != 'longdan');
+            } else {
+                return post.type === $scope.currentType && searchText(post.description, $scope.searchText);
+            }
         };
         var filteredPosts = posts.filter(filterByType);
         var perColumn = filteredPosts.length / rowLength;
@@ -77,7 +82,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     };
     
     $scope.selectPost = function(post) {
-        post = post != null && post.type === 'compose' ? null : post;
+        post = (post !== null && post.type === 'compose') ? null : post;
         $scope.selected_post = post;
     };
 
