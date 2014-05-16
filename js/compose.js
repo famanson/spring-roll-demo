@@ -66,7 +66,7 @@ app.controller("ComposeCtrl", function($scope) {
 
     $scope.updateDescHelp = function() {
         var length = $scope.descActualLength();
-        if (length < 10) {
+        if (length < 20) {
             $scope.descHelp = helpTypes.descShort;
             $scope.descHelp.text = $scope.descHelp.textFormat.format(length);
         } else if (length > 250) {
