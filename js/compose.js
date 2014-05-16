@@ -15,6 +15,8 @@ app.controller("ComposeCtrl", function($scope) {
         $scope.submittedPrice = "";
         $scope.submittedDesc = "";
         $scope.pickedCategory = "";
+        $scope.priceHelp = helpTypes.priceShort;
+        $scope.descHelp = helpTypes.descShort;
     };
     // Call clear once to init everything
     $scope.clearSubmit();
