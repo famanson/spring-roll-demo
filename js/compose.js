@@ -38,33 +38,79 @@ app.controller("ComposeCtrl", function($scope) {
     $scope.isPriceSensible = function() {
         return priceRegExp.test($scope.submittedPrice) || ($scope.isCategoryWanted() && $scope.submittedPrice === "Wanted!");
     };
-    $scope.priceSensibleText = function() {
+    
+    var helpType = {
+        priceShort: {
+            type: "priceShort",
+            textFormat: "{0}/2 characters required",
+            severity: "severity-low"
+        },
+        priceLong: {
+            type: "priceLong",
+            textFormat: "Too long: {0}/10 characters",
+            severity: "severity-low"
+        },
+        descShort: {
+            type: "descShort",
+            textFormat: "{0}/20 characters required",
+            severity: "severity-low"
+        },
+        descLong: {
+            type: "descLong",
+            textFormat: "Too long: {0}/250 characters",
+            severity: "severity-low"
+        },
+        priceFormat: {
+            type: "priceFormat",
+            textFormat: "Format: £1, £10pcm, £7.5/h",
+            severity: "severity-high"
+        },
+        good: {
+            type: "good",
+            textFormat: "Looking good!",
+            severity: "severity-chill"
+        }
+    };
+    $scope.priceHelp = helpType.priceShort;
+    $scope.descHelp = helpType.descShort;
+
+    $scope.updatePriceHelp = function() {
         var length = $scope.submittedPrice.length;
         if (length < 2) {
-            return "Too short (" + length + " characters)";
+            $scope.priceHelp = helpType.priceShort;
+            $scope.priceHelp.text = $scope.priceHelp.textFormat.format(length);
+        } else if (length > 10) {
+            $scope.priceHelp = helpType.priceLong;
+            $scope.priceHelp.text = $scope.priceHelp.textFormat.format(length);
+        } else if (!$scope.isPriceSensible()) {
+            $scope.priceHelp = helpType.priceFormat;
+            $scope.priceHelp.text = $scope.priceHelp.textFormat;
+        } else {
+            $scope.priceHelp = helpType.good;
+            $scope.priceHelp.text = $scope.priceHelp.textFormat;
         }
-        if (length > 10) {
-            return "Too long (" + length + " characters)";
-        }
-        if (!$scope.isPriceSensible()) {
-            return "Format: £1, £10pcm, £7.5/h";
-        }
-        return "Looking good!";
-        
     };
+    $scope.updatePriceHelp();
+
     $scope.descActualLength = function() {
         return $scope.submittedDesc.replace(/#([^ ]+)/g, '$1').length;
     };
-    $scope.descLengthText = function() {
+
+    $scope.updateDescHelp = function() {
         var length = $scope.descActualLength();
-        if (length < 20) {
-            return "Too short (" + length + "/20 characters required)";
+        if (length < 10) {
+            $scope.descHelp = helpType.descShort;
+            $scope.descHelp.text = $scope.descHelp.textFormat.format(length);
         } else if (length > 250) {
-            return "Too long (" + length + "/250 characters)";
+            $scope.descHelp = helpType.descLong;
+            $scope.descHelp.text = $scope.descHelp.textFormat.format(length);
         } else {
-            return "Looking good!";
+            $scope.descHelp = helpType.good;
+            $scope.descHelp.text = $scope.descHelp.textFormat;
         }
     };
+    $scope.updateDescHelp();
+
     $scope.isDescValid = function() {
         var desc = $scope.submittedDesc.replace(/#([^ ]+)/g, '$1');
         return desc.length >= 20 && desc.length <= 250;
@@ -93,23 +139,19 @@ app.controller("ComposeCtrl", function($scope) {
             $scope.populateByType(popType);
             $scope.setTopNavMaster(popType);
             $scope.composeBoxEnabled = false;
-        }
-    };
-    $scope.requirementsText = function() {
-        var i = 0;
-        i += ($scope.isCategoryPicked() ? 1 : 0);
-        i += ($scope.isPriceSensible() ? 1 : 0);
-        i += ($scope.isDescValid() ? 1 : 0);
-        if (i < 3) {
-            return "Requirements (" + i + "/3):"
         } else {
-            return "Ready to submit!"
+            $scope.setActiveWarnings(true);
         }
     };
+    $scope.warningsActive = false;
+    $scope.setActiveWarnings = function(active) {
+        $scope.warningsActive = active;
+    };
+
     $scope.escapeHTML = function(s) { 
         return s.replace(/&/g, '&amp;')
                 .replace(/"/g, '&quot;')
                 .replace(/</g, '&lt;')
                 .replace(/>/g, '&gt;');
-    }
+    };
 });

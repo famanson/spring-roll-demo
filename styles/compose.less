@@ -54,7 +54,6 @@
             position: absolute;
             bottom: -23px;
             color: #fff;
-            background-color: #f86e6e;
             padding: 5px;
             border-radius: 5px;
             z-index: 20000;
@@ -64,18 +63,33 @@
             box-shadow: 0 0 12px #ccc;
             .triangle-up {
                 float: inherit;
-                border-bottom-color: #f86e6e;
+                border-bottom-color: #bbb;
                 display: block;
                 bottom: auto;
                 top: -24px;
                 right: 10px;
                 left: auto;
             }
-            &.valid {
+            &.severity-chill {
                 background-color: #7bc173;
                 .triangle-up {
                     border-bottom-color: #7bc173;
                 }
+            }
+            &.severity-high {
+                background-color: #f86e6e;
+                .triangle-up {
+                    border-bottom-color: #f86e6e;
+                }
+            }
+            &.severity-low {
+                background-color: #aaa;
+                .triangle-up {
+                    border-bottom-color: #aaa;
+                }
+            }
+            &.active {
+                display:block;
             }
         }
         .expiration {
@@ -118,7 +132,7 @@
                 &.valid {
                     border: 2px solid #7bc173;
                 }
-                &:focus {
+                &:focus.ng-dirty {
                     & + .help {
                         display:block;
                     }
@@ -146,14 +160,13 @@
                 &.valid {
                     border: 2px solid #7bc173;
                 }
-                &:focus {
+                &:focus.ng-dirty {
                     & + .help {
                         display:block;
                     }
                 }
             }
             .help {
-                bottom: -33px;
                 right: 0;
             }
         }
