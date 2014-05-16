@@ -1,4 +1,4 @@
-/*global app, posts */
+/*global app, posts, helpTypes */
 
 app.controller("ComposeCtrl", function($scope) {
     $scope.composeCategories = ['Sale','Wanted','Rent'];
@@ -38,55 +38,23 @@ app.controller("ComposeCtrl", function($scope) {
     $scope.isPriceSensible = function() {
         return priceRegExp.test($scope.submittedPrice) || ($scope.isCategoryWanted() && $scope.submittedPrice === "Wanted!");
     };
-    
-    var helpType = {
-        priceShort: {
-            type: "priceShort",
-            textFormat: "{0}/2 characters required",
-            severity: "severity-low"
-        },
-        priceLong: {
-            type: "priceLong",
-            textFormat: "Too long: {0}/10 characters",
-            severity: "severity-low"
-        },
-        descShort: {
-            type: "descShort",
-            textFormat: "{0}/20 characters required",
-            severity: "severity-low"
-        },
-        descLong: {
-            type: "descLong",
-            textFormat: "Too long: {0}/250 characters",
-            severity: "severity-low"
-        },
-        priceFormat: {
-            type: "priceFormat",
-            textFormat: "Format: £1, £10pcm, £7.5/h",
-            severity: "severity-high"
-        },
-        good: {
-            type: "good",
-            textFormat: "Looking good!",
-            severity: "severity-chill"
-        }
-    };
-    $scope.priceHelp = helpType.priceShort;
-    $scope.descHelp = helpType.descShort;
+
+    $scope.priceHelp = helpTypes.priceShort;
+    $scope.descHelp = helpTypes.descShort;
 
     $scope.updatePriceHelp = function() {
         var length = $scope.submittedPrice.length;
         if (length < 2) {
-            $scope.priceHelp = helpType.priceShort;
+            $scope.priceHelp = helpTypes.priceShort;
             $scope.priceHelp.text = $scope.priceHelp.textFormat.format(length);
         } else if (length > 10) {
-            $scope.priceHelp = helpType.priceLong;
+            $scope.priceHelp = helpTypes.priceLong;
             $scope.priceHelp.text = $scope.priceHelp.textFormat.format(length);
         } else if (!$scope.isPriceSensible()) {
-            $scope.priceHelp = helpType.priceFormat;
+            $scope.priceHelp = helpTypes.priceFormat;
             $scope.priceHelp.text = $scope.priceHelp.textFormat;
         } else {
-            $scope.priceHelp = helpType.good;
+            $scope.priceHelp = helpTypes.good;
             $scope.priceHelp.text = $scope.priceHelp.textFormat;
         }
     };
@@ -99,13 +67,13 @@ app.controller("ComposeCtrl", function($scope) {
     $scope.updateDescHelp = function() {
         var length = $scope.descActualLength();
         if (length < 10) {
-            $scope.descHelp = helpType.descShort;
+            $scope.descHelp = helpTypes.descShort;
             $scope.descHelp.text = $scope.descHelp.textFormat.format(length);
         } else if (length > 250) {
-            $scope.descHelp = helpType.descLong;
+            $scope.descHelp = helpTypes.descLong;
             $scope.descHelp.text = $scope.descHelp.textFormat.format(length);
         } else {
-            $scope.descHelp = helpType.good;
+            $scope.descHelp = helpTypes.good;
             $scope.descHelp.text = $scope.descHelp.textFormat;
         }
     };
