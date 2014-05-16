@@ -139,7 +139,8 @@ app.controller("ComposeCtrl", function($scope) {
             $scope.populateByType(popType);
             $scope.setTopNavMaster(popType);
             $scope.composeBoxEnabled = false;
-        } else {
+        } else if ($scope.isCategoryPicked()) {
+            // Only do this when the full form has shown
             $scope.setActiveWarnings(true);
         }
     };
