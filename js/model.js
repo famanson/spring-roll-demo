@@ -27,7 +27,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     
     // Define the two variables that will determine which posts to display
     $scope.currentType = "sale";
-    $scope.searchText = "";
+    $scope.searchedText = "";
     
     // Don't know what this is for yet
     $scope.repopulate = function() {
@@ -41,9 +41,9 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         var filterByType = function(post) {
             if (post.type === 'compose') {
                 // Special case - the "compose" sentinel.
-                return ($scope.currentType !== 'longdan' && $scope.searchText === "");
+                return ($scope.currentType !== 'longdan' && $scope.searchedText === "");
             } else {
-                return post.type === $scope.currentType && searchText(post.description, $scope.searchText);
+                return post.type === $scope.currentType && searchText(post.description, $scope.searchedText);
             }
         };
         var filteredPosts = posts.filter(filterByType);
