@@ -34,12 +34,14 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         var rowLength = ($scope.currentType == 'longdan') ? 4 : 3;
         // Returns true if "text" contains "searchedText".
         var searchText = function(text, searchedText) {
-            return text.search(searchedText) != -1;
+            // Quick cheap text sanitization
+            var sanitized = $("<div>" + text + "</div>").text();
+            return sanitized.search(searchedText) != -1;
         };
         var filterByType = function(post) {
             if (post.type === 'compose') {
                 // Special case - the "compose" sentinel.
-                return ($scope.currentType != 'longdan');
+                return ($scope.currentType != 'longdan' && $scope.searchText === "");
             } else {
                 return post.type === $scope.currentType && searchText(post.description, $scope.searchText);
             }
