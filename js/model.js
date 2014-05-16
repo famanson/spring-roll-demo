@@ -36,12 +36,12 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         var searchText = function(text, searchedText) {
             // Quick cheap text sanitization
             var sanitized = $("<div>" + text + "</div>").text();
-            return sanitized.search(searchedText) != -1;
+            return sanitized.toLowerCase().search(searchedText.toLowerCase()) != -1;
         };
         var filterByType = function(post) {
             if (post.type === 'compose') {
                 // Special case - the "compose" sentinel.
-                return ($scope.currentType != 'longdan' && $scope.searchText === "");
+                return ($scope.currentType !== 'longdan' && $scope.searchText === "");
             } else {
                 return post.type === $scope.currentType && searchText(post.description, $scope.searchText);
             }
