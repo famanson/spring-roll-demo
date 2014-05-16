@@ -331,12 +331,3 @@ var helpTypes = {
 
 // Define controller.
 var app = angular.module('SpringRollDemo', ['ngSanitize','ngAnimate']);
-
-// String format util
-String.prototype.format = function() {
-    var formatted = this;
-    for( var arg in arguments ) {
-        formatted = formatted.replace("{" + arg + "}", arguments[arg]);
-    }
-    return formatted;
-};
