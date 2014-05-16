@@ -25,7 +25,7 @@
                 <div id="logo">
                     <h1><img src="images/logo.png" /></h1>
                 </div>
-                
+
                 <!-- Top-level navigation -->
                 <div id="top-navigation">
                     <a ng-repeat="nav in topNavs" ng-class="{active : isTopNavSelected(nav.type)}" class="{{ nav.type }}" ng-click="switchColumn(nav.type);setTopNavMaster(nav.type);enableApiPopup('longdan'===nav.type && !apiPopupViewed);">
@@ -67,6 +67,9 @@
         </div>
         
         <!-- Main posts area -->
+        <div id="search-count" ng-if="searchedText.length > 0">
+            <i>Search result: <b>{{ postCount }}</b> posts found containing "<b>{{ searchedText }}</b>"</i>
+        </div>
         <div id="content" ng-class="selected.type" ng-if="selected.type != 'longdan'">
             <div class="column" ng-repeat="column in columns">
                 <a class="post repeated-item" ng-repeat="post in column" ng-click="selectPost(post)" href="javascript:void(0)">

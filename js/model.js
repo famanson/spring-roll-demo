@@ -67,6 +67,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         };
         var filteredPosts = posts.filter(filterByType);
         filteredPosts = $.map(filteredPosts, highlight);
+        $scope.postCount = filteredPosts.length;
         var perColumn = filteredPosts.length / rowLength;
         var remainder = filteredPosts.length % rowLength;
         // Again, cycling through each column and post is needed to get animations
