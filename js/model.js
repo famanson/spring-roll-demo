@@ -25,6 +25,40 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         $scope.columns[i] = [];
     }
     
+    // Define the two variables that will determine which posts to display
+    $scope.currentType = "sale";
+    $scope.searchText = "";
+    
+    // Don't know what this is for yet
+    $scope.repopulate = function() {
+        var rowLength = ($scope.currentType == 'longdan') ? 4 : 3;
+        // Returns true if "text" contains "searchedText".
+        var searchText = function(text, searchedText) {
+            // Quick cheap text sanitization
+            var sanitized = $("<div>" + text + "</div>").text();
+            return sanitized.search(searchedText) != -1;
+        };
+        var filterByType = function(post) {
+            if (post.type === 'compose') {
+                // Special case - the "compose" sentinel.
+                return ($scope.currentType != 'longdan' && $scope.searchText === "");
+            } else {
+                return post.type === $scope.currentType && searchText(post.description, $scope.searchText);
+            }
+        };
+        var filteredPosts = posts.filter(filterByType);
+        var perColumn = filteredPosts.length / rowLength;
+        var remainder = filteredPosts.length % rowLength;
+        // Again, cycling through each column and post is needed to get animations
+        // working.
+        for (var i = 0; i < rowLength; i++) {
+            var columnPosts = filteredPosts.splice(0, perColumn + (i < remainder ? 1 : 0));
+            for (var k = 0; k < columnPosts.length; k++) {
+                $scope.columns[i].push(columnPosts[k]);
+            }
+        }
+    };
+    
     // Clear all columns. 
     $scope.emptyColumns = function () {
         // Cycling through each column to perform pop is necessary for animations.
@@ -35,26 +69,11 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
             }
         }
     };
-    
+
     /* Top Nav Control */
-    $scope.populateByType = function(popType, delay) {
-        var rowLength = (popType === 'longdan') ? 4 : 3;
-        $timeout(function() {
-            var filterByType = function(element) {
-                return element.type === popType || (element.type === 'compose' && popType != 'longdan');
-            };
-            var filteredPosts = posts.filter(filterByType);
-            var perColumn = filteredPosts.length / rowLength;
-            var remainder = filteredPosts.length % rowLength;
-            // Again, cycling through each column and post is needed to get animations
-            // working.
-            for (var i = 0; i < rowLength; i++) {
-                var columnPosts = filteredPosts.splice(0, perColumn + (i < remainder ? 1 : 0));
-                for (var k = 0; k < columnPosts.length; k++) {
-                    $scope.columns[i].push(columnPosts[k]);
-                }
-            }
-        });
+    $scope.populateByType = function(popType) {
+        $scope.currentType = popType;
+        $scope.repopulate();
     };
 
     $scope.switchColumn = function(popType) {
@@ -65,7 +84,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     };
     
     $scope.selectPost = function(post) {
-        post = post != null && post.type === 'compose' ? null : post;
+        post = (post !== null && post.type === 'compose') ? null : post;
         $scope.selected_post = post;
     };
 
