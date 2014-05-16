@@ -11,15 +11,6 @@ app.controller("ComposeCtrl", function($scope) {
     $scope.setPickedCategory = function(category) {
         $scope.pickedCategory = category;
     };
-    $scope.clearSubmit = function() {
-        $scope.submittedPrice = "";
-        $scope.submittedDesc = "";
-        $scope.pickedCategory = "";
-        $scope.priceHelp = helpTypes.priceShort;
-        $scope.descHelp = helpTypes.descShort;
-    };
-    // Call clear once to init everything
-    $scope.clearSubmit();
     // Work out expiration date
     var monthNames = [ "January", "February", "March", "April", "May", "June",
                        "July", "August", "September", "October", "November", "December" ];
@@ -41,6 +32,8 @@ app.controller("ComposeCtrl", function($scope) {
         return priceRegExp.test($scope.submittedPrice) || ($scope.isCategoryWanted() && $scope.submittedPrice === "Wanted!");
     };
 
+    $scope.submittedPrice = "";
+    $scope.submittedDesc = "";
     $scope.priceHelp = helpTypes.priceShort;
     $scope.descHelp = helpTypes.descShort;
 
@@ -80,6 +73,15 @@ app.controller("ComposeCtrl", function($scope) {
         }
     };
     $scope.updateDescHelp();
+
+    // method for clearing last submit data
+    $scope.clearSubmit = function() {
+        $scope.submittedPrice = "";
+        $scope.submittedDesc = "";
+        $scope.pickedCategory = "";
+        $scope.updatePriceHelp();
+        $scope.updateDescHelp();
+    };
 
     $scope.isDescValid = function() {
         var desc = $scope.submittedDesc.replace(/#([^ ]+)/g, '$1');
