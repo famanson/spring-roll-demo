@@ -228,4 +228,9 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     $scope.setFullImagePicked = function(picked) {
         $scope.fullImagePicked = picked;
     };
+    $scope.cycleImages = function() {
+        var current = $scope.postImages.indexOf($scope.pickedImage);
+        var next = (current + 1) % $scope.postImages.length;
+        $scope.pickedImage = $scope.postImages[next];
+    };
 });

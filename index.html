@@ -121,7 +121,7 @@
                     <div class="overlay" ng-class="{ active : fullImagePicked }">
                         <div class="full-image overlay_content" >
                             <a class="post-close" title="Close" ng-click="setFullImagePicked(false);"><img src="./images/close.png"/></a>
-                            <img ng-src="{{ pickedImage.url }}"/>
+                            <img ng-src="{{ pickedImage.url }}" ng-click="cycleImages()"/>
                         </div>
                     </div>
                 </div>
