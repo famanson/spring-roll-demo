@@ -296,5 +296,38 @@ var slides = [
     }
 ];
 
+var helpTypes = {
+    priceShort: {
+        text: "placeholder",
+        textFormat: "{0}/2 characters required",
+        severity: "severity-low"
+    },
+    priceLong: {
+        text: "placeholder",
+        textFormat: "Too long: {0}/15 characters",
+        severity: "severity-low"
+    },
+    descShort: {
+        text: "placeholder",
+        textFormat: "{0}/20 characters required",
+        severity: "severity-low"
+    },
+    descLong: {
+        text: "placeholder",
+        textFormat: "Too long: {0}/250 characters",
+        severity: "severity-low"
+    },
+    priceFormat: {
+        text: "placeholder",
+        textFormat: "Format: £1, £10pcm, £7.5/h",
+        severity: "severity-high"
+    },
+    good: {
+        text: "placeholder",
+        textFormat: "Looking good!",
+        severity: "severity-chill"
+    }
+};
+
 // Define controller.
 var app = angular.module('SpringRollDemo', ['ngSanitize','ngAnimate']);

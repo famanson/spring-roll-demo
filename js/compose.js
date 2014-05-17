@@ -1,4 +1,4 @@
-/*global app, posts */
+/*global app, posts, helpTypes */
 
 app.controller("ComposeCtrl", function($scope) {
     $scope.composeCategories = ['Sale','Wanted','Rent'];
@@ -11,13 +11,6 @@ app.controller("ComposeCtrl", function($scope) {
     $scope.setPickedCategory = function(category) {
         $scope.pickedCategory = category;
     };
-    $scope.clearSubmit = function() {
-        $scope.submittedPrice = "";
-        $scope.submittedDesc = "";
-        $scope.pickedCategory = "";
-    };
-    // Call clear once to init everything
-    $scope.clearSubmit();
     // Work out expiration date
     var monthNames = [ "January", "February", "March", "April", "May", "June",
                        "July", "August", "September", "October", "November", "December" ];
@@ -31,33 +24,66 @@ app.controller("ComposeCtrl", function($scope) {
     $scope.isCategoryPicked = function() {
         return $scope.pickedCategory.toLowerCase().length > 0;
     };
-    $scope.isPriceValid = function() {
-        return $scope.submittedPrice.length >= 2 && $scope.submittedPrice.length <= 10;
+    $scope.isCategoryWanted = function() {
+        return $scope.pickedCategory.toLowerCase() === 'wanted';
     };
-    var priceRegExp = new RegExp(/(^\£\d+(.\d{1,2})?(k|m)?(\/h|pcm)?$|^Wanted\!$)/);
+    var priceRegExp = new RegExp(/(^\£\d+(.\d{1,2})?(k|m)?(\/h|pcm)?$)/);
     $scope.isPriceSensible = function() {
-        return priceRegExp.test($scope.submittedPrice);
+        return priceRegExp.test($scope.submittedPrice) || 
+            ($scope.isCategoryWanted() && $scope.submittedPrice.match(/^wanted(!)*$/gi, "wanted!"));
     };
-    $scope.priceSensibleText = function() {
-        if ($scope.submittedPrice.length < 2) {
-            return "Price value is too short (" + $scope.submittedPrice.length + " characters)";
+
+    $scope.submittedPrice = "";
+    $scope.submittedDesc = "";
+    $scope.priceHelp = helpTypes.priceShort;
+    $scope.descHelp = helpTypes.descShort;
+
+    $scope.updatePriceHelp = function() {
+        var length = $scope.submittedPrice.length;
+        if (length < 2) {
+            $scope.priceHelp = helpTypes.priceShort;
+            $scope.priceHelp.text = $scope.priceHelp.textFormat.format(length);
+        } else if (length > 15) {
+            $scope.priceHelp = helpTypes.priceLong;
+            $scope.priceHelp.text = $scope.priceHelp.textFormat.format(length);
+        } else if (!$scope.isPriceSensible()) {
+            $scope.priceHelp = helpTypes.priceFormat;
+            $scope.priceHelp.text = $scope.priceHelp.textFormat;
+        } else {
+            $scope.priceHelp = helpTypes.good;
+            $scope.priceHelp.text = $scope.priceHelp.textFormat;
         }
-        if ($scope.submittedPrice.length > 10) {
-            return "Price value is too long (" + $scope.submittedPrice.length + " characters)";
-        }
-        if (!$scope.isPriceSensible()) {
-            if ($scope.pickedCategory.toLowerCase() === "wanted") {
-                return "Price format accepted: £1, £10pcm, £7.5/h, \"Wanted!\"";
-            } else {
-                return "Price format accepted: £1, £10pcm, £7.5/h";
-            }
-        }
-        return "Price is in a sensible format.";
-        
     };
+    $scope.updatePriceHelp();
+
     $scope.descActualLength = function() {
         return $scope.submittedDesc.replace(/#([^ ]+)/g, '$1').length;
     };
+
+    $scope.updateDescHelp = function() {
+        var length = $scope.descActualLength();
+        if (length < 20) {
+            $scope.descHelp = helpTypes.descShort;
+            $scope.descHelp.text = $scope.descHelp.textFormat.format(length);
+        } else if (length > 250) {
+            $scope.descHelp = helpTypes.descLong;
+            $scope.descHelp.text = $scope.descHelp.textFormat.format(length);
+        } else {
+            $scope.descHelp = helpTypes.good;
+            $scope.descHelp.text = $scope.descHelp.textFormat;
+        }
+    };
+    $scope.updateDescHelp();
+
+    // method for clearing last submit data
+    $scope.clearSubmit = function() {
+        $scope.submittedPrice = "";
+        $scope.submittedDesc = "";
+        $scope.pickedCategory = "";
+        $scope.updatePriceHelp();
+        $scope.updateDescHelp();
+    };
+
     $scope.isDescValid = function() {
         var desc = $scope.submittedDesc.replace(/#([^ ]+)/g, '$1');
         return desc.length >= 20 && desc.length <= 250;
@@ -67,12 +93,15 @@ app.controller("ComposeCtrl", function($scope) {
     };
     $scope.submitPost = function() {
         if ($scope.isOkayToSubmit()) {
+            if ($scope.isCategoryWanted() && $scope.submittedPrice.match(/^wanted(!)*$/gi, "wanted!")) {
+                $scope.submittedPrice = "Wanted!";
+            }
             var popType = $scope.pickedCategory.toLowerCase(),
                 desc = $scope.escapeHTML($scope.submittedDesc).replace(/#([^ ]+)/g, '<b>$1</b>');
             var post = {
                 price: $scope.escapeHTML($scope.submittedPrice),
                 ago: "a moment ago",
-                description: desc,
+                _description: desc,
                 type: popType
             };
             // Hack!
@@ -86,23 +115,21 @@ app.controller("ComposeCtrl", function($scope) {
             $scope.populateByType(popType);
             $scope.setTopNavMaster(popType);
             $scope.composeBoxEnabled = false;
+            $scope.clearSubmit();
+        } else if ($scope.isCategoryPicked()) {
+            // Only do this when the full form has shown
+            $scope.setActiveWarnings(true);
         }
     };
-    $scope.requirementsText = function() {
-        var i = 0;
-        i += ($scope.isCategoryPicked() ? 1 : 0);
-        i += ($scope.isPriceSensible() ? 1 : 0);
-        i += ($scope.isDescValid() ? 1 : 0);
-        if (i < 3) {
-            return "Requirements (" + i + "/3):"
-        } else {
-            return "Ready to submit!"
-        }
+    $scope.warningsActive = false;
+    $scope.setActiveWarnings = function(active) {
+        $scope.warningsActive = active;
     };
+
     $scope.escapeHTML = function(s) { 
         return s.replace(/&/g, '&amp;')
                 .replace(/"/g, '&quot;')
                 .replace(/</g, '&lt;')
                 .replace(/>/g, '&gt;');
-    }
+    };
 });

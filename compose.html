@@ -5,6 +5,7 @@
     <div class="overlay" ng-class="{active : composeBoxEnabled}">
         <div class="composeBox overlay_content" ng-class="{active : composeBoxEnabled}">
             <h3>New advertisement</h3>
+            <div class="expiration">Expires: <b>{{ fortnightAway }}</b></div>
             <div>
                 <div class="picker">
                     <div ng-repeat="category in composeCategories"
@@ -12,37 +13,36 @@
                          ng-click="setPickedCategory(category);">{{ category }}</div>
                 </div>
             </div>
-            <div class="price-input">
-                <input type="text" ng-model="submittedPrice" ng-class="{ 'valid' : isPriceValid() }"
-                       placeholder='"£10", "£7/h+tips", "£300pcm"'></input>
-                <div class="help">
-                    <div class="help-text">Price {{ pickedCategory.toLowerCase() === "wanted" ? 'or "Wanted!"' : '' }}</div>
-                    <div class="triangle-up"></div>
+            <div class="compose-form" ng-form="compose-form" ng-class="{ active : isCategoryPicked() }">
+                <label class="price-label">
+                    <b>Price</b><i>{{ isCategoryWanted() ? ' (or type "Wanted!" if unsure)' : '' }}</i>:
+                </label>
+                <div class="price-input">
+                    <input ng-model="submittedPrice" ng-class="{ 'valid' : isPriceSensible() }"
+                           placeholder='"£10", "£7/h+tips", "£300pcm"'
+                           ng-change="updatePriceHelp()"
+                           ng-focus="setActiveWarnings(false);"></input>
+                    <div class="help" ng-class="[priceHelp.severity, warningsActive ? 'active' : '']">
+                        <div class="help-text">{{ priceHelp.text }}</div>
+                        <div class="triangle-up"></div>
+                    </div>
+                    <div id="clear" style="clear:both;"></div>
                 </div>
-                <div class="expiration">Expires: <b>{{ fortnightAway }}</b></div>
-                <div id="clear" style="clear:both;"></div>
-            </div>
-            <div class="desc-input">
-                <textarea ng-model="submittedDesc" ng-class="{ 'valid' : isDescValid() }"
-                      placeholder='"Brand new iPhone", "Refurbished flat near Canada Water"'></textarea>
-                <div class="help">
-                    <div class="help-text">Description. Tip: "#bold" becomes <b>bold</b></div>
-                    <div class="triangle-up"></div>
+                <label class="desc-label"><b>Description:</b></label>
+                <label class="tip-label"><i>Tip: "#bold" becomes <b>bold</b></i></label>
+                <div class="desc-input">
+                    <textarea ng-model="submittedDesc" ng-class="{ 'valid' : isDescValid() }"
+                              placeholder='"Brand new iPhone", "Refurbished flat near Canada Water"'
+                              ng-change="updateDescHelp()"
+                              ng-focus="setActiveWarnings(false);"></textarea>
+                    <div class="help" ng-class="[descHelp.severity, warningsActive ? 'active' : '']">
+                        <div class="help-text">{{ descHelp.text }}</div>
+                        <div class="triangle-up"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="checklist">
-                <p class="requirements-text" ng-class="{ 'valid' : isOkayToSubmit() }"><b>{{ requirementsText() }}</b></p>
-                <div ng-class="{ 'valid' : isCategoryPicked() }">
-                    {{ isCategoryPicked() ? 'Category is ' + pickedCategory : 'Category is not picked.'  }}
-                    <img ng-src="./images/check-{{ tickOrCross(isCategoryPicked()) }}.png"/>
-                </div>
-                <div ng-class="{ 'valid' : isPriceSensible() }">
-                    {{ priceSensibleText() }}
-                    <img ng-src="./images/check-{{ tickOrCross(isPriceSensible()) }}.png"/>
-                </div>
-                <div ng-class="{ 'valid' : isDescValid() }">
-                    Description has between 20 and 250 characters ({{ descActualLength() }})
-                    <img ng-src="./images/check-{{ tickOrCross(isDescValid()) }}.png"/>
+                <label class="media-label"><b>Upload Photo:</b></label>
+                <div class="media-input">
+                    Feature Not Yet Available
                 </div>
             </div>
             <div class="buttons">
