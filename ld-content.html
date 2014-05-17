@@ -15,7 +15,9 @@
             <a class="checkout-close" title="Close" ng-click="setCheckoutSelected(false);"><img src="./images/close.png"/></a>
             <h2 ng-if="basketTotal() == 0">Your basket is empty!</h2>
             <h2 ng-if="basketTotal() > 0 && isDeliveryFree()">Your Basket: £{{ basketTotal().toFixed(2) }} with FREE DELIVERY</h2>
-            <h2 ng-if="basketTotal() > 0 && !isDeliveryFree()">Your Basket: £{{ basketTotal().toFixed(2) }} + {{ deliveryFeeDisplay() }} (delivery) = £{{ (basketTotal() + deliveryFee).toFixed(2) }}</h2>
+            <h2 ng-if="basketTotal() > 0 && !isDeliveryFree()">
+                Your Basket: £{{ basketTotal().toFixed(2) }} + <span class="delivery-fee">{{ deliveryFeeDisplay() }} (delivery)</span> = £{{ (basketTotal() + deliveryFee).toFixed(2) }}
+            </h2>
             <div class="checkout-items" ng-class="{active : basketTotal() > 0}">
                 <div class="checkout-item" ng-repeat="item in checkedOutItems">
                     <img ng-src="{{ item.imageUrl }}"/>
@@ -23,7 +25,7 @@
                 </div>
                 <div style='clear: both'></div>
             </div>
-            <a class="checkout-button" ng-class="{active : basketTotal() > 50}">Checkout</a>
+            <a class="checkout-button" ng-class="{active : basketTotal() > 50}" ng-click="handleCheckOut()">Check Out</a>
             <h4 ng-if="basketTotal() < 50 && basketTotal() > 0">Minimum order to check out: £50</h4>
             <div class="checkout-progress" ng-class="{active : basketTotal() > 0 && basketTotal() < 50}">
                 <span>{{ checkoutProgress() }}</span>

@@ -19,12 +19,33 @@
         <script src="./js/compose.js"></script>
         <script src="./js/misc.js"></script>
     </head>
-    <body ng-controller="ListingsCtrl" ng-click="dismissNBox();" ng-class="{'no-scroll' : apiPopupEnabled}">
+    <body ng-controller="ListingsCtrl" ng-click="dismissNBox();setIntroVisible(false);" ng-class="{'no-scroll' : apiPopupEnabled}">
         <div class="DEBUG_baseline_grid enabled-{{ showGridLines }}" ></div>
+        <div class="intro" ng-show="introVisible" ng-click="$event.stopPropagation()">
+            <div class="intro-wrapper">
+                <div class="tag-lines">
+                    <p>This is a demo of Project Spring Roll</p>
+                    <p>Try clicking around the page and see what it does!</p>
+                    <p>We hope you get a taste of the future site</p>
+                    <p><a href="javascript:void(0)" ng-click="setIntroVisible(false);">Close this window</a></p>
+                </div>
+                <div class="social-images">
+                    <p>Like what we do? Find us on:</p>
+                    <a href="https://www.facebook.com/pages/Team-Spring-Roll/1412319192364606" target="_blank">
+                        <img id="facebook-logo" src="./images/facebook-logo.png"/>
+                    </a>
+                    <a href="https://www.indiegogo.com/projects/project-spring-roll" target="_blank">
+                        <img id="indiegogo-logo"src="./images/indiegogo.png"/>
+                    </a>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
         <div id="header">
             <div id="header_contents">
-                <div id="logo">
-                    <h1><img src="images/logo.png" /></h1>
+                <div id="logo" ng-click="setIntroVisible(true);$event.stopPropagation()" title="What is this?">
+                    <h1><img src="images/logo.png" title="What is this?"></h1>
+                    <span class="badge"><b>!</b></span>
                 </div>
 
                 <!-- Top-level navigation -->
@@ -73,14 +94,14 @@
         </div>
         <div id="content" ng-class="selected.type" ng-if="selected.type != 'longdan'">
             <div class="column" ng-repeat="column in columns">
-                <a class="post repeated-item" ng-repeat="post in column" ng-click="selectPost(post)" href="javascript:void(0)">
+                <div class="post repeated-item" ng-repeat="post in column" ng-click="selectPost(post)" href="javascript:void(0)">
                     <div ng-include="'compose.html'" ng-if="post.type === 'compose'"></div>
                     <div ng-if="post.type != 'longdan' && post.type != 'compose'">
                         <span class="price">{{ post.price }}</span>
                         <span class="time">{{ post.ago }}</span>
                         <div class="description" ng-bind-html="post.description"></div>
                     </div>
-                </a>
+                </div>
             </div>
             <div style="clear:both;"></div>
         </div>

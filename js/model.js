@@ -189,4 +189,10 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     $scope.setViewedApiPopUp = function(viewed) {
         $scope.apiPopupViewed = viewed;
     };
+    
+    /* Intro header */
+    $scope.introVisible = false;
+    $scope.setIntroVisible = function(visible) {
+        $scope.introVisible = visible;
+    };
 });
