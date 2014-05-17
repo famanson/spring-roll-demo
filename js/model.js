@@ -37,7 +37,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     
     // Method for dynamically populate page, mainly used for search
     $scope.repopulate = function() {
-        var rowLength = ($scope.currentType == 'longdan') ? 4 : 3;
+        var rowLength = ($scope.currentType === 'longdan') ? 4 : 3;
         // Returns true if "text" contains "searchedText".
         var searchText = function(text, searchedText) {
             // Quick cheap text sanitization
@@ -50,7 +50,6 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         var highlight = function(post) {
             if ($scope.searchedText !== "") {
                 post.description = post._description.replace(new RegExp($scope.searchedText, 'gi'),
-//                                           '<span class="highlightedText">' + $scope.searchedText + '</span>');
                                                              processMatch);
             } else {
                 post.description = post._description;
