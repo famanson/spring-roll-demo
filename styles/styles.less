@@ -17,15 +17,17 @@ Grid parameters: 12 modules @ 66px, 18px gap
 @red: #c33f3f;
 
 // *** Main content ***
-
+html,body {
+    height:100%;
+}
 body {
     margin: 0;
     font-family: "Arial";
     overflow-y: scroll;
+    min-height:100%;
     &.no-scroll {
         position: fixed;
         width: 100%;
-//        height: 100%;
     }
 }
 
@@ -41,7 +43,7 @@ body {
 #logo {
     float: left;
     width: @grid_3;
-    //margin-right: @grid_gutter;
+    position: relative;
     
     h1 {
         font-family: "Montserrat";
@@ -54,6 +56,18 @@ body {
             font-size: 60%;
             font-weight: 700;
         }
+        img {
+            cursor: pointer;
+        }
+    }
+    .badge {
+        background: none;
+        background-color: #7bc173;
+        top: 10px;
+        right: 28px;
+        bottom: auto;
+        left: auto;
+        cursor: pointer;
     }
 }
 
@@ -230,8 +244,50 @@ body {
     }
 }
 
-// *** Content styles ***
+.intro {
+    .intro-wrapper {
+        width: @grid_12;
+        margin: 0 auto;
+    }
+    background-color: #7bc173;
+    p {
+        font-size: 20px;
+        color: #fff;
+        font-style: italic;
+        a {
+            font-size: 16px;
+            color: #fefefe;
+        }
+    }
+    .tag-lines {
+        float: left;
+        width: 50%;
+        padding: 50px 0;
+        p {
+            margin: 0 0 0 20px;
+            text-align: left;
+            padding: 5px 0;
+        }
+    }
+    .social-images {
+        width: 40%;
+        float: right;
+        padding: 40px 0;
+        margin-left: 40px;
+        a {
+            text-decoration:none;
+            img {
+                margin: 0 10px 0 0;
+                height: 80px;
+            }
+        }
+        p {
+            font-size: 16px;
+        }
+    }
+}
 
+// *** Content styles ***
 .post {
     margin-top: 1.0em;
     text-decoration: none;
@@ -374,4 +430,24 @@ body {
 
 .repeated-item.ng-leave.ng-leave-active {
     opacity: 0;
+}
+
+.intro.ng-hide-add, .intro.ng-hide-remove {
+  -webkit-transition:all linear 0.5s;
+  -moz-transition:all linear 0.5s;
+  -o-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+  display:block!important;
+}
+
+.intro.ng-hide-add.ng-hide-add-active,
+.intro.ng-hide-remove {
+    opacity:0;
+    margin-top: -236px;
+    
+}
+.intro.ng-hide-remove.ng-hide-remove-active,
+.intro.ng-hide-add {
+    opacity:1;
+    margin-top: 0px;
 }
