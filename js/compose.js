@@ -97,7 +97,7 @@ app.controller("ComposeCtrl", function($scope) {
             var post = {
                 price: $scope.escapeHTML($scope.submittedPrice),
                 ago: "a moment ago",
-                description: desc,
+                _description: desc,
                 type: popType
             };
             // Hack!
