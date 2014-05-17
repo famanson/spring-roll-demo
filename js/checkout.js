@@ -1,4 +1,5 @@
 /*global app, posts */
+/* jshint browser:true */
 
 var ldCategories = [
     { name: "Fresh & Chilled" },
@@ -122,7 +123,9 @@ app.controller("CheckoutCtrl", function($scope) {
             return Math.floor(fraction*100) + "%";
         };
 
-
+        $scope.handleCheckOut = function() {
+            window.alert("Sorry, we cannot process actual orders yet in this demo!");
+        };
         $scope.ldCategories = ldCategories;
     }
 });
