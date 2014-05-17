@@ -38,17 +38,25 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     // Method for dynamically populate page, mainly used for search
     $scope.repopulate = function() {
         var rowLength = ($scope.currentType === 'longdan') ? 4 : 3;
+        // Should search be enabled?
+        var isSearchEnabled = function() {
+            return $scope.currentType !== 'longdan';
+        };
         // Returns true if "text" contains "searchedText".
         var searchText = function(text, searchedText) {
-            // Quick cheap text sanitization
-            var sanitized = $("<div>" + text + "</div>").text();
-            return sanitized.toLowerCase().search(searchedText.toLowerCase()) != -1;
+            if (isSearchEnabled()) {
+                // Quick cheap text sanitization
+                var sanitized = $("<div>" + text + "</div>").text();
+                return sanitized.toLowerCase().search(searchedText.toLowerCase()) != -1;
+            } else {
+                return true;
+            }
         };
         var processMatch = function(match, p1, offset, string) {
             return "<span class=\"searchHighlight\">" + match + "</span>";
         };
         var highlight = function(post) {
-            if ($scope.currentType !== 'longdan') {
+            if (isSearchEnabled()) {
                 if ($scope.searchedText !== "") {
                     post.description = post._description.replace(new RegExp($scope.searchedText, 'gi'),
                                                                  processMatch);
@@ -63,7 +71,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
                 // Special case - the "compose" sentinel.
                 return ($scope.currentType !== 'longdan' && $scope.searchedText === "");
             } else {
-                return post.type === $scope.currentType && ($scope.currentType === 'longdan' ? true : searchText(post._description, $scope.searchedText));
+                return post.type === $scope.currentType && searchText(post._description, $scope.searchedText);
             }
         };
         var filteredPosts = posts.filter(filterByType);
