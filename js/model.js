@@ -208,4 +208,24 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     $scope.setIntroVisible = function(visible) {
         $scope.introVisible = visible;
     };
+    
+    /* Image picker in overlay */
+    $scope.postImages = [
+        {
+            title: "nyan",
+            url: "http://images.dailytech.com/nimage/Nyan_Cat_Wide.jpg"
+        }, {
+            title: "obama",
+            url: "http://img1.wikia.nocookie.net/__cb20140203020138/nickfanon/images/4/47/Obama_not_bad.jpg"
+        }
+    ];
+    $scope.pickedImage = $scope.postImages[1];
+    $scope.fullImagePicked = false;
+    $scope.setPostImage = function(image) {
+        $scope.pickedImage = image;
+        $scope.setFullImagePicked(true);
+    };
+    $scope.setFullImagePicked = function(picked) {
+        $scope.fullImagePicked = picked;
+    };
 });

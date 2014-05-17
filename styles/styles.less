@@ -325,6 +325,16 @@ body {
         line-height: 100%;
     }
     
+    .image {
+        font-size: 75%;
+        color: #aaa;
+        float: right;
+        margin: 9pt 0 0 5pt;
+        img {
+            height: 15px;
+        }
+    }
+    
     .description {
         font-family: Arial;
         text-align: justify;
@@ -361,6 +371,24 @@ body {
         
         .post {
             margin-top: 0;
+            .images {
+                margin: 20px 0 0 0;
+                img {
+                    height: 100px;
+                    margin: 5px;
+                }
+            }
+            .full-image {
+                max-width: 70%;
+                width: auto;
+                img {
+                    max-height: 80%;
+                    max-width: 100%;
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            }
         }
         .post-close {
                 position: absolute;
