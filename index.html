@@ -106,9 +106,10 @@
         </div>
         
         <!-- Modal post display -->
-        <div class="overlay" ng-class="{ active : selected_post != null }" ng-click="selectPost(null)">
-            <div class="overlay_content" ng-click="$event.stopPropagation()">
-                <div class="post" ng-model="selected_post">
+        <div class="overlay" ng-class="{ active : selected_post != null }">
+            <div class="overlay_content" >
+                <a class="post-close" title="Close" ng-click="selectPost(null)"><img src="./images/close.png"/></a>
+                <div class="post" ng-model="selected_post" ng-click="$event.stopPropagation()">
                     <span class="price">{{ selected_post.price }}</span>
                     <div class="description" ng-bind-html="selected_post.description"></div>
                 </div>
