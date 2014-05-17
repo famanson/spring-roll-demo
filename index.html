@@ -43,8 +43,9 @@
         </div>
         <div id="header">
             <div id="header_contents">
-                <div id="logo" ng-click="setIntroVisible(true);$event.stopPropagation()">
-                    <h1><img src="images/logo.png" /></h1>
+                <div id="logo" ng-click="setIntroVisible(true);$event.stopPropagation()" title="What is this?">
+                    <h1><img src="images/logo.png" title="What is this?"></h1>
+                    <span class="badge"><b>!</b></span>
                 </div>
 
                 <!-- Top-level navigation -->

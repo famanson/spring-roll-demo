@@ -43,7 +43,7 @@ body {
 #logo {
     float: left;
     width: @grid_3;
-    //margin-right: @grid_gutter;
+    position: relative;
     
     h1 {
         font-family: "Montserrat";
@@ -56,6 +56,18 @@ body {
             font-size: 60%;
             font-weight: 700;
         }
+        img {
+            cursor: pointer;
+        }
+    }
+    .badge {
+        background: none;
+        background-color: #7bc173;
+        top: 10px;
+        right: 28px;
+        bottom: auto;
+        left: auto;
+        cursor: pointer;
     }
 }
 
