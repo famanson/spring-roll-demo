@@ -37,7 +37,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     
     // Method for dynamically populate page, mainly used for search
     $scope.repopulate = function() {
-        var rowLength = ($scope.currentType == 'longdan') ? 4 : 3;
+        var rowLength = ($scope.currentType === 'longdan') ? 4 : 3;
         // Returns true if "text" contains "searchedText".
         var searchText = function(text, searchedText) {
             // Quick cheap text sanitization
@@ -48,12 +48,13 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
             return "<span class=\"searchHighlight\">" + match + "</span>";
         };
         var highlight = function(post) {
-            if ($scope.searchedText !== "") {
-                post.description = post._description.replace(new RegExp($scope.searchedText, 'gi'),
-//                                           '<span class="highlightedText">' + $scope.searchedText + '</span>');
-                                                             processMatch);
-            } else {
-                post.description = post._description;
+            if ($scope.currentType !== 'longdan') {
+                if ($scope.searchedText !== "") {
+                    post.description = post._description.replace(new RegExp($scope.searchedText, 'gi'),
+                                                                 processMatch);
+                } else {
+                    post.description = post._description;
+                }
             }
             return post;
         };
@@ -62,7 +63,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
                 // Special case - the "compose" sentinel.
                 return ($scope.currentType !== 'longdan' && $scope.searchedText === "");
             } else {
-                return post.type === $scope.currentType && searchText(post._description, $scope.searchedText);
+                return post.type === $scope.currentType && ($scope.currentType === 'longdan' ? true : searchText(post._description, $scope.searchedText));
             }
         };
         var filteredPosts = posts.filter(filterByType);
