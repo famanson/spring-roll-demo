@@ -73,14 +73,14 @@
         </div>
         <div id="content" ng-class="selected.type" ng-if="selected.type != 'longdan'">
             <div class="column" ng-repeat="column in columns">
-                <a class="post repeated-item" ng-repeat="post in column" ng-click="selectPost(post)" href="javascript:void(0)">
+                <div class="post repeated-item" ng-repeat="post in column" ng-click="selectPost(post)" href="javascript:void(0)">
                     <div ng-include="'compose.html'" ng-if="post.type === 'compose'"></div>
                     <div ng-if="post.type != 'longdan' && post.type != 'compose'">
                         <span class="price">{{ post.price }}</span>
                         <span class="time">{{ post.ago }}</span>
                         <div class="description" ng-bind-html="post.description"></div>
                     </div>
-                </a>
+                </div>
             </div>
             <div style="clear:both;"></div>
         </div>
