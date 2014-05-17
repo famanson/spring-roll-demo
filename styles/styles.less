@@ -17,15 +17,17 @@ Grid parameters: 12 modules @ 66px, 18px gap
 @red: #c33f3f;
 
 // *** Main content ***
-
+html,body {
+    height:100%;
+}
 body {
     margin: 0;
     font-family: "Arial";
     overflow-y: scroll;
+    min-height:100%;
     &.no-scroll {
         position: fixed;
         width: 100%;
-//        height: 100%;
     }
 }
 
