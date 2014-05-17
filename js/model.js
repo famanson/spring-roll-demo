@@ -48,11 +48,13 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
             return "<span class=\"searchHighlight\">" + match + "</span>";
         };
         var highlight = function(post) {
-            if ($scope.searchedText !== "") {
-                post.description = post._description.replace(new RegExp($scope.searchedText, 'gi'),
-                                                             processMatch);
-            } else {
-                post.description = post._description;
+            if ($scope.currentType !== 'longdan') {
+                if ($scope.searchedText !== "") {
+                    post.description = post._description.replace(new RegExp($scope.searchedText, 'gi'),
+                                                                 processMatch);
+                } else {
+                    post.description = post._description;
+                }
             }
             return post;
         };
@@ -61,7 +63,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
                 // Special case - the "compose" sentinel.
                 return ($scope.currentType !== 'longdan' && $scope.searchedText === "");
             } else {
-                return post.type === $scope.currentType && searchText(post._description, $scope.searchedText);
+                return post.type === $scope.currentType && ($scope.currentType === 'longdan' ? true : searchText(post._description, $scope.searchedText));
             }
         };
         var filteredPosts = posts.filter(filterByType);
