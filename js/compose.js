@@ -29,7 +29,8 @@ app.controller("ComposeCtrl", function($scope) {
     };
     var priceRegExp = new RegExp(/(^\£\d+(.\d{1,2})?(k|m)?(\/h|pcm)?$)/);
     $scope.isPriceSensible = function() {
-        return priceRegExp.test($scope.submittedPrice) || ($scope.isCategoryWanted() && $scope.submittedPrice === "Wanted!");
+        return priceRegExp.test($scope.submittedPrice) || 
+            ($scope.isCategoryWanted() && $scope.submittedPrice.match(/^wanted(!)*$/gi, "wanted!"));
     };
 
     $scope.submittedPrice = "";
@@ -92,6 +93,9 @@ app.controller("ComposeCtrl", function($scope) {
     };
     $scope.submitPost = function() {
         if ($scope.isOkayToSubmit()) {
+            if ($scope.isCategoryWanted() && $scope.submittedPrice.match(/^wanted(!)*$/gi, "wanted!")) {
+                $scope.submittedPrice = "Wanted!";
+            }
             var popType = $scope.pickedCategory.toLowerCase(),
                 desc = $scope.escapeHTML($scope.submittedDesc).replace(/#([^ ]+)/g, '<b>$1</b>');
             var post = {
