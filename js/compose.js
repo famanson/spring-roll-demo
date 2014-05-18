@@ -10,6 +10,8 @@ app.controller("ComposeCtrl", function($scope) {
     $scope.pickedCategory = "";
     $scope.setPickedCategory = function(category) {
         $scope.pickedCategory = category;
+        $scope.updatePriceHelp();
+        $scope.updateDescHelp();
     };
     // Work out expiration date
     var monthNames = [ "January", "February", "March", "April", "May", "June",
@@ -24,13 +26,15 @@ app.controller("ComposeCtrl", function($scope) {
     $scope.isCategoryPicked = function() {
         return $scope.pickedCategory.toLowerCase().length > 0;
     };
-    $scope.isCategoryWanted = function() {
-        return $scope.pickedCategory.toLowerCase() === 'wanted';
+    $scope.checkCategory = function(category) {
+        return $scope.pickedCategory.toLowerCase() === category;
     };
     var priceRegExp = new RegExp(/(^\£\d+(.\d{1,2})?(k|m)?(\/h|pcm)?$)/);
     $scope.isPriceSensible = function() {
         return priceRegExp.test($scope.submittedPrice) || 
-            ($scope.isCategoryWanted() && $scope.submittedPrice.match(/^wanted(!)*$/gi, "wanted!"));
+            ($scope.checkCategory("wanted") && $scope.submittedPrice.match(/^wanted(!)*$/gi)) ||
+            ($scope.checkCategory("rent") && 
+                ($scope.submittedPrice.match(/^short(-|\ )?term$/gi) || $scope.submittedPrice.match(/^long(-|\ )?term$/gi)));
     };
 
     $scope.submittedPrice = "";
@@ -93,8 +97,13 @@ app.controller("ComposeCtrl", function($scope) {
     };
     $scope.submitPost = function() {
         if ($scope.isOkayToSubmit()) {
-            if ($scope.isCategoryWanted() && $scope.submittedPrice.match(/^wanted(!)*$/gi, "wanted!")) {
+            console.log($scope.submittedPrice);
+            if ($scope.checkCategory("wanted") && $scope.submittedPrice.match(/^wanted(!)*$/gi)) {
                 $scope.submittedPrice = "Wanted!";
+            } else if ($scope.checkCategory("rent") && $scope.submittedPrice.match(/^short(-|\ )?term$/gi)) {
+                $scope.submittedPrice = "Short-term";
+            } else if ($scope.checkCategory("rent") && $scope.submittedPrice.match(/^long(-|\ )?term$/gi)) {
+                $scope.submittedPrice = "Long-term";
             }
             var popType = $scope.pickedCategory.toLowerCase(),
                 desc = $scope.escapeHTML($scope.submittedDesc).replace(/#([^ ]+)/g, '<b>$1</b>');
@@ -124,6 +133,14 @@ app.controller("ComposeCtrl", function($scope) {
     $scope.warningsActive = false;
     $scope.setActiveWarnings = function(active) {
         $scope.warningsActive = active;
+    };
+    $scope.priceGuideText = function() {
+        if ($scope.checkCategory("wanted")) {
+            return " (or type \"Wanted!\" if unsure)";
+        } else if ($scope.checkCategory('rent')) {
+            return " (or type \"long-term/short-term\" if unsure)";
+        }
+        return "";
     };
 
     $scope.escapeHTML = function(s) { 
