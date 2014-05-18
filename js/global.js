@@ -51,8 +51,14 @@ var posts = [
     }, {
         price: "£200",
         ago: "2 days ago",
-        description: "Very reliable <b>Canon EOS 40D</b> for sale. Cleaned by Canon's Professional Services. Shutter count: 25230, crop factor: 1.6x, can fit both EF and EF-S lenses. <b>Free delivery in London area</b>. Comes with a free 4GB Sandisk CF memory card and a <b>battery grip<b/>",
-        type: "sale"
+        description: "Very reliable <b>Canon EOS 40D body only</b> for sale. Cleaned by Canon's Professional Services. Shutter count: 25230, crop factor: 1.6x, can fit both EF and EF-S lenses. <b>Free delivery in London area</b>. Comes with a free 4GB Sandisk CF memory card and a <b>battery grip<b/>",
+        type: "sale",
+        images: [
+            {
+                title: "40d",
+                url: "http://fieldherper.com/fieldherper/wp-content/uploads/2008/02/canon_40d-intro.jpg"
+            }
+        ]
     }, {
         price: "£3000",
         ago: "5 days ago",
@@ -62,7 +68,17 @@ var posts = [
         price: "£300",
         ago: "2 days ago",
         description: "Used, like new <b>Lenovo x121e laptop</b> for sale. Great 11.6-inch laptop, suitable for students or those who need to travel (only 1.2kg). Slightly bigger than a netbook, with the power of a <b>quad-core CPU i3-2567M 1.40GHz, 4GB RAM and 128GB SSD</b>. Comes with Windows 7, bag, charger and a Lenovo mouse",
-        type: "sale"
+        type: "sale",
+        images: [
+            {
+                title: "front",
+                url: "http://www.notebookcheck.net/uploads/tx_nbc2/lenoX121E_3.jpg"
+            }, {
+                title: "closed",
+                url: "http://assets.vr-zone.net/13556/ThinkPadX121e.jpg"
+            }
+                
+        ]
     }, {
         price: "£80",
         ago: "2 days ago",
@@ -82,6 +98,17 @@ var posts = [
             {
                 title: "car-seat",
                 url: "http://www.kiddicare.com/wcsstore7.00.00.841/ExtendedSitesCatalogAssetStore/images/catalog/KC34610/z2_l.jpg"
+            }
+        ]
+    }, {
+        price: "£190",
+        ago: "1 day ago",
+        description: "<b>Sony PlayStation 3 Slim 500GB + 10 games</b>, Barnet. Used, but in mint condition, bundled with <b>10 games and 2 DualShock controllers</b>. I want to sell these as a whole so no offer for individual sales please. Postange not included.",
+        type: "sale",
+        images: [
+            {
+                title: "ps3",
+                url: "http://www.tpcdb.com/images/products/1000/1125.jpg"
             }
         ]
     },
