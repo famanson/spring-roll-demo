@@ -98,7 +98,7 @@
                     <div ng-include="'compose.html'" ng-if="post.type === 'compose'"></div>
                     <div ng-if="post.type != 'longdan' && post.type != 'compose'">
                         <span class="price">{{ post.price }}</span>
-                        <span class="image"><img src="images/image-icon.png"/></span>
+                        <span class="image-icon"><img src="images/image-icon.png"/></span>
                         <span class="time">{{ post.ago }}</span>
                         <div class="description" ng-bind-html="post.description"></div>
                     </div>
@@ -114,14 +114,15 @@
                 <div class="post" ng-model="selected_post" ng-click="$event.stopPropagation()">
                     <span class="price">{{ selected_post.price }}</span>
                     <div class="description" ng-bind-html="selected_post.description"></div>
-                    <div class="images">
+                    <div class="overlay-images">
                         <img ng-src="{{ image.url }}" ng-repeat="image in postImages" ng-click="setPostImage(image)"/>
                     </div>
                     <!-- An overlay within an overlay... -->
                     <div class="overlay" ng-class="{ active : fullImagePicked }">
-                        <div class="full-image overlay_content" >
+                        <div class="overlay-full-image overlay_content" >
                             <a class="post-close" title="Close" ng-click="setFullImagePicked(false);"><img src="./images/close.png"/></a>
                             <img ng-src="{{ pickedImage.url }}" ng-click="cycleImages()"/>
+                            <div class="clear"></div>
                         </div>
                     </div>
                 </div>
