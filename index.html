@@ -62,9 +62,11 @@
                 </div>
                 
                 <!-- Searchbox -->
-                <div id="search-container">
+                <div id="search-container" ng-if="currentType !== 'longdan'">
                     <img src="images/search.png" />
-                    <input type="text" ng-model="searchedText" ng-change="emptyColumns();repopulate();"/>
+                    <input type="text" ng-model="searchedText" 
+                           ng-change="emptyColumns();repopulate();"
+                           placeholder="Search in {{ currentType.capitalise() }}">
                 </div>
                 
                 <!-- User avatar -->
