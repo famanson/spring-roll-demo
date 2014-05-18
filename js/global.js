@@ -34,7 +34,7 @@ var posts = [
         description: "<b>iPhone 5S gold colour</b>. Barely used. Deliver anywhere within UK (delivery not included, up to £5 extra). Will throw in a free cover of your choice (see photos).",
         type: "sale"
     }, {
-        price: "£150",
+        price: "£120",
         ago: "3 days ago",
         description: "<b>Brand new female bike</b> in London! Raleigh bike, including lights, lock and a free front basket. Recently serviced. Selling due to lack of use, collect in person only.",
         type: "sale"
@@ -44,9 +44,14 @@ var posts = [
         description: "<b>Macbook Pro 2013 Like New!</b> Will post to anywhere in the UK. Including free Apple Magic Mouse and spare charger to sweeten the deal, plus <b>6 months left on Apple Care!</b>",
         type: "sale"
     }, {
-        price: "£90",
-        ago: "5 days ago",
-        description: "<b>21-inch Like New Sony Bravia</b> for sale. Available to collect in London (South Kensington). Postage can be arranged if necessary",
+        price: "£40",
+        ago: "4 days ago",
+        description: "A pair of black <b>XBox 360 controllers for PC!</b> These are in very good condition, with new rubber knob on the sticks and <b>customised trigger buttons</b> for use in shooting games. Comes with connector for Windows PC. Will not sell separately. Postage not included.",
+        type: "sale"
+    }, {
+        price: "£200",
+        ago: "2 days ago",
+        description: "Very reliable <b>Canon EOS 40D</b> for sale. Cleaned by Canon's Professional Services. Shutter count: 25230, crop factor: 1.6x, can fit both EF and EF-S lenses. <b>Free delivery in London area</b>. Comes with a free 4GB Sandisk CF memory card and a <b>battery grip<b/>",
         type: "sale"
     }, {
         price: "£3000",
@@ -56,7 +61,12 @@ var posts = [
     }, {
         price: "£300",
         ago: "2 days ago",
-        description: "Used, line new <b>Lenovo x121e laptop</b> for sale. Great 11.6-inch laptop, suitable for students or those who need to travel (only 1.2kg). Slightly bigger than a netbook, with the power of a <b>quad-core CPU i3-2567M 1.40GHz, 4GB RAM and 128GB SSD</b>. Comes with bag, charger and a Lenovo mouse",
+        description: "Used, like new <b>Lenovo x121e laptop</b> for sale. Great 11.6-inch laptop, suitable for students or those who need to travel (only 1.2kg). Slightly bigger than a netbook, with the power of a <b>quad-core CPU i3-2567M 1.40GHz, 4GB RAM and 128GB SSD</b>. Comes with Windows 7, bag, charger and a Lenovo mouse",
+        type: "sale"
+    }, {
+        price: "£80",
+        ago: "2 days ago",
+        description: "Like new <b>adidas Predator LZ firm-ground size 9 football boots</b> for sale. These boots are the class <b>professional</b> footballers play in. Only used occasionally on match days, so there are some green stains from the grass. Very comfortable and light fit. Boost your game now!",
         type: "sale"
     },
     /* Wanted posts */
