@@ -56,7 +56,7 @@ var posts = [
         images: [
             {
                 title: "40d",
-                url: "http://fieldherper.com/fieldherper/wp-content/uploads/2008/02/canon_40d-intro.jpg"
+                url: "http://upload.wikimedia.org/wikipedia/commons/3/36/Canon_EOS_40D_with_EF_50mm_f1.4_USM.jpg"
             }
         ]
     }, {
@@ -72,7 +72,7 @@ var posts = [
         images: [
             {
                 title: "front",
-                url: "http://www.notebookcheck.net/uploads/tx_nbc2/lenoX121E_3.jpg"
+                url: "http://www.ixbt.com/portopc/lenovo/thinkpad-x121e/big/45view-1620.jpg"
             }, {
                 title: "closed",
                 url: "http://assets.vr-zone.net/13556/ThinkPadX121e.jpg"
@@ -108,7 +108,7 @@ var posts = [
         images: [
             {
                 title: "ps3",
-                url: "http://www.tpcdb.com/images/products/1000/1125.jpg"
+                url: "http://www.getitnow.gr/MEDIA/content_CustomProductCatalog/m1650420pp_Sony-PlayStation-3-Slim-320GB-1440.jpg"
             }
         ]
     }, {
