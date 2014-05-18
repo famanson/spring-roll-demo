@@ -68,6 +68,22 @@ var posts = [
         ago: "2 days ago",
         description: "Like new <b>adidas Predator LZ firm-ground size 9 football boots</b> for sale. These boots are the class <b>professional</b> footballers play in. Only used occasionally on match days, so there are some green stains from the grass. Very comfortable and light fit. Boost your game now!",
         type: "sale"
+    }, {
+        price: "Free!",
+        ago: "1 day ago",
+        description: "<b>A-Level books giveaway</b> in London area. All Edexcel A-Level books include: Maths and Further Maths (C1-C4, S1, S2, FP1-FP3, M1-M3), Economics, Physics. Also included is a Cambridge IELTS 8 Self-study Pack with Answers and Audio CD. <b>Collection only</b>",
+        type: "sale"
+    }, {
+        price: "£90",
+        ago: "2 days ago",
+        description: "<b>Britax Premium Baby Car Seat</b>. This is a very high-quality forward-facing car seat, suitable for children from <b>9 months to 3 years old</b>. Nicely padded, providing a lot of protection on both sides, easily adjustable straps with a chest pad. Postage included, but collection in person preferred",
+        type: "sale",
+        images: [
+            {
+                title: "car-seat",
+                url: "http://www.kiddicare.com/wcsstore7.00.00.841/ExtendedSitesCatalogAssetStore/images/catalog/KC34610/z2_l.jpg"
+            }
+        ]
     },
     /* Wanted posts */
     {
