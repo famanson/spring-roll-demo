@@ -144,7 +144,58 @@ var posts = [
         ago: "1 day ago",
         description: "<b>Looking for a home tutor</b> to teach Vietnamese to kids. <b>Two 2-hour lessons a week</b> Professional preferred, but students will also be considered.",
         type: "wanted"
+    }, {
+        price: "£10/h",
+        ago: "3 days ago",
+        description: "A <b>babysitter</b> for an <b>8-year-old boy</b> is wanted near SW8. Have to be friendly, responsible and great with kids. Must have a CRB check. Experience is preferred but not required.",
+        type: "wanted"
+    }, {
+        price: "Unpaid",
+        ago: "7 days ago",
+        description: "A Vietnamese Buddhist Temple near Elephant & Castle is looking for a <b>volunteer to help out with book-keeping</b>. Work will be done mostly from home. If travel is required, all the expenses will be reimbursed.",
+        type: "wanted"
+    }, {
+        price: "Up to £500",
+        ago: "5 days ago",
+        description: "I am looking for a <b>second-hand piano</b> for my home studio. Price can be negotiated but preferably below £500. Please get in touch by emailing theNextMozart@gmail.com. Thanks.",
+        type: "wanted"
+    }, {
+        price: "£30/h",
+        ago: "1 day ago",
+        description: "Looking for a tutor for <b>first year Economics</b>. I'm studying <b>ECON1001 at UCL</b> so if you have some experience with the material (either as a student or have tutored on the same material), it would be a big plus! Prefer to do lessons in person but can also do it via Skype. Please get in touch if you could help out. I don't want to fail my first year. Many thanks.",
+        type: "wanted"
+    }, {
+        price: "£10/h",
+        ago: "6 days ago",
+        description: "Looking for a <b>temporary Vietnamese translator</b> for some paperwork. It's <b>not technical stuff</b> so as long as you are fluent in Vietnamese and English + have a good attention to detail + want some extra cash, this is the job for you.",
+        type: "wanted"
+    }, {
+        price: "Unpaid",
+        ago: "4 days ago",
+        description: "Looking for programmers/coders to join the Spring Roll Team. You need to have a <b>first class degree from a world class university</b>, extensive <b>experience with web development</b> and be <b>willing to code without sleep</b>. We are kidding obviously! Anyone interested, please check out our indiegogo webpage https://www.indiegogo.com/projects/project-spring-roll",
+        type: "wanted"
+    }, {
+        price: "£100",
+        ago: "1 day ago",
+        description: "I need a <b>proof-reader for my Masters dissertation in Politics</b>. It's 20k word long and is worth 40% of my final grade so people with a <b>proven track record</b> of doing this kind of word would definitely prefered.",
+        type: "wanted"
+    }, {
+        price: "£15/h",
+        ago: "4 days ago",
+        description: "We need someone to <b>translate basic product descriptions from English to Vietnamese</b> for some of our products. The items are adhesives and tapes sold business to business so there will be <b>some technical terminologies</b> that you need to be familiar with but nothing a quick search on Google can't solve.",
+        type: "wanted"
+    }, {
+        price: "Upon request",
+        ago: "6 days ago",
+        description: "We are an UK-based company looking for a <b>Social Media Moderator</b> for our Facebook page in Vietnamese. Ideally you would have a degree or are studying towards one in <b>Marketing</b> or related subjects. The Social Media Moderator will serve as the day-to-day engagement and conversation specialist for our Facebook page, helping to enhance the overall image of the company through direct personal engagement with the customers.",
+        type: "wanted"
+    }, {
+        price: "£7/kg",
+        ago: "3 days ago",
+        description: "I have <b>4kgs of goods (mainly clothes and skincare products)</b> to send home. If you have some spare space in your luggage, please get in touch.",
+        type: "wanted"
     },
+    
     /* Rent posts */
     {
         // Linh Chu's ad - first "user" ever
@@ -173,9 +224,45 @@ var posts = [
         description: "<b>1-bedroom apartment</b>, Canada Water. Central area with all large shops, London's financial offices and major public transport links within walking distance. <b>Best suited for a single professional</b>.",
         type: "rent"
     }, {
-        price: "£1500pcm",
+        price: "£750pcm",
+        ago: "4 days ago",
+        description: "In a cul-de-sac 2 minutes walk from <b>Earlsfield station</b>, across the road from The Wandle (one of the best pubs in the south west) lays the perfect home for you. Price <b>includes Internet, Sky+ HD with Sky Sports package</b>, just in time for the World Cup this summer. What are you waiting for?",
+        type: "rent"
+    }, {
+        price: "£650-750pcm",
         ago: "1 day ago",
-        description: "<b>4-bedroom house</b> Greenwich SE10. Very near to Greenwich uni. Close to Greenwich station, Tesco and Chinese shop. Viewing arrangements welcomed.",
+        description: "<b>2 bedrooms available</b> in large 3 bedroom house near Battersea. This is a very spacious 3 storey house, with a garden, large kitchen, dining room, lounge, bathroom, utility room, and very importantly a dishwasher. One is a large double room (master bedroom) and the other is slightly smaller. Both room are furnished.",
+        type: "rent", 
+        images: [
+            {
+                title: "livingRoom",
+                url: "http://photos2.spareroom.co.uk/images/flatshare/listings/large/46/12/4612618.jpg"
+            }, {
+                title: "kitchen",
+                url: "http://photos2.spareroom.co.uk/images/flatshare/listings/large/46/12/4612614.jpg"
+            }
+                
+        ]
+    }, {
+        price: "£550pcm",
+        ago: "1 day ago",
+        description: "Lovely <b>double room</b> for rent , just 1 min walking distance to <b>Mile End tube station (E3)</b>, there are central、district and Hammersmith city line, also have 25、205 buses to central london, very good transport link. Tesco supermarket is nearby.",
+        type: "rent"
+    }, {
+        price: "£130pw",
+        ago: "1 day ago",
+        description: "Stylish, furnished double room in a sizeable house in <b>Stratford E15</b>. Close to the new <b>Westfield shopping centre</b> development and Olympic site. Very close to the University of East London (UEL). Rent is fully inclusive of all utility bills. Sorry no pets in the house.",
+        type: "rent",
+        images: [
+            {
+                title: "e15Bed",
+                url: "http://photos2.spareroom.co.uk/images/flatshare/listings/large/46/10/4610935.jpg"
+            }
+        ]
+    }, {
+        price: "£135pw",
+        ago: "1 day ago",
+        description: "A single room with a beautiful park nearby. It's a stone throw from Hackney city centre and is quite easy to get to anywhere in London. Minimum term is 8 months. Room is only for one person i. e. no couples/sharers",
         type: "rent"
     },
     /* Longdan posts */
