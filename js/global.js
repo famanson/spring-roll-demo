@@ -49,9 +49,14 @@ var posts = [
         description: "<b>21-inch Like New Sony Bravia</b> for sale. Available to collect in London (South Kensington). Postage can be arranged if necessary",
         type: "sale"
     }, {
-        price: "£2000",
+        price: "£3000",
         ago: "5 days ago",
-        description: "<b>21-inch Like New Sony Bravia</b> for sale. Available to collect in London (South Kensington). Postage can be arranged if necessary",
+        description: "<b>Blue Toyota Yaris</b> for sale (West London). Petrol, 40k-mileage, manual transmission, reworked interior. MOT: 28 June 2015. Contact now to arrange test drive!",
+        type: "sale"
+    }, {
+        price: "£300",
+        ago: "2 days ago",
+        description: "Used, line new <b>Lenovo x121e laptop</b> for sale. Great 11.6-inch laptop, suitable for students or those who need to travel (only 1.2kg). Slightly bigger than a netbook, with the power of a <b>quad-core CPU i3-2567M 1.40GHz, 4GB RAM and 128GB SSD</b>. Comes with bag, charger and a Lenovo mouse",
         type: "sale"
     },
     /* Wanted posts */
@@ -81,7 +86,7 @@ var posts = [
     }, {
         price: "£500pcm",
         ago: "2 days ago",
-        description: "<b>Double room for rent</b> in Hackney E2. Suitable for couples. Very close to large supermarkets (Tesco, Asda), Vietnamese shops and restaurants. Buses: <b>149, 67, 242</b>. Nearby stations: <b>Hoxton, Shoreditch High Street</b>",
+        description: "<b>Double room for rent</b> in Hackney E2. Suitable for couples. Very close to large supermarkets (Tesco, Asda), Vietnamese shops and restaurants. Buses: 149, 67, 242. Nearby stations: <b>Hoxton, Shoreditch High Street</b>",
         type: "rent"
     }, {
         price: "£450pcm",
