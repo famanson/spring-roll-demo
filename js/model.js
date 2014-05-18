@@ -41,6 +41,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     }
     // Method for dynamically populate page, mainly used for search
     $scope.repopulate = function() {
+        console.log($scope.searchedText);
         var rowLength = ($scope.currentType === 'longdan') ? 4 : 3;
         // Should search be enabled?
         var isSearchEnabled = function() {

@@ -62,7 +62,7 @@
                 </div>
                 
                 <!-- Searchbox -->
-                <div id="search-container" ng-if="currentType !== 'longdan'">
+                <div id="search-container" ng-show="currentType !== 'longdan'">
                     <img src="images/search.png" />
                     <input type="text" ng-model="searchedText" 
                            ng-change="emptyColumns();repopulate();"

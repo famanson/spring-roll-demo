@@ -35,7 +35,7 @@ var posts = [
         type: "sale"
     }, {
         price: "£150",
-        ago: "6 days ago",
+        ago: "3 days ago",
         description: "<b>Brand new female bike</b> in London! Raleigh bike, including lights, lock and a free front basket. Recently serviced. Selling due to lack of use, collect in person only.",
         type: "sale"
     }, {
@@ -43,7 +43,17 @@ var posts = [
         ago: "5 days ago",
         description: "<b>Macbook Pro 2013 Like New!</b> Will post to anywhere in the UK. Including free Apple Magic Mouse and spare charger to sweeten the deal, plus <b>6 months left on Apple Care!</b>",
         type: "sale"
-    }, 
+    }, {
+        price: "£90",
+        ago: "5 days ago",
+        description: "<b>21-inch Like New Sony Bravia</b> for sale. Available to collect in London (South Kensington). Postage can be arranged if necessary",
+        type: "sale"
+    }, {
+        price: "£2000",
+        ago: "5 days ago",
+        description: "<b>21-inch Like New Sony Bravia</b> for sale. Available to collect in London (South Kensington). Postage can be arranged if necessary",
+        type: "sale"
+    },
     /* Wanted posts */
     {
         price: "£7/h+tips",
@@ -63,6 +73,12 @@ var posts = [
     },
     /* Rent posts */
     {
+        // Linh Chu's ad - first "user" ever
+        price: "Short-term",
+        ago: "a moment ago",
+        description: "Amazing cosy <b>semi-studio to let - Bond Street/Baker Street area, for maximum 3 weeks in June</b>. Fully furnished - double bed, Wifi, kitchenette, sofa available.  Amazing area, very good security, 5 mins to Baker Street Station, 7 mins to Bond Street Station – and 3 mins to Selfridges. <b>[Real advert - email to us at ukspringroll@gmail to learn more!]</b>",
+        type: "rent"
+    }, {
         price: "£500pcm",
         ago: "2 days ago",
         description: "<b>Double room for rent</b> in Hackney E2. Suitable for couples. Very close to large supermarkets (Tesco, Asda), Vietnamese shops and restaurants. Buses: <b>149, 67, 242</b>. Nearby stations: <b>Hoxton, Shoreditch High Street</b>",
