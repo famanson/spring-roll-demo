@@ -130,19 +130,74 @@ var posts = [
     },
     /* Wanted posts */
     {
+        price: "Wanted!",
+        ago: "a moment ago",
+        description: "<b>Project Spring Rolls</b> looking for talented Vietnamese IT <b>students and professionals</b> around the UK to join their team to make an awesome new replacement for the current SVUK Marketplace (what you are looking at here is only 10% of what's involved) <b>[Real advert - send your CV to ukspringroll@gmail.com today!]</b>",
+        type: "wanted"
+    }, {
+        price: "Wanted!",
+        ago: "a moment ago",
+        description: "<b>Ocado Technology</b> now recruiting for (Graduate) Software Engineers</b>. Suitable candidate should have good problem-solving skills and a strong programming background. Perks: we have unlimited coffee and free bananas! Oh, also competitive salary <b>[Real advert - send me a message at son.pham@ocado.com]</b>",
+        type: "wanted"
+    }, {
         price: "£7/h+tips",
-        ago: "today",
+        ago: "1 day ago",
         description: "<b>Waiter needed</b> for a Vietnamese restaurant in South London. Valid ID and work permit (especially students) required. No experience needed, training will be included. Both full-time and part-time are welcomed.",
         type: "wanted"
     }, {
         price: "Wanted!",
         ago: "1 day ago",
-        description: "<b>Man and van wanted!</b> We are 4 students and need to move to our new place across town in London early in June. Prices can be negotiable!",
+        description: "<b>Shop in South London looking for a full-time nail technician</b>. Travel and accommodation are included. Valid work permit is a must-have.",
         type: "wanted"
     }, {
         price: "£20/h",
         ago: "1 day ago",
-        description: "<b>Looking for a home tutor</b> to teach Vietnamese to kids. <b>Two 2-hour lessons a week</b> Professional preferred, but students will also be considered.",
+        description: "<b>Looking for a home tutor</b> in London area to teach Vietnamese to our kids, especially reading and writing skills. <b>Two 2-hour lessons a week</b>. Professional preferred, but students will also be considered.",
+        type: "wanted"
+    }, {
+        price: "Wanted!",
+        ago: "3 days ago",
+        description: "I am <b>looking for a used iPad</b>, preferably one with both WiFi and 3G capabilities and no more than 2 years old. <b>Willing to pay for postage if not located in London area.</b> Prices can be negotiated. Thanks!",
+        type: "wanted"
+    }, {
+        price: "Wanted!",
+        ago: "2 days ago",
+        description: "<b>Taxi for airport pickup!</b> Need to pick up a relative coming from Vietnam <b>at Gatwick Airport on Friday morning</b> to North London. Please get back to me ASAP!",
+        type: "wanted"
+    }, {
+        price: "Wanted!",
+        ago: "6 days ago",
+        description: "<b>London Viet football team recruiting!</b> Our team is looking for a goalkeeper. We play regularly every Sunday at the Queensbridge pitch at 2pm. Bring your boots and gloves over for a trial!",
+        type: "wanted"
+    }, {
+        price: "£25/h",
+        ago: "2 days ago",
+        description: "NGO headquartered in London <b>Looking for a transcriptor</b>. Responsibilities include translating various Vietnamese video clips into English and assist with adding and editing captions. <b>Those that can work well with the Southern dialect are preferred.</b> Travel costs will also be reimbursed",
+        type: "wanted"
+    }, {
+        price: "Wanted!",
+        ago: "6 days ago",
+        description: "Professional photographer in London looking for <b>a model in traditional dress photoshoot</b> on 24th May. London area only.",
+        type: "wanted"
+    }, {
+        price: "£15/h",
+        ago: "4 days ago",
+        description: "Looking for a Maths home tutor for AS student in South London, covering <b>core mathematics and statistics modules</b>. University students with good English skills are most welcomed. 3 or 4 hours of lessons a week.",
+        type: "wanted"
+    }, {
+        price: "£25k",
+        ago: "4 days ago",
+        description: "We are a <b>Vietnamese restaurant in West London</b> looking for a full-time chef. Up to 48 working hours expected a week. Free meals provided on shifts, plus discounts and more perks.",
+        type: "wanted"
+    }, {
+        price: "£9/h",
+        ago: "2 days ago",
+        description: "Parents in Northwest London looking for <b>a part-time babysitter for our kids</b>. Because we are both on shifts, we need somebody to look after our 2 kids on Tuesday and Thursday nights in July.",
+        type: "wanted"
+    }, {
+        price: "£7.5/h+tips",
+        ago: "5 days ago",
+        description: "Saigon restaurant looking for <b>part-time waiters</b>. Students are welcomed, and <b>training will be provided if necessary</b>, but experience is an advantage. Valid work permit or visa must be presented",
         type: "wanted"
     },
     /* Rent posts */
