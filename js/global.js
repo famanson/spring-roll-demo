@@ -124,7 +124,7 @@ var posts = [
         images: [
             {
                 title: "bosch",
-                url: "http://content.aolstatic.net/ProductImages/rvmedium/WAE24061GB_WH_WASHINGMACHINE_FR_M_p.jpg"
+                url: "http://productimages.euronics.co.uk/Bosch296WAB28061GB-0876.jpg"
             }
         ]
     },
