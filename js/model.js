@@ -116,9 +116,14 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
             $scope.populateByType(popType);
         }
     };
-    
+    // Images used for post overlay
+    $scope.postImages = [];
+    $scope.hasImages = function(post) {
+        return post !== null && 'images' in post;
+    };
     $scope.selectPost = function(post) {
         post = (post !== null && post.type === 'compose') ? null : post;
+        $scope.postImages = $scope.hasImages(post) ? post.images : [];
         $scope.selected_post = post;
     };
 
@@ -210,16 +215,6 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     };
     
     /* Image picker in overlay */
-    $scope.postImages = [
-        {
-            title: "nyan",
-            url: "http://images.dailytech.com/nimage/Nyan_Cat_Wide.jpg"
-        }, {
-            title: "obama",
-            url: "http://img1.wikia.nocookie.net/__cb20140203020138/nickfanon/images/4/47/Obama_not_bad.jpg"
-        }
-    ];
-    $scope.pickedImage = $scope.postImages[1];
     $scope.fullImagePicked = false;
     $scope.setPostImage = function(image) {
         $scope.pickedImage = image;

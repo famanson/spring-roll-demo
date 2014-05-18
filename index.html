@@ -100,7 +100,7 @@
                     <div ng-include="'compose.html'" ng-if="post.type === 'compose'"></div>
                     <div ng-if="post.type != 'longdan' && post.type != 'compose'">
                         <span class="price">{{ post.price }}</span>
-                        <span class="image-icon"><img src="images/image-icon.png"/></span>
+                        <span class="image-icon" ng-if="hasImages(post)"><img src="images/image-icon.png"/></span>
                         <span class="time">{{ post.ago }}</span>
                         <div class="description" ng-bind-html="post.description"></div>
                     </div>
