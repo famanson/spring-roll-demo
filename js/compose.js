@@ -97,8 +97,9 @@ app.controller("ComposeCtrl", function($scope) {
     };
     $scope.submitPost = function() {
         if ($scope.isOkayToSubmit()) {
-            console.log($scope.submittedPrice);
-            if ($scope.checkCategory("wanted") && $scope.submittedPrice.match(/^wanted(!)*$/gi)) {
+            if ($scope.checkCategory("sale") && $scope.submittedPrice === "£0") {
+                $scope.submittedPrice = "Free!";
+            } else if ($scope.checkCategory("wanted") && $scope.submittedPrice.match(/^wanted(!)*$/gi)) {
                 $scope.submittedPrice = "Wanted!";
             } else if ($scope.checkCategory("rent") && $scope.submittedPrice.match(/^short(-|\ )?term$/gi)) {
                 $scope.submittedPrice = "Short-term";
@@ -135,7 +136,9 @@ app.controller("ComposeCtrl", function($scope) {
         $scope.warningsActive = active;
     };
     $scope.priceGuideText = function() {
-        if ($scope.checkCategory("wanted")) {
+        if ($scope.checkCategory("sale")) {
+            return " (want to give something away? type \"£0\")";
+        } else if ($scope.checkCategory("wanted")) {
             return " (or type \"Wanted!\" if unsure)";
         } else if ($scope.checkCategory('rent')) {
             return " (or type \"long-term/short-term\" if unsure)";
