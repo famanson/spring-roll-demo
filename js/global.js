@@ -173,11 +173,51 @@ var posts = [
         description: "<b>1-bedroom apartment</b>, Canada Water. Central area with all large shops, London's financial offices and major public transport links within walking distance. <b>Best suited for a single professional</b>.",
         type: "rent"
     }, {
+        price: "£800pcm",
+        ago: "2 days ago",
+        description: "<b>Spacious 1-bedroom flat in Hertfordshire</b>, very conveniently located near the A414, with easy access to major public transport links. Easy to commute to either London or Hatfield Business Park. <b>All bills included</b>",
+        type: "rent"
+    }, {
+        price: "£550pcm",
+        ago: "2 days ago",
+        description: "<b>King-sized double bedroom in a 4-bedroom house, London</b>, including water bill. Located very near to Westminster University, Sainsbury's, and local shops. Fully furnished, very well-equipped kitchen. Suitable for a couple.",
+        type: "rent"
+    }, {
+        price: "£400pcm",
+        ago: "3 days ago",
+        description: "East Hounslow, <b>2 single rooms available in a student's house</b>. Very near to Tesco, local shops, and the train and tube stations. Fast WiFi, very good shared kitchen and large common area. <b>Available from August</b>, contact now to arrange viewings",
+        type: "rent"
+    }, {
+        price: "£500pcm",
+        ago: "3 days ago",
+        description: "<b>Semi-detached house to rent</b> 2 double rooms and 1 en suite room with a shared kitchen. Common area includes a large dining table with a TV. All bills (Internet, water, gas, electricity) are included. 10-minute walk away from Bank station, and 5 minutes from local shops. <b>Must see!</b>",
+        type: "rent"
+    }, {
+        price: "£250pcm",
+        ago: "4 days ago",
+        description: "<b>2/5 double rooms available in large students' house</b> in Zone 3, London. 2 modern showers and a large, fully-equipped kitchen to share. Water and gas bill included. Conveniently located very near to large shopping mall and central bus station.",
+        type: "rent"
+    }, {
+        price: "Short-term",
+        ago: "4 days ago",
+        description: "Going back to Vietnam on holiday so I am going to <b>sublet my flat near Oxford Circus from 10 June to 12 Sep</b>. It is a 2-bedroom flat (not sharing with anyone), very nice kitchen and showers, optical fibre Internet. <b>Suitable for students interning in London or a family on vacation</b>",
+        type: "rent"
+    }, {
+        price: "£850",
+        ago: "2 days ago",
+        description: "<b>Amazing studio flat available from July 2014</b> in Central London. A recently refurbished flat with a double bed, modern kitchenette and shower. One station away from the financial blocks. Professional only please. <b>All bills are included</b>",
+        type: "rent"
+    }, {
+        price: "£350",
+        ago: "2 days ago",
+        description: "<b>Looking for a female room-mate to share a large double room</b> in a students' house in East London. There is a large common area and a great kitchen shared among 3 others. Conveniently located near Chinese shops and a Tesco Metro. <b>Best suited for UCL students</b>",
+        type: "rent"
+    }, {
         price: "£1500pcm",
         ago: "1 day ago",
         description: "<b>4-bedroom house</b> Greenwich SE10. Very near to Greenwich uni. Close to Greenwich station, Tesco and Chinese shop. Viewing arrangements welcomed.",
         type: "rent"
-    },
+    }, 
     /* Longdan posts */
     {
         id: 1,
