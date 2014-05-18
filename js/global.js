@@ -111,6 +111,22 @@ var posts = [
                 url: "http://www.tpcdb.com/images/products/1000/1125.jpg"
             }
         ]
+    }, {
+        price: "Free!",
+        ago: "3 days ago",
+        description: "<b>Giveaway: set of white goods and cutlery</b>, London. The reason for this is because we are moving back to Vietnam so there is no point in bringing all of these with us. For more details about the quantity etc please contact. <b>No delivery, collection only</b>",
+        type: "sale"
+    }, {
+        price: "£180",
+        ago: "6 days ago",
+        description: "<b>Bosch Maxx washing machine</b> for sale (North London). 6kg wash load, very simple to use, no fancy features. If you need we can arrange to deliver it to your place (<b>London only</b>), otherwise, collection in person please",
+        type: "sale",
+        images: [
+            {
+                title: "bosch",
+                url: "http://content.aolstatic.net/ProductImages/rvmedium/WAE24061GB_WH_WASHINGMACHINE_FR_M_p.jpg"
+            }
+        ]
     },
     /* Wanted posts */
     {
