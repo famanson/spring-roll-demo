@@ -125,7 +125,13 @@
                         <div class="overlay-full-image overlay_content" >
                             <div class="image-wrapper">
                                 <a class="post-close" title="Close" ng-click="setFullImagePicked(false);"><img src="./images/close.png"></a>
-                                <img ng-src="{{ pickedImage.url }}" ng-click="cycleImages()"/>
+                                <img ng-src="{{ pickedImage.url }}" ng-click="cycleImages(true)"/>
+                                <a class="nav post-next" title="Next Photo" ng-click="cycleImages(true)">
+                                    <img src="./images/api-popup/next.png">
+                                </a>
+                                <a class="nav post-prev" title="Previous Photo" ng-click="cycleImages(false)">
+                                    <img src="./images/api-popup/prev.png">
+                                </a>
                             </div>
                             <div class="clear"></div>
                         </div>

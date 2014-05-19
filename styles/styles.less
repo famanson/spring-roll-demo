@@ -378,38 +378,59 @@ body {
                     margin: 5px;
                 }
             }
-
-                .overlay-full-image {
-                    background-color: transparent;
-                    padding: 0;
-                    width: auto;
-                    text-align: center;
-                    .image-wrapper {
-                        display: inline-block;
-                        position: relative;
-                        img {
-                            max-height: 80%;
-                            max-width: 800px;
-                            display: block;
-                            margin-left: auto;
-                            margin-right: auto;
-                        }
+            .overlay-full-image {
+                background-color: transparent;
+                padding: 0;
+                width: auto;
+                text-align: center;
+                .image-wrapper {
+                    display: inline-block;
+                    position: relative;
+                    img {
+                        max-height: 80%;
+                        max-width: 800px;
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto;
                     }
                 }
+            }
         }
         .post-close {
-                position: absolute;
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 5px;
+            font-size: 12px;
+            border-radius: 20px;
+            color: #888;
+            cursor: pointer;
+            img {
+                height: 18px;
+            }
+        }
+        .nav {
+            color: #fff;
+            position: absolute;
+            top: 50%;
+            &.post-next {
                 right: 0;
-                top: 0;
-                padding: 5px;
-                font-size: 12px;
-                border-radius: 20px;
-                color: #888;
-                cursor: pointer;
                 img {
-                    height: 18px;
+                    margin-left: -30px;
                 }
             }
+            &.post-prev {
+                left: 0;
+                img {
+                    margin-left: 30px;
+                }
+            }
+            img {
+                height: 30px;
+                background: rgba(255, 255, 255, 60%);
+                border-radius: 20px;
+            }
+        }
     }
 }
 
