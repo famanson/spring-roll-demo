@@ -11,3 +11,8 @@ $(document).on('scroll', function() {
         $('#ld-header').removeClass("fixed");
     }
 });
+
+var pastSearches = [];
+var updatePastSearches = function(searchTerm) {
+    // update pastSearches here
+};
