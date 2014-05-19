@@ -15,4 +15,10 @@ $(document).on('scroll', function() {
 var pastSearches = [];
 var updatePastSearches = function(searchTerm) {
     // update pastSearches here
+    if (pastSearches.length < 10) {
+        pastSearches.unshift(searchTerm);
+    } else {
+        pastSearches.splice(9,1);
+        pastSearches.unshift(searchTerm);
+    }
 };
