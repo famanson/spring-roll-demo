@@ -112,7 +112,7 @@
         
         <!-- Modal post display -->
         <div class="overlay" ng-class="{ active : selected_post != null }">
-            <div class="overlay_content" >
+            <div class="overlay_content">
                 <a class="post-close" title="Close" ng-click="selectPost(null)"><img src="./images/close.png"/></a>
                 <div class="post" ng-model="selected_post" ng-click="$event.stopPropagation()">
                     <span class="price">{{ selected_post.price }}</span>
@@ -123,8 +123,10 @@
                     <!-- An overlay within an overlay... -->
                     <div class="overlay" ng-class="{ active : fullImagePicked }">
                         <div class="overlay-full-image overlay_content" >
-                            <a class="post-close" title="Close" ng-click="setFullImagePicked(false);"><img src="./images/close.png"/></a>
-                            <img ng-src="{{ pickedImage.url }}" ng-click="cycleImages()"/>
+                            <div class="image-wrapper">
+                                <a class="post-close" title="Close" ng-click="setFullImagePicked(false);"><img src="./images/close.png"></a>
+                                <img ng-src="{{ pickedImage.url }}" ng-click="cycleImages()"/>
+                            </div>
                             <div class="clear"></div>
                         </div>
                     </div>
