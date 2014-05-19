@@ -56,7 +56,7 @@ var posts = [
         images: [
             {
                 title: "40d",
-                url: "http://fieldherper.com/fieldherper/wp-content/uploads/2008/02/canon_40d-intro.jpg"
+                url: "http://upload.wikimedia.org/wikipedia/commons/3/36/Canon_EOS_40D_with_EF_50mm_f1.4_USM.jpg"
             }
         ]
     }, {
@@ -72,7 +72,7 @@ var posts = [
         images: [
             {
                 title: "front",
-                url: "http://www.notebookcheck.net/uploads/tx_nbc2/lenoX121E_3.jpg"
+                url: "http://www.ixbt.com/portopc/lenovo/thinkpad-x121e/big/45view-1620.jpg"
             }, {
                 title: "closed",
                 url: "http://assets.vr-zone.net/13556/ThinkPadX121e.jpg"
@@ -108,7 +108,7 @@ var posts = [
         images: [
             {
                 title: "ps3",
-                url: "http://www.tpcdb.com/images/products/1000/1125.jpg"
+                url: "http://www.getitnow.gr/MEDIA/content_CustomProductCatalog/m1650420pp_Sony-PlayStation-3-Slim-320GB-1440.jpg"
             }
         ]
     }, {
@@ -124,25 +124,60 @@ var posts = [
         images: [
             {
                 title: "bosch",
-                url: "http://content.aolstatic.net/ProductImages/rvmedium/WAE24061GB_WH_WASHINGMACHINE_FR_M_p.jpg"
+                url: "http://productimages.euronics.co.uk/Bosch296WAB28061GB-0876.jpg"
             }
         ]
     },
     /* Wanted posts */
     {
-        price: "£7/h+tips",
-        ago: "today",
-        description: "<b>Waiter needed</b> for a Vietnamese restaurant in South London. Valid ID and work permit (especially students) required. No experience needed, training will be included. Both full-time and part-time are welcomed.",
+        price: "Wanted!",
+        ago: "a moment ago",
+        description: "<b>Project Spring Rolls</b> looking for talented Vietnamese IT <b>students and professionals</b> around the UK to join their team to make an awesome new replacement for the current SVUK Marketplace (what you are looking at here is only 10% of what's involved) <b>[Real advert - send your CV to ukspringroll@gmail.com today!]</b>",
         type: "wanted"
     }, {
         price: "Wanted!",
+        ago: "a moment ago",
+        description: "<b>Ocado Technology</b> now recruiting for (Graduate) Software Engineers</b>. Suitable candidate should have good problem-solving skills and a strong programming background. Perks: we have unlimited coffee and free bananas! Oh, also competitive salary <b>[Real advert - send me a message at son.pham@ocado.com]</b>",
+        type: "wanted"
+    }, {
+        price: "£7/h+tips",
         ago: "1 day ago",
-        description: "<b>Man and van wanted!</b> We are 4 students and need to move to our new place across town in London early in June. Prices can be negotiable!",
+        description: "<b>Waiter needed</b> for a Vietnamese restaurant in South London. Valid ID and work permit (especially students) required. No experience needed, training will be included. Both full-time and part-time are welcomed.",
         type: "wanted"
     }, {
         price: "£20/h",
         ago: "1 day ago",
-        description: "<b>Looking for a home tutor</b> to teach Vietnamese to kids. <b>Two 2-hour lessons a week</b> Professional preferred, but students will also be considered.",
+        description: "<b>Looking for a home tutor</b> in London area to teach Vietnamese to our kids, especially reading and writing skills. <b>Two 2-hour lessons a week</b>. Professional preferred, but students will also be considered.",
+        type: "wanted"
+    }, {
+        price: "Wanted!",
+        ago: "3 days ago",
+        description: "I am <b>looking for a used iPad</b>, preferably one with both WiFi and 3G capabilities and no more than 2 years old. <b>Willing to pay for postage if not located in London area.</b> Prices can be negotiated. Thanks!",
+        type: "wanted"
+    }, {
+        price: "Wanted!",
+        ago: "2 days ago",
+        description: "<b>Taxi for airport pickup!</b> Need to pick up a relative coming from Vietnam <b>at Gatwick Airport on Friday morning</b> to North London. Please get back to me ASAP!",
+        type: "wanted"
+    }, {
+        price: "£15/h",
+        ago: "4 days ago",
+        description: "Looking for a Maths home tutor for AS student in South London, covering <b>core mathematics and statistics modules</b>. University students with good English skills are most welcomed. 3 or 4 hours of lessons a week.",
+        type: "wanted"
+    }, {
+        price: "£25k",
+        ago: "4 days ago",
+        description: "We are a <b>Vietnamese restaurant in West London</b> looking for a full-time chef. Up to 48 working hours expected a week. Free meals provided on shifts, plus discounts and more perks.",
+        type: "wanted"
+    }, {
+        price: "£9/h",
+        ago: "2 days ago",
+        description: "Parents in Northwest London looking for <b>a part-time babysitter for our kids</b>. Because we are both on shifts, we need somebody to look after our 2 kids on Tuesday and Thursday nights in July.",
+        type: "wanted"
+    }, {
+        price: "£7.5/h+tips",
+        ago: "5 days ago",
+        description: "Saigon restaurant looking for <b>part-time waiters</b>. Students are welcomed, and <b>training will be provided if necessary</b>, but experience is an advantage. Valid work permit or visa must be presented",
         type: "wanted"
     }, {
         price: "£10/h",
@@ -150,12 +185,7 @@ var posts = [
         description: "A <b>babysitter</b> for an <b>8-year-old boy</b> is wanted near SW8. Have to be friendly, responsible and great with kids. Must have a CRB check. Experience is preferred but not required.",
         type: "wanted"
     }, {
-        price: "Unpaid",
-        ago: "7 days ago",
-        description: "A Vietnamese Buddhist Temple near Elephant & Castle is looking for a <b>volunteer to help out with book-keeping</b>. Work will be done mostly from home. If travel is required, all the expenses will be reimbursed.",
-        type: "wanted"
-    }, {
-        price: "Up to £500",
+        price: "Wanted!",
         ago: "5 days ago",
         description: "I am looking for a <b>second-hand piano</b> for my home studio. Price can be negotiated but preferably below £500. Please get in touch by emailing theNextMozart@gmail.com. Thanks.",
         type: "wanted"
@@ -177,7 +207,7 @@ var posts = [
     }, {
         price: "£100",
         ago: "1 day ago",
-        description: "I need a <b>proof-reader for my Masters dissertation in Politics</b>. It's 20k word long and is worth 40% of my final grade so people with a <b>proven track record</b> of doing this kind of word would definitely prefered.",
+        description: "I need a <b>proof-reader for my Masters dissertation in Politics</b>. It's 20,000 word long and is worth 40% of my final grade so people with a <b>proven track record</b> of doing this kind of word would definitely prefered.",
         type: "wanted"
     }, {
         price: "£15/h",
@@ -185,14 +215,14 @@ var posts = [
         description: "We need someone to <b>translate basic product descriptions from English to Vietnamese</b> for some of our products. The items are adhesives and tapes sold business to business so there will be <b>some technical terminologies</b> that you need to be familiar with but nothing a quick search on Google can't solve.",
         type: "wanted"
     }, {
-        price: "Upon request",
+        price: "Wanted!",
         ago: "6 days ago",
         description: "We are an UK-based company looking for a <b>Social Media Moderator</b> for our Facebook page in Vietnamese. Ideally you would have a degree or are studying towards one in <b>Marketing</b> or related subjects. The Social Media Moderator will serve as the day-to-day engagement and conversation specialist for our Facebook page, helping to enhance the overall image of the company through direct personal engagement with the customers.",
         type: "wanted"
     }, {
-        price: "£7/kg",
+        price: "£7",
         ago: "3 days ago",
-        description: "I have <b>4kgs of goods (mainly clothes and skincare products)</b> to send home. If you have some spare space in your luggage, please get in touch.",
+        description: "I have <b>4kgs of goods (mainly clothes and skincare products)</b> to send home. If you have some spare space in your luggage, please get in touch. I am willing to pay up to £7/kg",
         type: "wanted"
     },
     
@@ -260,11 +290,51 @@ var posts = [
             }
         ]
     }, {
-        price: "£135pw",
+        price: "£800pcm",
+        ago: "2 days ago",
+        description: "<b>Spacious 1-bedroom flat in Hertfordshire</b>, very conveniently located near the A414, with easy access to major public transport links. Easy to commute to either London or Hatfield Business Park. <b>All bills included</b>",
+        type: "rent"
+    }, {
+        price: "£550pcm",
+        ago: "2 days ago",
+        description: "<b>King-sized double bedroom in a 4-bedroom house, London</b>, including water bill. Located very near to Westminster University, Sainsbury's, and local shops. Fully furnished, very well-equipped kitchen. Suitable for a couple.",
+        type: "rent"
+    }, {
+        price: "£400pcm",
+        ago: "3 days ago",
+        description: "East Hounslow, <b>2 single rooms available in a student's house</b>. Very near to Tesco, local shops, and the train and tube stations. Fast WiFi, very good shared kitchen and large common area. <b>Available from August</b>, contact now to arrange viewings",
+        type: "rent"
+    }, {
+        price: "£500pcm",
+        ago: "3 days ago",
+        description: "<b>Semi-detached house to rent</b> 2 double rooms and 1 en suite room with a shared kitchen. Common area includes a large dining table with a TV. All bills (Internet, water, gas, electricity) are included. 10-minute walk away from Bank station, and 5 minutes from local shops. <b>Must see!</b>",
+        type: "rent"
+    }, {
+        price: "£250pcm",
+        ago: "4 days ago",
+        description: "<b>2/5 double rooms available in large students' house</b> in Zone 3, London. 2 modern showers and a large, fully-equipped kitchen to share. Water and gas bill included. Conveniently located very near to large shopping mall and central bus station.",
+        type: "rent"
+    }, {
+        price: "Short-term",
+        ago: "4 days ago",
+        description: "Going back to Vietnam on holiday so I am going to <b>sublet my flat near Oxford Circus from 10 June to 12 Sep</b>. It is a 2-bedroom flat (not sharing with anyone), very nice kitchen and showers, optical fibre Internet. <b>Suitable for students interning in London or a family on vacation</b>",
+        type: "rent"
+    }, {
+        price: "£850",
+        ago: "2 days ago",
+        description: "<b>Amazing studio flat available from July 2014</b> in Central London. A recently refurbished flat with a double bed, modern kitchenette and shower. One station away from the financial blocks. Professional only please. <b>All bills are included</b>",
+        type: "rent"
+    }, {
+        price: "£350",
+        ago: "2 days ago",
+        description: "<b>Looking for a female room-mate to share a large double room</b> in a students' house in East London. There is a large common area and a great kitchen shared among 3 others. Conveniently located near Chinese shops and a Tesco Metro. <b>Best suited for UCL students</b>",
+        type: "rent"
+    }, {
+        price: "£1500pcm",
         ago: "1 day ago",
         description: "A single room with a beautiful park nearby. It's a stone throw from Hackney city centre and is quite easy to get to anywhere in London. Minimum term is 8 months. Room is only for one person i. e. no couples/sharers",
         type: "rent"
-    },
+    }, 
     /* Longdan posts */
     {
         id: 1,
