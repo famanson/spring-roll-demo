@@ -10,3 +10,8 @@ String.prototype.format = function() {
     }
     return formatted;
 };
+
+String.prototype.escapeRegex = function() {
+    var str = this;
+    return (str+'').replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1");
+};

@@ -52,7 +52,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
             if (isSearchEnabled()) {
                 // Quick cheap text sanitization
                 var sanitized = $("<div>" + text + "</div>").text();
-                return sanitized.toLowerCase().search(searchedText.toLowerCase()) != -1;
+                return sanitized.toLowerCase().search(searchedText.escapeRegex().toLowerCase()) != -1;
             } else {
                 return true;
             }
