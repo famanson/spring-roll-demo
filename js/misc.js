@@ -15,10 +15,17 @@ $(document).on('scroll', function() {
 var pastSearches = [];
 var updatePastSearches = function(searchTerm) {
     // update pastSearches here
-    if (pastSearches.length < 10) {
+    if (pastSearches.indexOf(searchTerm) != -1) {
+        // if searchTerm is not found in current array
+        if (pastSearches.length < 10) {
+            pastSearches.unshift(searchTerm);
+        } else {
+        pastSearches.pop();
         pastSearches.unshift(searchTerm);
+        }
     } else {
-        pastSearches.splice(9,1);
+        // if searchTerm is found, drop it from current and add it back at the start of array
+        pastSearches.splice(pastSearches.indexOf(searchTerm),1);
         pastSearches.unshift(searchTerm);
     }
 };
