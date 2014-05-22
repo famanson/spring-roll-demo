@@ -251,4 +251,9 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
             $scope.pastSearches.unshift(searchedText);
         }
     };
+    
+    $scope.pastSearchesVisible = false;
+    $scope.setPastSearchesVisible = function(visible) {
+        $scope.pastSearchesVisible = visible;
+    };
 });
