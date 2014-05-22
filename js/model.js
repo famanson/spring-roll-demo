@@ -236,6 +236,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     $scope.pastSearches = [];
     $scope.updatePastSearches = function(searchedText) {
     // update pastSearches here
+        console.log($scope.pastSearches);
         if ($scope.pastSearches.indexOf(searchedText) == -1) {
             // if searchedText is not found in current array
             if ($scope.pastSearches.length < 10) {
