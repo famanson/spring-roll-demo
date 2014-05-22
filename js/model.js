@@ -236,20 +236,16 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     $scope.pastSearches = [];
     $scope.updatePastSearches = function(searchedText) {
     // update pastSearches here
-        console.log($scope.pastSearches);
-        if ($scope.pastSearches.indexOf(searchedText) == -1) {
-            // if searchedText is not found in current array
-            if ($scope.pastSearches.length <= 10) {
-                $scope.pastSearches.unshift(searchedText);
-            } else {
-                $scope.pastSearches.pop();
-                $scope.pastSearches.unshift(searchedText);
-            }
-        } else {
-            // if searchedText is found, drop it from current and add it back at the start of array
+        if ($scope.pastSearches.indexOf(searchedText) != -1) {
+            // if searchedText is found, drop it from current
             $scope.pastSearches.splice($scope.pastSearches.indexOf(searchedText),1);
-            $scope.pastSearches.unshift(searchedText);
+        } else {
+            // if searchedText is not found in current array, chop the last element if length >= 10
+            if ($scope.pastSearches.length >= 10) {
+                $scope.pastSearches.pop();
+            }    
         }
+        $scope.pastSearches.unshift(searchedText);
     };
     
     $scope.pastSearchesVisible = false;
