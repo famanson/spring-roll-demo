@@ -38,7 +38,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         $scope.searchedText = "";
         $scope.emptyColumns();
         $scope.repopulate();
-    }
+    };
     // Method for dynamically populate page, mainly used for search
     $scope.repopulate = function() {
         console.log($scope.searchedText);
@@ -230,5 +230,24 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         cycleIndex += cycleIndex < 0 ? $scope.postImages.length : 0;
         var next = cycleIndex % $scope.postImages.length;
         $scope.pickedImage = $scope.postImages[next];
+    };
+    
+    /*Enabling past searches*/
+    $scope.pastSearches = [];
+    $scope.updatePastSearches = function(searchedText) {
+    // update pastSearches here
+        if ($scope.pastSearches.indexOf(searchedText) == -1) {
+            // if searchedText is not found in current array
+            if ($scope.pastSearches.length < 10) {
+                $scope.pastSearches.unshift(searchedText);
+            } else {
+                $scope.pastSearches.pop();
+                $scope.pastSearches.unshift(searchedText);
+            }
+        } else {
+            // if searchedText is found, drop it from current and add it back at the start of array
+            $scope.pastSearches.splice($scope.pastSearches.indexOf(searchedText),1);
+            $scope.pastSearches.unshift(searchedText);
+        }
     };
 });
