@@ -70,7 +70,7 @@
                            placeholder="Search in {{ currentType.capitalise() }}">
                     <div style="position:absolute;background-color:#fff;width:150px;padding:5px;border:1px solid #000;z-index:1000;"
                          class="past-searches" ng-show="pastSearchesVisible">
-                        <p ng-repeat="/*fill in the blank*/">{{ search }}</p>
+                        <p ng-repeat="search in pastSearches">{{ search }}</p>
                         <p style="cursor:pointer;" class="dismiss-past-searches" ng-click="setPastSearchesVisible(false)"><u>dismiss</u></p>
                     </div>
                 </div>

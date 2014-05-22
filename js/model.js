@@ -239,7 +239,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         console.log($scope.pastSearches);
         if ($scope.pastSearches.indexOf(searchedText) == -1) {
             // if searchedText is not found in current array
-            if ($scope.pastSearches.length < 10) {
+            if ($scope.pastSearches.length <= 10) {
                 $scope.pastSearches.unshift(searchedText);
             } else {
                 $scope.pastSearches.pop();
