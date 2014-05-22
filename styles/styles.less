@@ -294,6 +294,9 @@ body {
             }
             p {
                 font-size: 16px;
+                .quick-mail {
+                    cursor: pointer;
+                }
             }
         }
     }
@@ -361,6 +364,23 @@ body {
                             margin: 0;
                             font-size: 14px;
                             padding: 2px;
+                            &.send, &.cancel {
+                                text-decoration: underline;
+                                cursor: pointer;
+                                float: right;
+                            }
+                            &.send {
+                                color: #7bc173;
+                                &:hover {
+                                    color: #649e5d;
+                                }
+                            }
+                            &.cancel {
+                                color: #F75454;
+                                &:hover {
+                                    color: #D64444;
+                                }
+                            }
                         }
 
                     }

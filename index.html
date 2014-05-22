@@ -25,7 +25,7 @@
             <div class="message-wrapper" ng-show="messageFormVisible">
                 <div class="message-form">
                     <div class="email">
-                        <label ng-click="setMessageFormVisible(false)">Email address:</label>
+                        <label>Email address:</label>
                         <input></input>
                     </div>
                     <div class="message">
@@ -33,6 +33,8 @@
                         <textarea></textarea>
                         <div class="bottom">
                             <input name="trap" type="text">
+                            <p ng-click="setMessageFormVisible(false)" class="cancel"><b>Cancel</b></p>
+                            <p class="send"><b>Send</b></p>
                         </div>
                     </div>
                 </div>
@@ -46,14 +48,14 @@
                     <p><a href="javascript:void(0)" ng-click="setIntroVisible(false);">Close this window</a></p>
                 </div>
                 <div class="social-images">
-                    <p>Like what we do? Find us on:</p>
+                    <p>Like what we do? <a class="quick-mail" ng-click="setMessageFormVisible(true)"><u><b>Say hello!</b></u></a></p>
+                    <p>You can also find us on:</p>
                     <a href="https://www.facebook.com/pages/Team-Spring-Roll/1412319192364606" target="_blank">
                         <img id="facebook-logo" src="./images/facebook-logo.png"/>
                     </a>
                     <a href="https://www.indiegogo.com/projects/project-spring-roll" target="_blank">
                         <img id="indiegogo-logo"src="./images/indiegogo.png"/>
                     </a>
-                    <p><a class="quick-mail" ng-click="setMessageFormVisible(true)">Or give us a shout</a></p>
                 </div>
                 <div class="clear"></div>
             </div>
