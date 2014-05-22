@@ -21,8 +21,8 @@
     </head>
     <body ng-controller="ListingsCtrl" ng-click="dismissNBox();setIntroVisible(false);" ng-class="{'no-scroll' : apiPopupEnabled}">
         <div class="DEBUG_baseline_grid enabled-{{ showGridLines }}" ></div>
-        <div class="intro" ng-show="introVisible" ng-click="$event.stopPropagation()">
-            <div class="message-wrapper"  ng-show="messageFormVisible">
+        <div class="intro" ng-show="introVisible" ng-click="$event.stopPropagation()" ng-class="{ 'message-form-included' : messageFormVisible }">
+            <div class="message-wrapper" ng-show="messageFormVisible">
                 <div class="message-form">
                     <div class="email">
                         <label ng-click="setMessageFormVisible(false)">Email address:</label>

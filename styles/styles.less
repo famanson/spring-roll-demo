@@ -601,11 +601,30 @@ body {
 .message-wrapper.ng-hide-add.ng-hide-add-active,
 .message-wrapper.ng-hide-remove {
     margin-top: -271px;
-    
 }
+
 .intro.ng-hide-remove.ng-hide-remove-active,
 .intro.ng-hide-add,
 .message-wrapper.ng-hide-remove.ng-hide-remove-active,
 .message-wrapper.ng-hide-add {
     margin-top: 0px;
+}
+
+.message-form-included.intro.ng-hide-add, .message-form-included.intro.ng-hide-remove {
+  -webkit-transition:all linear 0.5s;
+  -moz-transition:all linear 0.5s;
+  -o-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+  display:block!important;
+}
+
+.message-form-included {
+    &.intro.ng-hide-add.ng-hide-add-active,
+    &.intro.ng-hide-remove {
+        margin-top: -542px;
+    }
+    &.intro.ng-hide-remove.ng-hide-remove-active,
+    &.intro.ng-hide-add {
+        margin-top: 0px;
+    }
 }
