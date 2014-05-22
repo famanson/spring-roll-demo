@@ -22,8 +22,8 @@
     <body ng-controller="ListingsCtrl" ng-click="dismissNBox();setIntroVisible(false);" ng-class="{'no-scroll' : apiPopupEnabled}">
         <div class="DEBUG_baseline_grid enabled-{{ showGridLines }}" ></div>
         <div class="intro" ng-show="introVisible" ng-click="$event.stopPropagation()">
-            <div class="intro-wrapper">
-                <div class="message-form" ng-show="messageFormVisible">
+            <div class="message-wrapper"  ng-show="messageFormVisible">
+                <div class="message-form">
                     <div class="email">
                         <label ng-click="setMessageFormVisible(false)">Email address:</label>
                         <input></input>
@@ -36,14 +36,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="tag-lines" ng-show="!messageFormVisible">
+            </div>
+            <div class="intro-wrapper">
+                <div class="tag-lines">
                     <p>Hi! Welcome to our Project Spring Roll demo!</p>
                     <p>This is what the future SVUK Marketplace looks like</p>
                     <p>It won't work on mobile devices or save any changes</p>
                     <p>Hint: type "real" in our Search Box for real adverts</p>
                     <p><a href="javascript:void(0)" ng-click="setIntroVisible(false);">Close this window</a></p>
                 </div>
-                <div class="social-images" ng-show="!messageFormVisible">
+                <div class="social-images">
                     <p>Like what we do? Find us on:</p>
                     <a href="https://www.facebook.com/pages/Team-Spring-Roll/1412319192364606" target="_blank">
                         <img id="facebook-logo" src="./images/facebook-logo.png"/>
@@ -160,3 +162,4 @@
         </div>
     </body>
 </html>
+ 
