@@ -1,5 +1,9 @@
 /*jshint browser:true, jquery:true */
 
+$(document).ready(function() {
+    $(".bottom").append('<input name="chbox-captcha" type="checkbox"><p>Pinky-promise I\'m not a bot!</p>');
+});
+
 /* Fixes the category bar in Longdan tab */
 
 $(document).on('scroll', function() {

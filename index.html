@@ -23,14 +23,27 @@
         <div class="DEBUG_baseline_grid enabled-{{ showGridLines }}" ></div>
         <div class="intro" ng-show="introVisible" ng-click="$event.stopPropagation()">
             <div class="intro-wrapper">
-                <div class="tag-lines">
+                <div class="message-form" ng-show="messageFormVisible">
+                    <div class="email">
+                        <label ng-click="setMessageFormVisible(false)">Email address:</label>
+                        <input></input>
+                    </div>
+                    <div class="message">
+                        <label>Message:</label>
+                        <textarea></textarea>
+                        <div class="bottom">
+                            <input name="trap" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="tag-lines" ng-show="!messageFormVisible">
                     <p>Hi! Welcome to our Project Spring Roll demo!</p>
                     <p>This is what the future SVUK Marketplace looks like</p>
                     <p>It won't work on mobile devices or save any changes</p>
                     <p>Hint: type "real" in our Search Box for real adverts</p>
                     <p><a href="javascript:void(0)" ng-click="setIntroVisible(false);">Close this window</a></p>
                 </div>
-                <div class="social-images">
+                <div class="social-images" ng-show="!messageFormVisible">
                     <p>Like what we do? Find us on:</p>
                     <a href="https://www.facebook.com/pages/Team-Spring-Roll/1412319192364606" target="_blank">
                         <img id="facebook-logo" src="./images/facebook-logo.png"/>
@@ -38,7 +51,7 @@
                     <a href="https://www.indiegogo.com/projects/project-spring-roll" target="_blank">
                         <img id="indiegogo-logo"src="./images/indiegogo.png"/>
                     </a>
-                    <p><a href="mail-to:ukspringroll@gmail.com" target="_blank">ukspringroll@gmail.com</a> &copy; 2014</p>
+                    <p><a class="quick-mail" ng-click="setMessageFormVisible(true)">Or give us a shout</a></p>
                 </div>
                 <div class="clear"></div>
             </div>

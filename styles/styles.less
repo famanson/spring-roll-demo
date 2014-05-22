@@ -269,30 +269,99 @@ body {
             color: #fefefe;
         }
     }
-    .tag-lines {
-        float: left;
-        width: 50%;
-        padding: 50px 0;
-        p {
-            margin: 0 0 0 20px;
-            text-align: left;
-            padding: 5px 0;
-        }
-    }
-    .social-images {
-        width: 40%;
-        float: right;
-        padding: 40px 0;
-        margin-left: 40px;
-        a {
-            text-decoration:none;
-            img {
-                margin: 0 10px 0 0;
-                height: 80px;
+    .intro-wrapper div {
+        display: inline-block;
+        &.tag-lines {
+            width: 50%;
+            padding: 50px 0;
+            p {
+                margin: 0 0 0 20px;
+                text-align: left;
+                padding: 5px 0;
             }
         }
-        p {
-            font-size: 16px;
+        &.social-images {
+            width: 40%;
+            display: inline-block;
+            padding: 40px 0;
+            margin-left: 40px;
+            a {
+                text-decoration:none;
+                img {
+                    margin: 0 10px 0 0;
+                    height: 80px;
+                }
+            }
+            p {
+                font-size: 16px;
+            }
+        }
+        &.message-form {
+            height: 271px;
+            width: 70%;
+            margin: 0 15%;
+            div {
+                border-radius: 5px;
+                padding: 5px 10px;
+                width: 80%;
+                margin: 5px 10%;
+                background-color: #fff;
+                color: #649e5d;
+                &.email {
+                    margin-top: 10px;
+                    label {
+                        display: inline-block;
+                        width: 20%;
+                    }
+                    input {
+                        font-family: "Open Sans", Arial;
+                        font-weight: 300;
+                        color: #649e5d;
+                        display: inline-block;
+                        outline: none;
+                        border: none;
+                        width: 70%;
+                    }
+                }
+                &.message {
+                    label {
+                        display: block;
+                        width: 100%;
+                        border-bottom: 1px solid #7bc173;
+                        padding-bottom: 5px;
+                    }
+                    textarea {
+                        font-family: "Open Sans", Arial;
+                        color: #649e5d;
+                        outline: none;
+                        border: none;
+                        width: 100%;
+                        height: 150px;
+                        padding: 5px;
+                        resize: none;
+                    }
+                    .bottom {
+                        margin: 0;
+                        padding: 0;
+                        width: 100%;
+                        border-radius: 0;
+                        border-top: 1px solid #7bc173;
+                        input[name="chbox-captcha"] {
+                            float: left;
+                        }
+                        input[name="trap"] {
+                            display: none;
+                        }
+                        p {
+                            color: #F75454;
+                            margin: 0;
+                            font-size: 14px;
+                            padding: 2px;
+                        }
+                        
+                    }
+                }
+            }
         }
     }
 }
@@ -312,7 +381,6 @@ body {
 
     .price {
         font-family: "Open Sans", Arial;
-        font-weight: 300;
         color: @red;
         font-size: 1.8em;
         line-height: 100%;
@@ -525,10 +593,31 @@ body {
 
 .intro.ng-hide-add.ng-hide-add-active,
 .intro.ng-hide-remove {
-    margin-top: -270px;
+    margin-top: -271px;
     
 }
 .intro.ng-hide-remove.ng-hide-remove-active,
 .intro.ng-hide-add {
     margin-top: 0px;
+}
+
+.intro-wrapper div.ng-hide-add, .intro-wrapper div.ng-hide-remove {
+  -webkit-transition:all linear 0.5s;
+  -moz-transition:all linear 0.5s;
+  -o-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.intro-wrapper div.ng-hide-add.ng-hide-add-active {
+    opacity: 1;
+}
+.intro-wrapper div.ng-hide-remove {
+    opacity: 0;
+}
+.intro-wrapper div.ng-hide-remove.ng-hide-remove-active {
+    opacity: 0;
+}
+
+.intro-wrapper div.ng-hide-add {
+    opacity: 0;
 }

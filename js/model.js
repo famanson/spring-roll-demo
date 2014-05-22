@@ -214,6 +214,11 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         $scope.introVisible = visible;
     };
     
+    $scope.messageFormVisible = false;
+    $scope.setMessageFormVisible = function(visible) {
+        $scope.messageFormVisible = visible;
+    };
+    
     /* Image picker in overlay */
     $scope.fullImagePicked = false;
     $scope.setPostImage = function(image) {
