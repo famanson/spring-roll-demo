@@ -335,7 +335,8 @@ body {
                         display: inline-block;
                         outline: none;
                         border: none;
-                        max-width: 800px;
+                        max-width: 680px;
+                        min-width:10px;
                     }
                     .email-validation {
                         padding: 5px;
@@ -343,6 +344,13 @@ body {
                         background-color: #f86e6e;
                         color: #fff;
                         border-radius: 5px;
+                        &.valid {
+                            background-color: #7bc173;
+                        }
+                    }
+                    img.loading {
+                        height: 20px;
+                        position: absolute;
                     }
                 }
                 &.message {
