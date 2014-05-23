@@ -210,8 +210,8 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     
     /* Intro header */
     $scope.introVisible = false;
-    $scope.setIntroVisible = function(visible) {
-        $scope.introVisible = visible;
+    $scope.toggleIntro = function() {
+        $scope.introVisible = !$scope.introVisible;
     };
     
     /* Image picker in overlay */
