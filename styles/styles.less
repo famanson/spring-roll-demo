@@ -254,6 +254,9 @@ body {
     }
 }
 
+@intro_height: 271px;
+@message_height: 300px;
+
 .intro {
     .intro-wrapper {
         width: @grid_12;
@@ -297,6 +300,13 @@ body {
                 .quick-mail {
                     cursor: pointer;
                 }
+                img.drop-down {
+                    height: 20px;
+                    position: absolute;
+                    margin: 0 5px;
+                    background-color: #fff;
+                    border-radius: 10px;
+                }
             }
         }
     }
@@ -306,7 +316,7 @@ body {
         width: 990px;
         .message-form {
             width: 100%;
-            height: 271px;
+            height: @message_height;
             div {
                 border-radius: 5px;
                 padding: 5px 10px;
@@ -343,7 +353,7 @@ body {
                         outline: none;
                         border: none;
                         width: 100%;
-                        height: 150px;
+                        height: 200px;
                         padding: 5px;
                         resize: none;
                     }
@@ -617,10 +627,13 @@ body {
 }
 
 .intro.ng-hide-add.ng-hide-add-active,
-.intro.ng-hide-remove,
+.intro.ng-hide-remove {
+    margin-top: -@intro_height;
+}
+
 .message-wrapper.ng-hide-add.ng-hide-add-active,
 .message-wrapper.ng-hide-remove {
-    margin-top: -271px;
+    margin-top: -@message_height;
 }
 
 .intro.ng-hide-remove.ng-hide-remove-active,
@@ -641,7 +654,7 @@ body {
 .message-form-included {
     &.intro.ng-hide-add.ng-hide-add-active,
     &.intro.ng-hide-remove {
-        margin-top: -542px;
+        margin-top: -(@intro_height + @message_height);
     }
     &.intro.ng-hide-remove.ng-hide-remove-active,
     &.intro.ng-hide-add {
