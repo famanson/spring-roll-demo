@@ -14,6 +14,8 @@ app.controller("IntroCtrl", function($scope) {
             return "Message body is empty";
         } else if ($scope.validationResult != null && !$scope.validationResult.valid) {
             return "Please fix your email address";
+        } else {
+            return "Ready to send!";
         }
         
     };
@@ -67,7 +69,7 @@ app.controller("IntroCtrl", function($scope) {
         restrict: 'A',
         // responsible for registering DOM listeners as well as updating the DOM
         link: function(scope, element, attrs) {
-            $(element).autoGrow();
+            $(element).autoGrow(10);
         }
     };
 });
