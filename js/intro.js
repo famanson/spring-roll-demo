@@ -6,6 +6,17 @@ app.controller("IntroCtrl", function($scope) {
     $scope.setMessageFormVisible = function(visible) {
         $scope.messageFormVisible = visible;
     };
+    $scope.isReadyToSend = function() {
+        return $scope.validationResult != null && $scope.validationResult.valid && $scope.messageBody.length > 0;
+    };
+    $scope.messageWarningText = function() {
+        if ($scope.messageBody.length === 0) {
+            return "Message body is empty";
+        } else if ($scope.validationResult != null && !$scope.validationResult.valid) {
+            return "Please fix your email address";
+        }
+        
+    };
 }).directive('ngValidator', function() {
     return {
         // Restrict it to be an attribute in this case

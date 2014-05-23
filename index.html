@@ -2,6 +2,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
         <link rel="stylesheet/less" type="text/css" href="./styles/styles.less" />
+        <link rel="stylesheet/less" type="text/css" href="./styles/intro.less" />
         <link rel="stylesheet/less" type="text/css" href="./styles/longdan.less" />
         <link rel="stylesheet/less" type="text/css" href="./styles/compose.less" />
         
@@ -39,8 +40,9 @@
                     </div>
                     <div class="message">
                         <label><b>Message Body:</b></label>
-                        <span ng-show=""
-                              class="validation">
+                        <span ng-show="isReadyToSend()"
+                              class="validation" ng-class="{ 'valid': isReadyToSend() }">
+                            Ready to send!
                         </span>
                         <textarea ng-model="messageBody" placeholder="Hmm... Spring rolls are goooooood..."></textarea>
                         <div class="bottom">
