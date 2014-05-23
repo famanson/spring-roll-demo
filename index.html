@@ -28,7 +28,8 @@
                 <div class="message-form">
                     <div class="email">
                         <label><b>Email address:</b></label>
-                        <input id="email-address" ng-validator></input>
+                        <input ng-model="email" id="email-address" ng-validator></input>
+                        <span ng-show="email.length > 0 && validationResult != null" class="email-validation">{{ validationResult.valid }}</span>
                     </div>
                     <div class="message">
                         <label><b>Message Body:</b></label>
