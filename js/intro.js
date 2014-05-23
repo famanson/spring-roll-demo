@@ -1,23 +1,38 @@
 /* jshint browser:true, jquery:true */
-/* global app */
+/* global angular, app */
 
-app.controller("IntroCtrl", function($scope) {  
+app.controller("IntroCtrl", function($scope) {
+    $scope.botCheck = function() {
+        var chboxCaptcha = angular.element('input[name="chboxCaptcha"]').is(':checked'),
+            honeypotCaptcha = angular.element('input[name="trap"]').is(':checked');
+        return chboxCaptcha && !honeypotCaptcha;
+    };
     $scope.messageFormVisible = false;
     $scope.setMessageFormVisible = function(visible) {
         $scope.messageFormVisible = visible;
     };
     $scope.isReadyToSend = function() {
-        return $scope.validationResult != null && $scope.validationResult.valid && $scope.messageBody.length > 0;
+        return $scope.validationResult != null && $scope.validationResult.valid && 
+            $scope.messageBody != null && $scope.messageBody.length > 0 && $scope.botCheck();
     };
     $scope.messageWarningText = function() {
-        if ($scope.messageBody.length === 0) {
+        if ($scope.messageBody != null && $scope.messageBody.length === 0) {
             return "Message body is empty";
         } else if ($scope.validationResult != null && !$scope.validationResult.valid) {
             return "Please fix your email address";
-        } else {
+        } else if (!$scope.botCheck()) {
+            return "Prove that you're human! (Bottom-left checkbox)";
+        }else {
             return "Ready to send!";
         }
-        
+    };
+    $scope.send = function() {
+        if ($scope.validationResult.valid && $scope.messageBody.length > 0) {
+            if ($scope.botCheck()) {
+                // send!
+                console.log("Send!");
+            }
+        }
     };
 }).directive('ngValidator', function() {
     return {

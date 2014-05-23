@@ -30,7 +30,7 @@
                 <form name="messageForm" class="message-form">
                     <div class="email">
                         <label><b>Email address:</b></label>
-                        <input ng-model="email" id="email-address" ng-validator ng-autogrow></input>
+                        <input name="email" ng-model="email" id="email-address" ng-validator ng-autogrow></input>
                         <span ng-show="email.length>0 && validationResult!=null && !validationProgress"
                               class="validation" ng-class="{ 'valid': validationResult.valid }">
                             {{ validationResult.text }} 
@@ -46,9 +46,12 @@
                         </span>
                         <textarea name="messageBody" ng-model="messageBody" placeholder="Hmm... Spring rolls are goooooood..."></textarea>
                         <div class="bottom">
-                            <input name="trap" type="text">
+                            <input name="trap" type="checkbox">
                             <p ng-click="setMessageFormVisible(false)" class="cancel"><b>Close</b></p>
-                            <p class="send" ng-class="{ active: validationResult.valid && messageBody.length > 0 }"><b>Send</b></p>
+                            <p class="send" ng-class="{ active: validationResult.valid && messageBody.length > 0 }"
+                               ng-click="send()">
+                                <b>Send</b>
+                            </p>
                         </div>
                     </div>
                 </form>
