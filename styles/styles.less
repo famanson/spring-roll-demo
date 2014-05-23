@@ -322,13 +322,24 @@ body {
                 margin-bottom: 5px;
                 background-color: #fff;
                 color: #649e5d;
+                label {
+                    display: inline-block;
+                    width: 120px;
+                    padding: 0 5px 0px 5px;
+                }
+                .validation {
+                    padding: 5px;
+                    // invalid by default
+                    background-color: #f86e6e;
+                    color: #fff;
+                    border-radius: 5px;
+                    &.valid {
+                        background-color: #7bc173;
+                    }
+                }
                 &.email {
                     width: 100%;
-                    label {
-                        display: inline-block;
-                        width: 120px;
-                        padding: 0 5px 0px 5px;
-                    }
+                    
                     input {
                         font-size: 16px;
                         color: #649e5d;
@@ -338,15 +349,9 @@ body {
                         max-width: 680px;
                         min-width:10px;
                     }
-                    .email-validation {
-                        padding: 5px;
-                        // invalid by default
-                        background-color: #f86e6e;
-                        color: #fff;
-                        border-radius: 5px;
-                        &.valid {
-                            background-color: #7bc173;
-                        }
+                    .double-check {
+                        cursor: pointer;
+                        font-size: 14px;
                     }
                     img.loading {
                         height: 20px;
@@ -356,17 +361,17 @@ body {
                 &.message {
                     width: 100%;
                     label {
-                        display: block;
-                        width: 100%;
-                        border-bottom: 1px solid #7bc173;
-                        padding: 0 5px 5px 5px;
+                        margin: 5px 0;
                     }
                     textarea {
+                        border-top: 1px solid #7bc173;
+                        border-bottom: none;
+                        border-left: none;
+                        border-right: none;
                         font-family: Arial;
                         font-size: 16px;
                         color: #649e5d;
                         outline: none;
-                        border: none;
                         width: 100%;
                         height: 200px;
                         padding: 5px;
@@ -374,36 +379,43 @@ body {
                     }
                     .bottom {
                         margin: 0;
-                        padding: 0;
+                        padding: 5px 0 0 0;
                         width: 100%;
                         border-radius: 0;
                         border-top: 1px solid #7bc173;
                         input[name="chbox-captcha"] {
                             float: left;
+                            margin-top: 7px;
                         }
                         input[name="trap"] {
                             display: none;
                         }
                         p {
-                            color: #F75454;
+                            color: #f75454;
                             margin: 0;
                             font-size: 14px;
-                            padding: 2px;
+                            padding: 5px;
                             &.send, &.cancel {
-                                text-decoration: underline;
+                                color: #fff;
+                                font-style: normal;
                                 cursor: pointer;
                                 float: right;
+                                border-radius: 2px;
                             }
                             &.send {
-                                color: #7bc173;
-                                &:hover {
-                                    color: #649e5d;
+                                margin-right: 10px;
+                                background-color: #bbb;
+                                &.active {
+                                    background-color: #7bc173;
+                                    &:hover {
+                                        background-color: #649e5d;
+                                    }
                                 }
                             }
                             &.cancel {
-                                color: #F75454;
+                                background-color: #f75454;
                                 &:hover {
-                                    color: #D64444;
+                                    background-color: #d64444;
                                 }
                             }
                         }

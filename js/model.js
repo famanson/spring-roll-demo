@@ -208,17 +208,6 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         $scope.apiPopupViewed = viewed;
     };
     
-    /* Intro header */
-    $scope.introVisible = false;
-    $scope.setIntroVisible = function(visible) {
-        $scope.introVisible = visible;
-    };
-    
-    $scope.messageFormVisible = false;
-    $scope.setMessageFormVisible = function(visible) {
-        $scope.messageFormVisible = visible;
-    };
-    
     /* Image picker in overlay */
     $scope.fullImagePicked = false;
     $scope.setPostImage = function(image) {
@@ -234,5 +223,11 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         cycleIndex += cycleIndex < 0 ? $scope.postImages.length : 0;
         var next = cycleIndex % $scope.postImages.length;
         $scope.pickedImage = $scope.postImages[next];
+    };
+    
+    /* Intro header */
+    $scope.introVisible = false;
+    $scope.setIntroVisible = function(visible) {
+        $scope.introVisible = visible;
     };
 });

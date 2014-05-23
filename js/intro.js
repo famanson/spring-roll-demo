@@ -1,7 +1,12 @@
 /* jshint browser:true, jquery:true */
 /* global app */
 
-app.directive('ngValidator', function() {
+app.controller("IntroCtrl", function($scope) {  
+    $scope.messageFormVisible = false;
+    $scope.setMessageFormVisible = function(visible) {
+        $scope.messageFormVisible = visible;
+    };
+}).directive('ngValidator', function() {
     return {
         // Restrict it to be an attribute in this case
         restrict: 'A',
@@ -14,7 +19,7 @@ app.directive('ngValidator', function() {
                     if (data.did_you_mean != null && data.did_you_mean.length > 0) {
                         text = "Did you mean \"" + data.did_you_mean + "\"?";
                     } else {
-                        text = "Address is invalid";
+                        text = "Address is invalid.";
                     }
                 } else {
                     text = "This looks good!";
@@ -29,7 +34,7 @@ app.directive('ngValidator', function() {
                 scope.validationProgress = false;
                 scope.validationResult = {
                     valid: false,
-                    text: "Address is invalid"
+                    text: "Address is invalid."
                 };
                 scope.$digest();
             };
@@ -45,9 +50,7 @@ app.directive('ngValidator', function() {
             });
         }
     };
-});
-
-app.directive('ngAutogrow', function() {
+}).directive('ngAutogrow', function() {
     return {
         // Restrict it to be an attribute in this case
         restrict: 'A',

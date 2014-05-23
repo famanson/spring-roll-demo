@@ -19,31 +19,34 @@
         <script src="./js/model.js"></script>
         <script src="./js/checkout.js"></script>
         <script src="./js/compose.js"></script>
-        <script src="./js/validator.js"></script>
+        <script src="./js/intro.js"></script>
         <script src="./js/misc.js"></script>
     </head>
     <body ng-controller="ListingsCtrl" ng-click="dismissNBox();setIntroVisible(false);" ng-class="{'no-scroll' : apiPopupEnabled}">
         <div class="DEBUG_baseline_grid enabled-{{ showGridLines }}" ></div>
-        <div class="intro" ng-show="introVisible" ng-click="$event.stopPropagation()" ng-class="{ 'message-form-included' : messageFormVisible }">
+        <div class="intro" ng-controller="IntroCtrl" ng-show="introVisible" ng-click="$event.stopPropagation()" ng-class="{ 'message-form-included' : messageFormVisible }">
             <div class="message-wrapper" ng-show="messageFormVisible">
                 <div class="message-form">
                     <div class="email">
                         <label><b>Email address:</b></label>
                         <input ng-model="email" id="email-address" ng-validator ng-autogrow></input>
                         <span ng-show="email.length>0 && validationResult!=null && !validationProgress"
-                              class="email-validation" ng-class="{ 'valid': validationResult.valid }">
-                            {{ validationResult.text }}. 
+                              class="validation" ng-class="{ 'valid': validationResult.valid }">
+                            {{ validationResult.text }} 
                             <a class="double-check" ng-show="!validationResult.valid"><u><i>check again?</i></u></a>
                         </span>
                         <img ng-show="validationProgress" class="loading" src="images/loading.gif"/>
                     </div>
                     <div class="message">
                         <label><b>Message Body:</b></label>
-                        <textarea placeholder="Hmm... Spring rolls are goooooood..."></textarea>
+                        <span ng-show=""
+                              class="validation">
+                        </span>
+                        <textarea ng-model="messageBody" placeholder="Hmm... Spring rolls are goooooood..."></textarea>
                         <div class="bottom">
                             <input name="trap" type="text">
-                            <p ng-click="setMessageFormVisible(false)" class="cancel"><b>Cancel</b></p>
-                            <p class="send"><b>Send</b></p>
+                            <p ng-click="setMessageFormVisible(false)" class="cancel"><b>Close</b></p>
+                            <p class="send" ng-class="{ active: validationResult.valid && messageBody.length > 0 }"><b>Send</b></p>
                         </div>
                     </div>
                 </div>
