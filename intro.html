@@ -31,7 +31,10 @@
         </form>
     </div>
     <div class="intro-wrapper">
-        <span class="message-result" ng-show="showMessageResult">Message sent! <a ng-click="dismissMessageResult()">dismiss</a></span>
+        <span class="message-result" ng-show="showMessageResult"
+              ng-class="{ 'error': messageResult.error }">
+            <b>{{ messageResult.text }}</b> <a ng-click="dismissMessageResult()">dismiss</a>
+        </span>
         <div class="tag-lines">
             <p>Hi! Welcome to our Project Spring Roll demo!</p>
             <p>This is what the future SVUK Marketplace looks like</p>

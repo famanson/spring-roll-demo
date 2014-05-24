@@ -50,10 +50,16 @@ app.controller("IntroCtrl", function($scope, $http) {
                     $scope.showMessageResult = true;
                     angular.element('input[name="chboxCaptcha"]').attr('checked', false);
                     $scope.messageForm.$setPristine(true);
-                    $scope.messageResult = "Message has been sent!";
+                    $scope.messageResult = {
+                        text: "Message has been sent!",
+                        error: false
+                    };
                 }).error(function(data, status, headers, config) {
                     $scope.showMessageResult = true;
-                    $scope.messageResult = "Error found. Please retry later!";
+                    $scope.messageResult = {
+                        text: "Error found. Please retry later!",
+                        error: true
+                    };
                 });
             }
         }

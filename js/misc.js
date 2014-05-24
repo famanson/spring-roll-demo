@@ -1,11 +1,5 @@
 /*jshint browser:true, jquery:true */
 
-$(document).ready(function() {
-    
-});
-
-
-
 /* Fixes the category bar in Longdan tab */
 
 $(document).on('scroll', function() {
