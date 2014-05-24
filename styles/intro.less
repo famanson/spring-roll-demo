@@ -66,11 +66,18 @@
                     .quick-mail {
                         cursor: pointer;
                     }
-                    img.drop-down {
-                        height: 20px;
-                        position: absolute;
-                        margin: 0 5px;
-                        border-radius: 10px;
+                    .hello-button {
+                        color: #7bc173;
+                        font-style: normal;
+                        cursor: pointer;
+                        margin: 0 10px;
+                        background-color: #fff;
+                        padding: 5px;
+                        border-radius: 5px;
+                        font-weight: bold;
+                        &:hover {
+                            background-color: #efefef;
+                        }
                     }
                 }
             }
@@ -158,18 +165,15 @@
                             display: none;
                         }
                         p {
-                            color: #f75454;
                             margin: 0;
                             font-size: 14px;
-                            padding: 5px;
-                            &.send, &.cancel {
+                            padding: 5px 10px;
+                            &.send {
                                 color: #fff;
                                 font-style: normal;
                                 cursor: pointer;
                                 float: right;
                                 border-radius: 2px;
-                            }
-                            &.send {
                                 margin-right: 10px;
                                 background-color: #bbb;
                                 &.active {
@@ -180,10 +184,13 @@
                                 }
                             }
                             &.cancel {
-                                background-color: #f75454;
-                                &:hover {
-                                    background-color: #d64444;
-                                }
+                                cursor: pointer;
+                                float: right;
+                                text-decoration: underline;
+                            }
+                            &.invalid {
+                                color: #f75454;
+                                font-weight: bold;
                             }
                         }
                     }

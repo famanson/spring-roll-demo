@@ -21,7 +21,8 @@
                     placeholder="Hmm... Spring rolls are goooooood..."></textarea>
                 <div class="bottom">
                     <input name="trap" type="checkbox">
-                    <p ng-click="setMessageFormVisible(false);dismissMessageResult();" class="cancel"><b>Close</b></p>
+                    <p ng-click="setMessageFormVisible(false);dismissMessageResult();" class="cancel">  <i>Close</i>
+                    </p>
                     <p class="send" ng-class="{ active: validationResult.valid && messageBody.length > 0 }"
                        ng-click="send()">
                         <b>Send</b>
@@ -44,7 +45,7 @@
         </div>
         <div class="social-images">
             <p>
-                Like what we do? <a ng-show="!messageFormVisible" class="quick-mail" ng-click="setMessageFormVisible(true);dismissMessageResult()"><u><b>Say hello!</b></u><img class="drop-down" src="./images/down.png"></a>
+                Like what we do? <a type="button" class="hello-button" class="quick-mail" ng-click="setMessageFormVisible(true);dismissMessageResult()" ng-show="!messageFormVisible">Say Hello!</a>
             </p>
             <p>You can also find us on:</p>
             <a href="https://www.facebook.com/pages/Team-Spring-Roll/1412319192364606" target="_blank">
@@ -58,7 +59,7 @@
     </div>
 </div>
 <script type="text/javascript">
-    $(".bottom").append('<input name="chboxCaptcha" type="checkbox"><p>Pinky-promise I\'m not a bot!</p>');
+    $(".bottom").append('<input name="chboxCaptcha" type="checkbox"><p class="chboxCaptchaHelp" ng-class=\"{ \'invalid\': chboxCaptchaAlert() }\">By ticking here, I pinky promise I\'m not a bot!</p>');
     $(".email").bind("click", function() {
         $(this).children("input").focus();
     });

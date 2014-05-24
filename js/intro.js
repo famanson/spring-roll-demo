@@ -2,7 +2,7 @@
 /* global angular, app */
 
 app.controller("IntroCtrl", function($scope, $http) {
-    $scope.botCheck = function() {
+    $scope.isHuman = function() {
         var chboxCaptcha = angular.element('input[name="chboxCaptcha"]').is(':checked'),
             honeypotCaptcha = angular.element('input[name="trap"]').is(':checked');
         return chboxCaptcha && !honeypotCaptcha;
@@ -15,7 +15,7 @@ app.controller("IntroCtrl", function($scope, $http) {
         return $scope.validationResult != null && $scope.validationResult.valid &&
             $scope.email != null && $scope.email.length > 0 &&
             $scope.messageBody != null && $scope.messageBody.length > 0 &&
-            $scope.botCheck();
+            $scope.isHuman();
     };
     $scope.messageWarningText = function() {
         if ($scope.email == null || ($scope.email != null && $scope.email.length === 0)) {
@@ -24,11 +24,15 @@ app.controller("IntroCtrl", function($scope, $http) {
             return "Message body is empty!";
         } else if ($scope.validationResult != null && !$scope.validationResult.valid) {
             return "Please fix your email address.";
-        } else if (!$scope.botCheck()) {
-            return "Prove that you're human! (Bottom-left checkbox)";
-        }else {
+        } else if (!$scope.isHuman()) {
+            return "Prove that you're human!";
+        } else {
             return "Ready to send!";
         }
+    };
+    $scope.chboxCaptchaAlert = function() {
+        return $scope.email != null && $scope.email.length > 0 &&
+            $scope.messageBody != null && $scope.messageBody.length > 0 && !$scope.isHuman()
     };
     $scope.showMessageResult = false;
     $scope.messageResult = ""
@@ -38,7 +42,7 @@ app.controller("IntroCtrl", function($scope, $http) {
     };
     $scope.send = function() {
         if ($scope.isReadyToSend()) {
-            if ($scope.botCheck()) {
+            if ($scope.isHuman()) {
                 $scope.setMessageFormVisible(false);
                 $http.post("./relay.php", {
                     email: $scope.email,
