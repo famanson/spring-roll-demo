@@ -1,10 +1,12 @@
-/*jshint browser:true */
+/*jshint browser:true, devel:true */
 
 // angular is defined in angular.js
 /*global angular */
 
 // these are in global.js
 /*global posts, notifications, topNavs, slides, app, longdanEnabled, $:false */
+
+var EVENT_POST_SELECTED = 'selected_post';
 
 app.controller("ListingsCtrl", function($scope, $timeout) {
     'use strict';
@@ -125,6 +127,9 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         post = (post !== null && post.type === 'compose') ? null : post;
         $scope.postImages = $scope.hasImages(post) ? post.images : [];
         $scope.selected_post = post;
+        if (post !== null) {
+            $scope.$broadcast(EVENT_POST_SELECTED, $scope.selected_post);
+        }
     };
 
     $scope.populateByType('sale');
@@ -232,5 +237,49 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         cycleIndex += cycleIndex < 0 ? $scope.postImages.length : 0;
         var next = cycleIndex % $scope.postImages.length;
         $scope.pickedImage = $scope.postImages[next];
+    };
+});
+
+/**
+ * Controller for the single post view UX.
+ */
+app.controller("PostCtrl", function($scope) {
+    // Subscribe to the event
+    $scope.$on(EVENT_POST_SELECTED, function(args) {
+        // Get the maximum number of slide decks.
+        if ($scope.selected_post.images !== undefined) {
+            maxDecks = $scope.selected_post.images.length + 1;
+        } else {
+            maxDecks = 1;
+        }
+        $scope.current_deck_position = 0;
+        // Relayout
+        relayout();
+    });
+    
+    // Current deck position: 0  is listing summary, >= 1 are images
+    $scope.current_deck_position = 0;
+    
+    // Maximum number of slide decks.
+    var maxDecks = 0;
+    
+    // Returns an array of left positions.
+    function relayout() {
+        var layout = [];
+        for (var i = 0; i < maxDecks; i++) {
+            layout[i] = i < $scope.current_deck_position ? "-100%" : 0;
+        }
+        $scope.layout = layout;
+    }
+    
+    $scope.onPostClicked = function() {
+        // Don't move past the last deck
+        if ($scope.current_deck_position < maxDecks - 1) {
+            $scope.current_deck_position++;
+            relayout();
+        } else {
+            $scope.current_deck_position = 0;
+            relayout();
+        }
     };
 });

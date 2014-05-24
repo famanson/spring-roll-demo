@@ -111,16 +111,21 @@
         </div>
         
         <!-- Modal post display -->
-        <div class="overlay" ng-class="{ active : selected_post != null }">
-            <div class="overlay_content">
-                <a class="post-close" title="Close" ng-click="selectPost(null)"><img src="./images/close.png"/></a>
-                <div class="post" ng-model="selected_post" ng-click="$event.stopPropagation()">
-                    <span class="price">{{ selected_post.price }}</span>
-                    <div class="description" ng-bind-html="selected_post.description"></div>
-                    <div class="overlay-images">
-                        <img ng-src="{{ image.url }}" ng-repeat="image in postImages" ng-click="setPostImage(image)"/>
+        <div class="overlay" ng-class="{ active : selected_post != null }" ng-controller="PostCtrl">
+            <div class="overlay_content_full_bleed">
+                <div class="text-deck" ng-click="onPostClicked();$event.stopPropagation()" style="z-index: 11" ng-style="{left: layout[0]}">
+                    <div class="post">
+                        <span class="price">{{ selected_post.price }}</span>
+                        <div class="description" ng-bind-html="selected_post.description"></div>
                     </div>
+                </div>
+                <div class="image-deck" ng-repeat="image in postImages" ng-style="{'z-index': 10-$index, left: layout[$index+1]}" ng-click="onPostClicked()">
+                    <img ng-src="{{ image.url }}" ng-click="setPostImage(image)"/>
+                </div>
+                <a class="post-close" title="Close" ng-click="selectPost(null)" style='z-index: 12'><img src="./images/close.png"/></a>
+                
                     <!-- An overlay within an overlay... -->
+                    <!--
                     <div class="overlay" ng-class="{ active : fullImagePicked }">
                         <div class="overlay-full-image overlay_content" >
                             <div class="image-wrapper">
@@ -136,7 +141,7 @@
                             <div class="clear"></div>
                         </div>
                     </div>
-                </div>
+                    -->
             </div>
         </div>
         
