@@ -37,9 +37,9 @@ app.controller("IntroCtrl", function($scope, $http) {
         $scope.showMessageResult = false;
     };
     $scope.send = function() {
-        $scope.setMessageFormVisible(false);
         if ($scope.isReadyToSend()) {
             if ($scope.botCheck()) {
+                $scope.setMessageFormVisible(false);
                 $http.post("./relay.php", {
                     email: $scope.email,
                     messageBody: $scope.messageBody,

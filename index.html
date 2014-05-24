@@ -25,61 +25,7 @@
     </head>
     <body ng-controller="ListingsCtrl" ng-click="dismissNBox();setIntroVisible(false);" ng-class="{'no-scroll' : apiPopupEnabled}">
         <div class="DEBUG_baseline_grid enabled-{{ showGridLines }}" ></div>
-        <div class="intro" ng-controller="IntroCtrl" ng-show="introVisible" ng-click="$event.stopPropagation()" ng-class="{ 'message-form-included' : messageFormVisible }">
-            <div class="message-wrapper" ng-show="messageFormVisible">
-                <form name="messageForm" class="message-form">
-                    <div class="email">
-                        <label><b>Email address:</b></label>
-                        <input name="email" ng-model="email" id="email-address" ng-validator ng-autogrow></input>
-                        <span ng-show="email.length>0 && validationResult!=null && !validationProgress"
-                              class="validation" ng-class="{ 'valid': validationResult.valid }">
-                            {{ validationResult.text }} 
-                            <a class="double-check" ng-show="!validationResult.valid"><u><i>check again?</i></u></a>
-                        </span>
-                        <img ng-show="validationProgress" class="loading" src="images/loading.gif"/>
-                    </div>
-                    <div class="message">
-                        <label><b>Message Body:</b></label>
-                        <span ng-show="messageForm.messageBody.$dirty"
-                              class="validation" ng-class="{ 'valid': isReadyToSend() }">
-                            {{ messageWarningText() }}
-                        </span>
-                        <textarea name="messageBody" ng-model="messageBody" placeholder="Hmm... Spring rolls are goooooood..."></textarea>
-                        <div class="bottom">
-                            <input name="trap" type="checkbox">
-                            <p ng-click="setMessageFormVisible(false);dismissMessageResult();" class="cancel"><b>Close</b></p>
-                            <p class="send" ng-class="{ active: validationResult.valid && messageBody.length > 0 }"
-                               ng-click="send()">
-                                <b>Send</b>
-                            </p>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="intro-wrapper">
-                <span class="message-result" ng-show="showMessageResult">Message sent! <a ng-click="dismissMessageResult()">dismiss</a></span>
-                <div class="tag-lines">
-                    <p>Hi! Welcome to our Project Spring Roll demo!</p>
-                    <p>This is what the future SVUK Marketplace looks like</p>
-                    <p>It won't work on mobile devices or save any changes</p>
-                    <p>Hint: type "real" in our Search Box for real adverts</p>
-                    <p><a href="javascript:void(0)" ng-click="setIntroVisible(false);">Close this window</a></p>
-                </div>
-                <div class="social-images">
-                    <p>
-                        Like what we do? <a class="quick-mail" ng-click="setMessageFormVisible(true);dismissMessageResult()"><u><b>Say hello!</b></u><img class="drop-down" src="./images/down.png"></a>
-                    </p>
-                    <p>You can also find us on:</p>
-                    <a href="https://www.facebook.com/pages/Team-Spring-Roll/1412319192364606" target="_blank">
-                        <img id="facebook-logo" src="./images/facebook-logo.png"/>
-                    </a>
-                    <a href="https://www.indiegogo.com/projects/project-spring-roll" target="_blank">
-                        <img id="indiegogo-logo"src="./images/indiegogo.png"/>
-                    </a>
-                </div>
-                <div class="clear"></div>
-            </div>
-        </div>
+        <div ng-include src="'intro.html'"></div>
         <div id="header">
             <div id="header_contents">
                 <div id="logo" ng-click="setIntroVisible(true);$event.stopPropagation()" title="What is this?">

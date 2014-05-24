@@ -1,10 +1,7 @@
 /*jshint browser:true, jquery:true */
 
 $(document).ready(function() {
-    $(".bottom").append('<input name="chboxCaptcha" type="checkbox"><p>Pinky-promise I\'m not a bot!</p>');
-    $(".email").bind("click", function() {
-        $(this).children("input").focus();
-    });
+    
 });
 
 
