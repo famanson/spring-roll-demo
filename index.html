@@ -47,7 +47,7 @@
                         <textarea name="messageBody" ng-model="messageBody" placeholder="Hmm... Spring rolls are goooooood..."></textarea>
                         <div class="bottom">
                             <input name="trap" type="checkbox">
-                            <p ng-click="setMessageFormVisible(false)" class="cancel"><b>Close</b></p>
+                            <p ng-click="setMessageFormVisible(false);dismissMessageResult();" class="cancel"><b>Close</b></p>
                             <p class="send" ng-class="{ active: validationResult.valid && messageBody.length > 0 }"
                                ng-click="send()">
                                 <b>Send</b>
@@ -57,6 +57,7 @@
                 </form>
             </div>
             <div class="intro-wrapper">
+                <span class="message-result" ng-show="showMessageResult">Message sent! <a ng-click="dismissMessageResult()">dismiss</a></span>
                 <div class="tag-lines">
                     <p>Hi! Welcome to our Project Spring Roll demo!</p>
                     <p>This is what the future SVUK Marketplace looks like</p>
@@ -66,7 +67,7 @@
                 </div>
                 <div class="social-images">
                     <p>
-                        Like what we do? <a class="quick-mail" ng-click="setMessageFormVisible(true)"><u><b>Say hello!</b></u><img class="drop-down" src="./images/down.png"></a>
+                        Like what we do? <a class="quick-mail" ng-click="setMessageFormVisible(true);dismissMessageResult()"><u><b>Say hello!</b></u><img class="drop-down" src="./images/down.png"></a>
                     </p>
                     <p>You can also find us on:</p>
                     <a href="https://www.facebook.com/pages/Team-Spring-Roll/1412319192364606" target="_blank">

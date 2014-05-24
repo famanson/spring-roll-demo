@@ -1,7 +1,7 @@
 /* jshint browser:true, jquery:true */
 /* global angular, app */
 
-app.controller("IntroCtrl", function($scope) {
+app.controller("IntroCtrl", function($scope, $http) {
     $scope.botCheck = function() {
         var chboxCaptcha = angular.element('input[name="chboxCaptcha"]').is(':checked'),
             honeypotCaptcha = angular.element('input[name="trap"]').is(':checked');
@@ -26,11 +26,31 @@ app.controller("IntroCtrl", function($scope) {
             return "Ready to send!";
         }
     };
+    $scope.showMessageResult = false;
+    $scope.messageResult = ""
+    $scope.dismissMessageResult = function() {
+        $scope.messageResult = ""
+        $scope.showMessageResult = false;
+    };
     $scope.send = function() {
-        if ($scope.validationResult.valid && $scope.messageBody.length > 0) {
+        if ($scope.isReadyToSend()) {
             if ($scope.botCheck()) {
-                // send!
-                console.log("Send!");
+                $http.post("./relay.php", {
+                    email: $scope.email,
+                    messageBody: $scope.messageBody,
+                }).success(function(data, status, headers, config) {
+                    $scope.email = "";
+                    $scope.messageBody = "";
+                    $scope.validationResult = null;
+                    $scope.setMessageFormVisible(false);
+                    $scope.showMessageResult = true;
+                    angular.element('input[name="chboxCaptcha"]').attr('checked', false);
+                    $scope.messageForm.$setPristine(true);
+                    $scope.messageResult = "Message has been sent!";
+                }).error(function(data, status, headers, config) {
+                    $scope.showMessageResult = true;
+                    $scope.messageResult = "Error found. Please retry later!";
+                });
             }
         }
     };
