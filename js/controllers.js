@@ -213,6 +213,9 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     $scope.toggleIntro = function() {
         $scope.introVisible = !$scope.introVisible;
     };
+    $scope.setIntroVisible = function(show) {
+        $scope.introVisible = show;
+    }
     
     /* Image picker in overlay */
     $scope.fullImagePicked = false;
