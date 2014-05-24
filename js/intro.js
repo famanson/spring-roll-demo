@@ -12,14 +12,18 @@ app.controller("IntroCtrl", function($scope, $http) {
         $scope.messageFormVisible = visible;
     };
     $scope.isReadyToSend = function() {
-        return $scope.validationResult != null && $scope.validationResult.valid && 
-            $scope.messageBody != null && $scope.messageBody.length > 0 && $scope.botCheck();
+        return $scope.validationResult != null && $scope.validationResult.valid &&
+            $scope.email != null && $scope.email.length > 0 &&
+            $scope.messageBody != null && $scope.messageBody.length > 0 &&
+            $scope.botCheck();
     };
     $scope.messageWarningText = function() {
-        if ($scope.messageBody != null && $scope.messageBody.length === 0) {
-            return "Message body is empty";
+        if ($scope.email == null || ($scope.email != null && $scope.email.length === 0)) {
+            return "Email address not provided!";
+        } else if ($scope.messageBody != null && $scope.messageBody.length === 0) {
+            return "Message body is empty!";
         } else if ($scope.validationResult != null && !$scope.validationResult.valid) {
-            return "Please fix your email address";
+            return "Please fix your email address.";
         } else if (!$scope.botCheck()) {
             return "Prove that you're human! (Bottom-left checkbox)";
         }else {
@@ -33,6 +37,7 @@ app.controller("IntroCtrl", function($scope, $http) {
         $scope.showMessageResult = false;
     };
     $scope.send = function() {
+        $scope.setMessageFormVisible(false);
         if ($scope.isReadyToSend()) {
             if ($scope.botCheck()) {
                 $http.post("./relay.php", {
@@ -42,7 +47,6 @@ app.controller("IntroCtrl", function($scope, $http) {
                     $scope.email = "";
                     $scope.messageBody = "";
                     $scope.validationResult = null;
-                    $scope.setMessageFormVisible(false);
                     $scope.showMessageResult = true;
                     angular.element('input[name="chboxCaptcha"]').attr('checked', false);
                     $scope.messageForm.$setPristine(true);
