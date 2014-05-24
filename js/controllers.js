@@ -64,7 +64,8 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         var highlight = function(post) {
             if (isSearchEnabled()) {
                 if ($scope.searchedText !== "") {
-                    post.description = post._description.replace(new RegExp($scope.searchedText, 'gi'),
+                    var sanitized = $("<div>" + post._description + "</div>").text();
+                    post.description = sanitized.replace(new RegExp($scope.searchedText, 'gi'),
                                                                  processMatch);
                 } else {
                     post.description = post._description;

@@ -254,49 +254,6 @@ body {
     }
 }
 
-.intro {
-    .intro-wrapper {
-        width: @grid_12;
-        margin: 0 auto;
-    }
-    background-color: #7bc173;
-    p {
-        font-size: 20px;
-        color: #fff;
-        font-style: italic;
-        a {
-            font-size: 16px;
-            color: #fefefe;
-        }
-    }
-    .tag-lines {
-        float: left;
-        width: 50%;
-        padding: 50px 0;
-        p {
-            margin: 0 0 0 20px;
-            text-align: left;
-            padding: 5px 0;
-        }
-    }
-    .social-images {
-        width: 40%;
-        float: right;
-        padding: 40px 0;
-        margin-left: 40px;
-        a {
-            text-decoration:none;
-            img {
-                margin: 0 10px 0 0;
-                height: 80px;
-            }
-        }
-        p {
-            font-size: 16px;
-        }
-    }
-}
-
 // *** Content styles ***
 .post {
     margin-top: 1.0em;
@@ -306,13 +263,16 @@ body {
     cursor: pointer;
 
     .searchHighlight {
-        background-color: #ffff00;
-        padding: 2px 0;
+        .gradient(#ede672);
+        border-radius: 2px;
+        border-bottom: 1px solid darken(#ede672, 20%);
+        padding: 0.15em 0.2em;
+        margin: 0 -0.1em;
+        font-weight: bold;
     }
 
     .price {
         font-family: "Open Sans", Arial;
-        font-weight: 300;
         color: @red;
         font-size: 1.8em;
         line-height: 100%;
@@ -464,6 +424,10 @@ body {
     background: linear-gradient(to bottom, @color1 @stop1,@color2 @stop2); /* W3C */
 }
 
+.gradient(@color) {
+    .gradient(@color, 0%, darken(@color, 12%), 100%);
+}
+
 // *** Debugging styles ***
 
 #debug_panel {
@@ -524,22 +488,4 @@ body {
 
 .repeated-item.ng-leave.ng-leave-active {
     opacity: 0;
-}
-
-.intro.ng-hide-add, .intro.ng-hide-remove {
-  -webkit-transition:all linear 0.25s;
-  -moz-transition:all linear 0.25s;
-  -o-transition:all linear 0.25s;
-  transition:all linear 0.25s;
-  display:block!important;
-}
-
-.intro.ng-hide-add.ng-hide-add-active,
-.intro.ng-hide-remove {
-    margin-top: -270px;
-    
-}
-.intro.ng-hide-remove.ng-hide-remove-active,
-.intro.ng-hide-add {
-    margin-top: 0px;
 }
