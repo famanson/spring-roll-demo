@@ -306,8 +306,12 @@ body {
     cursor: pointer;
 
     .searchHighlight {
-        background-color: #ffff00;
-        padding: 2px 0;
+        .gradient(#ede672);
+        border-radius: 2px;
+        border-bottom: 1px solid darken(#ede672, 20%);
+        padding: 0.15em 0.2em;
+        margin: 0 -0.1em;
+        font-weight: bold;
     }
 
     .price {
@@ -451,6 +455,10 @@ body {
     background: -o-linear-gradient(top, @color1 @stop1,@color2 @stop2); /* Opera 11.10+ */
     background: -ms-linear-gradient(top, @color1 @stop1,@color2 @stop2); /* IE10+ */
     background: linear-gradient(to bottom, @color1 @stop1,@color2 @stop2); /* W3C */
+}
+
+.gradient(@color) {
+    .gradient(@color, 0%, darken(@color, 12%), 100%);
 }
 
 // *** Debugging styles ***
