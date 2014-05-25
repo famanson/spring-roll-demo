@@ -135,12 +135,16 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     };
     // Images used for post overlay
     $scope.postImages = [];
-    $scope.hasImages = function(post) {
+    $scope.hasAnyImages = function(post) {
         return post !== null && 'images' in post;
+    };
+    $scope.hasRealImages = function(post) {
+        return $scope.hasAnyImages() &&
+            ("location" in post ? post.images.length > 2 : post.images.length > 1);
     };
     $scope.selectPost = function(post) {
         post = (post !== null && post.type === 'compose') ? null : post;
-        $scope.postImages = $scope.hasImages(post) ? post.images : [];
+        $scope.postImages = $scope.hasAnyImages() ? post.images : [];
         $scope.selected_post = post;
         if (post !== null) {
             $scope.$broadcast(EVENT_POST_SELECTED, $scope.selected_post);
