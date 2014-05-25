@@ -326,19 +326,17 @@ body {
         overflow: hidden;
 
         .deck {
-            transition: left 0.3s;
-            transition-timing-function: ease-out;
-            box-shadow: 0 0 20px black;
+            position: absolute;
+
         }
 
         .text-deck {
             .deck;
-            position: absolute;
-            width: 80%;
+            box-shadow: 0 0 20px black;
+            width: 350px;
             height: 100%;
             left: 0;
             background: white;
-
 
             .post {
                 margin: 0;
@@ -351,9 +349,9 @@ body {
             position: absolute;
             overflow: hidden;
             width: 100%;
-            height: 100%;
             img {
-                height: 100%;
+                max-width: 800px;
+                max-height: 600px;
             }
         }
     }

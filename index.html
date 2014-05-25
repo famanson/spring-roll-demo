@@ -18,6 +18,7 @@
         <script src="./js/native.js"></script>
         <script src="./js/global.js"></script>
         <script src="./js/controllers.js"></script>
+        <script src="./js/directives.js"></script>
         <script src="./js/checkout.js"></script>
         <script src="./js/compose.js"></script>
         <script src="./js/intro.js"></script>
@@ -95,14 +96,14 @@
 
         <!-- Modal post display -->
         <div class="overlay" ng-class="{ active : selected_post != null }" ng-controller="PostCtrl">
-            <div class="overlay_content_full_bleed" ng-style="{ width: width, height: height }">
-                <div class="text-deck" ng-click="onPostClicked();$event.stopPropagation()" style="z-index: 11" ng-style="{left: layout[0]}">
+            <div class="overlay_content_full_bleed" sr-auto-resize-deck="currentDeckPosition">
+                <div class="text-deck" ng-click="onPostClicked();$event.stopPropagation()" style="z-index: 11" sr-auto-animate="layout[0]">
                     <div class="post">
                         <span class="price">{{ selected_post.price }}</span>
                         <div class="description" ng-bind-html="selected_post.description"></div>
                     </div>
                 </div>
-                <div class="image-deck" ng-repeat="image in postImages" ng-style="{'z-index': 10-$index, left: layout[$index+1]}" ng-click="onPostClicked()">
+                <div class="image-deck" ng-repeat="image in postImages" sr-auto-animate="layout[$index+1]"  ng-style="{'z-index': 10-$index}" ng-click="onPostClicked()">
                     <img ng-src="{{ image.url }}" ng-click="setPostImage(image)"/>
                 </div>
                 <a class="post-close" title="Close" ng-click="selectPost(null)" style='z-index: 12'><img src="./images/close.png"/></a>
