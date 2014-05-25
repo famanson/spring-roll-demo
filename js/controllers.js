@@ -10,16 +10,19 @@ var EVENT_POST_SELECTED = 'selected_post';
 
 app.controller("ListingsCtrl", function($scope, $timeout) {
     'use strict';
-    
+
     // Add control for toggling the visibility of the grid lines.
     $scope.showGridLines = false;
 
     // Whether longdan features are enabled.
     $scope.longdanEnabled = window.longdanEnabled || false;
-    
+
+    // Enable debug panel?
+    $scope.debugPanelEnabled = window.debugPanelEnabled || false;
+
     // Currently selected post, will be displayed to user in detail.
     $scope.selected_post = null;
-    
+
     // Quick and dirty way to get a persistent description (_description) on each post
     // meaning post.description will be displayed on the site and if we want transformation
     // on it, we do that on post._description and replace post.description with it
@@ -32,7 +35,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     for (var i = 0; i < 4; i++) { // use 4 to make way for Longdan posts
         $scope.columns[i] = [];
     }
-    
+
     // Define the two variables that will determine which posts to display
     $scope.currentType = "sale";
     $scope.searchedText = "";
@@ -40,7 +43,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         $scope.searchedText = "";
         $scope.emptyColumns();
         $scope.repopulate();
-    }
+    };
     // Method for dynamically populate page, mainly used for search
     $scope.repopulate = function() {
         var rowLength = ($scope.currentType === 'longdan') ? 4 : 3;
@@ -95,8 +98,8 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
             }
         }
     };
-    
-    // Clear all columns. 
+
+    // Clear all columns.
     $scope.emptyColumns = function () {
         // Cycling through each column to perform pop is necessary for animations.
         for (var i = 0; i < 4; i++) { // use 4 to make way for Longdan posts
@@ -147,7 +150,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     $scope.isTopNavSelected = function(navType) {
         return $scope.selectedNav === navType;
     };
-    
+
     /* Notifications Box Control */
     $scope.nboxSelected = false;
 
@@ -156,7 +159,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         $scope.toggleNBoxClicked = true;
         $scope.nboxSelected = !$scope.nboxSelected;
     };
-    
+
     $scope.dismissNBox = function() {
         //alert("Dismiss");
         if (!$scope.toggleNBoxClicked) {
@@ -164,7 +167,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         }
         $scope.toggleNBoxClicked = false;
     };
-    
+
     $scope.notifications = notifications;
 
     // Small hack to persist the basket because bloody ng-include creates a new scope
@@ -172,7 +175,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     $scope.persistBasket = function(basket) {
         $scope.previousBasket = basket;
     };
-    
+
     /* API popup */
     $scope.apiPopupViewed = false;
     $scope.apiPopupEnabled = false;
@@ -213,7 +216,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     $scope.setViewedApiPopUp = function(viewed) {
         $scope.apiPopupViewed = viewed;
     };
-    
+
     /* Intro header */
     $scope.introVisible = false;
     $scope.toggleIntro = function() {
@@ -221,8 +224,8 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     };
     $scope.setIntroVisible = function(show) {
         $scope.introVisible = show;
-    }
-    
+    };
+
     /* Image picker in overlay */
     $scope.fullImagePicked = false;
     $scope.setPostImage = function(image) {
