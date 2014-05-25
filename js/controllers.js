@@ -139,12 +139,12 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         return post !== null && 'images' in post;
     };
     $scope.hasRealImages = function(post) {
-        return $scope.hasAnyImages() &&
+        return $scope.hasAnyImages(post) &&
             ("location" in post ? post.images.length > 2 : post.images.length > 1);
     };
     $scope.selectPost = function(post) {
         post = (post !== null && post.type === 'compose') ? null : post;
-        $scope.postImages = $scope.hasAnyImages() ? post.images : [];
+        $scope.postImages = $scope.hasAnyImages(post) ? post.images : [];
         $scope.selected_post = post;
         if (post !== null) {
             $scope.$broadcast(EVENT_POST_SELECTED, $scope.selected_post);
