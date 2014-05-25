@@ -140,7 +140,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     };
     $scope.hasRealImages = function(post) {
         return $scope.hasAnyImages(post) &&
-            ("location" in post ? post.images.length > 2 : post.images.length > 1);
+            ("location" in post ? post.images.length > 1 : post.images.length > 0);
     };
     $scope.selectPost = function(post) {
         post = (post !== null && post.type === 'compose') ? null : post;
