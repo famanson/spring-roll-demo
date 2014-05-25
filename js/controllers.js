@@ -28,6 +28,17 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     // on it, we do that on post._description and replace post.description with it
     for (var j = 0; j < posts.length; j++) {
         posts[j]._description = posts[j].description;
+        if (posts[j].location) {
+            var gmapImg = {
+                title: "loc",
+                url: "http://maps.googleapis.com/maps/api/staticmap?center=" + posts[j].location + "&zoom=15" + 
+                          "&size=640x640&markers=color:red" + posts[j].location
+            };
+            if (!posts[j].images) {
+                posts[j].images = []
+            }
+            posts[j].images.unshift(gmapImg);
+        }
     }
 
     // Split posts into three columns (and four if Longdan)
