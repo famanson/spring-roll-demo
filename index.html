@@ -125,7 +125,7 @@
         
         <div id="ld-more" ng-if="selected.type == 'longdan'">More Products >></div>
 
-        <div id="debug_panel">
+        <div id="debug_panel" ng-if="debugPanelEnabled">
             <input type=checkbox id="show_grid_lines" ng-model="showGridLines" /><label for="show_grid_lines">Show grid lines</label>
         </div>
     </body>
