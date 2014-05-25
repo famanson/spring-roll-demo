@@ -8,7 +8,7 @@
         $messageBody = $request->messageBody;
         $message = array();
         $message['from'] = $email;
-        $message['to'] = "ukspringroll@gmail.com";
+        $message['to'] = $config['to_email'];
         $message['subject'] = "Hello Team Spring Roll!";
         $message['text'] = $messageBody;
      
