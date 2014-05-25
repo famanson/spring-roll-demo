@@ -18,7 +18,7 @@ app.controller("IntroCtrl", function($scope, $http) {
             $scope.isHuman();
     };
     $scope.messageWarningText = function() {
-        if ($scope.email == null || ($scope.email != null && $scope.email.length === 0)) {
+        if ($scope.validationResult == null || $scope.email == null || ($scope.email != null && $scope.email.length === 0)) {
             return "Email address not provided!";
         } else if ($scope.messageBody != null && $scope.messageBody.length === 0) {
             return "Message body is empty!";
