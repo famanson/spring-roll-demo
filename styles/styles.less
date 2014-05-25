@@ -44,13 +44,13 @@ body {
     float: left;
     width: @grid_3;
     position: relative;
-    
+
     h1 {
         font-family: "Montserrat";
         font-weight: 400;
         padding: 0.5em 0 0.4em 0;
         margin: 0;
-        
+
         * {
             text-transform: uppercase;
             font-size: 60%;
@@ -74,10 +74,10 @@ body {
 #top-navigation {
     float: left;
     font-size: 10.5pt;
-    font-family: Arial; 
+    font-family: Arial;
     font-weight: bold;
     color: #1c1b1b;
-    
+
     a {
         padding: 27pt 0 6pt;
         text-align: center;
@@ -99,7 +99,7 @@ body {
     margin-top: 23pt;
     padding: 0.5pt 5pt 1.2pt;
     box-shadow: inset 0 1px 1px #ccc;
-    
+
     // TODO(macduy): Manually position image because we can't be bothered do it properly.
     img {
         position: relative;
@@ -147,7 +147,7 @@ body {
     img {
         float: left;
     }
-    
+
     .triangle {
         margin-top: 22px;
         margin-left: 5px;
@@ -171,7 +171,7 @@ body {
         right: 0px;
         display: none;
         text-decoration: none;
-        
+
         .notification {
             padding: 5 10px 15px 10px;
             font-size: 12.5px;
@@ -185,15 +185,15 @@ body {
             .avatar {
                 margin-right: 15px
             }
-        
+
             &:last-child {
                 padding-bottom: 10px;
             }
-        
+
             &:not(:last-child) {
                 border-bottom: 1px solid #bbb;
             }
-        
+
             &:hover {
                 background-color:#eee;
             }
@@ -248,7 +248,7 @@ body {
     float: left;
     width: @grid_4;
     margin-left: @grid_gutter;
-    
+
     &:first-child {
         margin-left: 0;
     }
@@ -278,7 +278,7 @@ body {
         line-height: 100%;
         letter-spacing: -0.03em;
     }
-    
+
     .time {
         float: right;
         font-size: 75%;
@@ -286,7 +286,7 @@ body {
         margin-top: 11pt;
         line-height: 100%;
     }
-    
+
     .image-icon {
         font-size: 75%;
         color: #aaa;
@@ -296,7 +296,7 @@ body {
             height: 15px;
         }
     }
-    
+
     .description {
         font-family: Arial;
         text-align: justify;
@@ -315,22 +315,22 @@ body {
     left: 0;
     background: rgba(0, 0, 0, 60%);
     display: none;  // Invisible by default.
-    
+
     &.active {
         display: block;
     }
-    
+
     .overlay_content_full_bleed {
         .overlay_content;
         padding: 0;
         overflow: hidden;
-        
+
         .deck {
             transition: left 0.3s;
             transition-timing-function: ease-out;
             box-shadow: 0 0 20px black;
         }
-        
+
         .text-deck {
             .deck;
             position: absolute;
@@ -339,13 +339,13 @@ body {
             left: 0;
             background: white;
 
-            
+
             .post {
                 margin: 0;
                 padding: 20pt;
             }
         }
-        
+
         .image-deck {
             .deck;
             position: absolute;
@@ -357,7 +357,7 @@ body {
             }
         }
     }
-    
+
     .overlay_content {
         position: relative;
         top: 10%;
@@ -368,7 +368,7 @@ body {
         height: 400px;
         background: white;
         box-shadow: 0 2px 5px #222;
-        
+
         .post-close {
             position: absolute;
             right: 0;
@@ -457,7 +457,7 @@ body {
     opacity: 0.5;
     z-index: 999;
     pointer-events:none;
-    
+
     &.enabled-false {
         display: none;
     }

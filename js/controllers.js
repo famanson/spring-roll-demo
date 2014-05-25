@@ -260,30 +260,34 @@ app.controller("PostCtrl", function($scope) {
         // Relayout
         relayout();
     });
-    
+
     // Current deck position: 0  is listing summary, >= 1 are images
     $scope.current_deck_position = 0;
-    
+
     // Maximum number of slide decks.
     var maxDecks = 0;
-    
-    // Returns an array of left positions.
+
+    // Computes the layout.
     function relayout() {
+        var position = $scope.current_deck_position;
+        var image = (position > 0) ? $scope.selected_post.images[i] : null;
         var layout = [];
+
         for (var i = 0; i < maxDecks; i++) {
-            layout[i] = i < $scope.current_deck_position ? "-100%" : 0;
+            layout[i] = i < position ? "-100%" : 0;
         }
         $scope.layout = layout;
+        $scope.width = (image === null) ? '400px' : '600px';
+        $scope.height = (image === null) ? '300px' : '700px';
     }
-    
+
     $scope.onPostClicked = function() {
         // Don't move past the last deck
         if ($scope.current_deck_position < maxDecks - 1) {
             $scope.current_deck_position++;
-            relayout();
         } else {
             $scope.current_deck_position = 0;
-            relayout();
         }
+        relayout();
     };
 });
