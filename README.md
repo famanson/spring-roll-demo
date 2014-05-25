@@ -21,9 +21,9 @@ Angular.js
 Feedback Form
 =============
 
-As a result of [Pull Request 7](https://github.com/famanson/spring-roll-demo/pull/7), we have a prototype feedback form right at the top of our page ("Say Hello" button in the intro header)
+As a result of [Pull Request #7](https://github.com/famanson/spring-roll-demo/pull/7), we have a prototype feedback form right at the top of our page ("Say Hello" button in the intro header)
 
-Unfortunately we cannot expose this functionalityto local development for now because we are using the Mailgun API and we can't give ukspringroll@gmail.com's API key to everyone. What you can do, however, if you want to do a full end-to-end test is to follow these steps:
+Unfortunately we cannot expose this functionality in fully working order to local development for now because we are using the Mailgun API and we can't give ukspringroll@gmail.com's key to everyone. What you can do, however, if you want to do a full end-to-end test is to follow these steps:
 
 - Install PHP and PHP curl
 - Set up a local Apache server with PHP module enabled
