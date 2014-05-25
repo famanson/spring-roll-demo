@@ -1,20 +1,4 @@
-/*
-
-Grid parameters: 12 modules @ 66px, 18px gap
-
-*/
-
-// *** Font imports ***
-@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
-
-@grid_gutter: 18px;
-@grid_module: 66px;
-@grid_12: 12 * @grid_module + 11 * @grid_gutter;
-@grid_4: 4 * @grid_module + 3 * @grid_gutter;
-@grid_3: 3 * @grid_module + 2 * @grid_gutter;
-
-@red: #c33f3f;
+@import "global.less";
 
 // *** Main content ***
 html,body {
@@ -409,21 +393,6 @@ body {
 
 .clear {
     clear: both;
-}
-
-// *** Gradients ***
-.gradient(@color1, @stop1, @color2, @stop2) {
-    background: #efefef; /* Old browsers */
-    background: -moz-linear-gradient(top, @color1 @stop1, @color2 @stop2); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(@stop1,@color1), color-stop(@stop2,@color2)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, @color1 @stop1,@color2 @stop2); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, @color1 @stop1,@color2 @stop2); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, @color1 @stop1,@color2 @stop2); /* IE10+ */
-    background: linear-gradient(to bottom, @color1 @stop1,@color2 @stop2); /* W3C */
-}
-
-.gradient(@color) {
-    .gradient(@color, 0%, darken(@color, 12%), 100%);
 }
 
 // *** Debugging styles ***
