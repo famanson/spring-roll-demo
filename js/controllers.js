@@ -32,7 +32,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
             var gmapImg = {
                 title: "loc",
                 url: "http://maps.googleapis.com/maps/api/staticmap?center=" + posts[j].location + "&zoom=15" + 
-                          "&size=640x640&markers=color:red" + posts[j].location
+                          "&size=640x640&markers=color:red|" + posts[j].location
             };
             if (!posts[j].images) {
                 posts[j].images = []
