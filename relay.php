@@ -1,6 +1,4 @@
 <?php
-    require '/var/relay/vendor/autoload.php';
-    use Mailgun\Mailgun;
     $config = parse_ini_file("/var/relay/config.ini");
     $headers = apache_request_headers();
     if($headers['Referer'] == $config['referer']) {
@@ -8,8 +6,6 @@
         $request = json_decode($postdata);
         $email = $request->email;
         $messageBody = $request->messageBody;
-        // Send email via mailgun
-     
         $message = array();
         $message['from'] = $email;
         $message['to'] = "ukspringroll@gmail.com";
