@@ -6,7 +6,7 @@
 // these are in global.js
 /*global posts, notifications, topNavs, slides, app, longdanEnabled, $:false */
 
-app.controller("ListingsCtrl", function($scope, $timeout) {
+app.controller("ListingsCtrl", function($scope, $sce) {
     'use strict';
 
     // Add control for toggling the visibility of the grid lines.
@@ -236,5 +236,12 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         cycleIndex += cycleIndex < 0 ? $scope.postImages.length : 0;
         var next = cycleIndex % $scope.postImages.length;
         $scope.pickedImage = $scope.postImages[next];
+    };
+
+    /* Generate a link to Google Map Embed API */
+    $scope.mapValue = function(post) {
+        return $sce.trustAsResourceUrl("https://www.google.com/maps/embed/v1/place?" +
+               "key=AIzaSyASgjPiSBanoRMV62DOrQEGRNO1VrGVT34&" + 
+               "q=" + post.location + "&zoom=15");
     };
 });
