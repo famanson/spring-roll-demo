@@ -100,10 +100,10 @@
                 <div class="post" ng-model="selected_post" ng-click="$event.stopPropagation()">
                     <span class="price">{{ selected_post.price }}</span>
                     <div class="description" ng-bind-html="selected_post.description"></div>
-                    <div ng-if="selected_post != null">
+                    <div ng-if="selected_post != null && 'location' in selected_post">
                         <iframe id="gmap"
                             width="500"
-                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyASgjPiSBanoRMV62DOrQEGRNO1VrGVT34&q=Space+Needle,Seattle+WA&zoom=15"
+                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyASgjPiSBanoRMV62DOrQEGRNO1VrGVT34&q={{ selected_post.location }},Seattle+WA&zoom=15"
                             height="500"
                             frameborder="0" style="border:0">
                         </iframe>
