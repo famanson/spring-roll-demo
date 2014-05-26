@@ -112,7 +112,7 @@
                     <img ng-src="{{ image.url }}" ng-click="setPostImage(image)"/>
                 </div>
                 <a class="post-close" title="Close" ng-click="selectPost(null)" style='z-index: 12'><img src="./images/close.png"/></a>
-                <div class="gmap-embed" ng-if="hasLocation(selected_post)">
+                <div class="gmap-embed" ng-style="{ 'z-index': gmapDepth() }" ng-if="hasLocation(selected_post)">
                     <!--the ng-if must be here because it forces the iframe to reload and corrects the pin location -->
                     <img class="loading" src="images/loading.gif"/>
                     <iframe

@@ -40,9 +40,7 @@ app.directive('srAutoResizeDeck', function() {
          * Only resized if the child element has a "image-deck" class.
          */
         scope.$watch(attrs.srAutoResizeDeck, function(index) {
-            console.log(defaultSize);
             var child = $(element).children().eq(index);
-            console.log(child.siblings());
             var newSize;
             if (child.hasClass("image-deck")) {
                 // Get size of the underlying <img> element

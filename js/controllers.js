@@ -302,13 +302,13 @@ app.controller("PostCtrl", function($scope) {
         // Don't move past the last deck
         if ($scope.currentDeckPosition < maxDecks - 1) {
             $scope.currentDeckPosition++;
-            // sink the embedded map
-            $(".gmap-embed").css("z-index", 0);
         } else {
             $scope.currentDeckPosition = 0;
-            // unsink the embedded map
-            $(".gmap-embed").css("z-index", 1000);
         }
         relayout();
     };
+
+    $scope.gmapDepth = function() {
+        return ($scope.currentDeckPosition === 0) ? 1000 : 0;
+    }
 });
