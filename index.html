@@ -101,14 +101,15 @@
                 <span ng-repeat="page in pagerPages track by $index" ng-style="{ opacity : $index === currentDeckPosition ? 1.0 : 0.5 }">&bull;</span>
             </div>
             <div class="overlay_content_full_bleed" sr-auto-resize-deck="currentDeckPosition"
-                 sr-active-init-resize="selected_post != null">
-                <div class="text-deck" ng-class="{ singular : postImages.length == 0 }" ng-click="onPostClicked();$event.stopPropagation()" style="z-index: 11" sr-auto-animate="layout[0]">
+                 sr-active-init-resize="selected_post != null"
+                 ng-if="selected_post !== null">
+                <div class="text-deck" ng-class="{ singular : selected_post.images.length == 0 }" ng-click="onPostClicked();$event.stopPropagation()" style="z-index: 11" sr-auto-animate="layout[0]" sr-prevent-animation="preventAnimation">
                     <div class="post">
                         <span class="price">{{ selected_post.price }}</span>
                         <div class="description" ng-bind-html="selected_post.description"></div>
                     </div>
                 </div>
-                <div class="image-deck" ng-repeat="image in postImages" sr-auto-animate="layout[$index+1]"  ng-style="{'z-index': 10-$index}" ng-click="onPostClicked()">
+                <div class="image-deck" ng-repeat="image in selected_post.images" sr-auto-animate="layout[$index+1]"  ng-style="{'z-index': 10-$index}" ng-click="onPostClicked()"  sr-prevent-animation="preventAnimation">
                     <img ng-src="{{ image.url }}" ng-click="setPostImage(image)"/>
                 </div>
                 <a class="post-close" title="Close" ng-click="selectPost(null)" style='z-index: 12'><img src="./images/close.png"/></a>

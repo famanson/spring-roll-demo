@@ -123,13 +123,15 @@ app.controller("ListingsCtrl", function($scope, $sce) {
         }
     };
     // Images used for post overlay
-    $scope.postImages = [];
     $scope.hasImages = function(post) {
         return post !== null && 'images' in post && post.images.length > 1;
     };
     $scope.selectPost = function(post) {
         post = (post !== null && post.type === 'compose') ? null : post;
-        $scope.postImages = $scope.hasImages(post) ? post.images : [];
+        // Add images field if it is not defined. This simplifies code for PostCtrl.
+        if (post !== null && post.images === undefined) {
+            post.images = [];
+        };
         $scope.selected_post = post;
         if (post !== null) {
             $scope.$broadcast(EVENT_POST_SELECTED, $scope.selected_post);

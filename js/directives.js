@@ -14,10 +14,12 @@ app.directive('srAutoAnimate', function() {
         var preventAnimation = false;
 
         scope.$watch(attrs.srPreventAnimation, function(value) {
+            console.log("PRevent!", value);
             preventAnimation = value;
         });
 
         scope.$watch(attrs.srAutoAnimate, function(value) {
+            console.log(preventAnimation);
             if (!preventAnimation) {
                 $(element).animate(value);
             } else {
