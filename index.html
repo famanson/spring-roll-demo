@@ -102,14 +102,15 @@
             </div>
             <div class="overlay_content_full_bleed" sr-auto-resize-deck="currentDeckPosition"
                  sr-active-init-resize="selected_post != null"
+                 sr-prevent-animation="preventAnimation"
                  ng-click="$event.stopPropagation()">
-                <div class="text-deck" ng-click="onPostClicked();$event.stopPropagation()" style="z-index: 11" sr-auto-animate="layout[0]">
+                <div class="text-deck" ng-click="onPostClicked();$event.stopPropagation()" style="z-index: 11" sr-auto-animate="layout[0]" sr-prevent-animation="preventAnimation">
                     <div class="post">
                         <span class="price">{{ selected_post.price }}</span>
                         <div class="description" ng-bind-html="selected_post.description"></div>
                     </div>
                 </div>
-                <div class="image-deck" ng-repeat="image in postImages" sr-auto-animate="layout[$index+1]"  ng-style="{'z-index': 10-$index}" ng-click="onPostClicked()">
+                <div class="image-deck" ng-repeat="image in postImages" sr-auto-animate="layout[$index+1]" sr-prevent-animation="preventAnimation" ng-style="{'z-index': 10-$index}" ng-click="onPostClicked()">
                     <img ng-src="{{ image.url }}" ng-click="setPostImage(image)"/>
                 </div>
                 <a class="post-close" title="Close" ng-click="selectPost(null)" style='z-index: 12'><img src="./images/close.png"/></a>

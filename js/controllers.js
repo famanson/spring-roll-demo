@@ -270,7 +270,7 @@ app.controller("PostCtrl", function($scope) {
         $scope.pagerPages = range;
 
         // Relayout
-        relayout();
+        relayout(true);
     });
 
     // Current deck position: 0  is listing summary, >= 1 are images
@@ -279,11 +279,16 @@ app.controller("PostCtrl", function($scope) {
     // TODO: Remove this hack
     $scope.pagerPages = [];
 
+    // Whether auto-animation should be prevented.
+    $scope.preventAnimation = false;
+
     // Maximum number of slide decks.
     var maxDecks = 0;
 
     // Computes the layout.
-    function relayout() {
+    function relayout(preventAnimation) {
+        preventAnimation = preventAnimation || false;
+
         var position = $scope.currentDeckPosition;
         var image = (position > 0) ? $scope.selected_post.images[position - 1] : null;
         var layout = [];
@@ -294,6 +299,7 @@ app.controller("PostCtrl", function($scope) {
             };
         }
 
+        $scope.preventAnimation = preventAnimation;
         $scope.layout = layout;
         $scope.currentImageIndex = position - 1;
     }
@@ -305,7 +311,7 @@ app.controller("PostCtrl", function($scope) {
         } else {
             $scope.currentDeckPosition = 0;
         }
-        relayout();
+        relayout(false);
     };
 
     $scope.gmapDepth = function() {

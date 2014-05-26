@@ -11,8 +11,18 @@
  */
 app.directive('srAutoAnimate', function() {
     function link(scope, element, attrs) {
+        var preventAnimation = false;
+
+        scope.$watch(attrs.srPreventAnimation, function(value) {
+            preventAnimation = value;
+        });
+
         scope.$watch(attrs.srAutoAnimate, function(value) {
-            $(element).animate(value);
+            if (!preventAnimation) {
+                $(element).animate(value);
+            } else {
+                $(element).css(value);
+            }
         });
     }
 
