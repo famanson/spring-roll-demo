@@ -62,7 +62,7 @@ app.directive('srAutoResizeDeck', function() {
 });
 
 
-/* Intro header directives */
+/* Intro directives */
 app.directive('srEmailValidator', function() {
     return {
         // Restrict it to be an attribute in this case
