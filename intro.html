@@ -1,9 +1,12 @@
-<div class="intro" ng-controller="IntroCtrl"
-    ng-click="$event.stopPropagation()">
+<div class="intro" ng-controller="IntroCtrl">
     <div class="overlay" ng-class="{ active : messageFormVisible }">
-        <div class="overlay_content_full_bleed">
+        <div class="overlay_content_full_bleed" ng-class="{ 'overlay-shrink':showMessageResult }">
             <div class="message-wrapper">
-                <form name="messageForm" class="message-form">
+                <span class="message-result" ng-show="showMessageResult"
+                      ng-class="{ 'error': messageResult.error }">
+                    <b>{{ messageResult.text }}</b> <a ng-click="setMessageFormVisible(false)">dismiss</a>
+                </span>
+                <form name="messageForm" class="message-form" ng-show="!showMessageResult">
                     <div class="email">
                         <label><b>Email address:</b></label>
                         <input name="email" ng-model="email" id="email-address"
@@ -38,10 +41,6 @@
         </div>
     </div>
     <div class="intro-wrapper">
-        <span class="message-result" ng-show="showMessageResult"
-              ng-class="{ 'error': messageResult.error }">
-            <b>{{ messageResult.text }}</b> <a ng-click="dismissMessageResult()">dismiss</a>
-        </span>
         <div class="tag-lines">
             <p>Hi! Welcome to our Project Spring Roll demo!</p>
             <p>This is what the future SVUK Marketplace looks like</p>

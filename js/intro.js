@@ -34,8 +34,10 @@ app.controller("IntroCtrl", function($scope, $http) {
         return $scope.email != null && $scope.email.length > 0 &&
             $scope.messageBody != null && $scope.messageBody.length > 0 && !$scope.isHuman()
     };
+    $scope.messageFade = { opacity: 1, display: 'block' };
+    $scope.messageResultFade = { opacity: 0 };
     $scope.showMessageResult = false;
-    $scope.messageResult = ""
+    $scope.messageResult = {};
     $scope.dismissMessageResult = function() {
         $scope.messageResult = ""
         $scope.showMessageResult = false;
@@ -43,7 +45,7 @@ app.controller("IntroCtrl", function($scope, $http) {
     $scope.send = function() {
         if ($scope.isReadyToSend()) {
             if ($scope.isHuman()) {
-                $scope.setMessageFormVisible(false);
+                // $scope.setMessageFormVisible(false);
                 $http.post("./relay.php", {
                     email: $scope.email,
                     messageBody: $scope.messageBody,
@@ -58,12 +60,16 @@ app.controller("IntroCtrl", function($scope, $http) {
                         text: "Message has been sent!",
                         error: false
                     };
+                    $scope.messageFade = { opacity: 0, display: 'none' };
+                    $scope.messageResultFade = { opacity: 1 };
                 }).error(function(data, status, headers, config) {
                     $scope.showMessageResult = true;
                     $scope.messageResult = {
                         text: "Error found. Please retry later!",
                         error: true
                     };
+                    $scope.messageFade = { opacity: 1, display: 'block' };
+                    $scope.messageResultFade = { opacity: 0 };
                 });
             }
         }

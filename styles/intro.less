@@ -3,34 +3,20 @@
 .intro {
     background-color: #7bc173;
     border-top: 10px solid #efefef;
+    margin-top: 50px;
     .overlay_content_full_bleed {
         width: 800px;
         height: auto;
+        &.overlay-shrink {
+            width: 300px;
+            height: 50px;
+            top: 40%;
+        }
     }
     .intro-wrapper {
         width: @grid_12;
         margin: 0 auto;
         position: relative;
-        .message-result {
-            position: absolute;
-            width: 30%;
-            text-align: center;
-            padding: 5px;
-            background-color: #649e5d;
-            color: #fff;
-            margin: 5px 35%;
-            border-radius: 5px;
-            a {
-                font-style: italic;
-                text-decoration: underline;
-                font-size: 14px;
-                cursor: pointer;
-            }
-            &.error {
-                background-color: #f75454;
-                color: #fff;
-            }
-        }
         p {
             font-size: 20px;
             color: #fff;
@@ -88,9 +74,25 @@
     .message-wrapper {
         padding-top: 10px;
         margin: 0 auto;
-        width: 800px;
-        .message-form {
+        .message-result {
+            position: absolute;
+            text-align: center;
+            color: #649e5d;
             width: 100%;
+            top: 30%;
+            a {
+                font-style: italic;
+                text-decoration: underline;
+                font-size: 14px;
+                cursor: pointer;
+            }
+            &.error {
+                color: #f75454;
+            }
+        }
+        .message-form {
+            width: 800px;
+            // width: 100%;
             height: 300px;
             div {
                 background-color: #fff;
