@@ -1,38 +1,41 @@
 <div class="intro" ng-controller="IntroCtrl"
-    ng-click="$event.stopPropagation()"
-    ng-class="{ 'message-form-included' : messageFormVisible }">
-    <div class="message-wrapper" ng-show="messageFormVisible">
-        <form name="messageForm" class="message-form">
-            <div class="email">
-                <label><b>Email address:</b></label>
-                <input name="email" ng-model="email" id="email-address"
-                    sr-email-validator sr-input-autogrow></input>
-                <span ng-show="email.length>0 && validationResult!=null && !validationProgress"
-                      class="validation" ng-class="{ 'valid': validationResult.valid }">
-                    {{ validationResult.text }} 
-                    <a class="double-check" ng-show="!validationResult.valid"><u><i>check again?</i></u></a>
-                </span>
-                <img ng-show="validationProgress" class="loading" src="images/loading.gif"/>
+    ng-click="$event.stopPropagation()">
+    <div class="overlay" ng-class="{ active : messageFormVisible }">
+        <div class="overlay_content_full_bleed">
+            <div class="message-wrapper">
+                <form name="messageForm" class="message-form">
+                    <div class="email">
+                        <label><b>Email address:</b></label>
+                        <input name="email" ng-model="email" id="email-address"
+                            sr-email-validator sr-input-autogrow></input>
+                        <span ng-show="email.length>0 && validationResult!=null && !validationProgress"
+                              class="validation" ng-class="{ 'valid': validationResult.valid }">
+                            {{ validationResult.text }} 
+                            <a class="double-check" ng-show="!validationResult.valid"><u><i>check again?</i></u></a>
+                        </span>
+                        <img ng-show="validationProgress" class="loading" src="images/loading.gif"/>
+                    </div>
+                    <div class="message">
+                        <label><b>Message Body:</b></label>
+                        <span ng-show="messageForm.messageBody.$dirty"
+                              class="validation" ng-class="{ 'valid': isReadyToSend() }">
+                            {{ messageWarningText() }}
+                        </span>
+                        <textarea name="messageBody" ng-model="messageBody" 
+                            placeholder="Hmm... Spring rolls are goooooood..."></textarea>
+                        <div class="bottom">
+                            <input name="trap" type="checkbox">
+                            <p ng-click="setMessageFormVisible(false);dismissMessageResult();" class="cancel">  <i>Close</i>
+                            </p>
+                            <p class="send" ng-class="{ active: validationResult.valid && messageBody.length > 0 }"
+                               ng-click="send()">
+                                <b>Send</b>
+                            </p>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="message">
-                <label><b>Message Body:</b></label>
-                <span ng-show="messageForm.messageBody.$dirty"
-                      class="validation" ng-class="{ 'valid': isReadyToSend() }">
-                    {{ messageWarningText() }}
-                </span>
-                <textarea name="messageBody" ng-model="messageBody" 
-                    placeholder="Hmm... Spring rolls are goooooood..."></textarea>
-                <div class="bottom">
-                    <input name="trap" type="checkbox">
-                    <p ng-click="setMessageFormVisible(false);dismissMessageResult();" class="cancel">  <i>Close</i>
-                    </p>
-                    <p class="send" ng-class="{ active: validationResult.valid && messageBody.length > 0 }"
-                       ng-click="send()">
-                        <b>Send</b>
-                    </p>
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
     <div class="intro-wrapper">
         <span class="message-result" ng-show="showMessageResult"
@@ -47,7 +50,7 @@
         </div>
         <div class="social-images">
             <p>
-                Like what we do? <a class="hello-button" class="quick-mail" ng-click="setMessageFormVisible(true);dismissMessageResult()" ng-show="!messageFormVisible">Say Hello!</a>
+                Like what we do? <a class="hello-button" class="quick-mail" ng-click="setMessageFormVisible(true);dismissMessageResult()">Say Hello!</a>
             </p>
             <p>You can also find us on:</p>
             <a href="https://www.facebook.com/pages/Team-Spring-Roll/1412319192364606" target="_blank">
