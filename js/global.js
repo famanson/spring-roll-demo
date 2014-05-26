@@ -127,6 +127,21 @@ var posts = [
                 url: "http://productimages.euronics.co.uk/Bosch296WAB28061GB-0876.jpg"
             }
         ]
+    }, {
+        price: "Free!",
+        ago: "1 day ago",
+        description: "<b>Free mugs giveaway</b>, Central London. We are moving offices and a couple dozen unused mugs are left behind. These mugs come in various sizes and shapes. We can arrange delivery for you, but collection on site is preferred! Thanks",
+        type: "sale"
+    }, {
+        price: "£90",
+        ago: "1 day ago",
+        description: "<b>2 Premiere League Tickets for sale at £45 each! Chealsea vs Manchester United in final game of the season at Stamford Bridge!</b> Sold due to friends dropping out for a bargain. Seats will be at B stand. Only collection in person with cash in hand is accepted please.",
+        type: "sale"
+    }, {
+        price: "£1000",
+        ago: "2 days ago",
+        description: "<b>Amazing vintage Black Vespa scooter for sale!</b> In all of its good old Italian glory! Helmet and small toolbox included.",
+        type: "sale"
     },
     /* Wanted posts */
     {

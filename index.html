@@ -26,7 +26,6 @@
     </head>
     <body ng-controller="ListingsCtrl" ng-click="dismissNBox();setIntroVisible(false);" ng-class="{'no-scroll' : apiPopupEnabled}">
         <div class="DEBUG_baseline_grid enabled-{{ showGridLines }}" ></div>
-        <div ng-include src="'intro.html'"></div>
         <div id="header">
             <div id="header_contents">
                 <div id="logo" ng-click="toggleIntro();$event.stopPropagation()" title="What is this?">
@@ -130,6 +129,7 @@
         <div id="debug_panel" ng-if="debugPanelEnabled">
             <input type=checkbox id="show_grid_lines" ng-model="showGridLines" /><label for="show_grid_lines">Show grid lines</label>
         </div>
+        <div ng-include src="'intro.html'"></div>
     </body>
 </html>
 
