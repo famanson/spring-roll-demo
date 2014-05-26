@@ -3,9 +3,12 @@
 .intro {
     background-color: #7bc173;
     border-top: 10px solid #efefef;
-    .overlay_content_full_bleed {
-        width: 800px;
-        height: auto;
+    .overlay {
+        z-index: 1000;
+        .overlay_content_full_bleed {
+            width: 800px;
+            height: auto;
+        }
     }
     .intro-wrapper {
         width: @grid_12;
