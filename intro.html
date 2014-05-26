@@ -10,7 +10,7 @@
                     <div class="email">
                         <label><b>Email address:</b></label>
                         <input name="email" ng-model="email" id="email-address"
-                            sr-email-validator sr-input-autogrow></input>
+                            autocomplete="off" sr-email-validator sr-input-autogrow></input>
                         <span ng-show="email.length>0 && validationResult!=null && !validationProgress"
                               class="validation" ng-class="{ 'valid': validationResult.valid }">
                             {{ validationResult.text }} 
