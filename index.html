@@ -24,13 +24,12 @@
         <script src="./js/intro.js"></script>
         <script src="./js/misc.js"></script>
     </head>
-    <body ng-controller="ListingsCtrl" ng-click="dismissNBox();setIntroVisible(false);" ng-class="{'no-scroll' : apiPopupEnabled}">
+    <body ng-controller="ListingsCtrl" ng-click="dismissNBox()" ng-class="{'no-scroll' : apiPopupEnabled}">
         <div class="DEBUG_baseline_grid enabled-{{ showGridLines }}" ></div>
         <div id="header">
             <div id="header_contents">
-                <div id="logo" ng-click="toggleIntro();$event.stopPropagation()" title="What is this?">
-                    <h1><img src="images/logo.png" title="What is this?"></h1>
-                    <span class="badge"><b>!</b></span>
+                <div id="logo" ng-click="toggleIntro();$event.stopPropagation()">
+                    <h1><img src="images/logo.png"></h1>
                 </div>
 
                 <!-- Top-level navigation -->

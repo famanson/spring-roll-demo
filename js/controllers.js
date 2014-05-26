@@ -217,15 +217,6 @@ app.controller("ListingsCtrl", function($scope, $sce) {
         $scope.apiPopupViewed = viewed;
     };
 
-    /* Intro header */
-    $scope.introVisible = false;
-    $scope.toggleIntro = function() {
-        $scope.introVisible = !$scope.introVisible;
-    };
-    $scope.setIntroVisible = function(show) {
-        $scope.introVisible = show;
-    };
-
     /* Google Map Embed API */
     $scope.mapValue = function(post) {
         return $sce.trustAsResourceUrl("https://www.google.com/maps/embed/v1/place?" +
