@@ -275,9 +275,15 @@ body {
         font-size: 75%;
         color: #aaa;
         float: right;
-        margin: 9pt 0 0 5pt;
+        margin: 7pt 0 0 3pt;
         img {
-            height: 15px;
+            height: 20px;
+        }
+        &.location {
+            margin: 0pt 0 0 3pt;
+            img {
+                height: 30px;
+            }
         }
     }
 
@@ -350,7 +356,24 @@ body {
         height: 400px;
         background: white;
         box-shadow: 0 2px 5px #222;
-
+        .gmap-embed {
+            position: absolute;
+            top: 300px;
+            width: 100%;
+            height: 300px;
+            z-index: 1000;
+            background-color: #fff;
+            img.loading {
+                position: absolute;
+                top: 134px;
+                left: 259px;
+                z-index: 0;
+            }
+            iframe {
+                position: absolute;
+                z-index: 1;
+            }
+        }
         .post-close {
             position: absolute;
             right: 0;

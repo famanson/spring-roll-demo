@@ -22,19 +22,27 @@ app.directive('srAutoAnimate', function() {
     };
 });
 
-/*
- * Resize overlay content element according to the size of a slide deck, given by index.
- * Only resized if the child element has a "image-deck" class.
- */
 app.directive('srAutoResizeDeck', function() {
-    var defaultSize = {
-        width: '550px',
-        height: '300px',
-    };
-
     function link(scope, element, attrs) {
+        var defaultSize = {};
+        /*
+         * Watch for changes during when post becomes active, then adjust default sizes accordingly
+         */
+        scope.$watch(attrs.srActiveInitResize, function(active) {
+            defaultSize = {
+                width: scope.defaultWidth,
+                height: scope.defaultHeight,
+            };
+            $(element).animate(defaultSize);
+        });
+        /*
+         * Resize overlay content element according to the size of a slide deck, given by index.
+         * Only resized if the child element has a "image-deck" class.
+         */
         scope.$watch(attrs.srAutoResizeDeck, function(index) {
+            console.log(defaultSize);
             var child = $(element).children().eq(index);
+            console.log(child.siblings());
             var newSize;
             if (child.hasClass("image-deck")) {
                 // Get size of the underlying <img> element
@@ -45,7 +53,6 @@ app.directive('srAutoResizeDeck', function() {
             } else {
                 newSize = defaultSize;
             }
-            console.log(newSize);
             $(element).animate(newSize);
         });
     }

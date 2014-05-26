@@ -85,7 +85,8 @@
                     <div ng-include="'compose.html'" ng-if="post.type === 'compose'"></div>
                     <div ng-if="post.type != 'longdan' && post.type != 'compose'">
                         <span class="price">{{ post.price }}</span>
-                        <span class="image-icon" ng-if="hasRealImages(post)"><img src="images/image-icon.png"/></span>
+                        <span class="image-icon location" ng-if="hasLocation(post)"><img src="images/loc-marker.png"/></span>
+                        <span class="image-icon" ng-if="hasImages(post)"><img src="images/image-icon.png"/></span>
                         <span class="time">{{ post.ago }}</span>
                         <div class="description" ng-bind-html="post.description"></div>
                     </div>
@@ -96,7 +97,8 @@
 
         <!-- Modal post display -->
         <div class="overlay" ng-class="{ active : selected_post != null }" ng-controller="PostCtrl">
-            <div class="overlay_content_full_bleed" sr-auto-resize-deck="currentDeckPosition">
+            <div class="overlay_content_full_bleed" sr-auto-resize-deck="currentDeckPosition"
+                 sr-active-init-resize="selected_post != null">
                 <div class="text-deck" ng-click="onPostClicked();$event.stopPropagation()" style="z-index: 11" sr-auto-animate="layout[0]">
                     <div class="post">
                         <span class="price">{{ selected_post.price }}</span>
@@ -107,25 +109,16 @@
                     <img ng-src="{{ image.url }}" ng-click="setPostImage(image)"/>
                 </div>
                 <a class="post-close" title="Close" ng-click="selectPost(null)" style='z-index: 12'><img src="./images/close.png"/></a>
-
-                    <!-- An overlay within an overlay... -->
-                    <!--
-                    <div class="overlay" ng-class="{ active : fullImagePicked }">
-                        <div class="overlay-full-image overlay_content" >
-                            <div class="image-wrapper">
-                                <a class="post-close" title="Close" ng-click="setFullImagePicked(false);"><img src="./images/close.png"></a>
-                                <img ng-src="{{ pickedImage.url }}" ng-click="cycleImages(true)"/>
-                                <a ng-show="postImages.length > 1" class="nav post-next" title="Next Photo" ng-click="cycleImages(true)">
-                                    <img src="./images/api-popup/next.png">
-                                </a>
-                                <a ng-show="postImages.length > 1" class="nav post-prev" title="Previous Photo" ng-click="cycleImages(false)">
-                                    <img src="./images/api-popup/prev.png">
-                                </a>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                    </div>
-                    -->
+                <div class="gmap-embed" ng-if="hasLocation(selected_post)">
+                    <!--the ng-if must be here because it forces the iframe to reload and corrects the pin location -->
+                    <img class="loading" src="images/loading.gif"/>
+                    <iframe
+                        width="550"
+                        ng-src="{{ mapValue(selected_post) }}"
+                        height="300"
+                        frameborder="0" style="border:0">
+                    </iframe>
+                </div>
             </div>
         </div>
 

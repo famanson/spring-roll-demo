@@ -8,7 +8,7 @@
 
 var EVENT_POST_SELECTED = 'selected_post';
 
-app.controller("ListingsCtrl", function($scope, $timeout) {
+app.controller("ListingsCtrl", function($scope, $sce) {
     'use strict';
 
     // Add control for toggling the visibility of the grid lines.
@@ -28,17 +28,6 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     // on it, we do that on post._description and replace post.description with it
     for (var j = 0; j < posts.length; j++) {
         posts[j]._description = posts[j].description;
-        if (posts[j].location) {
-            var gmapImg = {
-                title: "loc",
-                url: "http://maps.googleapis.com/maps/api/staticmap?center=" + posts[j].location + "&zoom=15" + 
-                          "&size=640x640&markers=color:red|" + posts[j].location
-            };
-            if (!posts[j].images) {
-                posts[j].images = []
-            }
-            posts[j].images.unshift(gmapImg);
-        }
     }
 
     // Split posts into three columns (and four if Longdan)
@@ -135,16 +124,12 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     };
     // Images used for post overlay
     $scope.postImages = [];
-    $scope.hasAnyImages = function(post) {
-        return post !== null && 'images' in post;
-    };
-    $scope.hasRealImages = function(post) {
-        return $scope.hasAnyImages(post) &&
-            ("location" in post ? post.images.length > 1 : post.images.length > 0);
+    $scope.hasImages = function(post) {
+        return post !== null && 'images' in post && post.images.length > 1;
     };
     $scope.selectPost = function(post) {
         post = (post !== null && post.type === 'compose') ? null : post;
-        $scope.postImages = $scope.hasAnyImages(post) ? post.images : [];
+        $scope.postImages = $scope.hasImages(post) ? post.images : [];
         $scope.selected_post = post;
         if (post !== null) {
             $scope.$broadcast(EVENT_POST_SELECTED, $scope.selected_post);
@@ -257,6 +242,17 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         var next = cycleIndex % $scope.postImages.length;
         $scope.pickedImage = $scope.postImages[next];
     };
+
+    /* Google Map Embed API */
+    $scope.mapValue = function(post) {
+        return $sce.trustAsResourceUrl("https://www.google.com/maps/embed/v1/place?" +
+               "key=AIzaSyASgjPiSBanoRMV62DOrQEGRNO1VrGVT34&" + 
+               "q=" + post.location + "&zoom=15");
+    };
+
+    $scope.hasLocation = function(post) {
+        return post !== null && "location" in post;
+    };
 });
 
 /**
@@ -265,6 +261,14 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
 app.controller("PostCtrl", function($scope) {
     // Subscribe to the event
     $scope.$on(EVENT_POST_SELECTED, function(args) {
+        // Work out what the default width and height should be
+        if ("location" in $scope.selected_post) {
+            $scope.defaultWidth = "550px";
+            $scope.defaultHeight = "600px";
+        } else {
+            $scope.defaultWidth = "550px";
+            $scope.defaultHeight = "300px";
+        }
         // Get the maximum number of slide decks.
         if ($scope.selected_post.images !== undefined) {
             maxDecks = $scope.selected_post.images.length + 1;
@@ -302,8 +306,12 @@ app.controller("PostCtrl", function($scope) {
         // Don't move past the last deck
         if ($scope.currentDeckPosition < maxDecks - 1) {
             $scope.currentDeckPosition++;
+            // sink the embedded map
+            $(".gmap-embed").css("z-index", 0);
         } else {
             $scope.currentDeckPosition = 0;
+            // unsink the embedded map
+            $(".gmap-embed").css("z-index", 1000);
         }
         relayout();
     };
