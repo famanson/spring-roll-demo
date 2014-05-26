@@ -100,6 +100,7 @@
                 <div class="post" ng-model="selected_post" ng-click="$event.stopPropagation()">
                     <span class="price">{{ selected_post.price }}</span>
                     <div class="description" ng-bind-html="selected_post.description"></div>
+                    <div ng-include ng-if="selected_post != null" src="'map.html'"></div>
                     <div class="overlay-images">
                         <img ng-src="{{ image.url }}" ng-repeat="image in postImages" ng-click="setPostImage(image)"/>
                     </div>
