@@ -100,7 +100,7 @@
                 <div class="post" ng-model="selected_post" ng-click="$event.stopPropagation()">
                     <span class="price">{{ selected_post.price }}</span>
                     <div class="description" ng-bind-html="selected_post.description"></div>
-                    <div class="gmap-embed" ng-if="selected_post != null && selected_post.location">
+                    <div class="gmap-embed" ng-if="hasLocation(selected_post)">
                         <iframe
                             width="500"
                             ng-src="{{ mapValue(selected_post) }}"

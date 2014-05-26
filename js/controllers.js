@@ -238,10 +238,14 @@ app.controller("ListingsCtrl", function($scope, $sce) {
         $scope.pickedImage = $scope.postImages[next];
     };
 
-    /* Generate a link to Google Map Embed API */
+    /* Google Map Embed API */
     $scope.mapValue = function(post) {
         return $sce.trustAsResourceUrl("https://www.google.com/maps/embed/v1/place?" +
                "key=AIzaSyASgjPiSBanoRMV62DOrQEGRNO1VrGVT34&" + 
                "q=" + post.location + "&zoom=15");
+    };
+
+    $scope.hasLocation = function(post) {
+        return post !== null && "location" in post;
     };
 });
