@@ -1,20 +1,4 @@
-/*
-
-Grid parameters: 12 modules @ 66px, 18px gap
-
-*/
-
-// *** Font imports ***
-@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
-
-@grid_gutter: 18px;
-@grid_module: 66px;
-@grid_12: 12 * @grid_module + 11 * @grid_gutter;
-@grid_4: 4 * @grid_module + 3 * @grid_gutter;
-@grid_3: 3 * @grid_module + 2 * @grid_gutter;
-
-@red: #c33f3f;
+@import "global.less";
 
 // *** Main content ***
 html,body {
@@ -44,13 +28,13 @@ body {
     float: left;
     width: @grid_3;
     position: relative;
-    
+
     h1 {
         font-family: "Montserrat";
         font-weight: 400;
         padding: 0.5em 0 0.4em 0;
         margin: 0;
-        
+
         * {
             text-transform: uppercase;
             font-size: 60%;
@@ -74,10 +58,10 @@ body {
 #top-navigation {
     float: left;
     font-size: 10.5pt;
-    font-family: Arial; 
+    font-family: Arial;
     font-weight: bold;
     color: #1c1b1b;
-    
+
     a {
         padding: 27pt 0 6pt;
         text-align: center;
@@ -99,7 +83,7 @@ body {
     margin-top: 23pt;
     padding: 0.5pt 5pt 1.2pt;
     box-shadow: inset 0 1px 1px #ccc;
-    
+
     // TODO(macduy): Manually position image because we can't be bothered do it properly.
     img {
         position: relative;
@@ -147,7 +131,7 @@ body {
     img {
         float: left;
     }
-    
+
     .triangle {
         margin-top: 22px;
         margin-left: 5px;
@@ -171,7 +155,7 @@ body {
         right: 0px;
         display: none;
         text-decoration: none;
-        
+
         .notification {
             padding: 5 10px 15px 10px;
             font-size: 12.5px;
@@ -185,15 +169,15 @@ body {
             .avatar {
                 margin-right: 15px
             }
-        
+
             &:last-child {
                 padding-bottom: 10px;
             }
-        
+
             &:not(:last-child) {
                 border-bottom: 1px solid #bbb;
             }
-        
+
             &:hover {
                 background-color:#eee;
             }
@@ -248,7 +232,7 @@ body {
     float: left;
     width: @grid_4;
     margin-left: @grid_gutter;
-    
+
     &:first-child {
         margin-left: 0;
     }
@@ -278,7 +262,7 @@ body {
         line-height: 100%;
         letter-spacing: -0.03em;
     }
-    
+
     .time {
         float: right;
         font-size: 75%;
@@ -286,7 +270,7 @@ body {
         margin-top: 11pt;
         line-height: 100%;
     }
-    
+
     .image-icon {
         font-size: 75%;
         color: #aaa;
@@ -302,7 +286,7 @@ body {
             }
         }
     }
-    
+
     .description {
         font-family: Arial;
         text-align: justify;
@@ -321,11 +305,47 @@ body {
     left: 0;
     background: rgba(0, 0, 0, 60%);
     display: none;  // Invisible by default.
-    
+
     &.active {
         display: block;
     }
-    
+
+    .overlay_content_full_bleed {
+        .overlay_content;
+        padding: 0;
+        overflow: hidden;
+
+        .deck {
+            position: absolute;
+
+        }
+
+        .text-deck {
+            .deck;
+            box-shadow: 0 0 20px black;
+            width: 350px;
+            height: 100%;
+            left: 0;
+            background: white;
+
+            .post {
+                margin: 0;
+                padding: 20pt;
+            }
+        }
+
+        .image-deck {
+            .deck;
+            position: absolute;
+            overflow: hidden;
+            width: 100%;
+            img {
+                max-width: 800px;
+                max-height: 600px;
+            }
+        }
+    }
+
     .overlay_content {
         position: relative;
         top: 10%;
@@ -333,38 +353,25 @@ body {
         padding: 20pt;
         display: block;
         width: 500px;
-        border-radius: 3px;
+        height: 400px;
         background: white;
         box-shadow: 0 2px 5px #222;
-        
-        .post {
-            margin-top: 0;
-            .gmap-embed {
-                margin: 10px 0 0 0;
+        .gmap-embed {
+            position: absolute;
+            top: 300px;
+            width: 100%;
+            height: 300px;
+            z-index: 1000;
+            background-color: #fff;
+            img.loading {
+                position: absolute;
+                top: 134px;
+                left: 259px;
+                z-index: 0;
             }
-            .overlay-images {
-                margin: 10px 0 0 0;
-                img {
-                    height: 100px;
-                    margin: 5px;
-                }
-            }
-            .overlay-full-image {
-                background-color: transparent;
-                padding: 0;
-                width: auto;
-                text-align: center;
-                .image-wrapper {
-                    display: inline-block;
-                    position: relative;
-                    img {
-                        max-height: 80%;
-                        max-width: 800px;
-                        display: block;
-                        margin-left: auto;
-                        margin-right: auto;
-                    }
-                }
+            iframe {
+                position: absolute;
+                z-index: 1;
             }
         }
         .post-close {
@@ -411,21 +418,6 @@ body {
     clear: both;
 }
 
-// *** Gradients ***
-.gradient(@color1, @stop1, @color2, @stop2) {
-    background: #efefef; /* Old browsers */
-    background: -moz-linear-gradient(top, @color1 @stop1, @color2 @stop2); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(@stop1,@color1), color-stop(@stop2,@color2)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, @color1 @stop1,@color2 @stop2); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, @color1 @stop1,@color2 @stop2); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, @color1 @stop1,@color2 @stop2); /* IE10+ */
-    background: linear-gradient(to bottom, @color1 @stop1,@color2 @stop2); /* W3C */
-}
-
-.gradient(@color) {
-    .gradient(@color, 0%, darken(@color, 12%), 100%);
-}
-
 // *** Debugging styles ***
 
 #debug_panel {
@@ -455,7 +447,7 @@ body {
     opacity: 0.5;
     z-index: 999;
     pointer-events:none;
-    
+
     &.enabled-false {
         display: none;
     }

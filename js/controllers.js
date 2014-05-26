@@ -1,10 +1,12 @@
-/*jshint browser:true */
+/*jshint browser:true, devel:true */
 
 // angular is defined in angular.js
 /*global angular */
 
 // these are in global.js
 /*global posts, notifications, topNavs, slides, app, longdanEnabled, $:false */
+
+var EVENT_POST_SELECTED = 'selected_post';
 
 app.controller("ListingsCtrl", function($scope, $sce) {
     'use strict';
@@ -123,12 +125,15 @@ app.controller("ListingsCtrl", function($scope, $sce) {
     // Images used for post overlay
     $scope.postImages = [];
     $scope.hasImages = function(post) {
-        return post !== null && 'images' in post;
+        return post !== null && 'images' in post && post.images.length > 1;
     };
     $scope.selectPost = function(post) {
         post = (post !== null && post.type === 'compose') ? null : post;
         $scope.postImages = $scope.hasImages(post) ? post.images : [];
         $scope.selected_post = post;
+        if (post !== null) {
+            $scope.$broadcast(EVENT_POST_SELECTED, $scope.selected_post);
+        }
     };
 
     $scope.populateByType('sale');
@@ -247,5 +252,67 @@ app.controller("ListingsCtrl", function($scope, $sce) {
 
     $scope.hasLocation = function(post) {
         return post !== null && "location" in post;
+    };
+});
+
+/**
+ * Controller for the single post view UX.
+ */
+app.controller("PostCtrl", function($scope) {
+    // Subscribe to the event
+    $scope.$on(EVENT_POST_SELECTED, function(args) {
+        // Work out what the default width and height should be
+        if ("location" in $scope.selected_post) {
+            $scope.defaultWidth = "550px";
+            $scope.defaultHeight = "600px";
+        } else {
+            $scope.defaultWidth = "550px";
+            $scope.defaultHeight = "300px";
+        }
+        // Get the maximum number of slide decks.
+        if ($scope.selected_post.images !== undefined) {
+            maxDecks = $scope.selected_post.images.length + 1;
+        } else {
+            maxDecks = 1;
+        }
+        $scope.currentDeckPosition = 0;
+        // Relayout
+        relayout();
+    });
+
+    // Current deck position: 0  is listing summary, >= 1 are images
+    $scope.currentDeckPosition = 0;
+
+    // Maximum number of slide decks.
+    var maxDecks = 0;
+
+    // Computes the layout.
+    function relayout() {
+        var position = $scope.currentDeckPosition;
+        var image = (position > 0) ? $scope.selected_post.images[position - 1] : null;
+        var layout = [];
+
+        for (var i = 0; i < maxDecks; i++) {
+            layout[i] = {
+                left: i < position ? "-100%" : 0
+            };
+        }
+
+        $scope.layout = layout;
+        $scope.currentImageIndex = position - 1;
+    }
+
+    $scope.onPostClicked = function() {
+        // Don't move past the last deck
+        if ($scope.currentDeckPosition < maxDecks - 1) {
+            $scope.currentDeckPosition++;
+            // sink the embedded map
+            $(".gmap-embed").css("z-index", 0);
+        } else {
+            $scope.currentDeckPosition = 0;
+            // unsink the embedded map
+            $(".gmap-embed").css("z-index", 1000);
+        }
+        relayout();
     };
 });

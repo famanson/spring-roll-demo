@@ -226,7 +226,9 @@ var posts = [
         type: "wanted"
     },
     
-    /* Rent posts */
+    /* Rent posts: These will have a static image used for map, 
+       ideally this should be generated server-side, but here
+       we do it in js by converting the location field */
     {
         // Linh Chu's ad - first "user" ever
         price: "Short-term",
@@ -237,7 +239,8 @@ var posts = [
         price: "£500pcm",
         ago: "2 days ago",
         description: "<b>Double room for rent</b> in Hackney E2. Suitable for couples. Very close to large supermarkets (Tesco, Asda), Vietnamese shops and restaurants. Buses: 149, 67, 242. Nearby stations: <b>Hoxton, Shoreditch High Street</b>",
-        type: "rent"
+        type: "rent",
+        location: "Hackney+E2+London"
     }, {
         price: "£450pcm",
         ago: "2 days ago",
