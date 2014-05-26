@@ -3,12 +3,9 @@
 .intro {
     background-color: #7bc173;
     border-top: 10px solid #efefef;
-    .overlay {
-        z-index: 1000;
-        .overlay_content_full_bleed {
-            width: 800px;
-            height: auto;
-        }
+    .overlay_content_full_bleed {
+        width: 800px;
+        height: auto;
     }
     .intro-wrapper {
         width: @grid_12;
@@ -96,9 +93,6 @@
             width: 100%;
             height: 300px;
             div {
-                border-radius: 5px;
-                padding: 5px 10px;
-                margin-bottom: 5px;
                 background-color: #fff;
                 color: #649e5d;
                 label {
@@ -117,6 +111,8 @@
                     }
                 }
                 &.email {
+                    padding: 5px 10px;
+                    margin-bottom: 5px;
                     input {
                         font-size: 16px;
                         color: #649e5d;
@@ -136,14 +132,14 @@
                     }
                 }
                 &.message {
+                    border-top: 1px solid #7bc173;
+                    padding: 5px 0;
+                    margin: 0 10px 5px 10px;
                     label {
                         margin: 5px 0;
                     }
                     textarea {
-                        border-top: 1px solid #7bc173;
-                        border-bottom: none;
-                        border-left: none;
-                        border-right: none;
+                        border: none;
                         font-family: Arial;
                         font-size: 16px;
                         color: #649e5d;
