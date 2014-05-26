@@ -226,27 +226,10 @@ app.controller("ListingsCtrl", function($scope, $sce) {
         $scope.introVisible = show;
     };
 
-    /* Image picker in overlay */
-    $scope.fullImagePicked = false;
-    $scope.setPostImage = function(image) {
-        $scope.pickedImage = image;
-        $scope.setFullImagePicked(true);
-    };
-    $scope.setFullImagePicked = function(picked) {
-        $scope.fullImagePicked = picked;
-    };
-    $scope.cycleImages = function(forward) {
-        var current = $scope.postImages.indexOf($scope.pickedImage);
-        var cycleIndex = current + (forward ? 1 : -1);
-        cycleIndex += cycleIndex < 0 ? $scope.postImages.length : 0;
-        var next = cycleIndex % $scope.postImages.length;
-        $scope.pickedImage = $scope.postImages[next];
-    };
-
     /* Google Map Embed API */
     $scope.mapValue = function(post) {
         return $sce.trustAsResourceUrl("https://www.google.com/maps/embed/v1/place?" +
-               "key=AIzaSyASgjPiSBanoRMV62DOrQEGRNO1VrGVT34&" + 
+               "key=AIzaSyASgjPiSBanoRMV62DOrQEGRNO1VrGVT34&" +
                "q=" + post.location + "&zoom=15");
     };
 
@@ -276,12 +259,25 @@ app.controller("PostCtrl", function($scope) {
             maxDecks = 1;
         }
         $scope.currentDeckPosition = 0;
+
+        // Generate an array of size 'maxDecks' so that the pager indicator can be generated.
+        // This is more of a hack, should be fixed using a filter.
+        // TODO: macduy - refactor to use filter
+        var range = [];
+        for (var i = 0; i < maxDecks; i++) {
+            range[i] = null;
+        }
+        $scope.pagerPages = range;
+
         // Relayout
         relayout();
     });
 
     // Current deck position: 0  is listing summary, >= 1 are images
     $scope.currentDeckPosition = 0;
+
+    // TODO: Remove this hack
+    $scope.pagerPages = [];
 
     // Maximum number of slide decks.
     var maxDecks = 0;

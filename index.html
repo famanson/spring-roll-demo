@@ -97,6 +97,9 @@
 
         <!-- Modal post display -->
         <div class="overlay" ng-class="{ active : selected_post != null }" ng-controller="PostCtrl">
+            <div class="page-indicator" ng-if='pagerPages.length > 1'>
+                <span ng-repeat="page in pagerPages track by $index" ng-style="{ opacity : $index === currentDeckPosition ? 1.0 : 0.5 }">&bull;</span>
+            </div>
             <div class="overlay_content_full_bleed" sr-auto-resize-deck="currentDeckPosition"
                  sr-active-init-resize="selected_post != null">
                 <div class="text-deck" ng-click="onPostClicked();$event.stopPropagation()" style="z-index: 11" sr-auto-animate="layout[0]">
