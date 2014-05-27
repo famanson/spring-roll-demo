@@ -19,6 +19,7 @@
         <script src="./js/native.js"></script>
         <script src="./js/global.js"></script>
         <script src="./js/controllers.js"></script>
+        <script src="./js/filters.js"></script>
         <script src="./js/checkout.js"></script>
         <script src="./js/compose.js"></script>
         <script src="./js/intro.js"></script>
@@ -87,7 +88,7 @@
                         <span class="price">{{ post.price }}</span>
                         <span class="image-icon" ng-if="hasImages(post)"><img src="images/image-icon.png"/></span>
                         <span class="time">{{ post.ago }}</span>
-                        <div class="description" ng-bind-html="post.description"></div>
+                        <div class="description" ng-bind-html="post.description | highlightMatch: searchedText"></div>
                     </div>
                 </div>
             </div>

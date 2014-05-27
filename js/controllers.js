@@ -50,7 +50,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
             return $scope.currentType !== 'longdan';
         };
         // Returns true if "text" contains "searchedText".
-        var searchText = function(text, searchedText) {
+        var isTextMatched = function(text, searchedText) {
             if (isSearchEnabled()) {
                 // Quick cheap text sanitization
                 var sanitized = $("<div>" + text + "</div>").text();
@@ -59,31 +59,17 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
                 return true;
             }
         };
-        var processMatch = function(match, p1, offset, string) {
-            return "<span class=\"searchHighlight\">" + match + "</span>";
-        };
-        var highlight = function(post) {
-            if (isSearchEnabled()) {
-                if ($scope.searchedText !== "") {
-                    var sanitized = $("<div>" + post._description + "</div>").text();
-                    post.description = sanitized.replace(new RegExp($scope.searchedText, 'gi'),
-                                                                 processMatch);
-                } else {
-                    post.description = post._description;
-                }
-            }
-            return post;
-        };
         var filterByType = function(post) {
             if (post.type === 'compose') {
                 // Special case - the "compose" sentinel.
                 return ($scope.currentType !== 'longdan' && $scope.searchedText === "");
             } else {
-                return post.type === $scope.currentType && searchText(post._description, $scope.searchedText);
+                return post.type === $scope.currentType && isTextMatched(post._description, $scope.searchedText);
             }
         };
         var filteredPosts = posts.filter(filterByType);
-        filteredPosts = $.map(filteredPosts, highlight);
+        // TODO(macduy): We should fix this hack - instead of creating new model variables, implement
+        //               the column sorting as a directive and keep this code simple.
         $scope.postCount = filteredPosts.length;
         var perColumn = filteredPosts.length / rowLength;
         var remainder = filteredPosts.length % rowLength;
