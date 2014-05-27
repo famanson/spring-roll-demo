@@ -237,4 +237,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         var next = cycleIndex % $scope.postImages.length;
         $scope.pickedImage = $scope.postImages[next];
     };
+    
+    //Add current date
+    $scope.currentDate = new Date();
 });
