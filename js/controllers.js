@@ -236,8 +236,13 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         cycleIndex += cycleIndex < 0 ? $scope.postImages.length : 0;
         var next = cycleIndex % $scope.postImages.length;
         $scope.pickedImage = $scope.postImages[next];
+    };   
+});
+
+app.filter('timeElapsed', function() {
+    return function(datePosted) {
+        var numDay = Math.floor((new Date() - new Date(datePosted))/84600000);
+        if (numDay == 1) return "1 day ago" ;
+        else return numDay + " days ago";
     };
-    
-    //Add current date
-    $scope.currentDate = new Date();
 });

@@ -16,7 +16,6 @@ var posts = [
         price: "£100",
         ago: "2 days ago",
         datePosted: "2014-05-02",
-        agoNew: function() { return Date(this.datePosted);},
         description: "<b>Old heater</b>, good for winter holidays. Heats well even in coldest weather for a bedroom-sided room. Will send anywhere within UK, <b>delivery</b> included.",
         type: "sale",
         images: [{
