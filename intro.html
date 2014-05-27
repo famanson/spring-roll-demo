@@ -15,10 +15,11 @@
                         <span ng-show="email.length>0 && validationResult!=null && !validationProgress"
                               class="validation" ng-class="{ 'valid': validationResult.valid }">
                             {{ validationResult.text }}
-                            <a class="double-check" ng-show="!validationResult.valid"><u><i>check again?</i></u></a>
+                            <a class="double-check" href="#" ng-show="!validationResult.valid"><u>check again?</u></a>
                         </span>
                         <img ng-show="validationProgress" class="loading" src="images/loading.gif"/>
                     </div>
+                    <hr/>
                     <div class="message">
                         <label><b>Message Body:</b></label>
                         <span ng-show="messageForm.messageBody.$dirty"
@@ -27,15 +28,16 @@
                         </span>
                         <textarea name="messageBody" ng-model="messageBody"
                             placeholder="Hmm... Spring rolls are goooooood..."></textarea>
-                        <div class="bottom">
-                            <input name="trap" type="checkbox">
-                            <p ng-click="setMessageFormVisible(false);dismissMessageResult();" class="cancel">  <i>Close</i>
-                            </p>
-                            <p class="send" ng-class="{ active: validationResult.valid && messageBody.length > 0 }"
-                               ng-click="send()">
-                                <b>Send</b>
-                            </p>
-                        </div>
+                    </div>
+                    <hr/>
+                    <div class="bottom">
+                        <input name="trap" type="checkbox">
+                        <p ng-click="setMessageFormVisible(false);dismissMessageResult();" class="cancel">  <i>Close</i>
+                        </p>
+                        <p class="send" ng-class="{ active: validationResult.valid && messageBody.length > 0 }"
+                           ng-click="send()">
+                            <b>Send</b>
+                        </p>
                     </div>
                 </form>
             </div>
@@ -66,8 +68,5 @@
     </div>
 </div>
 <script type="text/javascript">
-    $(".bottom").append('<input name="chboxCaptcha" type="checkbox"><label class="chboxCaptchaHelp" ng-class=\"{ \'invalid\': chboxCaptchaAlert() }\" for=\"chboxCaptcha\">I promise I\'m not a bot!</label>');
-    $(".email").bind("click", function() {
-        $(this).children("input").focus();
-    });
+    $(".bottom").append('<p style="padding-left: 0"><input name="chboxCaptcha" id="chboxCaptcha" type="checkbox"><label class="chboxCaptchaHelp" ng-class=\"{ \'invalid\': chboxCaptchaAlert() }\" for="chboxCaptcha">I promise I\'m not a bot!</label></p><div class="clear"  ></div>');
 </script>

@@ -6,17 +6,25 @@
     background-color: @background;
     border-top: 1px solid darken(@background, 10%);
     margin-top: 50px;
-    overflow: hidden;
+    overflow: hidden;   // Crops the shadow-maker
 
     .overlay_content_full_bleed {
         width: 400px;
         height: auto;
+        overflow: visible !important;
         &.overlay-shrink {
             width: 300px;
             height: 50px;
             top: 40%;
         }
     }
+
+    hr {
+        margin: 0;
+        border-bottom: 0;
+        border-top: 1px dotted lighten(@background, 20%);
+    }
+
     .intro-wrapper {
         width: @grid_12;
         margin: 0 auto;
@@ -96,7 +104,7 @@
             }
         }
         .message-form {
-            height: 300px;
+            margin-bottom: 0;
             div {
                 background-color: #fff;
                 color: #649e5d;
@@ -105,11 +113,20 @@
                     padding: 0 5px;
                 }
                 .validation {
+                    white-space: nowrap;
                     padding: 5px;
                     // invalid by default
                     background-color: #f86e6e;
                     color: #fff;
-                    border-radius: 5px;
+                    border-radius: 2px;
+                    padding: 0.2em 0.5em;
+                    font-size: 80%;
+                    position: absolute;
+                    right: 100%;
+                    margin: 0 1em;
+                    a {
+                        color: white;
+                    }
                     &.valid {
                         background-color: #7bc173;
                     }
@@ -119,16 +136,11 @@
                     margin-bottom: 5px;
                     input {
                         font-size: 16px;
-                        color: #649e5d;
                         display: inline-block;
                         outline: none;
                         border: none;
                         max-width: 680px;
                         min-width:10px;
-                    }
-                    .double-check {
-                        cursor: pointer;
-                        font-size: 14px;
                     }
                     img.loading {
                         height: 20px;
@@ -136,7 +148,6 @@
                     }
                 }
                 &.message {
-                    border-top: 1px solid #7bc173;
                     padding: 5px 0;
                     margin: 0 10px 5px 10px;
                     label {
@@ -146,61 +157,58 @@
                         border: none;
                         font-family: Arial;
                         font-size: 16px;
-                        color: #649e5d;
                         outline: none;
                         width: 100%;
                         height: 200px;
                         padding: 5px;
                         resize: none;
                     }
-                    .bottom {
-                        margin: 0;
-                        padding: 5px 0 0 0;
-                        width: 100%;
-                        border-radius: 0;
-                        border-top: 1px solid #7bc173;
-                        input[name="chboxCaptcha"] {
-                            float: left;
-                            margin-top: 7px;
-                        }
-                        input[name="trap"] {
-                            display: none;
-                        }
-                        p {
-                            margin: 0;
-                            font-size: 14px;
-                            padding: 5px 10px;
-                            &.send {
-                                color: #fff;
-                                font-style: normal;
-                                cursor: pointer;
-                                float: right;
-                                border-radius: 2px;
-                                margin-right: 10px;
-                                background-color: #bbb;
-                                &.active {
-                                    background-color: #7bc173;
-                                    &:hover {
-                                        background-color: #649e5d;
-                                    }
-                                }
-                            }
-                            &.cancel {
-                                cursor: pointer;
-                                float: right;
-                                text-decoration: underline;
-                            }
-                            &.invalid {
-                                color: #f75454;
-                                font-weight: bold;
-                            }
-                        }
-                    }
                 }
             }
         }
     }
+    .bottom {
+        padding: 5px 0;
+        margin: 0 10px 5px 10px;
+        input[name="chboxCaptcha"] {
+            float: left;
+        }
+        input[name="trap"] {
+            display: none;
+        }
+        p {
+            margin: 0;
+            font-size: 14px;
+            padding: 5px 10px;
+            &.send {
+                color: #fff;
+                font-style: normal;
+                cursor: pointer;
+                float: right;
+                border-radius: 2px;
+                margin-right: 10px;
+                background-color: #bbb;
+                &.active {
+                    background-color: #7bc173;
+                    &:hover {
+                        background-color: #649e5d;
+                    }
+                }
+            }
+            &.cancel {
+                cursor: pointer;
+                float: right;
+                text-decoration: underline;
+            }
+            &.invalid {
+                color: #f75454;
+                font-weight: bold;
+            }
+        }
+    }
 }
+
+
 
 .shadow-maker {
     box-shadow: 0 0 20px black;
