@@ -1,11 +1,15 @@
 @import "global.less";
 
+@background: #7bc173;
+
 .intro {
-    background-color: #7bc173;
-    border-top: 10px solid #efefef;
+    background-color: @background;
+    border-top: 1px solid darken(@background, 10%);
     margin-top: 50px;
+    overflow: hidden;
+
     .overlay_content_full_bleed {
-        width: 800px;
+        width: 400px;
         height: auto;
         &.overlay-shrink {
             width: 300px;
@@ -18,12 +22,13 @@
         margin: 0 auto;
         position: relative;
         p {
-            font-size: 20px;
-            color: #fff;
-            font-style: italic;
-            a {
-                font-size: 16px;
-                color: #fefefe;
+            font-family: @thin-font-family;
+            font-size: 14pt;
+            line-height: 2;
+            color: lighten(@background, 30%);
+            b {
+                color: lighten(@background, 40%);
+                font-weight: normal;
             }
         }
         div {
@@ -46,25 +51,25 @@
                     text-decoration:none;
                     img {
                         margin: 0 10px 0 0;
-                        height: 80px;
+                        height: 40px;
                     }
                 }
                 p {
-                    font-size: 16px;
+                    font-size: 11pt;
                     .quick-mail {
                         cursor: pointer;
                     }
                     .hello-button {
-                        color: #7bc173;
+                        .gradient(darken(@background, 10%));
+                        border: 1px solid darken(@background, 25%);
+                        color: white;
                         font-style: normal;
-                        cursor: pointer;
                         margin: 0 10px;
-                        background-color: #fff;
-                        padding: 5px;
-                        border-radius: 5px;
+                        padding: 0.2em 0.5em;
+                        border-radius: 2px;
                         font-weight: bold;
                         &:hover {
-                            background-color: #efefef;
+                            background: darken(@background, 20%);
                         }
                     }
                 }
@@ -91,16 +96,13 @@
             }
         }
         .message-form {
-            width: 800px;
-            // width: 100%;
             height: 300px;
             div {
                 background-color: #fff;
                 color: #649e5d;
                 label {
                     display: inline-block;
-                    width: 120px;
-                    padding: 0 5px 0px 5px;
+                    padding: 0 5px;
                 }
                 .validation {
                     padding: 5px;
@@ -198,4 +200,11 @@
             }
         }
     }
+}
+
+.shadow-maker {
+    box-shadow: 0 0 20px black;
+    height: 1px;
+    position: relative;
+    top: -1px;
 }

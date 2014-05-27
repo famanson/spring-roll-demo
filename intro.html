@@ -1,4 +1,5 @@
 <div class="intro" ng-controller="IntroCtrl">
+    <div class="shadow-maker"></div>
     <div class="overlay" ng-class="{ active : messageFormVisible }">
         <div class="overlay_content_full_bleed" ng-class="{ 'overlay-shrink':showMessageResult }">
             <div class="message-wrapper">
@@ -13,7 +14,7 @@
                             autocomplete="off" sr-email-validator sr-input-autogrow></input>
                         <span ng-show="email.length>0 && validationResult!=null && !validationProgress"
                               class="validation" ng-class="{ 'valid': validationResult.valid }">
-                            {{ validationResult.text }} 
+                            {{ validationResult.text }}
                             <a class="double-check" ng-show="!validationResult.valid"><u><i>check again?</i></u></a>
                         </span>
                         <img ng-show="validationProgress" class="loading" src="images/loading.gif"/>
@@ -24,7 +25,7 @@
                               class="validation" ng-class="{ 'valid': isReadyToSend() }">
                             {{ messageWarningText() }}
                         </span>
-                        <textarea name="messageBody" ng-model="messageBody" 
+                        <textarea name="messageBody" ng-model="messageBody"
                             placeholder="Hmm... Spring rolls are goooooood..."></textarea>
                         <div class="bottom">
                             <input name="trap" type="checkbox">
@@ -42,14 +43,16 @@
     </div>
     <div class="intro-wrapper">
         <div class="tag-lines">
-            <p>Hi! Welcome to our Project Spring Roll demo!</p>
-            <p>This is what the future SVUK Marketplace looks like</p>
-            <p>It won't work on mobile devices or save any changes</p>
-            <p>Hint: type "real" in our Search Box for real adverts</p>
+            <p>
+                <b>Hi! Welcome to our Project Spring Roll demo!</b><br/>
+                This is what the future SVUK Marketplace looks like. <br/>
+                It won't work on mobile devices or save any changes. <br/>
+                Hint: type "real" in our Search Box for real adverts <br/>
+            </p>
         </div>
         <div class="social-images">
             <p>
-                Like what we do? <a class="hello-button" class="quick-mail" ng-click="setMessageFormVisible(true);dismissMessageResult()">Say Hello!</a>
+                Like what we do? <a class="hello-button" href="#" class="quick-mail" ng-click="setMessageFormVisible(true);dismissMessageResult()">Say Hello!</a>
             </p>
             <p>You can also find us on:</p>
             <a href="https://www.facebook.com/pages/Team-Spring-Roll/1412319192364606" target="_blank">
@@ -63,7 +66,7 @@
     </div>
 </div>
 <script type="text/javascript">
-    $(".bottom").append('<input name="chboxCaptcha" type="checkbox"><p class="chboxCaptchaHelp" ng-class=\"{ \'invalid\': chboxCaptchaAlert() }\">By ticking here, I pinky promise I\'m not a bot!</p>');
+    $(".bottom").append('<input name="chboxCaptcha" type="checkbox"><label class="chboxCaptchaHelp" ng-class=\"{ \'invalid\': chboxCaptchaAlert() }\" for=\"chboxCaptcha\">I promise I\'m not a bot!</label>');
     $(".email").bind("click", function() {
         $(this).children("input").focus();
     });
