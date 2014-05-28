@@ -72,4 +72,3 @@ app.directive('srAutoResizeDeck', function() {
         link: link,
     };
 });
-
