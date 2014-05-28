@@ -244,7 +244,12 @@ app.filter('timeElapsed', function() {
     return function(datePosted) {
         var numDay = Math.floor((new Date() - new Date(datePosted))/84600000);
         if (numDay === 0) {
-            return "NEW! Posted today!" ;
+            var numHour = Math.floor((new Date() - new Date(datePosted))/3600000);
+            if (numHour < 1) {
+                return "just now";
+            } else {
+                return "today" ;
+            }
         } else if (numDay == 1) {
             return "yesterday" ;
         } else if (numDay < 7) {
