@@ -239,10 +239,24 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     };   
 });
 
+/* Converts date in string format to a time elapsed representation, e.g. "6 days ago" */
 app.filter('timeElapsed', function() {
     return function(datePosted) {
         var numDay = Math.floor((new Date() - new Date(datePosted))/84600000);
-        if (numDay == 1) return "1 day ago" ;
-        else return numDay + " days ago";
+        if (numDay === 0) {
+            return "NEW! Posted today!" ;
+        } else if (numDay == 1) {
+            return "yesterday" ;
+        } else if (numDay < 7) {
+            return numDay + " days ago";
+        } else if (numDay < 11) {
+            return "a week ago";
+        } else if (numDay < 30) {
+            return Math.round(numDay/7) + " weeks ago";
+        } else if (numDay < 45) {
+            return "a month ago";
+        } else {
+            return Math.round(numDay/30) + " months ago";
+        }
     };
 });

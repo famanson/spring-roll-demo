@@ -15,7 +15,7 @@ var posts = [
     {
         price: "£100",
         ago: "2 days ago",
-        datePosted: "2014-05-02",
+        datePosted: "2014-05-28",
         description: "<b>Old heater</b>, good for winter holidays. Heats well even in coldest weather for a bedroom-sided room. Will send anywhere within UK, <b>delivery</b> included.",
         type: "sale",
         images: [{
@@ -28,19 +28,19 @@ var posts = [
     }, {
         price: "£150",
         ago: "4 days ago",
-        datePosted: "2014-05-13",
+        datePosted: "2014-05-27",
         description: "Old <b>50-inch TV</b>, brand Panasonic, black, small bezel. Purchased in 2009, in good condition (see photos). Has an in-built DVD player, 2 USB, 3 HDMI, Component and 2 AVI. <b>LED</b> display, may not good against direct sunlight. Delivery costs not included, please pick up from Clapham, London.",
         type: "sale"
     }, {
         price: "£400",
         ago: "2 days ago",
-        datePosted: "2014-05-24",
+        datePosted: "2014-03-24",
         description: "<b>iPhone 5S gold colour</b>. Barely used. Deliver anywhere within UK (delivery not included, up to £5 extra). Will throw in a free cover of your choice (see photos).",
         type: "sale"
     }, {
         price: "£120",
         ago: "3 days ago",
-        datePosted: "2014-05-09",
+        datePosted: "2014-04-28",
         description: "<b>Brand new female bike</b> in London! Raleigh bike, including lights, lock and a free front basket. Recently serviced. Selling due to lack of use, collect in person only.",
         type: "sale"
     }, {
