@@ -21,13 +21,6 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     // Currently selected post, will be displayed to user in detail.
     $scope.selected_post = null;
 
-    // Quick and dirty way to get a persistent description (_description) on each post
-    // meaning post.description will be displayed on the site and if we want transformation
-    // on it, we do that on post._description and replace post.description with it
-    for (var j = 0; j < posts.length; j++) {
-        posts[j]._description = posts[j].description;
-    }
-
     // Split posts into three columns (and four if Longdan)
     $scope.columns = [];
     for (var i = 0; i < 4; i++) { // use 4 to make way for Longdan posts
@@ -64,7 +57,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
                 // Special case - the "compose" sentinel.
                 return ($scope.currentType !== 'longdan' && $scope.searchedText === "");
             } else {
-                return post.type === $scope.currentType && isTextMatched(post._description, $scope.searchedText);
+                return post.type === $scope.currentType && isTextMatched(post.description, $scope.searchedText);
             }
         };
         var filteredPosts = posts.filter(filterByType);
