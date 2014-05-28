@@ -38,11 +38,13 @@ app.directive("srColumns", function() {
             // get animations working.
             var perColumn = posts.length / rowLength;
             var remainder = posts.length % rowLength;
+            var offset = 0;
             for (i = 0; i < rowLength; i++) {
-                var columnPosts = posts.splice(0, perColumn + (i < remainder ? 1 : 0));
+                var columnPosts = posts.slice(offset, offset + perColumn + (i < remainder ? 1 : 0));
                 for (var k = 0; k < columnPosts.length; k++) {
                     $scope.columns[i].push(columnPosts[k]);
                 }
+                offset += columnPosts.length;
             }
         };
     }
