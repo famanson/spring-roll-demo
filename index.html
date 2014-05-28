@@ -128,7 +128,7 @@
         <div id="debug_panel" ng-if="debugPanelEnabled">
             <input type=checkbox id="show_grid_lines" ng-model="showGridLines" /><label for="show_grid_lines">Show grid lines</label>
         </div>
-        <div ng-include src="'intro.html'"></div>
+        <div ng-include src="'intro.html'" ng-show="searchedText.length == 0"></div>
     </body>
 </html>
 
