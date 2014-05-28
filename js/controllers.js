@@ -18,39 +18,27 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     // Enable debug panel?
     $scope.debugPanelEnabled = window.debugPanelEnabled || false;
 
+    // Currently shown posts.
+    $scope.posts = [];
+
     // Currently selected post, will be displayed to user in detail.
     $scope.selected_post = null;
-
-    // Quick and dirty way to get a persistent description (_description) on each post
-    // meaning post.description will be displayed on the site and if we want transformation
-    // on it, we do that on post._description and replace post.description with it
-    for (var j = 0; j < posts.length; j++) {
-        posts[j]._description = posts[j].description;
-    }
-
-    // Split posts into three columns (and four if Longdan)
-    $scope.columns = [];
-    for (var i = 0; i < 4; i++) { // use 4 to make way for Longdan posts
-        $scope.columns[i] = [];
-    }
 
     // Define the two variables that will determine which posts to display
     $scope.currentType = "sale";
     $scope.searchedText = "";
     $scope.clearSearch = function() {
         $scope.searchedText = "";
-        $scope.emptyColumns();
         $scope.repopulate();
     };
     // Method for dynamically populate page, mainly used for search
     $scope.repopulate = function() {
-        var rowLength = ($scope.currentType === 'longdan') ? 4 : 3;
         // Should search be enabled?
         var isSearchEnabled = function() {
             return $scope.currentType !== 'longdan';
         };
         // Returns true if "text" contains "searchedText".
-        var searchText = function(text, searchedText) {
+        var isTextMatched = function(text, searchedText) {
             if (isSearchEnabled()) {
                 // Quick cheap text sanitization
                 var sanitized = $("<div>" + text + "</div>").text();
@@ -59,54 +47,17 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
                 return true;
             }
         };
-        var processMatch = function(match, p1, offset, string) {
-            return "<span class=\"searchHighlight\">" + match + "</span>";
-        };
-        var highlight = function(post) {
-            if (isSearchEnabled()) {
-                if ($scope.searchedText !== "") {
-                    var sanitized = $("<div>" + post._description + "</div>").text();
-                    post.description = sanitized.replace(new RegExp($scope.searchedText, 'gi'),
-                                                                 processMatch);
-                } else {
-                    post.description = post._description;
-                }
-            }
-            return post;
-        };
         var filterByType = function(post) {
             if (post.type === 'compose') {
                 // Special case - the "compose" sentinel.
                 return ($scope.currentType !== 'longdan' && $scope.searchedText === "");
             } else {
-                return post.type === $scope.currentType && searchText(post._description, $scope.searchedText);
+                return post.type === $scope.currentType && isTextMatched(post.description, $scope.searchedText);
             }
         };
-        var filteredPosts = posts.filter(filterByType);
-        filteredPosts = $.map(filteredPosts, highlight);
-        $scope.postCount = filteredPosts.length;
-        var perColumn = filteredPosts.length / rowLength;
-        var remainder = filteredPosts.length % rowLength;
-        // Again, cycling through each column and post is needed to get animations
-        // working.
-        for (var i = 0; i < rowLength; i++) {
-            var columnPosts = filteredPosts.splice(0, perColumn + (i < remainder ? 1 : 0));
-            for (var k = 0; k < columnPosts.length; k++) {
-                $scope.columns[i].push(columnPosts[k]);
-            }
-        }
+        $scope.posts = posts.filter(filterByType);
     };
 
-    // Clear all columns.
-    $scope.emptyColumns = function () {
-        // Cycling through each column to perform pop is necessary for animations.
-        for (var i = 0; i < 4; i++) { // use 4 to make way for Longdan posts
-            var len = $scope.columns[i].length;
-            for (var j = 0; j < len; j++) {
-                $scope.columns[i].pop();
-            }
-        }
-    };
 
     /* Top Nav Control */
     $scope.populateByType = function(popType) {
@@ -116,7 +67,6 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
 
     $scope.switchColumn = function(popType) {
         if (popType !== $scope.selectedNav) {
-            $scope.emptyColumns();
             $scope.populateByType(popType);
         }
     };
@@ -130,6 +80,9 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         $scope.postImages = $scope.hasImages(post) ? post.images : [];
         $scope.selected_post = post;
     };
+    $scope.openComposeBox = function() {
+        $scope.$broadcast("EVENT_OPEN_COMPOSE_BOX");
+    }
 
     $scope.populateByType('sale');
     if (!$scope.longdanEnabled) {
