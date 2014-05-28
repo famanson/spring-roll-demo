@@ -8,12 +8,10 @@
 
 /** Splits post into columns. This already assumes the right HTML template is set up */
 app.directive("srColumns", function() {
-    function link(scope, elements, attrs, controller) {
+    function link(scope, element, attrs, controller) {
+        controller.setColumns(attrs.columns);
         scope.$watch(attrs.posts, function(value) {
             controller.columnise(value);
-        });
-        scope.$watch(attrs.columns, function(value) {
-            controller.setColumns(value);
         });
     }
 
@@ -31,6 +29,8 @@ app.directive("srColumns", function() {
 
         // Splits given posts into columns
         this.columnise = function(posts) {
+            // var columnCount = this.columnCount;
+
             // Clear all posts first.
             var i;
             for (i = 0; i < 4; i++) { // use 4 to make way for Longdan posts
@@ -56,8 +56,6 @@ app.directive("srColumns", function() {
     }
 
     return {
-        templateUrl: "columns.html",
-        transclude: true,
         controller: controller,
         link: link,
     };
