@@ -1,7 +1,4 @@
 <div ng-controller="ComposeCtrl">
-    <div  class="compose" ng-click="setComposeBoxEnabled(true);">
-        <b>+ Post new ad</b>
-    </div>
     <div class="overlay" ng-class="{active : composeBoxEnabled}">
         <div class="composeBox overlay_content" ng-class="{active : composeBoxEnabled}">
             <h3>New advertisement</h3>
@@ -47,7 +44,7 @@
             </div>
             <div class="buttons">
                 <div class="submit" ng-click="submitPost();" ng-class="{ active : isOkayToSubmit() }">Submit</div>
-                <div class="discard" ng-click="clearSubmit();setComposeBoxEnabled(false);">Discard</div>
+                <div class="discard" ng-click="clearSubmit()">Discard</div>
             </div>
         </div>
     </div>

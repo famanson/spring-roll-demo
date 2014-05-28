@@ -1,12 +1,13 @@
 /*global app, posts, helpTypes */
 
 app.controller("ComposeCtrl", function($scope) {
+    // Event handling.
+    $scope.$on("EVENT_OPEN_COMPOSE_BOX", function() {
+        $scope.composeBoxEnabled = true;
+    });
+
     $scope.composeCategories = ['Sale','Wanted','Rent'];
     $scope.composeBoxEnabled = false;
-    
-    $scope.setComposeBoxEnabled = function(enabled) {
-        $scope.composeBoxEnabled = enabled;
-    };
     $scope.pickedCategory = "";
     $scope.setPickedCategory = function(category) {
         $scope.pickedCategory = category;
@@ -31,9 +32,9 @@ app.controller("ComposeCtrl", function($scope) {
     };
     var priceRegExp = new RegExp(/(^\£\d+(.\d{1,2})?(k|m)?(\/h|pcm)?$)/);
     $scope.isPriceSensible = function() {
-        return priceRegExp.test($scope.submittedPrice) || 
+        return priceRegExp.test($scope.submittedPrice) ||
             ($scope.checkCategory("wanted") && $scope.submittedPrice.match(/^wanted(!)*$/gi)) ||
-            ($scope.checkCategory("rent") && 
+            ($scope.checkCategory("rent") &&
                 ($scope.submittedPrice.match(/^short(-|\ )?term$/gi) || $scope.submittedPrice.match(/^long(-|\ )?term$/gi)));
     };
 
@@ -84,6 +85,7 @@ app.controller("ComposeCtrl", function($scope) {
         $scope.submittedPrice = "";
         $scope.submittedDesc = "";
         $scope.pickedCategory = "";
+        $scope.composeBoxEnabled = false;
         $scope.updatePriceHelp();
         $scope.updateDescHelp();
     };
@@ -146,7 +148,7 @@ app.controller("ComposeCtrl", function($scope) {
         return "";
     };
 
-    $scope.escapeHTML = function(s) { 
+    $scope.escapeHTML = function(s) {
         return s.replace(/&/g, '&amp;')
                 .replace(/"/g, '&quot;')
                 .replace(/</g, '&lt;')
