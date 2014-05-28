@@ -141,3 +141,38 @@ app.directive('srDropdownAnimate', function() {
         link: link,
     };
 });
+
+app.directive('srSearchEnterKey', function() {
+    function link(scope, element, attrs) {
+        $(document).keyup(function(e) {
+            if(e.keyCode === 13) {
+                scope.$apply(function() {
+                    scope.searchedText = element.val();
+                    scope.$eval(attrs.srSearchEnterKey);
+                });
+            }
+        });
+    }
+
+    return {
+        restrict: 'A',
+        link: link,
+    }; 
+});
+
+app.directive('srEscKey', function() {
+    function link(scope, element, attrs) {
+        $(document).keyup(function(e) {
+            if(e.keyCode === 27) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.srEscKey);
+                });
+            }
+        });
+    }
+
+    return {
+        restrict: 'A',
+        link: link,
+    }; 
+});

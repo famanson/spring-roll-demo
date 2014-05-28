@@ -47,8 +47,12 @@
                 <!-- Searchbox -->
                 <div id="search-container" ng-show="currentType !== 'longdan'">
                     <img src="images/search.png" />
-                    <input type="text" ng-model="searchedText"
-                           ng-change="emptyColumns();repopulate();"
+                    <!-- ng-change="emptyColumns();repopulate();" -->
+                    <input sr-search-enter-key="activateSearch()"
+                           sr-esc-key="clearSearch(searchActive)"
+                           type="text"
+                           ng-model="searchedInput"
+                           ng-change="clearSearch(searchedInput.length === 0)"
                            placeholder="Search in {{ currentType.capitalise() }}">
                 </div>
 
@@ -74,7 +78,7 @@
         </div>
 
         <!-- Main posts area -->
-        <div id="search-count" ng-if="searchedText.length > 0">
+        <div id="search-count" ng-if="searchedText.length > 0 && searchActive">
             <i>Search result: <b>{{ postCount }}</b> posts found containing "<b>{{ searchedText }}</b>" under {{ currentType.capitalise() }} <a class="clear" ng-click="clearSearch();">clear</a></i>
         </div>
         <div id="content" ng-class="selected.type" ng-if="selected.type != 'longdan'">
@@ -128,7 +132,7 @@
         <div id="debug_panel" ng-if="debugPanelEnabled">
             <input type=checkbox id="show_grid_lines" ng-model="showGridLines" /><label for="show_grid_lines">Show grid lines</label>
         </div>
-        <div ng-include src="'intro.html'" ng-show="searchedText.length == 0"></div>
+        <div ng-include src="'intro.html'" ng-show="!searchActive"></div>
     </body>
 </html>
 

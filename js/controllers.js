@@ -38,11 +38,25 @@ app.controller("ListingsCtrl", function($scope, $sce) {
 
     // Define the two variables that will determine which posts to display
     $scope.currentType = "sale";
+    // the searched text
     $scope.searchedText = "";
-    $scope.clearSearch = function() {
-        $scope.searchedText = "";
+    // direct input from search box
+    $scope.searchedInput = "";
+    $scope.searchActive = false;
+    $scope.clearSearch = function(condition) {
+        // Each clear will reset whole page
+        if (condition) {
+            $scope.searchedText = "";
+            $scope.searchActive = false;
+            $scope.emptyColumns();
+            $scope.repopulate();
+        }
+    };
+    $scope.activateSearch = function() {
+        $scope.searchedText = $scope.searchedText;
         $scope.emptyColumns();
         $scope.repopulate();
+        $scope.searchActive = true;
     };
     // Method for dynamically populate page, mainly used for search
     $scope.repopulate = function() {
