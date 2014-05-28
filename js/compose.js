@@ -1,12 +1,13 @@
 /*global app, posts, helpTypes */
 
 app.controller("ComposeCtrl", function($scope) {
+    // Event handling.
+    $scope.$on("EVENT_OPEN_COMPOSE_BOX", function() {
+        $scope.composeBoxEnabled = true;
+    });
+
     $scope.composeCategories = ['Sale','Wanted','Rent'];
     $scope.composeBoxEnabled = false;
-
-    $scope.setComposeBoxEnabled = function(enabled) {
-        $scope.composeBoxEnabled = enabled;
-    };
     $scope.pickedCategory = "";
     $scope.setPickedCategory = function(category) {
         $scope.pickedCategory = category;
@@ -84,6 +85,7 @@ app.controller("ComposeCtrl", function($scope) {
         $scope.submittedPrice = "";
         $scope.submittedDesc = "";
         $scope.pickedCategory = "";
+        $scope.composeBoxEnabled = false;
         $scope.updatePriceHelp();
         $scope.updateDescHelp();
     };
@@ -111,7 +113,7 @@ app.controller("ComposeCtrl", function($scope) {
             var post = {
                 price: $scope.escapeHTML($scope.submittedPrice),
                 ago: "a moment ago",
-                _description: desc,
+                description: desc,
                 type: popType
             };
             // Hack!

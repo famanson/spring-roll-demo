@@ -86,7 +86,9 @@
 
             <div class="column" ng-repeat="column in columns">
                 <div class="post repeated-item" ng-repeat="post in column" ng-click="selectPost(post)" href="javascript:void(0)">
-                    <div ng-include="'compose.html'" ng-if="post.type === 'compose'"></div>
+                    <div ng-if="post.type === 'compose'" class="compose" ng-click="openComposeBox()">
+                        <b>+ Post new ad</b>
+                    </div>
                     <div ng-if="post.type != 'longdan' && post.type != 'compose'">
                         <span class="price">{{ post.price }}</span>
                         <span class="image-icon" ng-if="hasImages(post)"><img src="images/image-icon.png"/></span>
@@ -127,6 +129,9 @@
                 </div>
             </div>
         </div>
+
+        <!-- compose lightbox -->
+        <div ng-include="'compose.html'" ></div>
 
         <div id="ld-more" ng-if="selected.type == 'longdan'">More Products >></div>
 

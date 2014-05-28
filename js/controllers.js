@@ -80,6 +80,9 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         $scope.postImages = $scope.hasImages(post) ? post.images : [];
         $scope.selected_post = post;
     };
+    $scope.openComposeBox = function() {
+        $scope.$broadcast("EVENT_OPEN_COMPOSE_BOX");
+    }
 
     $scope.populateByType('sale');
     if (!$scope.longdanEnabled) {
