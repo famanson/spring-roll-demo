@@ -1,4 +1,4 @@
-/*jshint browser:true, devel:true */
+/*jshint browser:true, devel:true, jquery:true */
 
 // angular is defined in angular.js
 /*global angular */
@@ -14,7 +14,7 @@ app.filter('highlightMatch', function() {
     // Function to highlight given text by wrapping it in a .searchHighlight span.
     function addHighlightSpan(match, p1, offset, string) {
         return "<span class=\"searchHighlight\">" + match + "</span>";
-    };
+    }
 
     return function(input, searchTerm) {
         // First check that search term is valid
@@ -26,5 +26,12 @@ app.filter('highlightMatch', function() {
             // Process matches.
             return sanitized.replace(new RegExp(searchTerm, 'gi'), addHighlightSpan);
         }
-    }
+    };
+});
+
+/** Capitalizes first letter in string */
+app.filter('capitalise', function() {
+    return function(value) {
+        return value.charAt(0).toUpperCase() + value.slice(1);
+    };
 });
