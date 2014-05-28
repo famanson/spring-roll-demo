@@ -42,7 +42,7 @@
             <span id="delivery"><b>Free delivery on orders over £100</b></span>
         </div>
     </div>
-    <div id="content" ng-class="selected.type">
+    <div sr-columns columns="4" posts="posts" id="content" ng-class="selected.type">
         <div class="longdan column" ng-repeat="column in columns">
             <div class="post repeated-item" ng-repeat="post in column">
                 <div ng-if="post.type == 'longdan'" class="longdan-post">

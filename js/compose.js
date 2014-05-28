@@ -123,7 +123,6 @@ app.controller("ComposeCtrl", function($scope) {
             posts.unshift(composePost);
             // End hack
 
-            $scope.emptyColumns();
             $scope.populateByType(popType);
             $scope.setTopNavMaster(popType);
             $scope.composeBoxEnabled = false;
