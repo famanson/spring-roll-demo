@@ -12,6 +12,9 @@ app.directive("srColumns", function() {
         scope.$watch(attrs.posts, function(value) {
             controller.columnise(value);
         });
+        scope.$watch(attrs.columns, function(value) {
+            controller.setColumns(value);
+        });
     }
 
     function controller($scope) {
@@ -20,6 +23,11 @@ app.directive("srColumns", function() {
         for (var i = 0; i < 4; i++) { // use 4 to make way for Longdan posts
             $scope.columns[i] = [];
         }
+
+        var columnCount = 3;
+        this.setColumns = function(count) {
+            columnCount = count;
+        };
 
         // Splits given posts into columns
         this.columnise = function(posts) {
@@ -32,14 +40,12 @@ app.directive("srColumns", function() {
                 }
             }
 
-            var rowLength = 3;
-
             // Push new posts. Again, cycling through each column and post is needed to
             // get animations working.
-            var perColumn = posts.length / rowLength;
-            var remainder = posts.length % rowLength;
+            var perColumn = posts.length / columnCount;
+            var remainder = posts.length % columnCount;
             var offset = 0;
-            for (i = 0; i < rowLength; i++) {
+            for (i = 0; i < columnCount; i++) {
                 var columnPosts = posts.slice(offset, offset + perColumn + (i < remainder ? 1 : 0));
                 for (var k = 0; k < columnPosts.length; k++) {
                     $scope.columns[i].push(columnPosts[k]);

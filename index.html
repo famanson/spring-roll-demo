@@ -81,7 +81,8 @@
         <div id="search-count" ng-if="searchedText.length > 0">
             <i>Search result: <b>{{ posts.length }}</b> posts found containing "<b>{{ searchedText }}</b>" under {{ currentType | capitalise }} <a class="clear" ng-click="clearSearch();">clear</a></i>
         </div>
-        <div sr-columns posts='posts' id="content" ng-class="selected.type" ng-if="selected.type != 'longdan'">
+        <div sr-columns columns="currentType === 'longdan' ? 4 : 3;" posts='posts'
+             id="content" ng-class="selected.type" ng-if="selected.type != 'longdan'">
         </div>
 
         <!-- Modal post display -->
