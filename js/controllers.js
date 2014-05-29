@@ -20,14 +20,11 @@ app.controller("ListingsCtrl", function($scope, $sce) {
     // Enable debug panel?
     $scope.debugPanelEnabled = window.debugPanelEnabled || false;
 
+    // Currently shown posts.
+    $scope.posts = [];
+
     // Currently selected post, will be displayed to user in detail.
     $scope.selected_post = null;
-
-    // Split posts into three columns (and four if Longdan)
-    $scope.columns = [];
-    for (var i = 0; i < 4; i++) { // use 4 to make way for Longdan posts
-        $scope.columns[i] = [];
-    }
 
     // Define the two variables that will determine which posts to display
     $scope.currentType = "sale";
@@ -39,7 +36,6 @@ app.controller("ListingsCtrl", function($scope, $sce) {
         // Each clear will reset whole page
         $scope.searchedText = "";
         $scope.searchedInput = "";
-        $scope.emptyColumns();
         $scope.repopulate();
     };
     $scope.clearSearchWithText = function() {
@@ -52,13 +48,8 @@ app.controller("ListingsCtrl", function($scope, $sce) {
             $scope.clearSearch();
         }
     };
-    $scope.commitSearch = function() {
-        $scope.emptyColumns();
-        $scope.repopulate();
-    };
     // Method for dynamically populate page, mainly used for search
     $scope.repopulate = function() {
-        var rowLength = ($scope.currentType === 'longdan') ? 4 : 3;
         // Should search be enabled?
         var isSearchEnabled = function() {
             return $scope.currentType !== 'longdan';
@@ -76,37 +67,14 @@ app.controller("ListingsCtrl", function($scope, $sce) {
         var filterByType = function(post) {
             if (post.type === 'compose') {
                 // Special case - the "compose" sentinel.
-                return ($scope.currentType !== 'longdan' && $scope.searchedText === "");
+                return ($scope.currentType !== 'longdan' && $scope.searchedText.length === 0);
             } else {
                 return post.type === $scope.currentType && isTextMatched(post.description, $scope.searchedText);
             }
         };
-        var filteredPosts = posts.filter(filterByType);
-        // TODO(macduy): We should fix this hack - instead of creating new model variables, implement
-        //               the column sorting as a directive and keep this code simple.
-        $scope.postCount = filteredPosts.length;
-        var perColumn = filteredPosts.length / rowLength;
-        var remainder = filteredPosts.length % rowLength;
-        // Again, cycling through each column and post is needed to get animations
-        // working.
-        for (var i = 0; i < rowLength; i++) {
-            var columnPosts = filteredPosts.splice(0, perColumn + (i < remainder ? 1 : 0));
-            for (var k = 0; k < columnPosts.length; k++) {
-                $scope.columns[i].push(columnPosts[k]);
-            }
-        }
+        $scope.posts = posts.filter(filterByType);
     };
 
-    // Clear all columns.
-    $scope.emptyColumns = function () {
-        // Cycling through each column to perform pop is necessary for animations.
-        for (var i = 0; i < 4; i++) { // use 4 to make way for Longdan posts
-            var len = $scope.columns[i].length;
-            for (var j = 0; j < len; j++) {
-                $scope.columns[i].pop();
-            }
-        }
-    };
 
     /* Top Nav Control */
     $scope.populateByType = function(popType) {
@@ -116,7 +84,6 @@ app.controller("ListingsCtrl", function($scope, $sce) {
 
     $scope.switchColumn = function(popType) {
         if (popType !== $scope.selectedNav) {
-            $scope.emptyColumns();
             $scope.populateByType(popType);
         }
     };
@@ -135,6 +102,9 @@ app.controller("ListingsCtrl", function($scope, $sce) {
             $scope.$broadcast(EVENT_POST_SELECTED, $scope.selected_post);
         }
     };
+    $scope.openComposeBox = function() {
+        $scope.$broadcast("EVENT_OPEN_COMPOSE_BOX");
+    }
 
     $scope.populateByType('sale');
     if (!$scope.longdanEnabled) {

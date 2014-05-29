@@ -49,7 +49,7 @@
                 <!-- Searchbox -->
                 <div id="search-container" ng-show="currentType !== 'longdan'">
                     <img src="images/search.png" />
-                    <input sr-search-enter-key="commitSearch()"
+                    <input sr-search-enter-key="repopulate()"
                            sr-esc-key="clearSearchWithText()"
                            type="text"
                            ng-model="searchedInput"
@@ -82,10 +82,14 @@
         <div id="search-count" ng-if="searchedText.length > 0 && searchedInput.length > 0">
             <i>Search result: <b>{{ postCount }}</b> posts found containing "<b>{{ searchedText }}</b>" under {{ currentType.capitalise() }} <a class="clear" ng-click="clearSearch();">clear</a></i>
         </div>
-        <div id="content" ng-class="selected.type" ng-if="selected.type != 'longdan'">
+        <div sr-columns columns="3" posts="posts"
+             id="content" ng-class="selected.type" ng-if="selected.type != 'longdan'">
+
             <div class="column" ng-repeat="column in columns">
                 <div class="post repeated-item" ng-repeat="post in column" ng-click="selectPost(post)" href="javascript:void(0)">
-                    <div ng-include="'compose.html'" ng-if="post.type === 'compose'"></div>
+                    <div ng-if="post.type === 'compose'" class="compose" ng-click="openComposeBox()">
+                        <b>+ Post new ad</b>
+                    </div>
                     <div ng-if="post.type != 'longdan' && post.type != 'compose'">
                         <span class="price">{{ post.price }}</span>
                         <span class="image-icon location" ng-if="hasLocation(post)"><img src="images/loc-marker.png"/></span>
@@ -129,7 +133,10 @@
             </div>
         </div>
 
-        <div id="ld-more" ng-if="selected.type === 'longdan'">More Products >></div>
+        <!-- compose lightbox -->
+        <div ng-include="'compose.html'" ></div>
+
+        <div id="ld-more" ng-if="selected.type == 'longdan'">More Products >></div>
 
         <div id="debug_panel" ng-if="debugPanelEnabled">
             <input type=checkbox id="show_grid_lines" ng-model="showGridLines" /><label for="show_grid_lines">Show grid lines</label>
