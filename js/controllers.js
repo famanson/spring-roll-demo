@@ -9,6 +9,9 @@
 app.controller("ListingsCtrl", function($scope, $timeout) {
     'use strict';
 
+    // Fixed current date.
+    $scope.currentDate = new Date();
+
     // Add control for toggling the visibility of the grid lines.
     $scope.showGridLines = false;
 
@@ -189,21 +192,31 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         cycleIndex += cycleIndex < 0 ? $scope.postImages.length : 0;
         var next = cycleIndex % $scope.postImages.length;
         $scope.pickedImage = $scope.postImages[next];
-    };   
+    };
 });
 
 /* Converts date in string format to a time elapsed representation, e.g. "6 days ago" */
 app.filter('timeElapsed', function() {
-    return function(datePosted) {
-        var numDay = Math.floor((new Date() - new Date(datePosted))/84600000);
-        if (numDay === 0) {
-            var numHour = Math.floor((new Date() - new Date(datePosted))/3600000);
+    return function(dateInput, currentDate) {
+        // Process input date.
+        var date;
+        if (dateInput instanceof String || typeof(dateInput) === "string") {
+            date = new Date(dateInput);
+        } else if (dateInput instanceof Date) {
+            date = dateInput;
+        } else {
+            return "Unsupported date type!";
+        }
+
+        var numDay = Math.floor((currentDate - date)/84600000);
+        if (numDay <= 0) {
+            var numHour = Math.floor((currentDate - date)/3600000);
             if (numHour < 1) {
                 return "just now";
             } else {
                 return "today" ;
             }
-        } else if (numDay == 1) {
+        } else if (numDay === 1) {
             return "yesterday" ;
         } else if (numDay < 7) {
             return numDay + " days ago";
