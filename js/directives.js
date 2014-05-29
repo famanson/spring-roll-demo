@@ -11,8 +11,20 @@
  */
 app.directive('srAutoAnimate', function() {
     function link(scope, element, attrs) {
+        var preventAnimation = false;
+
+        scope.$watch(attrs.srPreventAnimation, function(value) {
+            console.log("PRevent!", value);
+            preventAnimation = value;
+        });
+
         scope.$watch(attrs.srAutoAnimate, function(value) {
-            $(element).animate(value);
+            console.log(preventAnimation);
+            if (!preventAnimation) {
+                $(element).animate(value);
+            } else {
+                $(element).css(value);
+            }
         });
     }
 
@@ -60,7 +72,6 @@ app.directive('srAutoResizeDeck', function() {
         link: link,
     };
 });
-
 
 /* Intro directives */
 app.directive('srEmailValidator', function() {
