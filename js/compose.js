@@ -17,7 +17,7 @@ app.controller("ComposeCtrl", function($scope) {
     // Work out expiration date
     var monthNames = [ "January", "February", "March", "April", "May", "June",
                        "July", "August", "September", "October", "November", "December" ];
-    var expireDate = new Date(+new Date + 12096e5);
+    var expireDate = new Date(+new Date() + 12096e5);
     $scope.fortnightAway = expireDate.getDate() + " " + monthNames[expireDate.getMonth()] + " " + expireDate.getFullYear();
 
     // Validations
