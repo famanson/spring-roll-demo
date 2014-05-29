@@ -47,12 +47,11 @@
                 <!-- Searchbox -->
                 <div id="search-container" ng-show="currentType !== 'longdan'">
                     <img src="images/search.png" />
-                    <!-- ng-change="emptyColumns();repopulate();" -->
-                    <input sr-search-enter-key="activateSearch()"
-                           sr-esc-key="clearSearch(searchActive)"
+                    <input sr-search-enter-key="commitSearch()"
+                           sr-esc-key="clearSearchWithText()"
                            type="text"
                            ng-model="searchedInput"
-                           ng-change="clearSearch(searchedInput.length === 0)"
+                           ng-change="clearSearchNoText()"
                            placeholder="Search in {{ currentType.capitalise() }}">
                 </div>
 
@@ -78,7 +77,7 @@
         </div>
 
         <!-- Main posts area -->
-        <div id="search-count" ng-if="searchedText.length > 0 && searchActive">
+        <div id="search-count" ng-if="searchedText.length > 0 && searchedInput.length > 0">
             <i>Search result: <b>{{ postCount }}</b> posts found containing "<b>{{ searchedText }}</b>" under {{ currentType.capitalise() }} <a class="clear" ng-click="clearSearch();">clear</a></i>
         </div>
         <div id="content" ng-class="selected.type" ng-if="selected.type != 'longdan'">
@@ -127,12 +126,12 @@
             </div>
         </div>
 
-        <div id="ld-more" ng-if="selected.type == 'longdan'">More Products >></div>
+        <div id="ld-more" ng-if="selected.type === 'longdan'">More Products >></div>
 
         <div id="debug_panel" ng-if="debugPanelEnabled">
             <input type=checkbox id="show_grid_lines" ng-model="showGridLines" /><label for="show_grid_lines">Show grid lines</label>
         </div>
-        <div ng-include src="'intro.html'" ng-show="!searchActive"></div>
+        <div ng-include src="'intro.html'" ng-show="searchedText.length === 0"></div>
     </body>
 </html>
 

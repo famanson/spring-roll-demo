@@ -42,21 +42,25 @@ app.controller("ListingsCtrl", function($scope, $sce) {
     $scope.searchedText = "";
     // direct input from search box
     $scope.searchedInput = "";
-    $scope.searchActive = false;
-    $scope.clearSearch = function(condition) {
+    $scope.clearSearch = function() {
         // Each clear will reset whole page
-        if (condition) {
-            $scope.searchedText = "";
-            $scope.searchActive = false;
-            $scope.emptyColumns();
-            $scope.repopulate();
-        }
-    };
-    $scope.activateSearch = function() {
-        $scope.searchedText = $scope.searchedText;
+        $scope.searchedText = "";
         $scope.emptyColumns();
         $scope.repopulate();
-        $scope.searchActive = true;
+    };
+    $scope.clearSearchWithText = function() {
+        if($scope.searchedText.length > 0) {
+            $scope.clearSearch();
+        }
+    };
+    $scope.clearSearchNoText = function() {
+        if($scope.searchedInput.length === 0) {
+            $scope.clearSearch();
+        }
+    };
+    $scope.commitSearch = function() {
+        $scope.emptyColumns();
+        $scope.repopulate();
     };
     // Method for dynamically populate page, mainly used for search
     $scope.repopulate = function() {
