@@ -208,26 +208,23 @@ app.filter('timeElapsed', function() {
             return "Unsupported date type!";
         }
 
-        var numDay = Math.floor((currentDate - date)/84600000);
-        if (numDay <= 0) {
-            var numHour = Math.floor((currentDate - date)/3600000);
-            if (numHour < 1) {
+        var numHour = Math.floor((currentDate - date)/3600000);
+        if (numHour < 1) {
                 return "just now";
-            } else {
+        } else if (numHour <= 24) {
                 return "today" ;
-            }
-        } else if (numDay === 1) {
-            return "yesterday" ;
-        } else if (numDay < 7) {
-            return numDay + " days ago";
-        } else if (numDay < 11) {
+        } else if (numHour <= 48) {
+            return "yesterday";
+        } else if (numHour < 168) {
+            return Math.round(numHour/24) + " days ago";
+        } else if (numHour < 264) {
             return "a week ago";
-        } else if (numDay < 30) {
-            return Math.round(numDay/7) + " weeks ago";
-        } else if (numDay < 45) {
+        } else if (numHour < 720) {
+            return Math.round(numHour/168) + " weeks ago";
+        } else if (numHour < 1080) {
             return "a month ago";
         } else {
-            return Math.round(numDay/30) + " months ago";
+            return Math.round(numHour/720) + " months ago";
         }
     };
 });

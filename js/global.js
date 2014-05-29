@@ -14,7 +14,6 @@ var posts = [
     /* Sale posts */
     {
         price: "£100",
-        ago: "2 days ago",
         datePosted: "2014-05-28",
         description: "<b>Old heater</b>, good for winter holidays. Heats well even in coldest weather for a bedroom-sided room. Will send anywhere within UK, <b>delivery</b> included.",
         type: "sale",
@@ -27,37 +26,31 @@ var posts = [
         }]
     }, {
         price: "£150",
-        ago: "4 days ago",
         datePosted: "2014-05-27",
         description: "Old <b>50-inch TV</b>, brand Panasonic, black, small bezel. Purchased in 2009, in good condition (see photos). Has an in-built DVD player, 2 USB, 3 HDMI, Component and 2 AVI. <b>LED</b> display, may not good against direct sunlight. Delivery costs not included, please pick up from Clapham, London.",
         type: "sale"
     }, {
         price: "£400",
-        ago: "2 days ago",
         datePosted: "2014-03-24",
         description: "<b>iPhone 5S gold colour</b>. Barely used. Deliver anywhere within UK (delivery not included, up to £5 extra). Will throw in a free cover of your choice (see photos).",
         type: "sale"
     }, {
         price: "£120",
-        ago: "3 days ago",
         datePosted: "2014-04-28",
         description: "<b>Brand new female bike</b> in London! Raleigh bike, including lights, lock and a free front basket. Recently serviced. Selling due to lack of use, collect in person only.",
         type: "sale"
     }, {
         price: "£750",
-        ago: "5 days ago",
         datePosted: "2014-05-11",
         description: "<b>Macbook Pro 2013 Like New!</b> Will post to anywhere in the UK. Including free Apple Magic Mouse and spare charger to sweeten the deal, plus <b>6 months left on Apple Care!</b>",
         type: "sale"
     }, {
         price: "£40",
-        ago: "4 days ago",
         datePosted: "2014-05-12",
         description: "A pair of black <b>XBox 360 controllers for PC!</b> These are in very good condition, with new rubber knob on the sticks and <b>customised trigger buttons</b> for use in shooting games. Comes with connector for Windows PC. Will not sell separately. Postage not included.",
         type: "sale"
     }, {
         price: "£200",
-        ago: "2 days ago",
         datePosted: "2014-05-14",
         description: "Very reliable <b>Canon EOS 40D body only</b> for sale. Cleaned by Canon's Professional Services. Shutter count: 25230, crop factor: 1.6x, can fit both EF and EF-S lenses. <b>Free delivery in London area</b>. Comes with a free 4GB Sandisk CF memory card and a <b>battery grip<b/>",
         type: "sale",
@@ -69,13 +62,11 @@ var posts = [
         ]
     }, {
         price: "£3000",
-        ago: "5 days ago",
         datePosted: "2014-05-20",
         description: "<b>Blue Toyota Yaris</b> for sale (West London). Petrol, 40k-mileage, manual transmission, reworked interior. MOT: 28 June 2015. Contact now to arrange test drive!",
         type: "sale"
     }, {
         price: "£300",
-        ago: "2 days ago",
         datePosted: "2014-05-19",
         description: "Used, like new <b>Lenovo x121e laptop</b> for sale. Great 11.6-inch laptop, suitable for students or those who need to travel (only 1.2kg). Slightly bigger than a netbook, with the power of a <b>quad-core CPU i3-2567M 1.40GHz, 4GB RAM and 128GB SSD</b>. Comes with Windows 7, bag, charger and a Lenovo mouse",
         type: "sale",
@@ -91,19 +82,16 @@ var posts = [
         ]
     }, {
         price: "£80",
-        ago: "2 days ago",
         datePosted: "2014-05-06",
         description: "Like new <b>adidas Predator LZ firm-ground size 9 football boots</b> for sale. These boots are the class <b>professional</b> footballers play in. Only used occasionally on match days, so there are some green stains from the grass. Very comfortable and light fit. Boost your game now!",
         type: "sale"
     }, {
         price: "Free!",
-        ago: "1 day ago",
         datePosted: "2014-05-08",
         description: "<b>A-Level books giveaway</b> in London area. All Edexcel A-Level books include: Maths and Further Maths (C1-C4, S1, S2, FP1-FP3, M1-M3), Economics, Physics. Also included is a Cambridge IELTS 8 Self-study Pack with Answers and Audio CD. <b>Collection only</b>",
         type: "sale"
     }, {
         price: "£90",
-        ago: "2 days ago",
         datePosted: "2014-05-05",
         description: "<b>Britax Premium Baby Car Seat</b>. This is a very high-quality forward-facing car seat, suitable for children from <b>9 months to 3 years old</b>. Nicely padded, providing a lot of protection on both sides, easily adjustable straps with a chest pad. Postage included, but collection in person preferred",
         type: "sale",
@@ -115,7 +103,6 @@ var posts = [
         ]
     }, {
         price: "£190",
-        ago: "1 day ago",
         datePosted: "2014-05-15",
         description: "<b>Sony PlayStation 3 Slim 500GB + 10 games</b>, Barnet. Used, but in mint condition, bundled with <b>10 games and 2 DualShock controllers</b>. I want to sell these as a whole so no offer for individual sales please. Postange not included.",
         type: "sale",
@@ -127,13 +114,11 @@ var posts = [
         ]
     }, {
         price: "Free!",
-        ago: "3 days ago",
         datePosted: "2014-05-16",
         description: "<b>Giveaway: set of white goods and cutlery</b>, London. The reason for this is because we are moving back to Vietnam so there is no point in bringing all of these with us. For more details about the quantity etc please contact. <b>No delivery, collection only</b>",
         type: "sale"
     }, {
         price: "£180",
-        ago: "6 days ago",
         datePosted: "2014-05-18",
         description: "<b>Bosch Maxx washing machine</b> for sale (North London). 6kg wash load, very simple to use, no fancy features. If you need we can arrange to deliver it to your place (<b>London only</b>), otherwise, collection in person please",
         type: "sale",
@@ -147,115 +132,96 @@ var posts = [
     /* Wanted posts */
     {
         price: "Wanted!",
-        ago: "a moment ago",
         datePosted: "2014-05-22",
         description: "<b>Project Spring Rolls</b> looking for talented Vietnamese IT <b>students and professionals</b> around the UK to join their team to make an awesome new replacement for the current SVUK Marketplace (what you are looking at here is only 10% of what's involved) <b>[Real advert - send your CV to ukspringroll@gmail.com today!]</b>",
         type: "wanted"
     }, {
         price: "Wanted!",
-        ago: "a moment ago",
         datePosted: "2014-05-26",
         description: "<b>Ocado Technology</b> now recruiting for (Graduate) Software Engineers</b>. Suitable candidate should have good problem-solving skills and a strong programming background. Perks: we have unlimited coffee and free bananas! Oh, also competitive salary <b>[Real advert - send me a message at son.pham@ocado.com]</b>",
         type: "wanted"
     }, {
         price: "£7/h+tips",
-        ago: "1 day ago",
         datePosted: "2014-05-21",
         description: "<b>Waiter needed</b> for a Vietnamese restaurant in South London. Valid ID and work permit (especially students) required. No experience needed, training will be included. Both full-time and part-time are welcomed.",
         type: "wanted"
     }, {
         price: "£20/h",
-        ago: "1 day ago",
         datePosted: "2014-05-25",
         description: "<b>Looking for a home tutor</b> in London area to teach Vietnamese to our kids, especially reading and writing skills. <b>Two 2-hour lessons a week</b>. Professional preferred, but students will also be considered.",
         type: "wanted"
     }, {
         price: "Wanted!",
-        ago: "3 days ago",
         datePosted: "2014-05-17",
         description: "I am <b>looking for a used iPad</b>, preferably one with both WiFi and 3G capabilities and no more than 2 years old. <b>Willing to pay for postage if not located in London area.</b> Prices can be negotiated. Thanks!",
         type: "wanted"
     }, {
         price: "Wanted!",
-        ago: "2 days ago",
         datePosted: "2014-05-10",
         description: "<b>Taxi for airport pickup!</b> Need to pick up a relative coming from Vietnam <b>at Gatwick Airport on Friday morning</b> to North London. Please get back to me ASAP!",
         type: "wanted"
     }, {
         price: "£15/h",
-        ago: "4 days ago",
         datePosted: "2014-05-09",
         description: "Looking for a Maths home tutor for AS student in South London, covering <b>core mathematics and statistics modules</b>. University students with good English skills are most welcomed. 3 or 4 hours of lessons a week.",
         type: "wanted"
     }, {
         price: "£25k",
-        ago: "4 days ago",
         datePosted: "2014-05-01",
         description: "We are a <b>Vietnamese restaurant in West London</b> looking for a full-time chef. Up to 48 working hours expected a week. Free meals provided on shifts, plus discounts and more perks.",
         type: "wanted"
     }, {
         price: "£9/h",
-        ago: "2 days ago",
         datePosted: "2014-05-02",
         description: "Parents in Northwest London looking for <b>a part-time babysitter for our kids</b>. Because we are both on shifts, we need somebody to look after our 2 kids on Tuesday and Thursday nights in July.",
         type: "wanted"
     }, {
         price: "£7.5/h+tips",
-        ago: "5 days ago",
         datePosted: "2014-05-03",
         description: "Saigon restaurant looking for <b>part-time waiters</b>. Students are welcomed, and <b>training will be provided if necessary</b>, but experience is an advantage. Valid work permit or visa must be presented",
         type: "wanted"
     }, {
         price: "£10/h",
-        ago: "3 days ago",
         datePosted: "2014-05-05",
         description: "A <b>babysitter</b> for an <b>8-year-old boy</b> is wanted near SW8. Have to be friendly, responsible and great with kids. Must have a CRB check. Experience is preferred but not required.",
         type: "wanted"
     }, {
         price: "Wanted!",
-        ago: "5 days ago",
         datePosted: "2014-05-09",
         description: "I am looking for a <b>second-hand piano</b> for my home studio. Price can be negotiated but preferably below £500. Please get in touch by emailing theNextMozart@gmail.com. Thanks.",
         type: "wanted"
     }, {
         price: "£30/h",
-        ago: "1 day ago",
         datePosted: "2014-05-08",
         description: "Looking for a tutor for <b>first year Economics</b>. I'm studying <b>ECON1001 at UCL</b> so if you have some experience with the material (either as a student or have tutored on the same material), it would be a big plus! Prefer to do lessons in person but can also do it via Skype. Please get in touch if you could help out. I don't want to fail my first year. Many thanks.",
         type: "wanted"
     }, {
         price: "£10/h",
-        ago: "6 days ago",
         datePosted: "2014-05-03",
         description: "Looking for a <b>temporary Vietnamese translator</b> for some paperwork. It's <b>not technical stuff</b> so as long as you are fluent in Vietnamese and English + have a good attention to detail + want some extra cash, this is the job for you.",
         type: "wanted"
     }, {
         price: "Unpaid",
-        ago: "4 days ago",
         datePosted: "2014-05-16",
         description: "Looking for programmers/coders to join the Spring Roll Team. You need to have a <b>first class degree from a world class university</b>, extensive <b>experience with web development</b> and be <b>willing to code without sleep</b>. We are kidding obviously! Anyone interested, please check out our indiegogo webpage https://www.indiegogo.com/projects/project-spring-roll",
         type: "wanted"
     }, {
         price: "£100",
-        ago: "1 day ago",
         datePosted: "2014-05-11",
         description: "I need a <b>proof-reader for my Masters dissertation in Politics</b>. It's 20,000 word long and is worth 40% of my final grade so people with a <b>proven track record</b> of doing this kind of word would definitely prefered.",
         type: "wanted"
     }, {
         price: "£15/h",
-        ago: "4 days ago",
         datePosted: "2014-05-12",
         description: "We need someone to <b>translate basic product descriptions from English to Vietnamese</b> for some of our products. The items are adhesives and tapes sold business to business so there will be <b>some technical terminologies</b> that you need to be familiar with but nothing a quick search on Google can't solve.",
         type: "wanted"
     }, {
         price: "Wanted!",
-        ago: "6 days ago",
         datePosted: "2014-05-13",
         description: "We are an UK-based company looking for a <b>Social Media Moderator</b> for our Facebook page in Vietnamese. Ideally you would have a degree or are studying towards one in <b>Marketing</b> or related subjects. The Social Media Moderator will serve as the day-to-day engagement and conversation specialist for our Facebook page, helping to enhance the overall image of the company through direct personal engagement with the customers.",
         type: "wanted"
     }, {
         price: "£7",
-        ago: "3 days ago",
         datePosted: "2014-05-15",
         description: "I have <b>4kgs of goods (mainly clothes and skincare products)</b> to send home. If you have some spare space in your luggage, please get in touch. I am willing to pay up to £7/kg",
         type: "wanted"
@@ -265,43 +231,36 @@ var posts = [
     {
         // Linh Chu's ad - first "user" ever
         price: "Short-term",
-        ago: "a moment ago",
         datePosted: "2014-05-16",
         description: "Amazing cosy <b>semi-studio to let - Bond Street/Baker Street area, for maximum 3 weeks in June</b>. Fully furnished - double bed, Wifi, kitchenette, sofa available.  Amazing area, very good security, 5 mins to Baker Street Station, 7 mins to Bond Street Station – and 3 mins to Selfridges. <b>[Real advert - email to us at ukspringroll@gmail to learn more!]</b>",
         type: "rent"
     }, {
         price: "£500pcm",
-        ago: "2 days ago",
         datePosted: "2014-05-13",
         description: "<b>Double room for rent</b> in Hackney E2. Suitable for couples. Very close to large supermarkets (Tesco, Asda), Vietnamese shops and restaurants. Buses: 149, 67, 242. Nearby stations: <b>Hoxton, Shoreditch High Street</b>",
         type: "rent"
     }, {
         price: "£450pcm",
-        ago: "2 days ago",
         datePosted: "2014-05-11",
         description: "<b>Double room</b>. Can be shared for up to 2 people in <b>Finsbury Park, North London</b>. 5 mins walk to Sainsbury and 15 mins away from Finsbury Park Station. <b>Female students only</b>",
         type: "rent"
     }, {
         price: "£500pcm",
-        ago: "2 days ago",
         datePosted: "2014-05-12",
         description: "<b>Large studio room</b> in a Vietnamese family's large house, <b>all bills included!!</b> Post code: E3. Conveniently located near large shopping mall and public transport. <b>Students and professionals both welcome</b>.",
         type: "rent"
     }, {
         price: "£2000pcm",
-        ago: "2 days ago",
         datePosted: "2014-05-17",
         description: "<b>1-bedroom apartment</b>, Canada Water. Central area with all large shops, London's financial offices and major public transport links within walking distance. <b>Best suited for a single professional</b>.",
         type: "rent"
     }, {
         price: "£750pcm",
-        ago: "4 days ago",
         datePosted: "2014-05-15",
         description: "In a cul-de-sac 2 minutes walk from <b>Earlsfield station</b>, across the road from The Wandle (one of the best pubs in the south west) lays the perfect home for you. Price <b>includes Internet, Sky+ HD with Sky Sports package</b>, just in time for the World Cup this summer. What are you waiting for?",
         type: "rent"
     }, {
         price: "£650-750pcm",
-        ago: "1 day ago",
         datePosted: "2014-05-17",
         description: "<b>2 bedrooms available</b> in large 3 bedroom house near Battersea. This is a very spacious 3 storey house, with a garden, large kitchen, dining room, lounge, bathroom, utility room, and very importantly a dishwasher. One is a large double room (master bedroom) and the other is slightly smaller. Both room are furnished.",
         type: "rent", 
@@ -317,13 +276,11 @@ var posts = [
         ]
     }, {
         price: "£550pcm",
-        ago: "1 day ago",
         datePosted: "2014-05-05",
         description: "Lovely <b>double room</b> for rent , just 1 min walking distance to <b>Mile End tube station (E3)</b>, there are central、district and Hammersmith city line, also have 25、205 buses to central london, very good transport link. Tesco supermarket is nearby.",
         type: "rent"
     }, {
         price: "£130pw",
-        ago: "1 day ago",
         datePosted: "2014-05-07",
         description: "Stylish, furnished double room in a sizeable house in <b>Stratford E15</b>. Close to the new <b>Westfield shopping centre</b> development and Olympic site. Very close to the University of East London (UEL). Rent is fully inclusive of all utility bills. Sorry no pets in the house.",
         type: "rent",
@@ -335,55 +292,46 @@ var posts = [
         ]
     }, {
         price: "£800pcm",
-        ago: "2 days ago",
         datePosted: "2014-05-04",
         description: "<b>Spacious 1-bedroom flat in Hertfordshire</b>, very conveniently located near the A414, with easy access to major public transport links. Easy to commute to either London or Hatfield Business Park. <b>All bills included</b>",
         type: "rent"
     }, {
         price: "£550pcm",
-        ago: "2 days ago",
         datePosted: "2014-05-08",
         description: "<b>King-sized double bedroom in a 4-bedroom house, London</b>, including water bill. Located very near to Westminster University, Sainsbury's, and local shops. Fully furnished, very well-equipped kitchen. Suitable for a couple.",
         type: "rent"
     }, {
         price: "£400pcm",
-        ago: "3 days ago",
         datePosted: "2014-05-09",
         description: "East Hounslow, <b>2 single rooms available in a student's house</b>. Very near to Tesco, local shops, and the train and tube stations. Fast WiFi, very good shared kitchen and large common area. <b>Available from August</b>, contact now to arrange viewings",
         type: "rent"
     }, {
         price: "£500pcm",
-        ago: "3 days ago",
         datePosted: "2014-05-16",
         description: "<b>Semi-detached house to rent</b> 2 double rooms and 1 en suite room with a shared kitchen. Common area includes a large dining table with a TV. All bills (Internet, water, gas, electricity) are included. 10-minute walk away from Bank station, and 5 minutes from local shops. <b>Must see!</b>",
         type: "rent"
     }, {
         price: "£250pcm",
-        ago: "4 days ago",
         datePosted: "2014-05-14",
         description: "<b>2/5 double rooms available in large students' house</b> in Zone 3, London. 2 modern showers and a large, fully-equipped kitchen to share. Water and gas bill included. Conveniently located very near to large shopping mall and central bus station.",
         type: "rent"
     }, {
         price: "Short-term",
-        ago: "4 days ago",
         datePosted: "2014-05-13",
         description: "Going back to Vietnam on holiday so I am going to <b>sublet my flat near Oxford Circus from 10 June to 12 Sep</b>. It is a 2-bedroom flat (not sharing with anyone), very nice kitchen and showers, optical fibre Internet. <b>Suitable for students interning in London or a family on vacation</b>",
         type: "rent"
     }, {
         price: "£850",
-        ago: "2 days ago",
         datePosted: "2014-05-17",
         description: "<b>Amazing studio flat available from July 2014</b> in Central London. A recently refurbished flat with a double bed, modern kitchenette and shower. One station away from the financial blocks. Professional only please. <b>All bills are included</b>",
         type: "rent"
     }, {
         price: "£350",
-        ago: "2 days ago",
         datePosted: "2014-05-04",
         description: "<b>Looking for a female room-mate to share a large double room</b> in a students' house in East London. There is a large common area and a great kitchen shared among 3 others. Conveniently located near Chinese shops and a Tesco Metro. <b>Best suited for UCL students</b>",
         type: "rent"
     }, {
         price: "£1500pcm",
-        ago: "1 day ago",
         datePosted: "2014-05-08",
         description: "A single room with a beautiful park nearby. It's a stone throw from Hackney city centre and is quite easy to get to anywhere in London. Minimum term is 8 months. Room is only for one person i. e. no couples/sharers",
         type: "rent"
