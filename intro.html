@@ -8,7 +8,7 @@
                     <b>{{ messageResult.text }}</b> <a ng-click="setMessageFormVisible(false)">dismiss</a>
                 </span>
                 <form name="messageForm" class="message-form" ng-show="!showMessageResult">
-                    <div class="email">
+                    <div class="email" sr-input-autofocus>
                         <label><b>Email address:</b></label>
                         <input name="email" ng-model="email" id="email-address"
                             autocomplete="off" sr-email-validator sr-input-autogrow></input>
@@ -20,7 +20,7 @@
                         <img ng-show="validationProgress" class="loading" src="images/loading.gif"/>
                     </div>
                     <hr/>
-                    <div class="message">
+                    <div class="message" sr-input-autofocus>
                         <label><b>Message Body:</b></label>
                         <span ng-show="messageForm.messageBody.$dirty"
                               class="validation" ng-class="{ 'valid': isReadyToSend() }">

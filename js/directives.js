@@ -142,6 +142,20 @@ app.directive('srInputAutogrow', function() {
     };
 });
 
+app.directive('srInputAutofocus', function() {
+    return {
+        // Restrict it to be an attribute in this case
+        restrict: 'A',
+        // responsible for registering DOM listeners as well as updating the DOM
+        link: function(scope, element, attrs) {
+            $(element).bind("click", function(){
+                $(this).children('input,textarea').focus();
+            });
+        }
+    };
+});
+
+
 app.directive('srDropdownAnimate', function() {
     function link(scope, element, attrs) {
         scope.$watch(attrs.srDropdownAnimate, function(value) {
