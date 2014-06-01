@@ -59,7 +59,7 @@
                 </div>
 
                 <!-- User avatar -->
-                <div id="user_profile_nav" href="" style="z-index: 10">
+                <div id="user_profile_nav" href="" ng-style="{ 'z-index': nboxSelected ? 10 : 0 }">
                     <img src="images/avatar01.jpg" class="avatar" ng-click="toggleNBox()"/>
                     <span class="badge" ng-click="toggleNBox()">5</span>
                         <!--<div class="triangle"></div>-->
