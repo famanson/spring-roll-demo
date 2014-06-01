@@ -12,14 +12,11 @@
 app.directive('srAutoAnimate', function() {
     function link(scope, element, attrs) {
         var preventAnimation = false;
-
         scope.$watch(attrs.srPreventAnimation, function(value) {
-            console.log("PRevent!", value);
             preventAnimation = value;
         });
 
         scope.$watch(attrs.srAutoAnimate, function(value) {
-            console.log(preventAnimation);
             if (!preventAnimation) {
                 $(element).animate(value);
             } else {
@@ -36,6 +33,11 @@ app.directive('srAutoAnimate', function() {
 
 app.directive('srAutoResizeDeck', function() {
     function link(scope, element, attrs) {
+        var preventAnimation = false;
+        scope.$watch(attrs.srPreventAnimation, function(value) {
+            preventAnimation = value;
+        });
+
         var defaultSize = {};
         /*
          * Watch for changes during when post becomes active, then adjust default sizes accordingly
@@ -45,7 +47,11 @@ app.directive('srAutoResizeDeck', function() {
                 width: scope.defaultWidth,
                 height: scope.defaultHeight,
             };
-            $(element).animate(defaultSize);
+            if (!preventAnimation) {
+                $(element).animate(defaultSize);
+            } else {
+                $(element).css(defaultSize);
+            }
         });
         /*
          * Resize overlay content element according to the size of a slide deck, given by index.
@@ -63,7 +69,12 @@ app.directive('srAutoResizeDeck', function() {
             } else {
                 newSize = defaultSize;
             }
-            $(element).animate(newSize);
+
+            if (!preventAnimation) {
+                $(element).animate(newSize);
+            } else {
+                $(element).css(newSize);
+            }
         });
     }
 
@@ -84,7 +95,7 @@ app.directive('srEmailValidator', function() {
                 scope.validationProgress = false;
                 var text = "";
                 if (!data.is_valid) {
-                    if (data.did_you_mean != null && data.did_you_mean.length > 0) {
+                    if (data.did_you_mean !== null && data.did_you_mean.length > 0) {
                         text = "Did you mean \"" + data.did_you_mean + "\"?";
                     } else {
                         text = "Address is invalid.";
@@ -168,7 +179,7 @@ app.directive('srSearchEnterKey', function() {
     return {
         restrict: 'A',
         link: link,
-    }; 
+    };
 });
 
 app.directive('srEscKey', function() {
@@ -185,7 +196,7 @@ app.directive('srEscKey', function() {
     return {
         restrict: 'A',
         link: link,
-    }; 
+    };
 });
 
 /** Splits post into columns. This already assumes the right HTML template is set up */

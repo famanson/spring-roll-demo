@@ -109,6 +109,7 @@
             </div>
             <div class="overlay_content_full_bleed" sr-auto-resize-deck="currentDeckPosition"
                  sr-active-init-resize="selected_post != null"
+                 sr-prevent-animation="preventAnimation"
                  ng-if="selected_post !== null">
                 <div class="text-deck" ng-class="{ singular : selected_post.images.length == 0 }" ng-click="onPostClicked();$event.stopPropagation()" style="z-index: 11" sr-auto-animate="layout[0]" sr-prevent-animation="preventAnimation">
                     <div class="post">
