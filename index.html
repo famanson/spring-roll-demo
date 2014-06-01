@@ -59,11 +59,10 @@
                 </div>
 
                 <!-- User avatar -->
-                <div id="user_profile_nav" href="">
+                <div id="user_profile_nav" href="" ng-style="{ 'z-index': nboxSelected ? 10 : 0 }">
                     <img src="images/avatar01.jpg" class="avatar" ng-click="toggleNBox()"/>
                     <span class="badge" ng-click="toggleNBox()">5</span>
                         <!--<div class="triangle"></div>-->
-                    <div ng-class="{active : nboxSelected}" class="triangle-up"></div>
                     <div id="notification-box" ng-class="{active : nboxSelected}">
                         <div class="notification" ng-repeat="notification in notifications" ng-click="toggleNBox()">
                             <img ng-src="images/{{ notification.avatar }}" class="avatar"/>
@@ -71,6 +70,8 @@
                             <div class="time">{{ notification.ago }}</div>
                         </div>
                     </div>
+                    <div ng-class="{active : nboxSelected}" class="triangle-up outline" style="top: -1px"></div>
+                    <div ng-class="{active : nboxSelected}" class="triangle-up"></div>
                 </div>
 
                 <div class="clear"></div>
