@@ -128,6 +128,21 @@ var posts = [
                 url: "http://productimages.euronics.co.uk/Bosch296WAB28061GB-0876.jpg"
             }
         ]
+    }, {
+        price: "Free!",
+        ago: "1 day ago",
+        description: "<b>Free mugs giveaway</b>, Central London. We are moving offices and a couple dozen unused mugs are left behind. These mugs come in various sizes and shapes. We can arrange delivery for you, but collection on site is preferred! Thanks",
+        type: "sale"
+    }, {
+        price: "£90",
+        ago: "1 day ago",
+        description: "<b>2 Premiere League Tickets for sale at £45 each! Chealsea vs Manchester United in final game of the season at Stamford Bridge!</b> Sold due to friends dropping out for a bargain. Seats will be at B stand. Only collection in person with cash in hand is accepted please.",
+        type: "sale"
+    }, {
+        price: "£1000",
+        ago: "2 days ago",
+        description: "<b>Amazing vintage Black Vespa scooter for sale!</b> In all of its good old Italian glory! Helmet and small toolbox included.",
+        type: "sale"
     },
     /* Wanted posts */
     {
@@ -227,7 +242,9 @@ var posts = [
         type: "wanted"
     },
     
-    /* Rent posts */
+    /* Rent posts: These will have a static image used for map, 
+       ideally this should be generated server-side, but here
+       we do it in js by converting the location field */
     {
         // Linh Chu's ad - first "user" ever
         price: "Short-term",
@@ -238,32 +255,38 @@ var posts = [
         price: "£500pcm",
         datePosted: "2014-05-13",
         description: "<b>Double room for rent</b> in Hackney E2. Suitable for couples. Very close to large supermarkets (Tesco, Asda), Vietnamese shops and restaurants. Buses: 149, 67, 242. Nearby stations: <b>Hoxton, Shoreditch High Street</b>",
-        type: "rent"
+        type: "rent",
+        location: "Hackney+E2+London"
     }, {
         price: "£450pcm",
         datePosted: "2014-05-11",
         description: "<b>Double room</b>. Can be shared for up to 2 people in <b>Finsbury Park, North London</b>. 5 mins walk to Sainsbury and 15 mins away from Finsbury Park Station. <b>Female students only</b>",
-        type: "rent"
+        type: "rent",
+        location: "Finsbury+Park,London"
     }, {
         price: "£500pcm",
         datePosted: "2014-05-12",
         description: "<b>Large studio room</b> in a Vietnamese family's large house, <b>all bills included!!</b> Post code: E3. Conveniently located near large shopping mall and public transport. <b>Students and professionals both welcome</b>.",
-        type: "rent"
+        type: "rent",
+        location: "London+E3"
     }, {
         price: "£2000pcm",
         datePosted: "2014-05-17",
         description: "<b>1-bedroom apartment</b>, Canada Water. Central area with all large shops, London's financial offices and major public transport links within walking distance. <b>Best suited for a single professional</b>.",
-        type: "rent"
+        type: "rent",
+        location: "Canada+Water,London"
     }, {
         price: "£750pcm",
         datePosted: "2014-05-15",
         description: "In a cul-de-sac 2 minutes walk from <b>Earlsfield station</b>, across the road from The Wandle (one of the best pubs in the south west) lays the perfect home for you. Price <b>includes Internet, Sky+ HD with Sky Sports package</b>, just in time for the World Cup this summer. What are you waiting for?",
-        type: "rent"
+        type: "rent",
+        location: "Earlsfield,London"
     }, {
         price: "£650-750pcm",
         datePosted: "2014-05-17",
         description: "<b>2 bedrooms available</b> in large 3 bedroom house near Battersea. This is a very spacious 3 storey house, with a garden, large kitchen, dining room, lounge, bathroom, utility room, and very importantly a dishwasher. One is a large double room (master bedroom) and the other is slightly smaller. Both room are furnished.",
-        type: "rent", 
+        type: "rent",
+        location: "South+Kensington,London",
         images: [
             {
                 title: "livingRoom",
@@ -278,12 +301,14 @@ var posts = [
         price: "£550pcm",
         datePosted: "2014-05-05",
         description: "Lovely <b>double room</b> for rent , just 1 min walking distance to <b>Mile End tube station (E3)</b>, there are central、district and Hammersmith city line, also have 25、205 buses to central london, very good transport link. Tesco supermarket is nearby.",
-        type: "rent"
+        type: "rent",
+        location: "Mile+End,London"
     }, {
         price: "£130pw",
         datePosted: "2014-05-07",
         description: "Stylish, furnished double room in a sizeable house in <b>Stratford E15</b>. Close to the new <b>Westfield shopping centre</b> development and Olympic site. Very close to the University of East London (UEL). Rent is fully inclusive of all utility bills. Sorry no pets in the house.",
         type: "rent",
+        location: "E15,London",
         images: [
             {
                 title: "e15Bed",

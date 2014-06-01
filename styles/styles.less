@@ -34,24 +34,6 @@ body {
         font-weight: 400;
         padding: 0.5em 0 0.4em 0;
         margin: 0;
-
-        * {
-            text-transform: uppercase;
-            font-size: 60%;
-            font-weight: 700;
-        }
-        img {
-            cursor: pointer;
-        }
-    }
-    .badge {
-        background: none;
-        background-color: #7bc173;
-        top: 10px;
-        right: 28px;
-        bottom: auto;
-        left: auto;
-        cursor: pointer;
     }
 }
 
@@ -256,7 +238,7 @@ body {
     }
 
     .price {
-        font-family: "Open Sans", Arial;
+        font-family: @thin-font-family;
         color: @red;
         font-size: 1.8em;
         line-height: 100%;
@@ -276,7 +258,13 @@ body {
         float: right;
         margin: 9pt 0 0 3pt;
         img {
-            height: 15px;
+            height: 20px;
+        }
+        &.location {
+            margin: 0pt 0 0 3pt;
+            img {
+                height: 30px;
+            }
         }
     }
 
@@ -291,6 +279,7 @@ body {
 
 // *** Modals and overlays ***
 .overlay {
+    z-index: 1000;
     position: fixed;
     width: 100%;
     height: 100%;
@@ -303,6 +292,59 @@ body {
         display: block;
     }
 
+    .overlay_content_full_bleed {
+        .overlay_content;
+        width: 0;
+        height: 0;
+        padding: 0;
+        overflow: hidden;
+
+        .deck {
+            position: absolute;
+
+        }
+
+        .text-deck {
+            .deck;
+            box-shadow: 0 0 20px black;
+            width: 350px;
+            height: 100%;
+            left: 0;
+            background: white;
+
+            &.singular {
+                width: 100%;
+                box-shadow: none;
+            }
+
+            .post {
+                margin: 0;
+                padding: 20pt;
+            }
+        }
+
+        .image-deck {
+            .deck;
+            position: absolute;
+            overflow: hidden;
+            width: 100%;
+            img {
+                max-width: 800px;
+                max-height: 600px;
+                float: right;
+            }
+        }
+    }
+
+    .page-indicator {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        font-size: 25pt;
+        color: white;
+        padding-top: 20pt;
+    }
+
     .overlay_content {
         position: relative;
         top: 10%;
@@ -310,45 +352,32 @@ body {
         padding: 20pt;
         display: block;
         width: 500px;
-        border-radius: 3px;
+        height: 400px;
         background: white;
         box-shadow: 0 2px 5px #222;
-
-        .post {
-            margin-top: 0;
-            .overlay-images {
-                margin: 20px 0 0 0;
-                img {
-                    height: 100px;
-                    margin: 5px;
-                }
+        .gmap-embed {
+            position: absolute;
+            top: 300px;
+            width: 100%;
+            height: 300px;
+            z-index: 1000;
+            background-color: #fff;
+            img.loading {
+                position: absolute;
+                top: 134px;
+                left: 259px;
+                z-index: 0;
             }
-            .overlay-full-image {
-                background-color: transparent;
-                padding: 0;
-                width: auto;
-                text-align: center;
-                .image-wrapper {
-                    display: inline-block;
-                    position: relative;
-                    img {
-                        max-height: 80%;
-                        max-width: 800px;
-                        display: block;
-                        margin-left: auto;
-                        margin-right: auto;
-                    }
-                }
+            iframe {
+                position: absolute;
+                z-index: 1;
             }
         }
         .post-close {
             position: absolute;
             right: 0;
             top: 0;
-            padding: 5px;
-            font-size: 12px;
-            border-radius: 20px;
-            color: #888;
+            padding: 8px;
             cursor: pointer;
             img {
                 height: 18px;

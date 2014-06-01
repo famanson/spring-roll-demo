@@ -21,19 +21,18 @@
         <script src="./js/controllers.js"></script>
         <script src="./js/filters.js"></script>
         <script src="./js/directives.js"></script>
+        <script src="./js/animations.js"></script>
         <script src="./js/checkout.js"></script>
         <script src="./js/compose.js"></script>
         <script src="./js/intro.js"></script>
         <script src="./js/misc.js"></script>
     </head>
-    <body ng-controller="ListingsCtrl" ng-click="dismissNBox();setIntroVisible(false);" ng-class="{'no-scroll' : apiPopupEnabled}">
+    <body ng-controller="ListingsCtrl" ng-click="dismissNBox()" ng-class="{'no-scroll' : apiPopupEnabled}">
         <div class="DEBUG_baseline_grid enabled-{{ showGridLines }}" ></div>
-        <div ng-include src="'intro.html'"></div>
         <div id="header">
             <div id="header_contents">
-                <div id="logo" ng-click="toggleIntro();$event.stopPropagation()" title="What is this?">
-                    <h1><img src="images/logo.png" title="What is this?"></h1>
-                    <span class="badge"><b>!</b></span>
+                <div id="logo" ng-click="toggleIntro();$event.stopPropagation()">
+                    <h1><img src="images/logo.png"></h1>
                 </div>
 
                 <!-- Top-level navigation -->
@@ -51,9 +50,12 @@
                 <!-- Searchbox -->
                 <div id="search-container" ng-show="currentType !== 'longdan'">
                     <img src="images/search.png" />
-                    <input type="text" ng-model="searchedText"
-                           ng-change="repopulate();"
-                           placeholder="Search in {{ currentType | capitalise }}">
+                    <input sr-search-enter-key="repopulate()"
+                           sr-esc-key="clearSearchWithText()"
+                           type="text"
+                           ng-model="searchedInput"
+                           ng-change="clearSearchNoText()"
+                           placeholder="Search in {{ currentType.capitalise() }}">
                 </div>
 
                 <!-- User avatar -->
@@ -78,8 +80,8 @@
         </div>
 
         <!-- Main posts area -->
-        <div id="search-count" ng-if="searchedText.length > 0">
-            <i>Search result: <b>{{ posts.length }}</b> posts found containing "<b>{{ searchedText }}</b>" under {{ currentType | capitalise }} <a class="clear" ng-click="clearSearch();">clear</a></i>
+        <div id="search-count" ng-if="searchedText.length > 0 && searchedInput.length > 0">
+            <i>Search result: <b>{{ postCount }}</b> posts found containing "<b>{{ searchedText }}</b>" under {{ currentType.capitalise() }} <a class="clear" ng-click="clearSearch();">clear</a></i>
         </div>
         <div sr-columns columns="3" posts="posts"
              id="content" ng-class="selected.type" ng-if="selected.type != 'longdan'">
@@ -91,6 +93,7 @@
                     </div>
                     <div ng-if="post.type != 'longdan' && post.type != 'compose'">
                         <span class="price">{{ post.price }}</span>
+                        <span class="image-icon location" ng-if="hasLocation(post)"><img src="images/loc-marker.png"/></span>
                         <span class="image-icon" ng-if="hasImages(post)"><img src="images/image-icon.png"/></span>
                         <span class="time">{{ post.datePosted | timeElapsed: currentDate }}</span>
                         <div class="description" ng-bind-html="post.description | highlightMatch: searchedText"></div>
@@ -101,30 +104,34 @@
         </div>
 
         <!-- Modal post display -->
-        <div class="overlay" ng-class="{ active : selected_post != null }">
-            <div class="overlay_content">
-                <a class="post-close" title="Close" ng-click="selectPost(null)"><img src="./images/close.png"/></a>
-                <div class="post" ng-model="selected_post" ng-click="$event.stopPropagation()">
-                    <span class="price">{{ selected_post.price }}</span>
-                    <div class="description" ng-bind-html="selected_post.description"></div>
-                    <div class="overlay-images">
-                        <img ng-src="{{ image.url }}" ng-repeat="image in postImages" ng-click="setPostImage(image)"/>
-                    </div>
-                    <!-- An overlay within an overlay... -->
-                    <div class="overlay" ng-class="{ active : fullImagePicked }">
-                        <div class="overlay-full-image overlay_content" >
-                            <div class="image-wrapper">
-                                <a class="post-close" title="Close" ng-click="setFullImagePicked(false);"><img src="./images/close.png"></a>
-                                <img ng-src="{{ pickedImage.url }}" ng-click="cycleImages(true)"/>
-                                <a ng-show="postImages.length > 1" class="nav post-next" title="Next Photo" ng-click="cycleImages(true)">
-                                    <img src="./images/api-popup/next.png">
-                                </a>
-                                <a ng-show="postImages.length > 1" class="nav post-prev" title="Previous Photo" ng-click="cycleImages(false)">
-                                    <img src="./images/api-popup/prev.png">
-                                </a>
-                            </div>
-                            <div class="clear"></div>
+        <div ng-controller="PostCtrl">
+            <div class="overlay active" ng-if="selected_post != null" ng-click="selectPost(null);">
+                <div class="page-indicator" ng-if='pagerPages.length > 1'>
+                    <span ng-repeat="page in pagerPages track by $index" ng-style="{ opacity : $index === currentDeckPosition ? 1.0 : 0.5 }">&bull;</span>
+                </div>
+                <div class="overlay_content_full_bleed" sr-auto-resize-deck="currentDeckPosition"
+                     sr-active-init-resize="selected_post != null"
+                     sr-prevent-animation="preventAnimation"
+                     ng-click="$event.stopPropagation();">
+                    <div class="text-deck" ng-class="{ singular : selected_post.images.length == 0 }" ng-click="onPostClicked();$event.stopPropagation()" style="z-index: 11" sr-auto-animate="layout[0]" sr-prevent-animation="preventAnimation">
+                        <div class="post">
+                            <span class="price">{{ selected_post.price }}</span>
+                            <div class="description" ng-bind-html="selected_post.description"></div>
                         </div>
+                    </div>
+                    <div class="image-deck" ng-repeat="image in selected_post.images" sr-auto-animate="layout[$index+1]"  ng-style="{'z-index': 10-$index}" ng-click="onPostClicked();"  sr-prevent-animation="preventAnimation">
+                        <img ng-src="{{ image.url }}" ng-click="setPostImage(image)"/>
+                    </div>
+                    <a class="post-close" title="Close" ng-click="selectPost(null)" style='z-index: 12'><img src="./images/close-button.png"/></a>
+                    <div class="gmap-embed" ng-style="{ 'z-index': gmapDepth() }" ng-if="hasLocation(selected_post)">
+                        <!--the ng-if must be here because it forces the iframe to reload and corrects the pin location -->
+                        <img class="loading" src="images/loading.gif"/>
+                        <iframe
+                            width="550"
+                            ng-src="{{ mapValue(selected_post) }}"
+                            height="300"
+                            frameborder="0" style="border:0">
+                        </iframe>
                     </div>
                 </div>
             </div>
@@ -138,6 +145,7 @@
         <div id="debug_panel" ng-if="debugPanelEnabled">
             <input type=checkbox id="show_grid_lines" ng-model="showGridLines" /><label for="show_grid_lines">Show grid lines</label>
         </div>
+        <div ng-include src="'intro.html'" ng-show="searchedText.length === 0"></div>
     </body>
 </html>
 
