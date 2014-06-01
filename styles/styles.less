@@ -1,5 +1,7 @@
 @import "global.less";
 
+@notification-box-background: #fafafa;
+
 // *** Main content ***
 html,body {
     height:100%;
@@ -125,7 +127,7 @@ body {
     // *** Notification box ***
     #notification-box {
         position: absolute;
-        background-color: white;
+        background-color: @notification-box-background;
         width: 400px;
         border: 1px solid #aaa;
         -moz-box-shadow: 0 0 12px #ccc;
@@ -138,25 +140,22 @@ body {
         text-decoration: none;
 
         .notification {
-            padding: 5 10px 15px 10px;
-            font-size: 12.5px;
+            padding: 12px;
+            font-size: 10pt;
             color: #333;
             .content {
                 height: 35px;
             }
             .time {
+                font-size: 90%;
                 color: #aaa;
             }
             .avatar {
                 margin-right: 15px
             }
 
-            &:last-child {
-                padding-bottom: 10px;
-            }
-
             &:not(:last-child) {
-                border-bottom: 1px solid #bbb;
+                border-bottom: 1px solid #ccc;
             }
 
             &:hover {
@@ -167,7 +166,7 @@ body {
     .triangle-up {
         float: right;
         border: 16px solid transparent;
-        border-bottom-color: white;
+        border-bottom-color: @notification-box-background;
         margin-top: 40px;
         margin-left: -11px;
         bottom: auto;
