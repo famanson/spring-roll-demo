@@ -28,10 +28,25 @@ app.controller("ListingsCtrl", function($scope, $sce) {
 
     // Define the two variables that will determine which posts to display
     $scope.currentType = "sale";
+    // the searched text
     $scope.searchedText = "";
+    // direct input from search box
+    $scope.searchedInput = "";
     $scope.clearSearch = function() {
+        // Each clear will reset whole page
         $scope.searchedText = "";
+        $scope.searchedInput = "";
         $scope.repopulate();
+    };
+    $scope.clearSearchWithText = function() {
+        if($scope.searchedText.length > 0) {
+            $scope.clearSearch();
+        }
+    };
+    $scope.clearSearchNoText = function() {
+        if($scope.searchedInput.length === 0) {
+            $scope.clearSearch();
+        }
     };
     // Method for dynamically populate page, mainly used for search
     $scope.repopulate = function() {
@@ -52,7 +67,7 @@ app.controller("ListingsCtrl", function($scope, $sce) {
         var filterByType = function(post) {
             if (post.type === 'compose') {
                 // Special case - the "compose" sentinel.
-                return ($scope.currentType !== 'longdan' && $scope.searchedText === "");
+                return ($scope.currentType !== 'longdan' && $scope.searchedText.length === 0);
             } else {
                 return post.type === $scope.currentType && isTextMatched(post.description, $scope.searchedText);
             }
@@ -170,15 +185,6 @@ app.controller("ListingsCtrl", function($scope, $sce) {
 
     $scope.setViewedApiPopUp = function(viewed) {
         $scope.apiPopupViewed = viewed;
-    };
-
-    /* Intro header */
-    $scope.introVisible = false;
-    $scope.toggleIntro = function() {
-        $scope.introVisible = !$scope.introVisible;
-    };
-    $scope.setIntroVisible = function(show) {
-        $scope.introVisible = show;
     };
 
     /* Google Map Embed API */

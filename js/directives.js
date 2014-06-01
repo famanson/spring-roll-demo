@@ -73,6 +73,121 @@ app.directive('srAutoResizeDeck', function() {
     };
 });
 
+/* Intro directives */
+app.directive('srEmailValidator', function() {
+    return {
+        // Restrict it to be an attribute in this case
+        restrict: 'A',
+        // responsible for registering DOM listeners as well as updating the DOM
+        link: function(scope, element, attrs) {
+            var processResult = function(data) {
+                scope.validationProgress = false;
+                var text = "";
+                if (!data.is_valid) {
+                    if (data.did_you_mean != null && data.did_you_mean.length > 0) {
+                        text = "Did you mean \"" + data.did_you_mean + "\"?";
+                    } else {
+                        text = "Address is invalid.";
+                    }
+                } else {
+                    text = "This looks good!";
+                }
+                scope.validationResult = {
+                    valid: data.is_valid,
+                    text: text
+                };
+                scope.$digest();
+            };
+            var errorResult = function() {
+                scope.validationProgress = false;
+                scope.validationResult = {
+                    valid: false,
+                    text: "Address is invalid."
+                };
+                scope.$digest();
+            };
+            var progress = function() {
+                scope.validationProgress = true;
+                scope.$digest();
+            };
+            $(element).mailgun_validator({
+                api_key: "pubkey-5nc-amvnbfw1j1k8w45usr5w36y-job2",
+                success: processResult,
+                error: errorResult,
+                in_progress: progress
+            });
+        }
+    };
+});
+
+app.directive('srInputAutogrow', function() {
+    return {
+        // Restrict it to be an attribute in this case
+        restrict: 'A',
+        // responsible for registering DOM listeners as well as updating the DOM
+        link: function(scope, element, attrs) {
+            $(element).autoGrow(10);
+        }
+    };
+});
+
+app.directive('srDropdownAnimate', function() {
+    function link(scope, element, attrs) {
+        scope.$watch(attrs.srDropdownAnimate, function(value) {
+            if (value) {
+                $(element).css("marginTop", "-271px");
+                $(element).animate({
+                    marginTop: "0px"
+                });
+            } else {
+                $(element).animate({
+                    marginTop: "-271px"
+                });
+            }
+        });
+    }
+
+    return {
+        restrict: 'A',
+        link: link,
+    };
+});
+
+app.directive('srSearchEnterKey', function() {
+    function link(scope, element, attrs) {
+        $(document).keyup(function(e) {
+            if(e.keyCode === 13) {
+                scope.$apply(function() {
+                    scope.searchedText = element.val();
+                    scope.$eval(attrs.srSearchEnterKey);
+                });
+            }
+        });
+    }
+
+    return {
+        restrict: 'A',
+        link: link,
+    }; 
+});
+
+app.directive('srEscKey', function() {
+    function link(scope, element, attrs) {
+        $(document).keyup(function(e) {
+            if(e.keyCode === 27) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.srEscKey);
+                });
+            }
+        });
+    }
+
+    return {
+        restrict: 'A',
+        link: link,
+    }; 
+});
+
 /** Splits post into columns. This already assumes the right HTML template is set up */
 app.directive("srColumns", function() {
     function link(scope, element, attrs, controller) {
