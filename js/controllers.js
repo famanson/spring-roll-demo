@@ -89,7 +89,7 @@ app.controller("ListingsCtrl", function($scope, $sce) {
     };
     // Images used for post overlay
     $scope.hasImages = function(post) {
-        return post !== null && 'images' in post && post.images.length > 1;
+        return post !== null && 'images' in post && post.images.length > 0;
     };
     $scope.selectPost = function(post) {
         post = (post !== null && post.type === 'compose') ? null : post;
