@@ -21,6 +21,7 @@
         <script src="./js/controllers.js"></script>
         <script src="./js/filters.js"></script>
         <script src="./js/directives.js"></script>
+        <script src="./js/animations.js"></script>
         <script src="./js/checkout.js"></script>
         <script src="./js/compose.js"></script>
         <script src="./js/intro.js"></script>
@@ -103,33 +104,35 @@
         </div>
 
         <!-- Modal post display -->
-        <div class="overlay" ng-class="{ active : selected_post != null }" ng-controller="PostCtrl">
-            <div class="page-indicator" ng-if='pagerPages.length > 1'>
-                <span ng-repeat="page in pagerPages track by $index" ng-style="{ opacity : $index === currentDeckPosition ? 1.0 : 0.5 }">&bull;</span>
-            </div>
-            <div class="overlay_content_full_bleed" sr-auto-resize-deck="currentDeckPosition"
-                 sr-active-init-resize="selected_post != null"
-                 sr-prevent-animation="preventAnimation"
-                 ng-if="selected_post !== null">
-                <div class="text-deck" ng-class="{ singular : selected_post.images.length == 0 }" ng-click="onPostClicked();$event.stopPropagation()" style="z-index: 11" sr-auto-animate="layout[0]" sr-prevent-animation="preventAnimation">
-                    <div class="post">
-                        <span class="price">{{ selected_post.price }}</span>
-                        <div class="description" ng-bind-html="selected_post.description"></div>
+        <div ng-controller="PostCtrl">
+            <div class="overlay active" ng-if="selected_post != null" ng-click="selectPost(null);">
+                <div class="page-indicator" ng-if='pagerPages.length > 1'>
+                    <span ng-repeat="page in pagerPages track by $index" ng-style="{ opacity : $index === currentDeckPosition ? 1.0 : 0.5 }">&bull;</span>
+                </div>
+                <div class="overlay_content_full_bleed" sr-auto-resize-deck="currentDeckPosition"
+                     sr-active-init-resize="selected_post != null"
+                     sr-prevent-animation="preventAnimation"
+                     ng-click="$event.stopPropagation();">
+                    <div class="text-deck" ng-class="{ singular : selected_post.images.length == 0 }" ng-click="onPostClicked();$event.stopPropagation()" style="z-index: 11" sr-auto-animate="layout[0]" sr-prevent-animation="preventAnimation">
+                        <div class="post">
+                            <span class="price">{{ selected_post.price }}</span>
+                            <div class="description" ng-bind-html="selected_post.description"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="image-deck" ng-repeat="image in selected_post.images" sr-auto-animate="layout[$index+1]"  ng-style="{'z-index': 10-$index}" ng-click="onPostClicked()"  sr-prevent-animation="preventAnimation">
-                    <img ng-src="{{ image.url }}" ng-click="setPostImage(image)"/>
-                </div>
-                <a class="post-close" title="Close" ng-click="selectPost(null)" style='z-index: 12'><img src="./images/close.png"/></a>
-                <div class="gmap-embed" ng-style="{ 'z-index': gmapDepth() }" ng-if="hasLocation(selected_post)">
-                    <!--the ng-if must be here because it forces the iframe to reload and corrects the pin location -->
-                    <img class="loading" src="images/loading.gif"/>
-                    <iframe
-                        width="550"
-                        ng-src="{{ mapValue(selected_post) }}"
-                        height="300"
-                        frameborder="0" style="border:0">
-                    </iframe>
+                    <div class="image-deck" ng-repeat="image in selected_post.images" sr-auto-animate="layout[$index+1]"  ng-style="{'z-index': 10-$index}" ng-click="onPostClicked();"  sr-prevent-animation="preventAnimation">
+                        <img ng-src="{{ image.url }}" ng-click="setPostImage(image)"/>
+                    </div>
+                    <a class="post-close" title="Close" ng-click="selectPost(null)" style='z-index: 12'><img src="./images/close-button.png"/></a>
+                    <div class="gmap-embed" ng-style="{ 'z-index': gmapDepth() }" ng-if="hasLocation(selected_post)">
+                        <!--the ng-if must be here because it forces the iframe to reload and corrects the pin location -->
+                        <img class="loading" src="images/loading.gif"/>
+                        <iframe
+                            width="550"
+                            ng-src="{{ mapValue(selected_post) }}"
+                            height="300"
+                            frameborder="0" style="border:0">
+                        </iframe>
+                    </div>
                 </div>
             </div>
         </div>
