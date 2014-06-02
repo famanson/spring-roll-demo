@@ -263,6 +263,10 @@ app.controller("PostCtrl", function($scope) {
             };
         }
 
+        $scope.map_layout = {
+            'bottom': $scope.currentDeckPosition === 0 ? 0 : "-100%",
+        };
+
         $scope.preventAnimation = preventAnimation;
         $scope.layout = layout;
         $scope.currentImageIndex = position - 1;
@@ -277,8 +281,4 @@ app.controller("PostCtrl", function($scope) {
         }
         relayout(false);
     };
-
-    $scope.gmapDepth = function() {
-        return ($scope.currentDeckPosition === 0) ? 1000 : 0;
-    }
 });
