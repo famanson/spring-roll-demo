@@ -1,51 +1,37 @@
 <html ng-app="SpringRollDemo">
     <head>
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <link rel="icon" type="image/png" href="images/favicon.png">
         <link rel="stylesheet/less" type="text/css" href="./styles/styles.less" />
+        <link rel="stylesheet/less" type="text/css" href="./styles/intro.less" />
         <link rel="stylesheet/less" type="text/css" href="./styles/longdan.less" />
         <link rel="stylesheet/less" type="text/css" href="./styles/compose.less" />
-        
+
         <script src="./lib/jquery-2.1.1.js" type="text/javascript"></script>
         <script src="./lib/less-1.7.0.min.js" type="text/javascript"></script>
         <script src="./lib/angular-1.3.0-beta.7.js" type="text/javascript" ></script>
         <script src="./lib/angular-animate-1.3.0-beta.7.js" type="text/javascript"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular-sanitize.js"></script>
+        <script src="./lib/mailgun_validator.js"></script>
+        <script src="./lib/autogrow.js"></script>
 
         <script src="./js/special.js"></script>
         <script src="./js/native.js"></script>
         <script src="./js/global.js"></script>
-        <script src="./js/model.js"></script>
+        <script src="./js/controllers.js"></script>
+        <script src="./js/filters.js"></script>
+        <script src="./js/directives.js"></script>
         <script src="./js/checkout.js"></script>
         <script src="./js/compose.js"></script>
+        <script src="./js/intro.js"></script>
         <script src="./js/misc.js"></script>
     </head>
     <body ng-controller="ListingsCtrl" ng-click="dismissNBox();setIntroVisible(false);" ng-class="{'no-scroll' : apiPopupEnabled}">
         <div class="DEBUG_baseline_grid enabled-{{ showGridLines }}" ></div>
-        <div class="intro" ng-show="introVisible" ng-click="$event.stopPropagation()">
-            <div class="intro-wrapper">
-                <div class="tag-lines">
-                    <p>Hi! Welcome to our Project Spring Roll demo!</p>
-                    <p>This is what the future SVUK Marketplace looks like</p>
-                    <p>It won't work on mobile devices or save any changes</p>
-                    <p>Hint: type "real" in our Search Box for real adverts</p>
-                    <p><a href="javascript:void(0)" ng-click="setIntroVisible(false);">Close this window</a></p>
-                </div>
-                <div class="social-images">
-                    <p>Like what we do? Find us on:</p>
-                    <a href="https://www.facebook.com/pages/Team-Spring-Roll/1412319192364606" target="_blank">
-                        <img id="facebook-logo" src="./images/facebook-logo.png"/>
-                    </a>
-                    <a href="https://www.indiegogo.com/projects/project-spring-roll" target="_blank">
-                        <img id="indiegogo-logo"src="./images/indiegogo.png"/>
-                    </a>
-                    <p><a href="mail-to:ukspringroll@gmail.com" target="_blank">ukspringroll@gmail.com</a> &copy; 2014</p>
-                </div>
-                <div class="clear"></div>
-            </div>
-        </div>
+        <div ng-include src="'intro.html'"></div>
         <div id="header">
             <div id="header_contents">
-                <div id="logo" ng-click="setIntroVisible(true);$event.stopPropagation()" title="What is this?">
+                <div id="logo" ng-click="toggleIntro();$event.stopPropagation()" title="What is this?">
                     <h1><img src="images/logo.png" title="What is this?"></h1>
                     <span class="badge"><b>!</b></span>
                 </div>
@@ -61,20 +47,15 @@
                         {{ nav.type != 'longdan' && nav.name || "" }}
                     </a>
                 </div>
-                
+
                 <!-- Searchbox -->
                 <div id="search-container" ng-show="currentType !== 'longdan'">
-                    <img src="images/search.png" ng-click="setPastSearchesVisible(true)"/>
-                    <input type="text" ng-model="searchedText" 
-                           ng-change="emptyColumns();repopulate();updatePastSearches(searchedText);"
-                           placeholder="Search in {{ currentType.capitalise() }}">
-                    <div style="position:absolute;background-color:#fff;width:150px;padding:5px;border:1px solid #000;z-index:1000;"
-                         class="past-searches" ng-show="pastSearchesVisible">
-                        <p ng-repeat="search in pastSearches">{{ search }}</p>
-                        <p style="cursor:pointer;" class="dismiss-past-searches" ng-click="setPastSearchesVisible(false)"><u>dismiss</u></p>
-                    </div>
+                    <img src="images/search.png" />
+                    <input type="text" ng-model="searchedText"
+                           ng-change="repopulate();"
+                           placeholder="Search in {{ currentType | capitalise }}">
                 </div>
-                
+
                 <!-- User avatar -->
                 <div id="user_profile_nav" href="">
                     <img src="images/avatar01.jpg" class="avatar" ng-click="toggleNBox()"/>
@@ -95,26 +76,30 @@
         </div>
         <div ng-include src="'ld-content.html'">
         </div>
-        
+
         <!-- Main posts area -->
         <div id="search-count" ng-if="searchedText.length > 0">
-            <i>Search result: <b>{{ postCount }}</b> posts found containing "<b>{{ searchedText }}</b>" under {{ currentType.capitalise() }} <a class="clear" ng-click="clearSearch();">clear</a></i>
+            <i>Search result: <b>{{ posts.length }}</b> posts found containing "<b>{{ searchedText }}</b>" under {{ currentType | capitalise }} <a class="clear" ng-click="clearSearch();">clear</a></i>
         </div>
-        <div id="content" ng-class="selected.type" ng-if="selected.type != 'longdan'">
+        <div sr-columns columns="3" posts="posts"
+             id="content" ng-class="selected.type" ng-if="selected.type != 'longdan'">
+
             <div class="column" ng-repeat="column in columns">
                 <div class="post repeated-item" ng-repeat="post in column" ng-click="selectPost(post)" href="javascript:void(0)">
-                    <div ng-include="'compose.html'" ng-if="post.type === 'compose'"></div>
+                    <div ng-if="post.type === 'compose'" class="compose" ng-click="openComposeBox()">
+                        <b>+ Post new ad</b>
+                    </div>
                     <div ng-if="post.type != 'longdan' && post.type != 'compose'">
                         <span class="price">{{ post.price }}</span>
                         <span class="image-icon" ng-if="hasImages(post)"><img src="images/image-icon.png"/></span>
-                        <span class="time">{{ post.ago }}</span>
-                        <div class="description" ng-bind-html="post.description"></div>
+                        <span class="time">{{ post.datePosted | timeElapsed: currentDate }}</span>
+                        <div class="description" ng-bind-html="post.description | highlightMatch: searchedText"></div>
                     </div>
                 </div>
             </div>
             <div style="clear:both;"></div>
         </div>
-        
+
         <!-- Modal post display -->
         <div class="overlay" ng-class="{ active : selected_post != null }">
             <div class="overlay_content">
@@ -144,11 +129,15 @@
                 </div>
             </div>
         </div>
-        
+
+        <!-- compose lightbox -->
+        <div ng-include="'compose.html'" ></div>
+
         <div id="ld-more" ng-if="selected.type == 'longdan'">More Products >></div>
 
-        <div id="debug_panel">
+        <div id="debug_panel" ng-if="debugPanelEnabled">
             <input type=checkbox id="show_grid_lines" ng-model="showGridLines" /><label for="show_grid_lines">Show grid lines</label>
         </div>
     </body>
 </html>
+

@@ -8,102 +8,59 @@
 
 app.controller("ListingsCtrl", function($scope, $timeout) {
     'use strict';
-    
+
+    // Fixed current date.
+    $scope.currentDate = new Date();
+
     // Add control for toggling the visibility of the grid lines.
     $scope.showGridLines = false;
 
     // Whether longdan features are enabled.
     $scope.longdanEnabled = window.longdanEnabled || false;
-    
+
+    // Enable debug panel?
+    $scope.debugPanelEnabled = window.debugPanelEnabled || false;
+
+    // Currently shown posts.
+    $scope.posts = [];
+
     // Currently selected post, will be displayed to user in detail.
     $scope.selected_post = null;
-    
-    // Quick and dirty way to get a persistent description (_description) on each post
-    // meaning post.description will be displayed on the site and if we want transformation
-    // on it, we do that on post._description and replace post.description with it
-    for (var j = 0; j < posts.length; j++) {
-        posts[j]._description = posts[j].description;
-    }
 
-    // Split posts into three columns (and four if Longdan)
-    $scope.columns = [];
-    for (var i = 0; i < 4; i++) { // use 4 to make way for Longdan posts
-        $scope.columns[i] = [];
-    }
-    
     // Define the two variables that will determine which posts to display
     $scope.currentType = "sale";
     $scope.searchedText = "";
     $scope.clearSearch = function() {
         $scope.searchedText = "";
-        $scope.emptyColumns();
         $scope.repopulate();
     };
     // Method for dynamically populate page, mainly used for search
     $scope.repopulate = function() {
-        console.log($scope.searchedText);
-        var rowLength = ($scope.currentType === 'longdan') ? 4 : 3;
         // Should search be enabled?
         var isSearchEnabled = function() {
             return $scope.currentType !== 'longdan';
         };
         // Returns true if "text" contains "searchedText".
-        var searchText = function(text, searchedText) {
+        var isTextMatched = function(text, searchedText) {
             if (isSearchEnabled()) {
                 // Quick cheap text sanitization
                 var sanitized = $("<div>" + text + "</div>").text();
-                return sanitized.toLowerCase().search(searchedText.toLowerCase()) != -1;
+                return sanitized.toLowerCase().search(searchedText.escapeRegex().toLowerCase()) != -1;
             } else {
                 return true;
             }
-        };
-        var processMatch = function(match, p1, offset, string) {
-            return "<span class=\"searchHighlight\">" + match + "</span>";
-        };
-        var highlight = function(post) {
-            if (isSearchEnabled()) {
-                if ($scope.searchedText !== "") {
-                    post.description = post._description.replace(new RegExp($scope.searchedText, 'gi'),
-                                                                 processMatch);
-                } else {
-                    post.description = post._description;
-                }
-            }
-            return post;
         };
         var filterByType = function(post) {
             if (post.type === 'compose') {
                 // Special case - the "compose" sentinel.
                 return ($scope.currentType !== 'longdan' && $scope.searchedText === "");
             } else {
-                return post.type === $scope.currentType && searchText(post._description, $scope.searchedText);
+                return post.type === $scope.currentType && isTextMatched(post.description, $scope.searchedText);
             }
         };
-        var filteredPosts = posts.filter(filterByType);
-        filteredPosts = $.map(filteredPosts, highlight);
-        $scope.postCount = filteredPosts.length;
-        var perColumn = filteredPosts.length / rowLength;
-        var remainder = filteredPosts.length % rowLength;
-        // Again, cycling through each column and post is needed to get animations
-        // working.
-        for (var i = 0; i < rowLength; i++) {
-            var columnPosts = filteredPosts.splice(0, perColumn + (i < remainder ? 1 : 0));
-            for (var k = 0; k < columnPosts.length; k++) {
-                $scope.columns[i].push(columnPosts[k]);
-            }
-        }
+        $scope.posts = posts.filter(filterByType);
     };
-    
-    // Clear all columns. 
-    $scope.emptyColumns = function () {
-        // Cycling through each column to perform pop is necessary for animations.
-        for (var i = 0; i < 4; i++) { // use 4 to make way for Longdan posts
-            var len = $scope.columns[i].length;
-            for (var j = 0; j < len; j++) {
-                $scope.columns[i].pop();
-            }
-        }
-    };
+
 
     /* Top Nav Control */
     $scope.populateByType = function(popType) {
@@ -113,7 +70,6 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
 
     $scope.switchColumn = function(popType) {
         if (popType !== $scope.selectedNav) {
-            $scope.emptyColumns();
             $scope.populateByType(popType);
         }
     };
@@ -127,6 +83,9 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         $scope.postImages = $scope.hasImages(post) ? post.images : [];
         $scope.selected_post = post;
     };
+    $scope.openComposeBox = function() {
+        $scope.$broadcast("EVENT_OPEN_COMPOSE_BOX");
+    }
 
     $scope.populateByType('sale');
     if (!$scope.longdanEnabled) {
@@ -142,7 +101,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     $scope.isTopNavSelected = function(navType) {
         return $scope.selectedNav === navType;
     };
-    
+
     /* Notifications Box Control */
     $scope.nboxSelected = false;
 
@@ -151,7 +110,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         $scope.toggleNBoxClicked = true;
         $scope.nboxSelected = !$scope.nboxSelected;
     };
-    
+
     $scope.dismissNBox = function() {
         //alert("Dismiss");
         if (!$scope.toggleNBoxClicked) {
@@ -159,7 +118,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         }
         $scope.toggleNBoxClicked = false;
     };
-    
+
     $scope.notifications = notifications;
 
     // Small hack to persist the basket because bloody ng-include creates a new scope
@@ -167,7 +126,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     $scope.persistBasket = function(basket) {
         $scope.previousBasket = basket;
     };
-    
+
     /* API popup */
     $scope.apiPopupViewed = false;
     $scope.apiPopupEnabled = false;
@@ -208,13 +167,16 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     $scope.setViewedApiPopUp = function(viewed) {
         $scope.apiPopupViewed = viewed;
     };
-    
+
     /* Intro header */
     $scope.introVisible = false;
-    $scope.setIntroVisible = function(visible) {
-        $scope.introVisible = visible;
+    $scope.toggleIntro = function() {
+        $scope.introVisible = !$scope.introVisible;
     };
-    
+    $scope.setIntroVisible = function(show) {
+        $scope.introVisible = show;
+    };
+
     /* Image picker in overlay */
     $scope.fullImagePicked = false;
     $scope.setPostImage = function(image) {
@@ -251,5 +213,39 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     $scope.pastSearchesVisible = false;
     $scope.setPastSearchesVisible = function(visible) {
         $scope.pastSearchesVisible = visible;
+    };
+});
+
+/* Converts date in string format to a time elapsed representation, e.g. "6 days ago" */
+app.filter('timeElapsed', function() {
+    return function(dateInput, currentDate) {
+        // Process input date.
+        var date;
+        if (dateInput instanceof String || typeof(dateInput) === "string") {
+            date = new Date(dateInput);
+        } else if (dateInput instanceof Date) {
+            date = dateInput;
+        } else {
+            return "Unsupported date type!";
+        }
+
+        var numHour = Math.floor((currentDate - date)/3600000);
+        if (numHour < 1) {
+                return "just now";
+        } else if (numHour <= 24) {
+                return "today" ;
+        } else if (numHour <= 48) {
+            return "yesterday";
+        } else if (numHour < 168) {
+            return Math.round(numHour/24) + " days ago";
+        } else if (numHour < 264) {
+            return "a week ago";
+        } else if (numHour < 720) {
+            return Math.round(numHour/168) + " weeks ago";
+        } else if (numHour < 1080) {
+            return "a month ago";
+        } else {
+            return Math.round(numHour/720) + " months ago";
+        }
     };
 });

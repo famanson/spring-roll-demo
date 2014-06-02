@@ -1,20 +1,4 @@
-/*
-
-Grid parameters: 12 modules @ 66px, 18px gap
-
-*/
-
-// *** Font imports ***
-@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
-
-@grid_gutter: 18px;
-@grid_module: 66px;
-@grid_12: 12 * @grid_module + 11 * @grid_gutter;
-@grid_4: 4 * @grid_module + 3 * @grid_gutter;
-@grid_3: 3 * @grid_module + 2 * @grid_gutter;
-
-@red: #c33f3f;
+@import "global.less";
 
 // *** Main content ***
 html,body {
@@ -44,13 +28,13 @@ body {
     float: left;
     width: @grid_3;
     position: relative;
-    
+
     h1 {
         font-family: "Montserrat";
         font-weight: 400;
         padding: 0.5em 0 0.4em 0;
         margin: 0;
-        
+
         * {
             text-transform: uppercase;
             font-size: 60%;
@@ -74,10 +58,10 @@ body {
 #top-navigation {
     float: left;
     font-size: 10.5pt;
-    font-family: Arial; 
+    font-family: Arial;
     font-weight: bold;
     color: #1c1b1b;
-    
+
     a {
         padding: 27pt 0 6pt;
         text-align: center;
@@ -99,7 +83,7 @@ body {
     margin-top: 23pt;
     padding: 0.5pt 5pt 1.2pt;
     box-shadow: inset 0 1px 1px #ccc;
-    
+
     // TODO(macduy): Manually position image because we can't be bothered do it properly.
     img {
         position: relative;
@@ -147,7 +131,7 @@ body {
     img {
         float: left;
     }
-    
+
     .triangle {
         margin-top: 22px;
         margin-left: 5px;
@@ -171,7 +155,7 @@ body {
         right: 0px;
         display: none;
         text-decoration: none;
-        
+
         .notification {
             padding: 5 10px 15px 10px;
             font-size: 12.5px;
@@ -185,15 +169,15 @@ body {
             .avatar {
                 margin-right: 15px
             }
-        
+
             &:last-child {
                 padding-bottom: 10px;
             }
-        
+
             &:not(:last-child) {
                 border-bottom: 1px solid #bbb;
             }
-        
+
             &:hover {
                 background-color:#eee;
             }
@@ -248,52 +232,9 @@ body {
     float: left;
     width: @grid_4;
     margin-left: @grid_gutter;
-    
+
     &:first-child {
         margin-left: 0;
-    }
-}
-
-.intro {
-    .intro-wrapper {
-        width: @grid_12;
-        margin: 0 auto;
-    }
-    background-color: #7bc173;
-    p {
-        font-size: 20px;
-        color: #fff;
-        font-style: italic;
-        a {
-            font-size: 16px;
-            color: #fefefe;
-        }
-    }
-    .tag-lines {
-        float: left;
-        width: 50%;
-        padding: 50px 0;
-        p {
-            margin: 0 0 0 20px;
-            text-align: left;
-            padding: 5px 0;
-        }
-    }
-    .social-images {
-        width: 40%;
-        float: right;
-        padding: 40px 0;
-        margin-left: 40px;
-        a {
-            text-decoration:none;
-            img {
-                margin: 0 10px 0 0;
-                height: 80px;
-            }
-        }
-        p {
-            font-size: 16px;
-        }
     }
 }
 
@@ -306,19 +247,22 @@ body {
     cursor: pointer;
 
     .searchHighlight {
-        background-color: #ffff00;
-        padding: 2px 0;
+        .gradient(#ede672);
+        border-radius: 2px;
+        border-bottom: 1px solid darken(#ede672, 20%);
+        padding: 0.15em 0.2em;
+        margin: 0 -0.1em;
+        font-weight: bold;
     }
 
     .price {
         font-family: "Open Sans", Arial;
-        font-weight: 300;
         color: @red;
         font-size: 1.8em;
         line-height: 100%;
         letter-spacing: -0.03em;
     }
-    
+
     .time {
         float: right;
         font-size: 75%;
@@ -326,17 +270,16 @@ body {
         margin-top: 11pt;
         line-height: 100%;
     }
-    
+
     .image-icon {
-        font-size: 75%;
-        color: #aaa;
+        opacity: 0.5;
         float: right;
-        margin: 9pt 0 0 5pt;
+        margin: 9pt 0 0 3pt;
         img {
             height: 15px;
         }
     }
-    
+
     .description {
         font-family: Arial;
         text-align: justify;
@@ -355,11 +298,11 @@ body {
     left: 0;
     background: rgba(0, 0, 0, 60%);
     display: none;  // Invisible by default.
-    
+
     &.active {
         display: block;
     }
-    
+
     .overlay_content {
         position: relative;
         top: 10%;
@@ -370,7 +313,7 @@ body {
         border-radius: 3px;
         background: white;
         box-shadow: 0 2px 5px #222;
-        
+
         .post {
             margin-top: 0;
             .overlay-images {
@@ -442,27 +385,17 @@ body {
     clear: both;
 }
 
-// *** Gradients ***
-.gradient(@color1, @stop1, @color2, @stop2) {
-    background: #efefef; /* Old browsers */
-    background: -moz-linear-gradient(top, @color1 @stop1, @color2 @stop2); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(@stop1,@color1), color-stop(@stop2,@color2)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, @color1 @stop1,@color2 @stop2); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, @color1 @stop1,@color2 @stop2); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, @color1 @stop1,@color2 @stop2); /* IE10+ */
-    background: linear-gradient(to bottom, @color1 @stop1,@color2 @stop2); /* W3C */
-}
-
 // *** Debugging styles ***
 
 #debug_panel {
     padding: 0.6em 3em;
     position: fixed;
     bottom: 0;
+    margin:10;
     background: #ddd;
     width: 100%;
     font-size: 75%;
-    opacity: 0.7;
+    opacity: 0.3;
 }
 
 .DEBUG_outline {
@@ -482,7 +415,7 @@ body {
     opacity: 0.5;
     z-index: 999;
     pointer-events:none;
-    
+
     &.enabled-false {
         display: none;
     }
@@ -513,22 +446,4 @@ body {
 
 .repeated-item.ng-leave.ng-leave-active {
     opacity: 0;
-}
-
-.intro.ng-hide-add, .intro.ng-hide-remove {
-  -webkit-transition:all linear 0.25s;
-  -moz-transition:all linear 0.25s;
-  -o-transition:all linear 0.25s;
-  transition:all linear 0.25s;
-  display:block!important;
-}
-
-.intro.ng-hide-add.ng-hide-add-active,
-.intro.ng-hide-remove {
-    margin-top: -270px;
-    
-}
-.intro.ng-hide-remove.ng-hide-remove-active,
-.intro.ng-hide-add {
-    margin-top: 0px;
 }
