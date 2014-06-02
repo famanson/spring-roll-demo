@@ -1,4 +1,5 @@
 <?php
+    // This file is to be placed on the server
     $config = parse_ini_file("/var/relay/config.ini");
     $headers = apache_request_headers();
     if($headers['Referer'] == $config['referer']) {
@@ -26,6 +27,11 @@
         $result = curl_exec($ch);
      
         curl_close($ch);
+
+        header("Access-Control-Allow-Methods: POST, OPTIONS");
+        header("Access-Control-Allow-Origin: {$config['origin']}");
+        header("Access-Control-Max-Age: 86400");
+        header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Origin, Access-Control-Allow-Headers, Access-Control-Allow-Methods");
 
         echo "Message OK";
     } else {
