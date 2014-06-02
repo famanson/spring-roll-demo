@@ -7,11 +7,6 @@ app.config(function($httpProvider) {
     $httpProvider.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
     $httpProvider.defaults.headers.post["Access-Control-Allow-Headers"] = "Origin, X-Requested-With, Content-Type, Accept";
     $httpProvider.defaults.headers.post["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS, DELETE, PUT, HEAD";
-
-
-    //Remove the header containing XMLHttpRequest used to identify ajax call 
-    //that would prevent CORS from working
-    // delete $httpProvider.defaults.headers.common['X-Requested-With'];
 });
 
 
