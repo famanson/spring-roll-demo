@@ -11,7 +11,7 @@ app.controller("ComposeCtrl", function($scope) {
         $scope.composeBoxEnabled = true;
     });
 
-    $scope.composeCategories = ['sale','wanted','rents'];
+    $scope.composeCategories = ['sale','wanted','rent'];
     $scope.composeBoxEnabled = false;
     $scope.pickedCategory = "";
     $scope.setPickedCategory = function(category) {
