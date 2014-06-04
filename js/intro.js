@@ -1,6 +1,15 @@
 /* jshint browser:true, jquery:true */
 /* global angular, app */
 
+app.config(function($httpProvider) {
+    //Enable cross domain calls
+    $httpProvider.defaults.useXDomain = true;
+    $httpProvider.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
+    $httpProvider.defaults.headers.post["Access-Control-Allow-Headers"] = "Origin, X-Requested-With, Content-Type, Accept";
+    $httpProvider.defaults.headers.post["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS, DELETE, PUT, HEAD";
+});
+
+
 app.controller("IntroCtrl", function($scope, $http) {
     $scope.isHuman = function() {
         var chboxCaptcha = angular.element('input[name="chboxCaptcha"]').is(':checked'),
@@ -34,91 +43,42 @@ app.controller("IntroCtrl", function($scope, $http) {
         return $scope.email != null && $scope.email.length > 0 &&
             $scope.messageBody != null && $scope.messageBody.length > 0 && !$scope.isHuman()
     };
+    $scope.messageFade = { opacity: 1, display: 'block' };
+    $scope.messageResultFade = { opacity: 0 };
     $scope.showMessageResult = false;
-    $scope.messageResult = ""
+    $scope.messageResult = {};
     $scope.dismissMessageResult = function() {
         $scope.messageResult = ""
         $scope.showMessageResult = false;
     };
+    $scope.relayPath = window.relayPath || "http://famanson.com/_sr/relay.php";
     $scope.send = function() {
-        if ($scope.isReadyToSend()) {
-            if ($scope.isHuman()) {
-                $scope.setMessageFormVisible(false);
-                $http.post("./relay.php", {
-                    email: $scope.email,
-                    messageBody: $scope.messageBody,
-                }).success(function(data, status, headers, config) {
-                    $scope.email = "";
-                    $scope.messageBody = "";
-                    $scope.validationResult = null;
-                    $scope.showMessageResult = true;
-                    angular.element('input[name="chboxCaptcha"]').attr('checked', false);
-                    $scope.messageForm.$setPristine(true);
-                    $scope.messageResult = {
-                        text: "Message has been sent!",
-                        error: false
-                    };
-                }).error(function(data, status, headers, config) {
-                    $scope.showMessageResult = true;
-                    $scope.messageResult = {
-                        text: "Error found. Please retry later!",
-                        error: true
-                    };
-                });
-            }
-        }
-    };
-}).directive('ngValidator', function() {
-    return {
-        // Restrict it to be an attribute in this case
-        restrict: 'A',
-        // responsible for registering DOM listeners as well as updating the DOM
-        link: function(scope, element, attrs) {
-            var processResult = function(data) {
-                scope.validationProgress = false;
-                var text = "";
-                if (!data.is_valid) {
-                    if (data.did_you_mean != null && data.did_you_mean.length > 0) {
-                        text = "Did you mean \"" + data.did_you_mean + "\"?";
-                    } else {
-                        text = "Address is invalid.";
-                    }
-                } else {
-                    text = "This looks good!";
-                }
-                scope.validationResult = {
-                    valid: data.is_valid,
-                    text: text
+        if ($scope.isReadyToSend() && $scope.isHuman()) {
+            $http.post($scope.relayPath, {
+                email: $scope.email,
+                messageBody: $scope.messageBody,
+            }).success(function(data, status, headers, config) {
+                $scope.email = "";
+                $scope.messageBody = "";
+                $scope.validationResult = null;
+                $scope.showMessageResult = true;
+                angular.element('input[name="chboxCaptcha"]').attr('checked', false);
+                $scope.messageForm.$setPristine(true);
+                $scope.messageResult = {
+                    text: "Message has been sent!",
+                    error: false
                 };
-                scope.$digest();
-            };
-            var errorResult = function() {
-                scope.validationProgress = false;
-                scope.validationResult = {
-                    valid: false,
-                    text: "Address is invalid."
+                $scope.messageFade = { opacity: 0, display: 'none' };
+                $scope.messageResultFade = { opacity: 1 };
+            }).error(function(data, status, headers, config) {
+                $scope.showMessageResult = true;
+                $scope.messageResult = {
+                    text: "Error found. Please retry later!",
+                    error: true
                 };
-                scope.$digest();
-            };
-            var progress = function() {
-                scope.validationProgress = true;
-                scope.$digest();
-            };
-            $(element).mailgun_validator({
-                api_key: "pubkey-5nc-amvnbfw1j1k8w45usr5w36y-job2",
-                success: processResult,
-                error: errorResult,
-                in_progress: progress
+                $scope.messageFade = { opacity: 1, display: 'block' };
+                $scope.messageResultFade = { opacity: 0 };
             });
-        }
-    };
-}).directive('ngAutogrow', function() {
-    return {
-        // Restrict it to be an attribute in this case
-        restrict: 'A',
-        // responsible for registering DOM listeners as well as updating the DOM
-        link: function(scope, element, attrs) {
-            $(element).autoGrow(10);
         }
     };
 });

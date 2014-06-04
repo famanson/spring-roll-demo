@@ -1,4 +1,4 @@
-/*jshint browser:true */
+/*jshint browser:true, devel:true */
 
 // angular is defined in angular.js
 /*global angular */
@@ -6,7 +6,9 @@
 // these are in global.js
 /*global posts, notifications, topNavs, slides, app, longdanEnabled, $:false */
 
-app.controller("ListingsCtrl", function($scope, $timeout) {
+var EVENT_POST_SELECTED = 'selected_post';
+
+app.controller("ListingsCtrl", function($scope, $sce) {
     'use strict';
 
     // Fixed current date.
@@ -29,10 +31,25 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
 
     // Define the two variables that will determine which posts to display
     $scope.currentType = "sale";
+    // the searched text
     $scope.searchedText = "";
+    // direct input from search box
+    $scope.searchedInput = "";
     $scope.clearSearch = function() {
+        // Each clear will reset whole page
         $scope.searchedText = "";
+        $scope.searchedInput = "";
         $scope.repopulate();
+    };
+    $scope.clearSearchWithText = function() {
+        if($scope.searchedText.length > 0) {
+            $scope.clearSearch();
+        }
+    };
+    $scope.clearSearchNoText = function() {
+        if($scope.searchedInput.length === 0) {
+            $scope.clearSearch();
+        }
     };
     // Method for dynamically populate page, mainly used for search
     $scope.repopulate = function() {
@@ -53,7 +70,7 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         var filterByType = function(post) {
             if (post.type === 'compose') {
                 // Special case - the "compose" sentinel.
-                return ($scope.currentType !== 'longdan' && $scope.searchedText === "");
+                return ($scope.currentType !== 'longdan' && $scope.searchedText.length === 0);
             } else {
                 return post.type === $scope.currentType && isTextMatched(post.description, $scope.searchedText);
             }
@@ -74,18 +91,23 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         }
     };
     // Images used for post overlay
-    $scope.postImages = [];
     $scope.hasImages = function(post) {
-        return post !== null && 'images' in post;
+        return post !== null && 'images' in post && post.images.length > 0;
     };
     $scope.selectPost = function(post) {
         post = (post !== null && post.type === 'compose') ? null : post;
-        $scope.postImages = $scope.hasImages(post) ? post.images : [];
+        // Add images field if it is not defined. This simplifies code for PostCtrl.
+        if (post !== null && post.images === undefined) {
+            post.images = [];
+        };
         $scope.selected_post = post;
+        if (post !== null) {
+            $scope.$broadcast(EVENT_POST_SELECTED, $scope.selected_post);
+        }
     };
     $scope.openComposeBox = function() {
         $scope.$broadcast("EVENT_OPEN_COMPOSE_BOX");
-    }
+    };
 
     $scope.populateByType('sale');
     if (!$scope.longdanEnabled) {
@@ -168,30 +190,15 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
         $scope.apiPopupViewed = viewed;
     };
 
-    /* Intro header */
-    $scope.introVisible = false;
-    $scope.toggleIntro = function() {
-        $scope.introVisible = !$scope.introVisible;
-    };
-    $scope.setIntroVisible = function(show) {
-        $scope.introVisible = show;
+    /* Google Map Embed API */
+    $scope.mapValue = function(post) {
+        return $sce.trustAsResourceUrl("https://www.google.com/maps/embed/v1/place?" +
+               "key=AIzaSyASgjPiSBanoRMV62DOrQEGRNO1VrGVT34&" +
+               "q=" + post.location + "&zoom=15");
     };
 
-    /* Image picker in overlay */
-    $scope.fullImagePicked = false;
-    $scope.setPostImage = function(image) {
-        $scope.pickedImage = image;
-        $scope.setFullImagePicked(true);
-    };
-    $scope.setFullImagePicked = function(picked) {
-        $scope.fullImagePicked = picked;
-    };
-    $scope.cycleImages = function(forward) {
-        var current = $scope.postImages.indexOf($scope.pickedImage);
-        var cycleIndex = current + (forward ? 1 : -1);
-        cycleIndex += cycleIndex < 0 ? $scope.postImages.length : 0;
-        var next = cycleIndex % $scope.postImages.length;
-        $scope.pickedImage = $scope.postImages[next];
+    $scope.hasLocation = function(post) {
+        return post !== null && "location" in post;
     };
     
     /*Enabling past searches*/
@@ -216,36 +223,83 @@ app.controller("ListingsCtrl", function($scope, $timeout) {
     };
 });
 
-/* Converts date in string format to a time elapsed representation, e.g. "6 days ago" */
-app.filter('timeElapsed', function() {
-    return function(dateInput, currentDate) {
-        // Process input date.
-        var date;
-        if (dateInput instanceof String || typeof(dateInput) === "string") {
-            date = new Date(dateInput);
-        } else if (dateInput instanceof Date) {
-            date = dateInput;
+/**
+ * Controller for the single post view UX.
+ */
+app.controller("PostCtrl", function($scope) {
+    // Subscribe to the event
+    $scope.$on(EVENT_POST_SELECTED, function(args) {
+        // Work out what the default width and height should be
+        if ("location" in $scope.selected_post) {
+            $scope.defaultWidth = "550px";
+            $scope.defaultHeight = "600px";
         } else {
-            return "Unsupported date type!";
+            $scope.defaultWidth = "550px";
+            $scope.defaultHeight = "300px";
+        }
+        // Get the maximum number of slide decks.
+        if ($scope.selected_post.images !== undefined) {
+            maxDecks = $scope.selected_post.images.length + 1;
+        } else {
+            maxDecks = 1;
+        }
+        $scope.currentDeckPosition = 0;
+
+        // Generate an array of size 'maxDecks' so that the pager indicator can be generated.
+        // This is more of a hack, should be fixed using a filter.
+        // TODO: macduy - refactor to use filter
+        var range = [];
+        for (var i = 0; i < maxDecks; i++) {
+            range[i] = null;
+        }
+        $scope.pagerPages = range;
+
+        // Relayout
+        relayout(true);
+    });
+
+    // Current deck position: 0  is listing summary, >= 1 are images
+    $scope.currentDeckPosition = 0;
+
+    // TODO: Remove this hack
+    $scope.pagerPages = [];
+
+    // Whether auto-animation should be prevented.
+    $scope.preventAnimation = false;
+
+    // Maximum number of slide decks.
+    var maxDecks = 0;
+
+    // Computes the layout.
+    function relayout(preventAnimation) {
+        preventAnimation = preventAnimation || false;
+
+        var position = $scope.currentDeckPosition;
+        var image = (position > 0) ? $scope.selected_post.images[position - 1] : null;
+        var layout = [];
+
+        for (var i = 0; i < maxDecks; i++) {
+            layout[i] = {
+                left: i < position ? "-100%" : 0
+            };
         }
 
-        var numHour = Math.floor((currentDate - date)/3600000);
-        if (numHour < 1) {
-                return "just now";
-        } else if (numHour <= 24) {
-                return "today" ;
-        } else if (numHour <= 48) {
-            return "yesterday";
-        } else if (numHour < 168) {
-            return Math.round(numHour/24) + " days ago";
-        } else if (numHour < 264) {
-            return "a week ago";
-        } else if (numHour < 720) {
-            return Math.round(numHour/168) + " weeks ago";
-        } else if (numHour < 1080) {
-            return "a month ago";
+        $scope.map_layout = {
+            'bottom': $scope.currentDeckPosition === 0 ? 0 : "-100%",
+        };
+
+        $scope.preventAnimation = preventAnimation;
+        $scope.layout = layout;
+        $scope.currentImageIndex = position - 1;
+    }
+
+    $scope.onPostClicked = function() {
+        // Don't move past the last deck
+        if ($scope.currentDeckPosition < maxDecks - 1) {
+            $scope.currentDeckPosition++;
         } else {
-            return Math.round(numHour/720) + " months ago";
+            $scope.currentDeckPosition = 0;
         }
+        relayout(false);
     };
 });

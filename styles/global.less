@@ -18,6 +18,9 @@
 @grid_4: 4 * @grid_module + 3 * @grid_gutter;
 @grid_3: 3 * @grid_module + 2 * @grid_gutter;
 
+// Font stacks
+@thin-font-family: "Open Sans", Arial;
+
 // *** Colors ***
 @red: #c33f3f;
 
@@ -34,6 +37,6 @@
 
 // Quick gradient from single color.
 .gradient(@color) {
-    .gradient(@color, 0%, darken(@color, 12%), 100%);
+    .gradient(@color, 0%, darken(@color, 8%), 100%);
 }
 

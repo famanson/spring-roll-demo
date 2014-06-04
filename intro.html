@@ -1,51 +1,60 @@
-<div class="intro" ng-controller="IntroCtrl" ng-show="introVisible" ng-click="$event.stopPropagation()" ng-class="{ 'message-form-included' : messageFormVisible }">
-    <div class="message-wrapper" ng-show="messageFormVisible">
-        <form name="messageForm" class="message-form">
-            <div class="email">
-                <label><b>Email address:</b></label>
-                <input name="email" ng-model="email" id="email-address" ng-validator ng-autogrow></input>
-                <span ng-show="email.length>0 && validationResult!=null && !validationProgress"
-                      class="validation" ng-class="{ 'valid': validationResult.valid }">
-                    {{ validationResult.text }} 
-                    <a class="double-check" ng-show="!validationResult.valid"><u><i>check again?</i></u></a>
+<div class="intro" ng-controller="IntroCtrl">
+    <div class="shadow-maker"></div>
+    <div class="overlay" ng-class="{ active : messageFormVisible }">
+        <div class="overlay_content_full_bleed" ng-class="{ 'overlay-shrink':showMessageResult }">
+            <div class="message-wrapper">
+                <span class="message-result" ng-show="showMessageResult"
+                      ng-class="{ 'error': messageResult.error }">
+                    <b>{{ messageResult.text }}</b> <a ng-click="setMessageFormVisible(false)">dismiss</a>
                 </span>
-                <img ng-show="validationProgress" class="loading" src="images/loading.gif"/>
+                <form name="messageForm" class="message-form" ng-show="!showMessageResult">
+                    <div class="email" sr-input-autofocus>
+                        <label><b>Email address:</b></label>
+                        <input name="email" ng-model="email" id="email-address"
+                            autocomplete="off" sr-email-validator sr-input-autogrow></input>
+                        <span ng-show="email.length>0 && validationResult!=null && !validationProgress"
+                              class="validation" ng-class="{ 'valid': validationResult.valid }">
+                            {{ validationResult.text }}
+                            <a class="double-check" href="#" ng-show="!validationResult.valid"><u>check again?</u></a>
+                        </span>
+                        <img ng-show="validationProgress" class="loading" src="images/loading.gif"/>
+                    </div>
+                    <hr/>
+                    <div class="message" sr-input-autofocus>
+                        <label><b>Message Body:</b></label>
+                        <span ng-show="messageForm.messageBody.$dirty"
+                              class="validation" ng-class="{ 'valid': isReadyToSend() }">
+                            {{ messageWarningText() }}
+                        </span>
+                        <textarea name="messageBody" ng-model="messageBody"
+                            placeholder="Hmm... Spring rolls are goooooood..."></textarea>
+                    </div>
+                    <hr/>
+                    <div class="bottom">
+                        <input name="trap" type="checkbox">
+                        <p ng-click="setMessageFormVisible(false);dismissMessageResult();" class="cancel">  <i>Close</i>
+                        </p>
+                        <p class="send" ng-class="{ active: validationResult.valid && messageBody.length > 0 }"
+                           ng-click="send()">
+                            <b>Send</b>
+                        </p>
+                    </div>
+                </form>
             </div>
-            <div class="message">
-                <label><b>Message Body:</b></label>
-                <span ng-show="messageForm.messageBody.$dirty"
-                      class="validation" ng-class="{ 'valid': isReadyToSend() }">
-                    {{ messageWarningText() }}
-                </span>
-                <textarea name="messageBody" ng-model="messageBody" 
-                    placeholder="Hmm... Spring rolls are goooooood..."></textarea>
-                <div class="bottom">
-                    <input name="trap" type="checkbox">
-                    <p ng-click="setMessageFormVisible(false);dismissMessageResult();" class="cancel">  <i>Close</i>
-                    </p>
-                    <p class="send" ng-class="{ active: validationResult.valid && messageBody.length > 0 }"
-                       ng-click="send()">
-                        <b>Send</b>
-                    </p>
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
     <div class="intro-wrapper">
-        <span class="message-result" ng-show="showMessageResult"
-              ng-class="{ 'error': messageResult.error }">
-            <b>{{ messageResult.text }}</b> <a ng-click="dismissMessageResult()">dismiss</a>
-        </span>
         <div class="tag-lines">
-            <p>Hi! Welcome to our Project Spring Roll demo!</p>
-            <p>This is what the future SVUK Marketplace looks like</p>
-            <p>It won't work on mobile devices or save any changes</p>
-            <p>Hint: type "real" in our Search Box for real adverts</p>
-            <p><a href="javascript:void(0)" ng-click="setIntroVisible(false);">Close this window</a></p>
+            <p>
+                <b>Hi! Welcome to our Project Spring Roll demo!</b><br/>
+                This is what the future SVUK Marketplace looks like. <br/>
+                It won't work on mobile devices or save any changes. <br/>
+                Hint: type "real" in our Search Box for real adverts <br/>
+            </p>
         </div>
         <div class="social-images">
             <p>
-                Like what we do? <a class="hello-button" class="quick-mail" ng-click="setMessageFormVisible(true);dismissMessageResult()" ng-show="!messageFormVisible">Say Hello!</a>
+                Like what we do? <a class="hello-button" href="#" class="quick-mail" ng-click="setMessageFormVisible(true);dismissMessageResult()">Say Hello!</a>
             </p>
             <p>You can also find us on:</p>
             <a href="https://www.facebook.com/pages/Team-Spring-Roll/1412319192364606" target="_blank">
@@ -59,8 +68,5 @@
     </div>
 </div>
 <script type="text/javascript">
-    $(".bottom").append('<input name="chboxCaptcha" type="checkbox"><p class="chboxCaptchaHelp" ng-class=\"{ \'invalid\': chboxCaptchaAlert() }\">By ticking here, I pinky promise I\'m not a bot!</p>');
-    $(".email").bind("click", function() {
-        $(this).children("input").focus();
-    });
+    $(".bottom").append('<p style="padding-left: 0"><input name="chboxCaptcha" id="chboxCaptcha" type="checkbox"><label class="chboxCaptchaHelp" ng-class=\"{ \'invalid\': chboxCaptchaAlert() }\" for="chboxCaptcha">I promise I\'m not a bot!</label></p><div class="clear"  ></div>');
 </script>

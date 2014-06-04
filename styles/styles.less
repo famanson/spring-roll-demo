@@ -1,5 +1,7 @@
 @import "global.less";
 
+@notification-box-background: #fafafa;
+
 // *** Main content ***
 html,body {
     height:100%;
@@ -34,24 +36,6 @@ body {
         font-weight: 400;
         padding: 0.5em 0 0.4em 0;
         margin: 0;
-
-        * {
-            text-transform: uppercase;
-            font-size: 60%;
-            font-weight: 700;
-        }
-        img {
-            cursor: pointer;
-        }
-    }
-    .badge {
-        background: none;
-        background-color: #7bc173;
-        top: 10px;
-        right: 28px;
-        bottom: auto;
-        left: auto;
-        cursor: pointer;
     }
 }
 
@@ -87,15 +71,15 @@ body {
     // TODO(macduy): Manually position image because we can't be bothered do it properly.
     img {
         position: relative;
-        top: 5px;
+        top: 4px;
     }
 
     input {
         background: none;
         border: 0;
+        margin-top: 2pt;
         outline: none;
-        height: 23pt;
-        font-size: 11pt;
+        font-size: 10pt;
     }
 }
 
@@ -151,11 +135,10 @@ body {
 
     // *** Notification box ***
     #notification-box {
-        z-index: 1000;
         position: absolute;
-        background-color: #fff;
+        background-color: @notification-box-background;
         width: 400px;
-        border: 4px solid #ccc;
+        border: 1px solid #aaa;
         -moz-box-shadow: 0 0 12px #ccc;
         -webkit-box-shadow: 0 0 12px #ccc;
         box-shadow: 0 0 12px #ccc;
@@ -166,25 +149,22 @@ body {
         text-decoration: none;
 
         .notification {
-            padding: 5 10px 15px 10px;
-            font-size: 12.5px;
+            padding: 12px;
+            font-size: 10pt;
             color: #333;
             .content {
                 height: 35px;
             }
             .time {
+                font-size: 90%;
                 color: #aaa;
             }
             .avatar {
                 margin-right: 15px
             }
 
-            &:last-child {
-                padding-bottom: 10px;
-            }
-
             &:not(:last-child) {
-                border-bottom: 1px solid #bbb;
+                border-bottom: 1px solid #ccc;
             }
 
             &:hover {
@@ -195,11 +175,14 @@ body {
     .triangle-up {
         float: right;
         border: 16px solid transparent;
-        border-bottom-color: #ccc;
+        border-bottom-color: @notification-box-background;
         margin-top: 40px;
         margin-left: -11px;
         bottom: auto;
         left: auto;
+        &.outline {
+            border-bottom-color: #aaa;
+        }
     }
     #notification-box.active {
         display: block;
@@ -241,6 +224,7 @@ body {
     float: left;
     width: @grid_4;
     margin-left: @grid_gutter;
+    margin-bottom: @grid_gutter;
 
     &:first-child {
         margin-left: 0;
@@ -265,7 +249,7 @@ body {
     }
 
     .price {
-        font-family: "Open Sans", Arial;
+        font-family: @thin-font-family;
         color: @red;
         font-size: 1.8em;
         line-height: 100%;
@@ -300,6 +284,7 @@ body {
 
 // *** Modals and overlays ***
 .overlay {
+    z-index: 1000;
     position: fixed;
     width: 100%;
     height: 100%;
@@ -312,6 +297,59 @@ body {
         display: block;
     }
 
+    .overlay_content_full_bleed {
+        .overlay_content;
+        width: 0;
+        height: 0;
+        padding: 0;
+        overflow: hidden;
+
+        .deck {
+            position: absolute;
+
+        }
+
+        .text-deck {
+            .deck;
+            box-shadow: 0 0 20px black;
+            width: 350px;
+            height: 100%;
+            left: 0;
+            background: white;
+
+            &.singular {
+                width: 100%;
+                box-shadow: none;
+            }
+
+            .post {
+                margin: 0;
+                padding: 20pt;
+            }
+        }
+
+        .image-deck {
+            .deck;
+            position: absolute;
+            overflow: hidden;
+            width: 100%;
+            img {
+                max-width: 800px;
+                max-height: 600px;
+                float: right;
+            }
+        }
+    }
+
+    .page-indicator {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        font-size: 25pt;
+        color: white;
+        padding-top: 20pt;
+    }
+
     .overlay_content {
         position: relative;
         top: 10%;
@@ -319,45 +357,30 @@ body {
         padding: 20pt;
         display: block;
         width: 500px;
-        border-radius: 3px;
+        height: 400px;
         background: white;
         box-shadow: 0 2px 5px #222;
-
-        .post {
-            margin-top: 0;
-            .overlay-images {
-                margin: 20px 0 0 0;
-                img {
-                    height: 100px;
-                    margin: 5px;
-                }
+        .gmap-embed {
+            position: absolute;
+            width: 100%;
+            height: 300px;
+            background-color: #fff;
+            img.loading {
+                position: absolute;
+                top: 134px;
+                left: 259px;
+                z-index: 0;
             }
-            .overlay-full-image {
-                background-color: transparent;
-                padding: 0;
-                width: auto;
-                text-align: center;
-                .image-wrapper {
-                    display: inline-block;
-                    position: relative;
-                    img {
-                        max-height: 80%;
-                        max-width: 800px;
-                        display: block;
-                        margin-left: auto;
-                        margin-right: auto;
-                    }
-                }
+            iframe {
+                position: absolute;
+                z-index: 1;
             }
         }
         .post-close {
             position: absolute;
             right: 0;
             top: 0;
-            padding: 5px;
-            font-size: 12px;
-            border-radius: 20px;
-            color: #888;
+            padding: 8px;
             cursor: pointer;
             img {
                 height: 18px;
