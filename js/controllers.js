@@ -106,7 +106,7 @@ app.controller("ListingsCtrl", function($scope, $sce) {
         }
     };
     $scope.openComposeBox = function() {
-        $scope.$broadcast("EVENT_OPEN_COMPOSE_BOX");
+        $scope.$broadcast("EVENT_OPEN_COMPOSE_BOX", $scope.currentType);
     };
 
     $scope.populateByType('sale');
