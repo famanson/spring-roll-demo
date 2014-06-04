@@ -200,6 +200,9 @@ app.controller("ListingsCtrl", function($scope, $sce) {
     $scope.hasLocation = function(post) {
         return post !== null && "location" in post;
     };
+    $scope.onLogoClicked = function() {
+        window.location.reload(true);
+    };
 });
 
 /**
