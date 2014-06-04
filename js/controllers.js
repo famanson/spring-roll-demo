@@ -76,7 +76,6 @@ app.controller("ListingsCtrl", function($scope, $sce) {
             }
         };
         $scope.posts = posts.filter(filterByType);
-        $scope.postCount = $scope.posts.length;
     };
 
 
