@@ -1,5 +1,8 @@
 @import "global.less";
 
+@corners-px: 2px;
+@selection-color: #7bc173;
+
 /* Styling for Compose post inlined in the column */
 .post .compose {
     width: 100%;
@@ -32,18 +35,30 @@
         border-bottom: 1px solid #bbb;
     }
     .picker {
-        margin: 5px auto;
+        font-size: 11pt;
+        color: black;
+        margin: 0.8em 0;
         div {
+            border: 1px solid #bbb;
             display: inline-block;
-            width: 120px;
-            padding: 5px 0;
-            margin: 5px;
-            border: 3px dashed #aaa;
-            border-radius: 7px;
+            padding: 0.3em 2em;
+            margin-left: -1px;
             cursor: pointer;
-            &:hover,&.picked {
-                color: #7bc173;
-                border: 3px solid #7bc173;
+            &.picked, &.picked:hover {
+                border: 1px solid @selection-color;
+                .gradient(lighten(@selection-color, 20%), lighten(@selection-color, 18%));
+            }
+            &:hover {
+                border: 1px solid @selection-color;
+                background: lighten(@selection-color, 30%);
+            }
+            &:first-child {
+                border-top-left-radius: @corners-px;
+                border-bottom-left-radius: @corners-px;
+            }
+            &:last-child {
+                border-top-right-radius: @corners-px;
+                border-bottom-right-radius: @corners-px;
             }
         }
     }
