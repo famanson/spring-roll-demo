@@ -49,7 +49,7 @@
 
                 <!-- Searchbox -->
                 <div id="search-container" ng-show="currentType !== 'longdan'">
-                    <img src="images/search.png" />
+                    <img src="images/search.png" ng-click="setPastSearchesVisible(true)" />
                     <input sr-search-enter-key="repopulate();updatePastSearches();"
                            sr-esc-key="clearSearchWithText()"
                            type="text"
