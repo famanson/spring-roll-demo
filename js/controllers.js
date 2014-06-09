@@ -200,11 +200,11 @@ app.controller("ListingsCtrl", function($scope, $sce) {
     $scope.hasLocation = function(post) {
         return post !== null && "location" in post;
     };
-    
+
     /*Enabling past searches*/
     $scope.pastSearches = [];
-    $scope.updatePastSearches = function(searchedText) {
-    // update pastSearches here
+    $scope.updatePastSearches = function() {
+        var searchedText = $scope.searchedInput;
         if ($scope.pastSearches.indexOf(searchedText) != -1) {
             // if searchedText is found, drop it from current
             $scope.pastSearches.splice($scope.pastSearches.indexOf(searchedText),1);
@@ -212,11 +212,11 @@ app.controller("ListingsCtrl", function($scope, $sce) {
             // if searchedText is not found in current array, chop the last element if length >= 10
             if ($scope.pastSearches.length >= 10) {
                 $scope.pastSearches.pop();
-            }    
+            }
         }
         $scope.pastSearches.unshift(searchedText);
     };
-    
+
     $scope.pastSearchesVisible = false;
     $scope.setPastSearchesVisible = function(visible) {
         $scope.pastSearchesVisible = visible;

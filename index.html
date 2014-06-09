@@ -49,10 +49,14 @@
 
                 <!-- Searchbox -->
                 <div id="search-container" ng-show="currentType !== 'longdan'">
-                    <img src="images/search.png" ng-click="setPastSearchesVisible(true)"/>
-                    <input type="text" ng-model="searchedText" 
-                           ng-change="emptyColumns();repopulate();updatePastSearches(searchedText);"
+                    <img src="images/search.png" />
+                    <input sr-search-enter-key="repopulate();updatePastSearches();"
+                           sr-esc-key="clearSearchWithText()"
+                           type="text"
+                           ng-model="searchedInput"
+                           ng-change="clearSearchNoText()"
                            placeholder="Search in {{ currentType.capitalise() }}">
+
                     <div id="past-searches" ng-show="pastSearchesVisible">
                         <p ng-repeat="search in pastSearches">{{ search }}</p>
                         <p style="cursor:pointer;" class="dismiss-past-searches" ng-click="setPastSearchesVisible(false)"><u>dismiss</u></p>
