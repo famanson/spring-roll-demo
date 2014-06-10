@@ -106,7 +106,7 @@ app.controller("ListingsCtrl", function($scope, $sce) {
         }
     };
     $scope.openComposeBox = function() {
-        $scope.$broadcast("EVENT_OPEN_COMPOSE_BOX");
+        $scope.$broadcast("EVENT_OPEN_COMPOSE_BOX", $scope.currentType);
     };
 
     $scope.populateByType('sale');
@@ -199,6 +199,9 @@ app.controller("ListingsCtrl", function($scope, $sce) {
 
     $scope.hasLocation = function(post) {
         return post !== null && "location" in post;
+    };
+    $scope.onLogoClicked = function() {
+        window.location.reload(true);
     };
 });
 

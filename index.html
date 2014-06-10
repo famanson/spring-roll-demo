@@ -31,8 +31,8 @@
         <div class="DEBUG_baseline_grid enabled-{{ showGridLines }}" ></div>
         <div id="header">
             <div id="header_contents">
-                <div id="logo" ng-click="toggleIntro();$event.stopPropagation()">
-                    <h1><img src="images/logo.png"></h1>
+                <div id="logo" ng-click="onLogoClicked()">
+                    <a href="#"><h1><img src="images/logo.png"></h1></a>
                 </div>
 
                 <!-- Top-level navigation -->
@@ -82,7 +82,7 @@
 
         <!-- Main posts area -->
         <div id="search-count" ng-if="searchedText.length > 0 && searchedInput.length > 0">
-            <i>Search result: <b>{{ postCount }}</b> posts found containing "<b>{{ searchedText }}</b>" under {{ currentType.capitalise() }} <a class="clear" ng-click="clearSearch();">clear</a></i>
+            <i>Search result: <b>{{ posts.length }}</b> posts found containing "<b>{{ searchedText }}</b>" under {{ currentType.capitalise() }} <a class="clear" ng-click="clearSearch();">clear</a></i>
         </div>
         <div sr-columns columns="3" posts="posts"
              id="content" ng-class="selected.type" ng-if="selected.type != 'longdan'">

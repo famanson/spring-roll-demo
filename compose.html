@@ -7,7 +7,7 @@
                 <div class="picker">
                     <div ng-repeat="category in composeCategories"
                          ng-class="{ 'picked' : pickedCategory === category }"
-                         ng-click="setPickedCategory(category);">{{ category }}</div>
+                         ng-click="setPickedCategory(category);">{{ category | capitalise }}</div>
                 </div>
             </div>
             <div class="compose-form" ng-form="compose-form" ng-class="{ active : isCategoryPicked() }">

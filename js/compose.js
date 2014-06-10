@@ -2,11 +2,16 @@
 
 app.controller("ComposeCtrl", function($scope) {
     // Event handling.
-    $scope.$on("EVENT_OPEN_COMPOSE_BOX", function() {
+    $scope.$on("EVENT_OPEN_COMPOSE_BOX", function(event, currentType) {
+        if ($.inArray(currentType, $scope.composeCategories) > -1) {
+            $scope.setPickedCategory(currentType);
+        } else {
+            $scope.setPickedCategory("");
+        }
         $scope.composeBoxEnabled = true;
     });
 
-    $scope.composeCategories = ['Sale','Wanted','Rent'];
+    $scope.composeCategories = ['sale','wanted','rent'];
     $scope.composeBoxEnabled = false;
     $scope.pickedCategory = "";
     $scope.setPickedCategory = function(category) {
